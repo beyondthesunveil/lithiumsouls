@@ -33,7 +33,7 @@
         // Avatar du dernier posteur d'un sujet dans la liste des sujets
         lastpost_avatar: ".lastpostavatar img",
         // Type d'un sujet (note, annonce, sondage...)
-        topic_type: ".topic-type > strong",
+        topic_type: ".announcement",
         // Un post
         post: ".post_row",
         // Avatar du post
