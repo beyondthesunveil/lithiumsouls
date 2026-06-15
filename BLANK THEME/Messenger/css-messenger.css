@@ -127,7 +127,8 @@
   display: grid;
   grid-template-rows: 1fr max-content;
   overflow: auto;
-  background: var(--FAM-chatBackground);
+  background: var(--bgcolor);
+  border:1px solid var(--border);
   border-radius: 10px 10px 0 0;
   margin: 10px 15px 0 15px;
 }
@@ -1208,7 +1209,7 @@ blockquote.FAM-codebox > div {
 }
 
 .FAM-tab {
-  background: var(--FAM-chatBackground);
+  background: var(--colorbis);
   border-radius: 5px;
   position: relative;
   display: inline-block;
@@ -1226,8 +1227,8 @@ blockquote.FAM-codebox > div {
 }
 
 .FAM-tab:hover {
-  background: var(--FAM-accentClr);
-  color: var(--FAM-pluginBackground);
+  background: var(--coloradd);
+  color: var(--colorfont);
 }
 
 .FAM-tab:hover i {
@@ -1236,8 +1237,8 @@ blockquote.FAM-codebox > div {
 
 .FAM-tab.FAM-tab-active {
   font-weight: 700;
-  background: var(--FAM-accentClr);
-  color: var(--FAM-pluginBackground);
+  background: var(--colorimp);
+  color: var(--colorfont);
 }
 
 .FAM-tab-name {
