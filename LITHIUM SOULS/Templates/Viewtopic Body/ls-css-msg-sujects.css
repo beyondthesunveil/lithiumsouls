@@ -213,13 +213,7 @@ h1.lithium-vb_titlemap {
 .icon-edit::before { content: "✎"; }
 .icon-delete::before { content: "✕"; }
 .icon-ip::before { content: "⛨"; }
-.lithium-vb_topictle {
-  font: 12px var(--font-h2);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  color: var(--colorfont);
-}
+
 .profile-icons a:hover {
   background: var(--color03);
   border-color: var(--colornews);
