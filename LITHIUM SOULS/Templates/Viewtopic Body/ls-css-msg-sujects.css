@@ -189,11 +189,12 @@ h1.lithium-vb_titlemap {
 }
 /* affichage des boutons d'édition */
 .lithium-vb_btnedit {
-  margin: 22px 0 0 0;
+  margin: 6px;
 }
 .profile-icons {
   display: flex;
   gap: 6px;
+  margin:0!important;
   justify-content:center;
 }
 .profile-icons a {
