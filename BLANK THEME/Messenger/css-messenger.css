@@ -1,7 +1,7 @@
 #FAM,
 #FAM .FAM-inputbox,
 #FAM-msg {
-  font-family: var(--font);
+  font-family: var(--font-text);
 }
 
 .FAM-clear,
@@ -21,9 +21,9 @@
 #FAM {
   display: grid;
   grid-template-rows: max-content max-content 1fr;
-  color: var(--FAM-fontClr);
-  font-size: var(--FAM-fontSize);
-  background: var(--FAM-pluginBackground);
+  color: var(--colorfont);
+  font-size: 12px;
+  background: var(--bgcolor);
   position: fixed;
   height: 100%;
   width: 90%;
@@ -36,7 +36,6 @@
   transition-property: top, right, bottom, left, height, width, margin, opacity, visibility;
   transition-duration: 700ms;
   grid-template-columns: 100%;
-  box-shadow: var(--FAM-shadowBox);
 }
 
 /* Fenetre fermée */
@@ -107,7 +106,7 @@
 /* Titre de la fenetre */
 .FAM-maintitle {
   text-align: left;
-  font-size: var(--FAM-titleSize);
+  font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
