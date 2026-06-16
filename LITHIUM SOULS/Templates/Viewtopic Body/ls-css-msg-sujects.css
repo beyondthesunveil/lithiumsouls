@@ -66,14 +66,17 @@ h1.lithium-vb_titlemap {
 .lithium-vb_blockmember {
   display: flex;
   flex-wrap: wrap;
-  border-radius:var(--mainradius);
+  border-radius: var(--mainradius);
+  background: var(--color02);
   width: 100%;
+  justify-content: space-between;
 }
 /* bloc qui va gérer l'affichage de la bande gauche avec l'avatar, le rang, le bloc des infos */
 .lithium-vb_blockperso {
   width: 250px;
-  background-color: var(--color02);
-  border-radius: 5px 0 0 5px;
+  background-color: var(--border);
+  border-radius: 0 0 0 5px;
+  border-right: var(--border) solid 1px;
 }
 .lithium-vb_posttracker {
   position: sticky;
@@ -180,9 +183,9 @@ h1.lithium-vb_titlemap {
 }
 /* bloc qui va gérer l'affichage général de la mise en page du texte, la date, les boutons edit */
 .lithium-vb_blockcontent {
-  width: 760px;
+  width: 765px;
   background-color: var(--color03);
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 0 5px 0;
 }
 /* affichage des boutons d'édition */
 .lithium-vb_btnedit {
