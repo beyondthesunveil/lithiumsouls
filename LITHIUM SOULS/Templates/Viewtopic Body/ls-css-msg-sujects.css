@@ -95,10 +95,8 @@ h1.lithium-vb_titlemap {
 .lithium-vb_postname strong {
   color: #f1f1f1;
   display: inline-block;
-  font: 20px var(--font-h2);
-  min-width: 80px;
-  max-width:220px;
-  background-color: var(--color02);
+  font: 15px var(--font-h3);
+  text-transform: uppercase;
 }
 .short-pseudo {
   border-bottom: 1px solid currentColor;
