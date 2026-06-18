@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   const groupNames = {
-	2: "Mascotte",
+    2: "Mascotte",
     3: "Infernaux",
     4: "Damné·e·s",
     5: "Suprêmes",
@@ -13,42 +13,24 @@ $(document).ready(function() {
 
   $('.lithium-vb_posttracker').each(function() {
 
-    var $tracker = $(this);
+    const $tracker = $(this);
 
-    var $pseudo = $tracker.find('.lithium-vb_postname span[class*="group-"]');
+    const $pseudo = $tracker.find('.lithium-vb_postname span[class*="group-"]');
     if (!$pseudo.length) return;
 
-    var match = $pseudo.attr('class').match(/group-(\d+)/);
+    const match = $pseudo.attr('class').match(/group-(\d+)/);
     if (!match) return;
 
-    var groupId = match[1];
+    const groupId = match[1];
+    const groupName = groupNames[groupId] || "";
+    const groupColor = $pseudo.css("color") || "#666";
 
-    var groupName = groupNames[groupId] || "";
-    var groupColor = $pseudo.css("color") || "#666";
-
-    var $rankDiv = $tracker.find('.lithium-vb_rank');
-    var $groupLabel = $rankDiv.find('.group-label');
+    const $groupLabel = $tracker.find('.lithium-vb_rank .group-label');
 
     if ($groupLabel.length) {
-      $groupLabel.text(groupName);
-    }
-
-    var pseudoText = $pseudo.text().trim();
-    var pseudoLength = pseudoText.length;
-    var isShortPseudo = pseudoLength >= 3 && pseudoLength <= 7;
-
-    $pseudo.removeClass("short-pseudo long-pseudo");
-
-    $pseudo.css({
-      "color": groupColor,
-      "background": "none",
-      "display": "inline-block"
-    });
-
-    if (isShortPseudo) {
-      $pseudo.addClass("short-pseudo");
-    } else {
-      $pseudo.addClass("long-pseudo");
+      $groupLabel
+        .text(groupName)
+        .css("color", groupColor);
     }
 
   });
