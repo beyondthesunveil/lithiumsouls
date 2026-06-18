@@ -123,10 +123,11 @@ h1.lithium-vb_titlemap {
   object-fit:cover;
 }
 .lithium-vb_rank {
-  font: 12px var(--font-h2);
+  font: 15px var(--font-h4);
   color: var(--colorfont);
   text-transform: uppercase;
-  margin: 15px;
+  margin: 10px;
+  letter-spacing:1px;
   padding: 0 0 10px 0;
 }
 .lithium-vb_rank > span {
