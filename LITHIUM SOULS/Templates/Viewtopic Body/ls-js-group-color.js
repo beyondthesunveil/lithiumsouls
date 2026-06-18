@@ -25,7 +25,7 @@ $(document).ready(function() {
     const groupName = groupNames[groupId] || "";
     const groupColor = $pseudo.css("color") || "#666";
 
-    const $groupLabel = $tracker.find('.lithium-vb_rank .group-label');
+    const $groupLabel = $tracker.find('.lithium-vb_postname');
 
     if ($groupLabel.length) {
       $groupLabel
