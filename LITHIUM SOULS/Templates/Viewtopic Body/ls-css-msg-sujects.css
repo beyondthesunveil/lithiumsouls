@@ -130,15 +130,16 @@ h1.lithium-vb_titlemap {
   padding: 0 0 10px 0;
 }
 .lithium-vb_rank > span {
-  display:block;
-  font: 12px var(--font-h2);
-  border-bottom: 1px solid var(--colorfont);
-  padding: 0 0 10px 0;
+  display: block;
+  font: 13px var(--font-h3);
+  letter-spacing: 0.5px;
+  padding: 3px;
+  background: var(--color03);
+  border-radius: var(--radiusbis);
 }
 .group-label {
-  text-align: right;
+  text-align: center;
   margin: 5px 0;
-  font-style: italic;
 }
 .lithium-vb_charafields {
   margin: 15px;
