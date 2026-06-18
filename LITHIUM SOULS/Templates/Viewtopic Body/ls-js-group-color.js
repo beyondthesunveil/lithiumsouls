@@ -25,13 +25,19 @@ $(document).ready(function() {
     const groupName = groupNames[groupId] || "";
     const groupColor = $pseudo.css("color") || "#666";
 
-    const $groupLabel = $tracker.find('.lithium-vb_postname');
+    // Nom du groupe
+    const $groupLabel = $tracker.find('.group-label');
 
     if ($groupLabel.length) {
-      $groupLabel
-        .text(groupName)
-        .css("color", groupColor);
+      $groupLabel.text(groupName);
     }
+
+    // Bordure sous le pseudo
+    $pseudo.css({
+      "border-bottom": "3px solid " + groupColor,
+      "padding-bottom": "2px",
+      "display": "inline-block"
+    });
 
   });
 
