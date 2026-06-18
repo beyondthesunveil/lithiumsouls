@@ -21,12 +21,12 @@
   flex-direction: column;
   gap: 10px
 }
-/* .sidebar.has-notiffi .sidebar_top {
+.sidebar.has-notiffi .sidebar_top {
   margin-top: 60px;
 }
 .sidebar.has-notiffi {
   transform: translateY(60px);
-} */
+} 
 /* Conteneur de l'ascenseur
  * Sert essentiellement à définir où le placer dans la page */
 .sidebar_bottom {
