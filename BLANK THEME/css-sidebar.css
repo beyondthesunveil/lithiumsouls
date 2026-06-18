@@ -25,7 +25,7 @@
   margin-top: 60px;
 }
 .sidebar.has-notiffi {
-  transform: translateY(60px);
+  transform: none;
 } 
 /* Conteneur de l'ascenseur
  * Sert essentiellement à définir où le placer dans la page */
