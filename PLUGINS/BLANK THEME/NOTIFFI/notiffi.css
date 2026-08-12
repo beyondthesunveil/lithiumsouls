@@ -115,20 +115,7 @@
   overflow: hidden;
   border: 1px solid var(--border-subtle);
   border-radius: 18px;
-  background:
-    color-mix(
-      in srgb,
-      var(--bg-page) 90%,
-      transparent
-    );
-  box-shadow:
-    0 24px 70px
-      color-mix(
-        in srgb,
-        var(--border-strong) 28%,
-        transparent
-      ),
-    inset 0 1px 0 var(--border-subtle);
+  background:var(--bg-overlay);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
