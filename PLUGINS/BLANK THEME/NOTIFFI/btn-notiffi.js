@@ -1,23 +1,18 @@
 (function () {
   "use strict";
 
-  function initializeLitsoNavbar() {
 
+  function initializeLitsoNavbar() {
     var navbar = document.querySelector(
       "[data-litso-nav]"
     );
 
-    if (
-      !navbar ||
-      navbar.getAttribute("data-litso-nav_ready") === "true"
-    ) {
+    if (!navbar) {
       return;
     }
 
-    navbar.setAttribute(
-      "data-litso-nav_ready",
-      "true"
-    );
+    var isAlreadyReady =
+      navbar.getAttribute("data-litso-nav_ready") === "true";
 
     var linksContainer = navbar.querySelector(
       "[data-litso-nav_links]"
@@ -43,6 +38,118 @@
       "[data-litso-nav_status]"
     );
 
+    function placeNotiffiButton() {
+
+      var notiffiButton = document.getElementById(
+        "notiffi_button"
+      );
+
+      if (!homeButton || !notiffiButton) {
+        return false;
+      }
+
+      notiffiButton.classList.add(
+        "litso-nav_notiffi"
+      );
+
+      if (
+        notiffiButton.parentElement !==
+          homeButton.parentElement ||
+        homeButton.nextElementSibling !==
+          notiffiButton
+      ) {
+        homeButton.insertAdjacentElement(
+          "afterend",
+          notiffiButton
+        );
+      }
+
+      return true;
+    }
+
+    placeNotiffiButton();
+
+    if (
+      navbar.getAttribute(
+        "data-litso-nav_notiffi-observer"
+      ) !== "true" &&
+      "MutationObserver" in window
+    ) {
+      navbar.setAttribute(
+        "data-litso-nav_notiffi-observer",
+        "true"
+      );
+
+      var notiffiFrame = null;
+
+      var notiffiObserver = new MutationObserver(
+        function (mutations) {
+          var shouldCheck = false;
+
+          Array.prototype.forEach.call(
+            mutations,
+            function (mutation) {
+              Array.prototype.forEach.call(
+                mutation.addedNodes,
+                function (node) {
+                  if (
+                    shouldCheck ||
+                    node.nodeType !== 1
+                  ) {
+                    return;
+                  }
+
+                  if (
+                    node.id === "notiffi_button" ||
+                    (
+                      node.querySelector &&
+                      node.querySelector(
+                        "#notiffi_button"
+                      )
+                    )
+                  ) {
+                    shouldCheck = true;
+                  }
+                }
+              );
+            }
+          );
+
+          if (!shouldCheck) {
+            return;
+          }
+
+          if (notiffiFrame !== null) {
+            cancelAnimationFrame(notiffiFrame);
+          }
+
+          notiffiFrame = requestAnimationFrame(
+            function () {
+              placeNotiffiButton();
+              notiffiFrame = null;
+            }
+          );
+        }
+      );
+
+      notiffiObserver.observe(
+        document.body,
+        {
+          childList: true,
+          subtree: true
+        }
+      );
+    }
+
+    if (isAlreadyReady) {
+      return;
+    }
+
+    navbar.setAttribute(
+      "data-litso-nav_ready",
+      "true"
+    );
+
     function decorateLinks() {
       if (!linksContainer) {
         return;
@@ -55,7 +162,6 @@
       Array.prototype.forEach.call(
         links,
         function (link) {
-
           if (link.querySelector(".link-text")) {
             return;
           }
@@ -78,7 +184,9 @@
       );
     }
 
+
     decorateLinks();
+
 
     if (
       linksContainer &&
@@ -92,54 +200,6 @@
 
       linkObserver.observe(
         linksContainer,
-        {
-          childList: true,
-          subtree: true
-        }
-      );
-    }
-
-    function placeNotiffiButton() {
-      var notiffiButton = document.getElementById(
-        "notiffi_button"
-      );
-
-      if (!homeButton || !notiffiButton) {
-        return false;
-      }
-
-      if (
-        homeButton.nextElementSibling !== notiffiButton
-      ) {
-        homeButton.insertAdjacentElement(
-          "afterend",
-          notiffiButton
-        );
-      }
-
-      notiffiButton.classList.add(
-        "litso-nav_notiffi"
-      );
-
-      return true;
-    }
-
-    var notiffiIsPlaced = placeNotiffiButton();
-
-    if (
-      !notiffiIsPlaced &&
-      "MutationObserver" in window
-    ) {
-      var notiffiObserver = new MutationObserver(
-        function () {
-          if (placeNotiffiButton()) {
-            notiffiObserver.disconnect();
-          }
-        }
-      );
-
-      notiffiObserver.observe(
-        document.body,
         {
           childList: true,
           subtree: true
@@ -188,15 +248,18 @@
         ? String(userData.username)
         : "Invité";
 
+
     if (username) {
       username.textContent = displayName;
     }
+
 
     if (status) {
       status.textContent = loggedIn
         ? "Connecté en tant que"
         : "Bienvenue sur le forum";
     }
+
 
     if (member) {
       member.href = loggedIn
@@ -218,35 +281,40 @@
     if (
       avatar &&
       loggedIn &&
-      avatarSource
+      avatarSource &&
+      !avatar.querySelector("img")
     ) {
-      
-      var existingAvatar = avatar.querySelector(
+      var avatarImage = document.createElement(
         "img"
       );
 
-      if (!existingAvatar) {
-        var avatarImage = document.createElement(
-          "img"
-        );
+      avatarImage.src = avatarSource;
+      avatarImage.alt = "";
+      avatarImage.loading = "eager";
 
-        avatarImage.src = avatarSource;
-        avatarImage.alt = "";
-        avatarImage.loading = "eager";
-
-        avatar.appendChild(avatarImage);
-      }
+      avatar.appendChild(avatarImage);
     }
   }
+
+  function startLitsoNavbar() {
+    initializeLitsoNavbar();
+
+    window.addEventListener(
+      "load",
+      initializeLitsoNavbar,
+      { once: true }
+    );
+  }
+
 
   if (document.readyState === "loading") {
     document.addEventListener(
       "DOMContentLoaded",
-      initializeLitsoNavbar,
+      startLitsoNavbar,
       { once: true }
     );
   } else {
-    initializeLitsoNavbar();
+    startLitsoNavbar();
   }
 
 })();
