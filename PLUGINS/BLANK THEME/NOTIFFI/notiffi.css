@@ -7,59 +7,65 @@
   top: 10px;
   right: calc(13px + var(--sidebar-offset, 0px));
   z-index: 999;
-  width: 45px;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 -3px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  margin: 0;
   padding: 0;
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radiusbis);
+  border-radius: 14px;
   background: var(--bg-surface);
-  color: var(--gold);
+  color: var(--text-secondary);
   cursor: pointer;
   font-size: 0;
   transition:
     right 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.2s ease,
-    background 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
 #notiffi_button::before {
   content: "";
-  width: 20px;
-  height: 20px;
-  background-color: var(--text-primary);
-  -webkit-mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/bell.svg");
-  mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/bell.svg");
-  -webkit-mask-position: center;
-  mask-position: center;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  mask-size: contain;
+  width: 17px;
+  height: 17px;
+  background: currentColor;
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static@latest/icons/bell.svg")
+    center / contain no-repeat;
+  mask:
+    url("https://unpkg.com/lucide-static@latest/icons/bell.svg")
+    center / contain no-repeat;
   transition:
-    background-color 0.3s ease,
-    transform 0.3s ease;
+    color 0.25s ease,
+    transform 0.25s ease;
 }
 
-#notiffi_button:hover {
+#notiffi_button:hover,
+#notiffi_button:focus-visible {
   border-color: var(--accent);
-  background: var(--gradient-accent);
+  color: var(--accent);
+
   box-shadow:
-    0 0 12px var(--gold-faded),
-    0 0 18px var(--accent-faded);
-  transform: scale(1.1) rotate(-8deg);
+    0 0 14px var(--accent-faded);
+
+  transform: translateY(-1px);
 }
 
-#notiffi_button:hover::before {
-  background-color: var(--text-on-accent);
-  transform: rotate(8deg);
+#notiffi_button:hover::before,
+#notiffi_button:focus-visible::before {
+  transform: rotate(-8deg) scale(1.08);
+}
+
+#notiffi_button.active,
+#notiffi_button.open,
+#notiffi_button[aria-expanded="true"] {
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow:
+    0 0 14px var(--gold-faded);
 }
 
 .unread_count {
