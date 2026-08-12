@@ -191,7 +191,6 @@ body {
 }
 
 .litso-nav_membercopy strong {
-  max-width: 112px;
   display: block;
   overflow: hidden;
   color: var(--text-primary);
