@@ -1,0 +1,88 @@
+:root {
+  color-scheme: light;
+  --bg-page: #f4f7f6; /* Fond général légèrement grisé */
+  --bg-surface: #ffffff; /* Fond principal des catégories et messages */
+  --bg-elevated: #edf3f2; /* Cartes, onglets, champs et éléments surélevés */
+  --bg-soft: #e3ecea; /* Survols et éléments mis en avant */
+  --bg-overlay: rgba(244, 247, 246, 0.84); /* Voile clair pour les images et superpositions */
+
+  --border-subtle: rgba(31, 55, 52, 0.08); /* Séparation très discrète */
+  --border-default: rgba(31, 55, 52, 0.15); /* Bordure classique */
+  --border-strong: #8b9997; /* Bordure volontairement plus marquée */
+
+  --gold-light: #d8c994; /* Doré lumineux pour les détails doux */
+  --gold: #ad9857; /* Doré principal, suffisamment soutenu sur fond clair */
+  --gold-dark: #7f6d36; /* Doré sombre pour les textes, survols et états actifs */
+  --gold-faded: rgba(173, 152, 87, 0.15); /* Voile doré pour les fonds et survols */
+
+  --accent-light: #8bc9c4; /* Turquoise lumineux */
+  --accent: #4faaa4; /* Turquoise principal */
+  --accent-dark: #2f7773; /* Turquoise sombre pour les textes et états actifs */
+  --accent-faded: rgba(79, 170, 164, 0.14); /* Voile turquoise pour les fonds et survols */
+
+  --status-important: #9c4d51; /* Informations importantes et alertes */
+  --tone-soft: #8f817d; /* Informations secondaires et détails doux */
+  --status-unread: #cde5e2; /* Fond des sujets et messages non lus */
+
+  --text-primary: #202725; /* Texte principal et titres */
+  --text-secondary: #46514f; /* Texte courant légèrement adouci */
+  --text-muted: #716c69; /* Descriptions, dates et informations secondaires */
+  --text-faded: #939b99; /* Texte discret ou désactivé */
+  --text-on-accent: #ffffff; /* Texte clair posé sur un fond turquoise foncé */
+  --text-important: #8a4448; /* Texte important et alertes */
+  --text-unread: #285f5b; /* Texte associé aux contenus non lus */
+
+  --gradient-accent: linear-gradient(90deg, var(--gold), var(--accent));
+  --gradient-accent-reverse: linear-gradient(90deg, var(--accent), var(--gold));
+  --gradient-accent-vertical: linear-gradient(180deg, var(--gold), var(--accent));
+  --gradient-gold: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+  --gradient-secondary: linear-gradient(135deg, var(--accent-light), var(--accent-dark));
+  --gradient-surface: linear-gradient(145deg, var(--bg-surface), var(--bg-elevated));
+
+  --font-display: "Bodoni Moda", Georgia, serif; /* Titres éditoriaux, grands titres et éléments élégants */
+  --font-condensed: "Barlow Condensed", Arial, sans-serif; /* Navigation, catégories, labels et titres compacts */
+  --font-sans: "Manrope", Arial, sans-serif; /* Texte courant, descriptions et interface */
+
+}
+
+[data-color-scheme="dark"] {
+   color-scheme: dark;
+  --bg-page: #0f0f0f; /* Fond général du forum */
+  --bg-surface: #1a1a1a; /* Fond principal des catégories, messages et grands blocs */
+  --bg-elevated: #222222; /* Éléments posés sur une surface : cartes, onglets, champs */
+  --bg-soft: #292929; /* Fond plus clair pour les survols et éléments mis en avant */
+  --bg-overlay: rgba(15, 15, 15, 0.82); /* Voile sombre pour les images, pop-ups et superpositions */
+
+  --border-subtle: rgba(255, 255, 255, 0.08); /* Séparation très discrète entre les blocs */
+  --border-default: rgba(255, 255, 255, 0.14); /* Bordure classique, légèrement plus visible */
+  --border-strong: #777777; /* Bordure franche ou élément volontairement marqué */
+
+  --gold-light: #d5c99f; /* Doré lumineux : petits détails, icônes, survols */
+  --gold: #baab7b; /* Doré principal du thème */
+  --gold-dark: #8f8158; /* Doré assombri : fonds colorés, ombres et états actifs */
+  --gold-faded: rgba(186, 171, 123, 0.14); /* Voile doré discret pour les fonds et survols */
+
+  --accent-light: #b9a7c4; /* Variante lumineuse de la couleur secondaire */
+  --accent: #9986a6; /* Couleur secondaire principale */
+  --accent-dark: #71617c; /* Variante sombre de la couleur secondaire */
+  --accent-faded: rgba(153, 134, 166, 0.14); /* Voile discret dérivé de la couleur secondaire */
+
+  --status-important: #8a4448; /* Informations importantes et alertes */
+  --tone-soft: #a89792; /* Beige rosé utilisé pour les détails doux */
+  --status-unread: #54423f; /* État des sujets ou messages non lus */
+
+  --text-primary: #f1f1f1;/* Texte principal et titres clairs */
+  --text-secondary: #c7c3c4; /* Texte courant légèrement adouci */
+  --text-muted: #a89792; /* Informations secondaires, dates et descriptions */
+  --text-faded: #777777; /* Texte discret ou désactivé */
+  --text-on-accent: #0f0f0f; /* Texte sombre placé sur un fond doré ou mauve */
+  --text-important: #b96469; /* Version éclaircie du rouge, plus lisible sur fond sombre */
+  --text-unread: #c5aba5; /* Version lisible du brun rouge pour les textes “non lus” */
+
+  --gradient-accent: linear-gradient(90deg, var(--gold), var(--accent));
+  --gradient-accent-reverse: linear-gradient(90deg, var(--accent), var(--gold));
+  --gradient-accent-vertical: linear-gradient(180deg, var(--gold), var(--accent));
+  --gradient-gold: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+  --gradient-secondary: linear-gradient(135deg, var(--accent-light), var(--accent-dark));
+  --gradient-surface: linear-gradient(145deg, var(--bg-elevated), var(--bg-surface));
+}
