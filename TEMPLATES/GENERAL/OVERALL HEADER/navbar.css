@@ -58,6 +58,50 @@ body {
   gap: 12px;
 }
 
+/* ----- RETOUR À L’ACCUEIL ----- */
+
+.litso-nav_home {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.litso-nav_home::before {
+  content: "";
+  width: 17px;
+  height: 17px;
+  background: currentColor;
+  -webkit-mask: url("https://unpkg.com/lucide-static@latest/icons/house.svg") center / contain no-repeat;
+  mask: url("https://unpkg.com/lucide-static@latest/icons/house.svg") center / contain no-repeat;
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.litso-nav_home:hover,
+.litso-nav_home:focus-visible {
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 14px var(--gold-faded);
+  transform: translateY(-1px);
+}
+
+.litso-nav_home:hover::before,
+.litso-nav_home:focus-visible::before {
+  transform: rotate(8deg) scale(1.08);
+}
+
 /* ----- MEMBRE CONNECTÉ ----- */
 
 .litso-nav_member {
@@ -236,6 +280,7 @@ body {
   min-width: 0;
   margin-left: auto;
   overflow-x: auto;
+  overflow-y: hidden;
   scrollbar-width: none;
 }
 
@@ -243,12 +288,43 @@ body {
   display: none;
 }
 
-.litso-nav_links ul {
+.litso-nav_links ul,
+.litso-nav_links ul.navbar,
+.litso-nav_links ul.navlinks {
+  width: auto !important;
+  min-width: max-content;
+  height: 100%;
   display: flex;
+  flex-flow: row nowrap !important;
   align-items: center;
   justify-content: flex-end;
   gap: 5px;
+  float: none !important;
   white-space: nowrap;
+}
+
+/* Neutralise les dimensions et flottants natifs de Forumactif. */
+.litso-nav_links li,
+.litso-nav_links ul li,
+.litso-nav_links ul.navbar li,
+.litso-nav_links ul.navlinks li {
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex: 0 0 auto;
+  align-items: center;
+  margin: 0 !important;
+  padding: 0 !important;
+  float: none !important;
+  position: static;
+  border: 0;
+  background: none;
+}
+
+.litso-nav_links li::before,
+.litso-nav_links li::after {
+  content: none !important;
 }
 
 .litso-nav_links a.mainmenu {
@@ -258,11 +334,18 @@ body {
   gap: 8px;
   padding: 5px 10px 5px 7px;
   position: relative;
+  float: none !important;
   border: 1px solid transparent;
   border-radius: 13px;
   color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+/* Accueil et recherche possèdent leurs propres modules à gauche. */
+.litso-nav_links a.mainmenu[href="/"],
+.litso-nav_links a.mainmenu[href="/search"] {
+  display: none !important;
 }
 
 .litso-nav_links a.mainmenu::before {
@@ -403,6 +486,11 @@ body {
   .litso-nav_inner {
     padding: 5px 8px;
     gap: 6px;
+  }
+
+  .litso-nav_home {
+    width: 42px;
+    height: 42px;
   }
 
   .litso-nav_search:hover:not(:focus-within) {
