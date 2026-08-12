@@ -1,0 +1,12 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    var(--bg-body)
+    center top / cover
+    fixed
+    no-repeat;
+}
