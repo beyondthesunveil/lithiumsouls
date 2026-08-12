@@ -40,7 +40,7 @@ body {
   z-index: 990;
   height: 64px;
   border-bottom: 1px solid var(--border-subtle);
-  background: color-mix(in srgb, var(--bg-page) 88%, transparent);
+  background: var(--bg-surface);
   box-shadow: 0 12px 30px color-mix(in srgb, var(--border-strong) 18%, transparent);
   color: var(--text-primary);
   font-family: var(--font-sans);
