@@ -1,5 +1,6 @@
 :root {
   color-scheme: light;
+  --bg-body:url('https://zupimages.net/up/26/16/xhlt.png')
   --bg-page: #f4f7f6; /* Fond général légèrement grisé */
   --bg-surface: #ffffff; /* Fond principal des catégories et messages */
   --bg-elevated: #edf3f2; /* Cartes, onglets, champs et éléments surélevés */
