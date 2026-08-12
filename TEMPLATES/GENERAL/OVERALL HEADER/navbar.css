@@ -1,0 +1,423 @@
+html {
+  scroll-padding-top: 82px;
+}
+
+body {
+  padding-top: 64px;
+}
+
+.mainmenu img {
+  display: none;
+}
+
+.mainmenu {
+  background: none !important;
+}
+
+.mainmenu[href="/calendar"],
+.mainmenu[href="/gallery/index.htm"],
+.mainmenu[href="/images"],
+.mainmenu[href="/discover"],
+.mainmenu[href="/faq"] {
+  display: none !important;
+}
+
+.litso-nav_root,
+.litso-nav_root * {
+  box-sizing: border-box;
+}
+
+.litso-nav_root ul,
+.litso-nav_root li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.litso-nav_root {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 990;
+  height: 64px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: color-mix(in srgb, var(--bg-page) 88%, transparent);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--border-strong) 18%, transparent);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.litso-nav_inner {
+  width: min(100%, 1500px);
+  height: 100%;
+  margin: 0 auto;
+  padding: 7px clamp(14px, 2.5vw, 38px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ----- MEMBRE CONNECTÉ ----- */
+
+.litso-nav_member {
+  min-width: 178px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 12px 5px 5px;
+  position: relative;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: 15px;
+  background: var(--bg-surface);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.litso-nav_member::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: var(--gradient-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.litso-nav_member:hover {
+  border-color: var(--border-default);
+  transform: translateY(-1px);
+}
+
+.litso-nav_member:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.litso-nav_avatar {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  background: var(--gradient-surface);
+}
+
+.litso-nav_avatar::before {
+  content: "";
+  width: 17px;
+  height: 17px;
+  background: var(--text-muted);
+  -webkit-mask: url("https://unpkg.com/lucide-static@latest/icons/user-round.svg") center / contain no-repeat;
+  mask: url("https://unpkg.com/lucide-static@latest/icons/user-round.svg") center / contain no-repeat;
+}
+
+.litso-nav_avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.litso-nav_membercopy {
+  min-width: 0;
+  display: block;
+  line-height: 1;
+}
+
+.litso-nav_membercopy > span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text-muted);
+  font: 600 8px/1 var(--font-condensed);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.litso-nav_membercopy strong {
+  max-width: 112px;
+  display: block;
+  overflow: hidden;
+  color: var(--text-primary);
+  font: italic 600 13px/1 var(--font-display);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ----- RECHERCHE ----- */
+
+.litso-nav_search {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: center;
+  position: relative;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  background: var(--bg-surface);
+  transition: width 0.38s cubic-bezier(.22, 1, .36, 1), border-color 0.25s ease;
+}
+
+.litso-nav_search:focus-within,
+.litso-nav_search:hover {
+  width: 215px;
+  border-color: var(--accent);
+}
+
+.litso-nav_search button {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.litso-nav_search button::before {
+  content: "";
+  width: 17px;
+  height: 17px;
+  background: var(--text-secondary);
+  -webkit-mask: url("https://unpkg.com/lucide-static@latest/icons/search.svg") center / contain no-repeat;
+  mask: url("https://unpkg.com/lucide-static@latest/icons/search.svg") center / contain no-repeat;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.litso-nav_search:hover button::before,
+.litso-nav_search:focus-within button::before {
+  background: var(--accent);
+  transform: rotate(-8deg) scale(1.08);
+}
+
+.litso-nav_searchlabel {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.litso-nav_search input {
+  width: 160px;
+  min-width: 0;
+  padding: 0 12px 0 2px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font: 500 11px/1 var(--font-sans);
+}
+
+.litso-nav_search input::placeholder {
+  color: var(--text-faded);
+}
+
+/* ----- LIENS GÉNÉRÉS PAR FORUMACTIF ----- */
+
+.litso-nav_links {
+  min-width: 0;
+  margin-left: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.litso-nav_links::-webkit-scrollbar {
+  display: none;
+}
+
+.litso-nav_links ul {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.litso-nav_links a.mainmenu {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px 5px 7px;
+  position: relative;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.litso-nav_links a.mainmenu::before {
+  content: "";
+  width: 29px;
+  height: 29px;
+  display: block;
+  flex: 0 0 auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  background-color: var(--text-muted);
+  background-origin: border-box;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 15px;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: 15px;
+  transition: background-color 0.25s ease, border-radius 0.25s ease, transform 0.25s ease;
+}
+
+.litso-nav_links a.mainmenu:hover {
+  border-color: var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.litso-nav_links a.mainmenu:hover::before {
+  border-radius: 50%;
+  background-color: var(--gold);
+  transform: rotate(8deg) scale(1.06);
+}
+
+.litso-nav_links .link-text {
+  position: relative;
+  font: 600 9px/1 var(--font-condensed);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.litso-nav_links .link-text::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+  left: 0;
+  height: 1px;
+  background: var(--gradient-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s ease;
+}
+
+.litso-nav_links a.mainmenu:hover .link-text::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.mainmenu[href="/"]::before {
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/home.svg");
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/home.svg");
+}
+
+.mainmenu[href="/search"]::before {
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/search.svg");
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/search.svg");
+}
+
+.mainmenu[href="/memberlist"]::before {
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/users.svg");
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/users.svg");
+}
+
+.mainmenu[href="/groups"]::before {
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/users-round.svg");
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/users-round.svg");
+}
+
+.mainmenu[href="/profile?mode=editprofile"]::before {
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/user-round-cog.svg");
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/user-round-cog.svg");
+}
+
+.mainmenu[href="/privmsg?folder=inbox"]::before {
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/mail.svg");
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/mail.svg");
+}
+
+.mainmenu[href="/register"]::before {
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/user-plus.svg");
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/user-plus.svg");
+}
+
+.mainmenu[href="/login"]::before {
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/log-in.svg");
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/log-in.svg");
+}
+
+.mainmenu[href*="logout=1"]::before {
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/log-out.svg");
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/log-out.svg");
+}
+
+/* Icône de secours pour tout lien non prévu */
+.litso-nav_links a.mainmenu:not([href="/"]):not([href="/search"]):not([href="/memberlist"]):not([href="/groups"]):not([href="/profile?mode=editprofile"]):not([href="/privmsg?folder=inbox"]):not([href="/register"]):not([href="/login"]):not([href*="logout=1"])::before {
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/link.svg");
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/link.svg");
+}
+
+/* ----- ÉCRANS PLUS ÉTROITS ----- */
+
+@media (max-width: 1050px) {
+  .litso-nav_member {
+    min-width: 48px;
+    width: 48px;
+    padding-right: 5px;
+  }
+
+  .litso-nav_membercopy,
+  .litso-nav_links .link-text {
+    display: none;
+  }
+
+  .litso-nav_links a.mainmenu {
+    padding: 5px;
+  }
+}
+
+@media (max-width: 650px) {
+  body {
+    padding-top: 58px;
+  }
+
+  .litso-nav_root {
+    height: 58px;
+  }
+
+  .litso-nav_inner {
+    padding: 5px 8px;
+    gap: 6px;
+  }
+
+  .litso-nav_search:hover:not(:focus-within) {
+    width: 44px;
+  }
+
+  .litso-nav_search:focus-within {
+    width: min(190px, 42vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .litso-nav_root *,
+  .litso-nav_root *::before,
+  .litso-nav_root *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
