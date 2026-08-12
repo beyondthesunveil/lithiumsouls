@@ -1,0 +1,1259 @@
+.litso-pa_root {
+  --litso-pa_plot-image: url("https://i.pinimg.com/1200x/84/8f/1b/848f1bd85a207cc0b8b83580cd6733e0.jpg");
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  color: var(--text-primary);
+  background: var(--bg-page);
+  font-family: var(--font-sans);
+}
+
+.litso-pa_root *,
+.litso-pa_root *::before,
+.litso-pa_root *::after {
+  box-sizing: border-box;
+}
+
+.litso-pa_root a,
+.litso-pa_root button,
+.litso-pa_root select {
+  font: inherit;
+}
+
+.litso-pa_root button {
+  color: inherit;
+}
+
+.litso-pa_root .litso-pa_noise {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0.17;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+}
+
+.litso-pa_root .litso-pa_masthead {
+  min-height: 246px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border-subtle);
+  background: radial-gradient(
+      circle at 9% 50%,
+      var(--accent-faded),
+      transparent 23%
+    ),
+    radial-gradient(
+      circle at 91% 50%,
+      var(--gold-faded),
+      transparent 23%
+    );
+}
+
+.litso-pa_root .litso-pa_masthead::before,
+.litso-pa_root .litso-pa_masthead::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 155px;
+  height: 155px;
+  border: 1px solid var(--gold-faded);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.litso-pa_root .litso-pa_masthead::before {
+  left: -115px;
+}
+
+.litso-pa_root .litso-pa_masthead::after {
+  right: -115px;
+  border-color: var(--accent-faded);
+}
+
+.litso-pa_root .litso-pa_titleblock {
+  width: 100%;
+  padding: 36px 34px 31px;
+  position: relative;
+  text-align: center;
+}
+
+.litso-pa_root .litso-pa_titleblock::after {
+  content: "INFERNI";
+  position: absolute;
+  inset: 49px 0 auto;
+  color: color-mix(in srgb, var(--text-primary) 3%, transparent);
+  font: 700 170px/0.78 var(--font-condensed);
+  letter-spacing: -0.03em;
+  pointer-events: none;
+}
+
+.litso-pa_root .litso-pa_titleindex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 15px;
+  color: var(--gold);
+  font: 600 9px/1 var(--font-condensed);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_titleindex span {
+  width: 35px;
+  height: 1px;
+  background: var(--gradient-accent);
+}
+
+.litso-pa_root .litso-pa_title {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 22px;
+  position: relative;
+  z-index: 1;
+  color: var(--text-primary);
+  font: 600 clamp(71px, 7vw, 105px) / 0.79 var(--font-display);
+  letter-spacing: -0.07em;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_titlesecond {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-primary);
+  font-style: italic;
+}
+
+.litso-pa_root .litso-pa_tagline {
+  width: min(830px, 90%);
+  margin: 25px auto 0;
+  padding-top: 13px;
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font: 600 14px/1.2 var(--font-condensed);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_nav {
+  min-height: 57px;
+  display: grid;
+  grid-template-columns: 1fr 110px;
+  align-items: stretch;
+  border: 1px solid var(--border-subtle);
+  background: color-mix(in srgb, var(--bg-surface) 72%, transparent);
+}
+
+.litso-pa_root .litso-pa_navlinks {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  min-width: 0;
+  padding: 0 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.litso-pa_root .litso-pa_navlinks::-webkit-scrollbar {
+  display: none;
+}
+
+.litso-pa_root .litso-pa_navlinks a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  flex: 0 0 auto;
+  color: var(--text-secondary);
+  font: 500 10px/1 var(--font-condensed);
+  letter-spacing: 0.045em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.litso-pa_root .litso-pa_navlinks a span {
+  color: var(--text-faded);
+  font-size: 7px;
+}
+
+.litso-pa_root .litso-pa_navlinks a::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 10px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--gradient-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s ease;
+}
+
+.litso-pa_root .litso-pa_navlinks a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.litso-pa_root .litso-pa_navsocials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-left: 1px solid var(--border-subtle);
+}
+
+.litso-pa_root .litso-pa_navsocials a {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  color: var(--text-primary);
+  font: 600 9px/1 var(--font-display);
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.litso-pa_root .litso-pa_navsocials a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.litso-pa_root .litso-pa_home {
+  height: 520px;
+  display: grid;
+  grid-template-columns: 310px minmax(430px, 1fr) 285px;
+  border: 1px solid var(--border-subtle);
+  border-top: 0;
+  background: linear-gradient(
+      135deg,
+      var(--gold-faded),
+      transparent 30%
+    ),
+    var(--bg-surface);
+}
+
+.litso-pa_root .litso-pa_moduleheading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+  color: var(--text-primary);
+  font: italic 600 19px/1 var(--font-display);
+}
+
+.litso-pa_root .litso-pa_moduleheading > span {
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  color: var(--gold);
+  font: 600 8px/1 var(--font-condensed);
+  font-style: normal;
+}
+
+.litso-pa_root .litso-pa_moduleheading > span::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+}
+
+.litso-pa_root .litso-pa_moduleheadingright {
+  font-size: 18px;
+}
+
+.litso-pa_root .litso-pa_adoption {
+  display: flex;
+  flex-direction: column;
+  padding: 22px 19px 18px;
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid var(--border-subtle);
+}
+
+.litso-pa_root .litso-pa_adoption::after {
+  content: "SOULS";
+  position: absolute;
+  top: 67px;
+  right: -7px;
+  color: color-mix(in srgb, var(--text-primary) 3%, transparent);
+  font: 700 76px/1 var(--font-condensed);
+  pointer-events: none;
+}
+
+.litso-pa_root .litso-pa_adoptionmeta {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  margin: 18px 0 10px 36px;
+  position: relative;
+  z-index: 1;
+}
+
+.litso-pa_root .litso-pa_adoptionmeta > span {
+  align-self: center;
+  color: var(--text-muted);
+  font: 600 8px/1 var(--font-condensed);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_adoptionmeta strong {
+  grid-row: 1 / 3;
+  grid-column: 2;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--gold);
+  font: 600 42px/0.8 var(--font-display);
+}
+
+.litso-pa_root .litso-pa_adoptionmeta i {
+  color: var(--accent);
+  font: italic 500 10px/1 var(--font-display);
+}
+
+.litso-pa_root .litso-pa_soulgrid {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 0 17px;
+  position: relative;
+  z-index: 3;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.litso-pa_root .litso-pa_soulgrid::before {
+  content: "";
+  position: absolute;
+  left: 13px;
+  right: 13px;
+  top: 50%;
+  z-index: -1;
+  height: 1px;
+  background: var(--gradient-accent);
+  opacity: 0.28;
+}
+
+.litso-pa_root .litso-pa_soul {
+  width: 47px;
+  height: 47px;
+  display: block;
+  position: relative;
+  border: 2px solid var(--bg-surface);
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--litso-pa_soul), var(--bg-surface));
+  box-shadow: 0 0 0 1px var(--litso-pa_soul);
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.litso-pa_root .litso-pa_soul img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  filter: saturate(0.76) contrast(1.04);
+}
+
+.litso-pa_root .litso-pa_soulnumber {
+  position: absolute;
+  right: -3px;
+  bottom: -3px;
+  width: 17px;
+  height: 17px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font: 500 7px/1 var(--font-condensed);
+}
+
+.litso-pa_root .litso-pa_soultooltip {
+  width: max-content;
+  max-width: 130px;
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  z-index: 8;
+  padding: 7px 10px;
+  border: 1px solid var(--gold);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font: italic 600 11px/1 var(--font-display);
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 6px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.litso-pa_root .litso-pa_soultooltip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  border: 5px solid transparent;
+  border-top-color: var(--gold);
+  transform: translateX(-50%);
+}
+
+.litso-pa_root .litso-pa_soul:hover,
+.litso-pa_root .litso-pa_soul:focus-visible {
+  z-index: 4;
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1px var(--litso-pa_soul),
+    0 8px 22px color-mix(in srgb, var(--litso-pa_soul) 21%, transparent);
+}
+
+.litso-pa_root .litso-pa_soul:hover .litso-pa_soultooltip,
+.litso-pa_root .litso-pa_soul:focus-visible .litso-pa_soultooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.litso-pa_root .litso-pa_adoptioncall {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 1px 13px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.litso-pa_root .litso-pa_adoptioncall span {
+  color: var(--text-muted);
+  font: italic 500 10px/1 var(--font-display);
+}
+
+.litso-pa_root .litso-pa_adoptioncall b {
+  color: var(--gold);
+  font: 600 8px/1 var(--font-condensed);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_prelinks {
+  margin-top: 4px;
+}
+
+.litso-pa_root .litso-pa_prelinkstitle {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 4px;
+  color: var(--gold);
+  font: 600 8px/1 var(--font-condensed);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_prelinkstitle i {
+  height: 1px;
+  flex: 1;
+  background: var(--border-subtle);
+}
+
+.litso-pa_root .litso-pa_prelinks > a {
+  min-height: 49px;
+  display: grid;
+  grid-template-columns: 24px 1fr 14px;
+  align-items: center;
+  gap: 7px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: inherit;
+  text-decoration: none;
+}
+
+.litso-pa_root .litso-pa_prelinks > a > em {
+  color: var(--text-faded);
+  font: 500 8px/1 var(--font-display);
+}
+
+.litso-pa_root .litso-pa_prelinks strong,
+.litso-pa_root .litso-pa_prelinks span {
+  display: block;
+}
+
+.litso-pa_root .litso-pa_prelinks strong {
+  margin-bottom: 4px;
+  color: var(--text-secondary);
+  font: italic 600 11px/1.1 var(--font-display);
+}
+
+.litso-pa_root .litso-pa_prelinks span {
+  color: var(--text-muted);
+  font: 600 7px/1 var(--font-condensed);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_prelinks b {
+  color: var(--text-muted);
+  font-size: 10px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.litso-pa_root .litso-pa_prelinks > a:hover b {
+  color: var(--accent);
+  transform: translate(3px, -3px);
+}
+
+.litso-pa_root .litso-pa_quickaccess {
+  margin-top: auto;
+  padding-top: 13px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.litso-pa_root .litso-pa_quicktitle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+  font: italic 600 12px/1 var(--font-display);
+}
+
+.litso-pa_root .litso-pa_quicktitle span {
+  color: var(--text-muted);
+  font: 600 7px/1 var(--font-condensed);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_quickicons {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.litso-pa_root .litso-pa_quickicons a {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  position: relative;
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.litso-pa_root .litso-pa_quickicons img {
+  width: 15px;
+  height: 15px;
+  opacity: 0.82;
+  filter: invert(90%) sepia(8%) saturate(366%) hue-rotate(346deg)
+    brightness(102%) contrast(87%);
+}
+
+.litso-pa_root .litso-pa_quickicons a > span {
+  width: max-content;
+  position: absolute;
+  bottom: calc(100% + 7px);
+  left: 50%;
+  padding: 5px 7px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font: 600 7px/1 var(--font-condensed);
+  text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.litso-pa_root .litso-pa_quickicons a:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+
+.litso-pa_root .litso-pa_quickicons a:hover > span {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.litso-pa_root .litso-pa_centercolumn {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: 365px 105px;
+  align-content: start;
+  gap: 12px;
+  padding: 14px;
+}
+
+.litso-pa_root .litso-pa_plot {
+  min-width: 0;
+  padding: 20px 22px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--gold);
+  background: var(--bg-surface);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.18);
+}
+
+.litso-pa_root .litso-pa_plot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--bg-page) 96%, transparent) 0%,
+      color-mix(in srgb, var(--bg-page) 77%, transparent) 48%,
+      color-mix(in srgb, var(--bg-page) 23%, transparent) 100%
+    ),
+    var(--litso-pa_plot-image) center/cover no-repeat;
+  filter: saturate(0.66) contrast(1.03);
+  transition: transform 0.8s ease, filter 0.5s ease;
+}
+
+.litso-pa_root .litso-pa_plot::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  z-index: -1;
+  border: 1px solid var(--border-subtle);
+  pointer-events: none;
+}
+
+.litso-pa_root .litso-pa_plot:hover::before {
+  filter: saturate(0.86) contrast(1.04);
+  transform: scale(1.018);
+}
+
+.litso-pa_root .litso-pa_plottop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-default);
+  color: var(--text-muted);
+  font: 600 8px/1 var(--font-condensed);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_plottop span:first-child {
+  color: var(--gold);
+}
+
+.litso-pa_root .litso-pa_plotcopy {
+  width: 76%;
+  position: relative;
+  z-index: 1;
+}
+
+.litso-pa_root .litso-pa_plottitle {
+  margin: 38px 0 15px;
+  color: var(--text-primary);
+  font: 600 clamp(45px, 4vw, 57px) / 0.8 var(--font-display);
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+  text-shadow: 0 8px 24px #000;
+}
+
+.litso-pa_root .litso-pa_plottitle em {
+  color: var(--gold);
+  font-weight: 500;
+  text-transform: none;
+}
+
+.litso-pa_root .litso-pa_plotsummary {
+  color: var(--text-secondary);
+  font: 400 11px/1.57 var(--font-sans);
+  text-shadow: 0 2px 10px #000;
+}
+
+.litso-pa_root .litso-pa_plotbutton {
+  width: 210px;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding: 0 0 0 14px;
+  border: 1px solid var(--gold);
+  background: var(--bg-overlay);
+  cursor: pointer;
+  font: 600 9px/1 var(--font-condensed);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  transition: color 0.25s ease, background 0.25s ease;
+}
+
+.litso-pa_root .litso-pa_plotbutton b {
+  width: 38px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-left: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 13px;
+}
+
+.litso-pa_root .litso-pa_plotbutton:hover {
+  color: var(--bg-surface);
+  background: var(--gold);
+}
+
+.litso-pa_root .litso-pa_plotbutton:hover b {
+  color: var(--bg-surface);
+}
+
+.litso-pa_root .litso-pa_plotreveal {
+  max-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  overflow: hidden;
+  margin-top: 0;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transition: max-height 0.42s ease, opacity 0.32s ease, margin-top 0.42s ease;
+}
+
+.litso-pa_root .litso-pa_plotreveal div {
+  padding: 9px;
+  border: 1px solid var(--border-default);
+  background: var(--bg-overlay);
+  color: var(--text-secondary);
+  font: 500 8px/1.35 var(--font-condensed);
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_plotreveal span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--gold);
+  font-size: 7px;
+  letter-spacing: 0.14em;
+}
+
+.litso-pa_root .litso-pa_plot.is-open .litso-pa_plotreveal {
+  max-height: 72px;
+  margin-top: 14px;
+  opacity: 1;
+}
+
+.litso-pa_root .litso-pa_plot.is-open .litso-pa_plottitle {
+  margin-top: 24px;
+}
+
+.litso-pa_root .litso-pa_event {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 38px 52px 1fr 30px;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px 10px 0;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--accent-faded);
+  background: linear-gradient(
+    115deg,
+    var(--accent-faded),
+    var(--gold-faded) 58%,
+    var(--bg-surface)
+  );
+  color: inherit;
+  text-decoration: none;
+}
+
+.litso-pa_root .litso-pa_event::after {
+  content: "EVENT";
+  position: absolute;
+  right: 38px;
+  top: -22px;
+  color: color-mix(in srgb, var(--text-primary) 3%, transparent);
+  font: 700 82px/1 var(--font-condensed);
+  pointer-events: none;
+}
+
+.litso-pa_root .litso-pa_eventindex {
+  align-self: stretch;
+  display: grid;
+  place-items: center;
+  border-right: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font: 600 7px/1 var(--font-condensed);
+  letter-spacing: 0.1em;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.litso-pa_root .litso-pa_eventseal {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+}
+
+.litso-pa_root .litso-pa_eventseal::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid var(--border-default);
+  border-radius: 50%;
+}
+
+.litso-pa_root .litso-pa_eventseal span {
+  color: var(--gold);
+  font-size: 18px;
+}
+
+.litso-pa_root .litso-pa_eventcopy {
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.litso-pa_root .litso-pa_eventcopy > span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--gold);
+  font: 600 7px/1 var(--font-condensed);
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_eventcopy strong {
+  display: block;
+  margin-bottom: 4px;
+  overflow: hidden;
+  color: var(--text-primary);
+  font: italic 600 19px/1 var(--font-display);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.litso-pa_root .litso-pa_eventcopy i {
+  display: block;
+  overflow: hidden;
+  color: var(--text-muted);
+  font: 400 9px/1.2 var(--font-sans);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.litso-pa_root .litso-pa_eventarrow {
+  position: relative;
+  z-index: 1;
+  color: var(--accent);
+  font-size: 16px;
+  transition: transform 0.25s ease;
+}
+
+.litso-pa_root .litso-pa_event:hover .litso-pa_eventarrow {
+  transform: translate(4px, -4px);
+}
+
+.litso-pa_root .litso-pa_rightcolumn {
+  min-width: 0;
+  padding: 14px 17px 11px;
+  overflow: hidden;
+  border-left: 1px solid var(--border-subtle);
+}
+
+.litso-pa_root .litso-pa_news {
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.litso-pa_root .litso-pa_newscard {
+  margin: 11px 0 0 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.litso-pa_root .litso-pa_newsdate {
+  display: inline-block;
+  padding: 4px 8px;
+  background: var(--gradient-accent);
+  color: var(--text-on-accent);
+  font: 600 7px/1 var(--font-condensed);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_newstitle {
+  margin: 12px 0 7px;
+  color: var(--text-primary);
+  font: italic 600 19px/0.98 var(--font-display);
+}
+
+.litso-pa_root .litso-pa_newstext {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--text-muted);
+  font: 400 9px/1.48 var(--font-sans);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.litso-pa_root .litso-pa_newscard > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-top: 7px;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font: 600 7px/1 var(--font-condensed);
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_newscard > a span {
+  color: var(--accent);
+  font-size: 11px;
+}
+
+.litso-pa_root .litso-pa_staff {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.litso-pa_root .litso-pa_stafflabel {
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font: 600 12px/1 var(--font-display);
+}
+
+.litso-pa_root .litso-pa_stafflabel em {
+  color: var(--accent);
+}
+
+.litso-pa_root .litso-pa_stafffaces {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 7px;
+}
+
+.litso-pa_root .litso-pa_stafffaces a {
+  height: 78px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  text-decoration: none;
+}
+
+.litso-pa_root .litso-pa_stafffaces img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  filter: grayscale(0.27) saturate(0.8);
+  transition: filter 0.3s ease, transform 0.35s ease;
+}
+
+.litso-pa_root .litso-pa_stafffaces a::after {
+  content: "";
+  position: absolute;
+  inset: 28% 0 0;
+  background: linear-gradient(transparent, rgba(8, 8, 9, 0.96));
+}
+
+.litso-pa_root .litso-pa_stafffaces a > div {
+  position: absolute;
+  inset: auto 7px 7px;
+  z-index: 2;
+  transform: translateY(13px);
+  transition: transform 0.28s ease;
+}
+
+.litso-pa_root .litso-pa_stafffaces span,
+.litso-pa_root .litso-pa_stafffaces i,
+.litso-pa_root .litso-pa_stafffaces b {
+  display: block;
+}
+
+.litso-pa_root .litso-pa_stafffaces span {
+  color: var(--text-primary);
+  font: 600 9px/1 var(--font-condensed);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_stafffaces i {
+  margin-top: 3px;
+  color: var(--text-muted);
+  font: 500 6px/1 var(--font-condensed);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_stafffaces b {
+  margin-top: 7px;
+  color: var(--gold);
+  font: 600 6px/1 var(--font-condensed);
+  letter-spacing: 0.1em;
+  opacity: 0;
+  text-transform: uppercase;
+  transition: opacity 0.25s ease;
+}
+
+.litso-pa_root .litso-pa_stafffaces a:hover img {
+  filter: grayscale(0) saturate(0.96);
+  transform: scale(1.07);
+}
+
+.litso-pa_root .litso-pa_stafffaces a:hover > div {
+  transform: translateY(0);
+}
+
+.litso-pa_root .litso-pa_stafffaces a:hover b {
+  opacity: 1;
+}
+
+.litso-pa_root .litso-pa_partnersblock {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 9px 0 7px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.litso-pa_root .litso-pa_partnersheading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.litso-pa_root .litso-pa_partnersheading span {
+  color: var(--text-muted);
+  font: 600 7px/1 var(--font-condensed);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_partnersheading strong {
+  color: var(--gold);
+  font: italic 600 14px/1 var(--font-display);
+}
+
+.litso-pa_root .litso-pa_partnerselect {
+  display: block;
+  margin: 0 0 6px;
+  position: relative;
+}
+
+.litso-pa_root .litso-pa_partnerselect select {
+  width: 100%;
+  height: 27px;
+  appearance: none;
+  padding: 0 30px 0 10px;
+  border: 1px solid var(--border-default);
+  border-radius: 0;
+  outline: 0;
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font: 600 8px/1 var(--font-condensed);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_partnerselect > span {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  color: var(--gold);
+  pointer-events: none;
+  transform: translateY(-55%);
+}
+
+.litso-pa_root .litso-pa_partnersblock > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 1px;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font: 600 8px/1 var(--font-condensed);
+  letter-spacing: 0.09em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_partnersblock > a b {
+  color: var(--accent);
+}
+
+.litso-pa_root .litso-pa_identityblock {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 9px;
+  align-items: center;
+  padding-top: 8px;
+}
+
+.litso-pa_root .litso-pa_identitynumber {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--gold);
+  font: 600 30px/1 var(--font-display);
+}
+
+.litso-pa_root .litso-pa_identityblock span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--accent);
+  font: 600 7px/1 var(--font-condensed);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.litso-pa_root .litso-pa_identityblock strong {
+  display: block;
+  color: var(--text-secondary);
+  font: italic 600 12px/1 var(--font-display);
+}
+
+.litso-pa_root .litso-pa_identitytext {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 5px 0 0;
+  color: var(--text-muted);
+  font: 500 7px/1.35 var(--font-condensed);
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+@media (max-width: 1050px) {
+  .litso-pa_root .litso-pa_home {
+    grid-template-columns: 285px minmax(400px, 1fr) 260px;
+  }
+
+  .litso-pa_root .litso-pa_title {
+    font-size: 78px;
+  }
+
+  .litso-pa_root .litso-pa_navlinks a {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 880px) {
+  .litso-pa_root .litso-pa_title {
+    font-size: 65px;
+  }
+
+  .litso-pa_root .litso-pa_home {
+    height: auto;
+    grid-template-columns: 285px minmax(400px, 1fr);
+  }
+
+  .litso-pa_root .litso-pa_rightcolumn {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    border-top: 1px solid var(--border-subtle);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 680px) {
+  .litso-pa_root .litso-pa_masthead {
+    min-height: 265px;
+  }
+
+  .litso-pa_root .litso-pa_titleblock {
+    padding-inline: 0;
+  }
+
+  .litso-pa_root .litso-pa_title {
+    display: block;
+    font-size: clamp(51px, 18vw, 76px);
+  }
+
+  .litso-pa_root .litso-pa_titlesecond {
+    display: block;
+    margin: 5px 0 0 25px;
+  }
+
+  .litso-pa_root .litso-pa_tagline {
+    line-height: 1.35;
+  }
+
+  .litso-pa_root .litso-pa_nav {
+    grid-template-columns: 1fr;
+  }
+
+  .litso-pa_root .litso-pa_navsocials {
+    display: none;
+  }
+
+  .litso-pa_root .litso-pa_navlinks {
+    justify-content: flex-start;
+    gap: 19px;
+    min-height: 55px;
+  }
+
+  .litso-pa_root .litso-pa_home {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .litso-pa_root .litso-pa_adoption,
+  .litso-pa_root .litso-pa_rightcolumn {
+    border: 0;
+  }
+
+  .litso-pa_root .litso-pa_centercolumn {
+    order: -1;
+  }
+
+  .litso-pa_root .litso-pa_plot {
+    min-height: 480px;
+  }
+
+  .litso-pa_root .litso-pa_plotcopy {
+    width: 86%;
+  }
+
+  .litso-pa_root .litso-pa_rightcolumn {
+    display: block;
+    border-top: 1px solid var(--border-subtle);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .litso-pa_root *,
+  .litso-pa_root *::before,
+  .litso-pa_root *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
