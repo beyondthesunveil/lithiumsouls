@@ -40,9 +40,13 @@
       .split(" ")
       .filter(Boolean);
 
-    return words.length
-      ? words[words.length - 1].toUpperCase()
-      : "INFERNI";
+    if (!words.length) {
+      return "INFERNI";
+    }
+
+    return words[
+      words.length - 1
+    ].toUpperCase();
   }
 
   function moveForumImage(forum) {
@@ -88,17 +92,20 @@
           categoryIndex + 1
         );
 
-        var indexElement = category.querySelector(
-          ".litso-cat_index b"
-        );
+        var indexElement =
+          category.querySelector(
+            ".litso-cat_index b"
+          );
 
-        var titleElement = category.querySelector(
-          ".litso-cat_title"
-        );
+        var titleElement =
+          category.querySelector(
+            ".litso-cat_title"
+          );
 
-        var introElement = category.querySelector(
-          ".litso-cat_intro"
-        );
+        var introElement =
+          category.querySelector(
+            ".litso-cat_intro"
+          );
 
         if (indexElement) {
           indexElement.textContent =
@@ -107,7 +114,9 @@
 
         if (introElement) {
           introElement.textContent =
-            categoryIntros[categoryIndex] || "";
+            categoryIntros[
+              categoryIndex
+            ] || "";
         }
 
         category.setAttribute(
@@ -115,43 +124,20 @@
           createGhostWord(titleElement)
         );
 
-        var forums = category.querySelectorAll(
-          ".litso-forum"
-        );
+        var forums =
+          category.querySelectorAll(
+            ".litso-forum"
+          );
 
         Array.prototype.forEach.call(
           forums,
           function (forum) {
-            globalForumIndex++;
-
-            var forumNumber = pad(
-              globalForumIndex
-            );
-
-            var smallNumber =
-              forum.querySelector(
-                ".litso-forum_num"
-              );
-
-            var bigNumber =
-              forum.querySelector(
-                ".litso-forum_big-num"
-              );
-
             var badge =
               forum.querySelector(
                 ".litso-forum_badge"
               );
 
-            if (smallNumber) {
-              smallNumber.textContent =
-                forumNumber;
-            }
-
-            if (bigNumber) {
-              bigNumber.textContent =
-                forumNumber;
-            }
+            globalForumIndex++;
 
             if (badge) {
               badge.textContent =
