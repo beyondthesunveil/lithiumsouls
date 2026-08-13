@@ -30,15 +30,6 @@
   margin-bottom: 13px;
 }
 
-.litso-cat_index {
-  color: var(--gold);
-  font: 600 9px var(--font-sans);
-  letter-spacing: .22em;
-  text-transform: uppercase;
-}
-
-.litso-cat_index b { font-weight: inherit; }
-
 .litso-cat_rule {
   height: 1px;
   background: linear-gradient(90deg, var(--gold), var(--border-default));
