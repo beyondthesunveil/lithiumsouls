@@ -293,21 +293,27 @@
 .litso-lastpost::before {
   content: "";
   position: absolute;
-  z-index: 0;
-  top: 10px;
-  right: -24px;
-  width: 150px;
-  height: 150px;
+  z-index: 1;
+  top: -8px;
+  right: -18px;
+  width: 175px;
+  height: 175px;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 48% 48%, var(--accent-faded) 0 24%, transparent 58%),
+    radial-gradient(circle,
+      transparent 0 40%,
+      var(--border-subtle) 40.5% 41%,
+      transparent 41.5% 49%,
+      var(--gold-faded) 49.5% 50.5%,
+      transparent 51% 100%
+    ),
+    radial-gradient(circle at 48% 48%, var(--accent-faded) 0 32%, transparent 67%),
     url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.68' numOctaves='3' seed='7'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.45'/%3E%3C/svg%3E");
   background-size: cover;
-  filter: contrast(1.2);
-  mix-blend-mode: soft-light;
-  opacity: .13;
-  -webkit-mask-image: radial-gradient(circle, #000 0 37%, transparent 72%);
-  mask-image: radial-gradient(circle, #000 0 37%, transparent 72%);
+  filter: contrast(1.35);
+  opacity: .28;
+  -webkit-mask-image: radial-gradient(circle, #000 0 42%, rgba(0,0,0,.82) 55%, transparent 76%);
+  mask-image: radial-gradient(circle, #000 0 42%, rgba(0,0,0,.82) 55%, transparent 76%);
   pointer-events: none;
 }
 
