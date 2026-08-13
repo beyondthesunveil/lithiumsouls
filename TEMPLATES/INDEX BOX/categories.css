@@ -157,38 +157,6 @@
   filter: grayscale(1) brightness(1.8);
 }
 
-.litso-forum_num {
-  position: absolute;
-  z-index: 4;
-  top: 18px;
-  left: 18px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #fff;
-  font: 600 9px var(--font-sans);
-  letter-spacing: .18em;
-}
-
-.litso-forum_num::before {
-  content: "";
-  width: 21px;
-  height: 1px;
-  background: var(--gold);
-}
-
-.litso-forum_big-num {
-  position: absolute;
-  z-index: 4;
-  right: 13px;
-  bottom: -10px;
-  color: transparent;
-  font: italic 82px/.8 var(--font-display);
-  -webkit-text-stroke: 1px rgba(255,255,255,.33);
-  opacity: .7;
-  pointer-events: none;
-}
-
 .litso-forum_badge {
   position: absolute;
   z-index: 5;
@@ -323,15 +291,23 @@
 }
 
 .litso-lastpost::before {
-  content: "SANCTUS";
+  content: "";
   position: absolute;
-  top: 69px;
-  left: 24px;
-  color: transparent;
-  font: italic 52px/.8 var(--font-display);
-  letter-spacing: -.06em;
-  -webkit-text-stroke: 1px var(--border-subtle);
-  opacity: .72;
+  z-index: 0;
+  top: 10px;
+  right: -24px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 48% 48%, var(--accent-faded) 0 24%, transparent 58%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.68' numOctaves='3' seed='7'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.45'/%3E%3C/svg%3E");
+  background-size: cover;
+  filter: contrast(1.2);
+  mix-blend-mode: soft-light;
+  opacity: .13;
+  -webkit-mask-image: radial-gradient(circle, #000 0 37%, transparent 72%);
+  mask-image: radial-gradient(circle, #000 0 37%, transparent 72%);
   pointer-events: none;
 }
 
