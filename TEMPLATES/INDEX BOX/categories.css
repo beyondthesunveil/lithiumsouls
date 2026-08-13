@@ -1,3 +1,25 @@
+.litso-cat,
+.litso-index-tools {
+  --color02: var(--bg-surface);
+  --color03: var(--border-default);
+  --bgcolor: var(--bg-page);
+  --bordercolor: var(--border-default);
+  --colornews: var(--gold);
+  --coloradd: var(--accent);
+  --colorfont: var(--text-primary);
+  --colortext: var(--text-secondary);
+  --font-h1: var(--font-display);
+  --font-text: var(--font-sans);
+  --radiusbis: 4px;
+  --ease: 350ms cubic-bezier(.22, .61, .36, 1);
+  --avafilter: grayscale(.48) saturate(.72) contrast(.96);
+}
+
+[data-color-scheme="dark"] .litso-cat,
+[data-color-scheme="dark"] .litso-index-tools {
+  --avafilter: grayscale(.58) saturate(.68) brightness(.78) contrast(1.04);
+}
+
 .litso-cat {
   position: relative;
   z-index: 1;
@@ -96,7 +118,7 @@
   transition: opacity var(--ease), transform var(--ease);
 }
 
-.litso-forum:hover { background: var(--color03); }
+.litso-forum:hover { background: var(--bg-elevated); }
 .litso-forum:hover::after { opacity: .8; transform: scaleX(1); }
 
 .litso-forum_visual {
@@ -318,7 +340,7 @@
   gap: 13px;
   min-width: 0;
   padding: 21px 20px;
-  background: var(--color03);
+  background: var(--bg-elevated);
   border-left: 1px solid var(--bordercolor);
 }
 
@@ -419,7 +441,7 @@
   transition: border-color var(--ease), background var(--ease);
 }
 
-.litso-index-tools a:hover { background: var(--color03); border-color: var(--colornews); }
+.litso-index-tools a:hover { background: var(--bg-elevated); border-color: var(--colornews); }
 
 .litso-index-tools a::before {
   content: "";
