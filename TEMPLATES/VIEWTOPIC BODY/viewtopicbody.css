@@ -1,0 +1,413 @@
+/* ===================================== DÉBUT VIEWTOPIC_BODY ===================================== */
+.lithium-vb_blocktitle {
+  width: 100%;
+  margin: 100px 0;
+}
+h1.lithium-vb_titlemap {
+  padding: 10px 20px;
+  font: 30px var(--font-h2);
+  border-bottom: 1px solid var(--border);
+  font-style: italic;
+  background: var(--gradientbis);
+  text-transform: uppercase;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: 100%;
+  margin: 0;
+}
+.lithium-vb_brdcrmbtrail {
+  margin-top: 12px;
+  display: inline-block;
+  float: right;
+  font: 15px var(--font-h4);
+  letter-spacing: 1px;
+  text-transform: lowercase;
+  padding: 6px 14px;
+  background: var(--bgcolor);
+  border-radius: var(--mainradius);
+  color: var(--colorfont);
+  border: 1px solid var(--border);
+}
+.lithium-vb_brdcrmbtrail a {
+  color: var(--colorbis);
+  font-style: italic;
+  transition: 0.2s;
+}
+.lithium-vb_brdcrmbtrail a:hover {
+  opacity: 1;
+  background: var(--gradientbis);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ----- début bloc sujet ----- */
+  
+.lithium-vb_postprofile .row1,
+.lithium-vb_postprofile .row2 {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.post {
+  border: none;
+  background-position: 0;
+  background-repeat: unset;
+  border-radius: 0px;
+  border-style: none;
+  border-width: 0px;
+  box-shadow: none;
+  margin: 24px 0;
+}
+.sub-header-buttons {
+  display: flex;
+  float:right;
+  margin: 0 0 30px 0;
+}
+/* bloc qui gère l'ensemble de la structure */
+.lithium-vb_blockmember {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: var(--mainradius);
+  background: var(--color02);
+  width: 100%;
+  justify-content: space-between;
+}
+/* bloc qui va gérer l'affichage de la bande gauche avec l'avatar, le rang, le bloc des infos */
+.lithium-vb_blockperso {
+  width: 250px;
+  background-color: var(--border);
+  border-radius: 0 0 0 5px;
+  border-right: var(--border) solid 1px;
+}
+.lithium-vb_posttracker {
+  position: sticky;
+  top: 45px;
+  align-self: flex-start;
+  margin-bottom:15px;
+}
+.lithium-vb_postname {
+  width: 235px;
+  border: 1px solid var(--border);
+  margin: 15px auto;
+  padding: 0 0 10px 0;
+  border-radius: var(--mainradius);
+  text-align: center;
+}
+.lithium-vb_postname strong {
+  color: #f1f1f1;
+  display: inline-block;
+  font: 15px var(--font-h3);
+  text-transform: uppercase;
+}
+.short-pseudo {
+  border-bottom: 1px solid currentColor;
+  width: 220px;
+}
+.long-pseudo {
+  border-bottom: 1px solid currentColor;
+  padding: 4px 8px;
+  transition: all 0.2s ease;
+  width:220px;
+}
+.lithium-vb_posteravatar {
+  margin: 15px;
+  border: 5px solid var(--colorfont);
+  width: 220px;
+  height: 340px;
+  outline: 1px solid var(--border);
+  overflow: hidden;
+  outline-offset: 5px;
+}
+.lithium-vb_posteravatar img {
+  max-width: 222px!important;
+  margin: 0;
+  object-fit:cover;
+}
+.lithium-vb_rank {
+  font: 15px var(--font-h4);
+  color: var(--colorfont);
+  text-transform: uppercase;
+  margin: 10px;
+  letter-spacing:1px;
+  padding: 0 0 10px 0;
+}
+.lithium-vb_rank > span {
+  display: block;
+  font: 13px var(--font-h3);
+  letter-spacing: 0.5px;
+  padding: 3px;
+  background: var(--color03);
+  border-radius: var(--radiusbis);
+}
+.group-label {
+  text-align: center;
+  margin: 5px 0;
+}
+.lithium-vb_charafields {
+  margin: 15px;
+  height:150px;
+  overflow:auto;
+  padding: 10px;
+  background: var(--color03);
+  border-radius: var(--mainradius);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.lithium-vb_charafield {
+  font: 11px var(--font-text);
+  padding: 6px 8px;
+  border-radius: var(--mainradius);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+  position: relative;
+  transition: 0.3s ease;
+}
+.lithium-vb_charalabel {
+  font: 10px var(--font-h4);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--colornews);
+  opacity: 0.8;
+}
+.lithium-vb_characontent {
+  color: var(--colorfont);
+  text-align: right;
+  max-width: 120px;
+}
+.lithium-vb_characontent img {
+  object-fit:cover!important;
+  width: 183px!important;
+}
+/* bloc qui va gérer l'affichage général de la mise en page du texte, la date, les boutons edit */
+.lithium-vb_blockcontent {
+  width: 765px;
+  background-color: var(--color03);
+  border-radius: 0 0 5px 0;
+}
+/* affichage des boutons d'édition */
+.lithium-vb_btnedit {
+  margin: 6px;
+}
+.profile-icons {
+  display: flex;
+  gap: 6px;
+  margin:0!important;
+  justify-content:center;
+}
+.profile-icons a {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color02);
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+  transition: 0.25s;
+}
+.profile-icons a::before {
+  font-size: 13px;
+  color: var(--colorfont);
+}
+.icon-quote::before { content: "❝"; }
+.icon-edit::before { content: "✎"; }
+.icon-delete::before { content: "✕"; }
+.icon-ip::before { content: "⛨"; }
+
+.profile-icons a:hover {
+  background: var(--color03);
+  border-color: var(--colornews);
+  transform: translateY(-2px);
+  color:var(--colorfont);
+}
+.profile-icons a:hover::before {
+  color: var(--colornews);
+}
+.lithium-vb_content {
+  padding: 40px;
+  text-align: justify;
+  font: 12px var(--font-text);
+  color: var(--colorfont);
+  background-color: rgba(15, 15, 15, 0.4);
+  margin: 20px;
+  min-height: 790px;
+  border-radius: var(--mainradius);
+}
+.lithium-vb_content img {
+  max-width:600px;
+  object-fit:cover;
+}
+.lsvb_modoaction {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 20px 0;
+  padding: 0 0 0 14px;
+  border-radius: var(--radiusbis);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
+}
+.quickmod {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+}
+.quickmod label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+.quickmod select {
+  padding: 8px 12px;
+  background: var(--neutral);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  color: var(--text-color);
+  font-size: 13px;
+}
+.quickmod .button2 {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #7c5cff, #b084ff);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.quickmod .button2:hover {
+  transform: translateY(-1px);
+   opacity: .9;
+}
+.lsvb_btnaction {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+}
+.lsvb_btnaction a {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  transition:
+    background .2s ease,
+    transform .2s ease,
+    opacity .2s ease;
+  color: #d5c6ff;
+  position: relative;
+  text-decoration: none;
+  position: relative;
+}
+.lsvb_btnaction a:hover {
+  background: rgba(255,255,255,0.10);
+  transform: translateY(-2px);
+}
+.lsvb_btnaction a img {
+  display: none;
+}
+.lsvb_btnaction a::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background-color: currentColor;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+.lsvb_btnaction a::after {
+  content: attr(title);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: rgba(20, 20, 25, 0.95);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+   white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: .15s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.lsvb_btnaction a:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.lsvb_btnaction a[href*="mode=delete"] {
+  color: #ff7b7b;
+}
+.lsvb_btnaction a[href*="delete"]::after {
+  content: "Supprimer le sujet";
+}
+.lsvb_btnaction a[href*="mode=delete"]::before {
+  mask-image: url("https://unpkg.com/lucide-static/icons/trash-2.svg");
+  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/trash-2.svg");
+}
+.lsvb_btnaction a[href*="mode=move"]::before {
+  mask-image: url("https://unpkg.com/lucide-static/icons/move-right.svg");
+  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/move-right.svg");
+}
+.lsvb_btnaction a[href*="move"]::after {
+  content: "Déplacer le sujet";
+}
+.lsvb_btnaction a[href*="mode=lock"]::before {
+  mask-image: url("https://unpkg.com/lucide-static/icons/lock.svg");
+  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/lock.svg");
+}
+.lsvb_btnaction a[href*="lock"]::after {
+  content: "Verrouiller le sujet";
+}
+.lsvb_btnaction a[href*="mode=unlock"]::before {
+  mask-image: url("https://unpkg.com/lucide-static/icons/lock-open.svg");
+  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/lock-open.svg");
+}
+.lsvb_btnaction a[href*="unlock"]::after {
+  content: "Déverrouiller le sujet";
+}
+.lsvb_btnaction a[href*="mode=split"]::before {
+  mask-image: url("https://unpkg.com/lucide-static/icons/split.svg");
+  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/split.svg");
+}
+.lsvb_btnaction a[href*="split"]::after {
+  content: "Diviser le sujet";
+}
+.lsvb_btnaction a[href*="/merge"]::before {
+  mask-image: url("https://unpkg.com/lucide-static/icons/combine.svg");
+  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/combine.svg");
+}
+.lsvb_btnaction a[href*="/merge"]::after {
+  content: "Fusionner les sujets";
+}
+.lsvb_btnaction a[href*="mode=trash"]::before,
+.lsvb_btnaction a[href*="mode=bin"]::before {
+  mask-image: url("https://unpkg.com/lucide-static/icons/archive.svg");
+  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/archive.svg");
+}
+.lsvb_btnaction a[href*="trash"]::after {
+  content: "Corbeille";
+}
+/* ===================================== FIN VIEWTOPIC_BODY ===================================== */
