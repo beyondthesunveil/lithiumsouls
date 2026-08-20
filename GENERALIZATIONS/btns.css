@@ -1,0 +1,108 @@
+/* ----- BOUTONS & ICÔNES DU FORUM ----- */
+
+.rep-button, .rep-button:focus, .rep-button:active, .button, .button1, .button2 {
+  background: var(--bgcolor)!important;
+  position: relative!important;
+  display: inline-flex!important;
+  align-items: center!important;
+  gap: 6px!important;
+  border: 1px solid rgb(255 255 255 / 0.08)!important;
+  outline: none!important;
+  margin: 6px 6px 0 0!important;
+  cursor: pointer!important;
+  padding: 6px 12px!important;
+  border-radius: var(--mainradius)!important;
+  color: var(--colorfont)!important;
+  font: 13px var(--font-h4)!important;
+  transition: 0.25s ease!important;
+}
+
+.rep-button:hover {
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    var(--colornews),
+    var(--coloradd)
+  );
+  transform: translateY(-1px);
+}
+
+.rep-button::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  background: currentColor;
+  -webkit-mask: url("https://unpkg.com/lucide-static/icons/heart.svg") center / contain no-repeat;
+  mask: url("https://unpkg.com/lucide-static/icons/heart.svg") center / contain no-repeat;
+  transition: 0.2s ease;
+}
+
+.rep-button:hover::before {
+  transform: scale(1.1);
+}
+a.button,
+a.button1,
+a.button2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font: 14px var(--font-h4);
+  text-transform: lowercase;
+  color: var(--colorfont);
+  background: var(--bgcolor);
+  border-radius: var(--mainradius);
+  border: 1px solid rgb(255 255 255 / 0.08);
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+a.button:hover,
+a.button1:hover,
+a.button2:hover {
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    var(--colornews),
+    var(--coloradd)
+  );
+  transform: translateY(-1px);
+}
+.rep-button.fa_liked { background: linear-gradient(to right, var(--colornews), var(--coloradd)); }
+a[class*="ion-"] i {
+  display: none !important;
+}
+/* ----- ICÔNES RELATIVES AUX MESSAGES / SUJETS : EDIT, SUPP, IP... */
+a[class*="ion-"]::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  background: currentColor;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+a.ion-post::before {
+  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/square-pen.svg");
+  mask-image: url("https://unpkg.com/lucide-static/icons/square-pen.svg");
+}
+
+a.ion-reply::before {
+  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/message-circle-reply.svg");
+  mask-image: url("https://unpkg.com/lucide-static/icons/message-circle-reply.svg");
+}
+
+a.ion-edit::before {
+  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/file-pen-line.svg");
+  mask-image: url("https://unpkg.com/lucide-static/icons/file-pen-line.svg");
+}
+
+a.ion-locked::before {
+  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/lock-keyhole.svg");
+  mask-image: url("https://unpkg.com/lucide-static/icons/lock-keyhole.svg");
+}
