@@ -1,14 +1,12 @@
-/* ===================================== DÉBUT VIEWTOPIC_BODY ===================================== */
 .lithium-vb_blocktitle {
   width: 100%;
   margin: 100px 0;
 }
 h1.lithium-vb_titlemap {
   padding: 10px 20px;
-  font: 30px var(--font-h2);
-  border-bottom: 1px solid var(--border);
-  font-style: italic;
-  background: var(--gradientbis);
+  font: italic 30px var(--font-display);
+  border-bottom: 1px solid var(--border-default);
+  background: var(--gradient-accent);
   text-transform: uppercase;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -19,23 +17,23 @@ h1.lithium-vb_titlemap {
   margin-top: 12px;
   display: inline-block;
   float: right;
-  font: 15px var(--font-h4);
+  font: 15px var(--font-condensed);
   letter-spacing: 1px;
   text-transform: lowercase;
   padding: 6px 14px;
-  background: var(--bgcolor);
-  border-radius: var(--mainradius);
-  color: var(--colorfont);
-  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  border-radius: 12px;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-default);
 }
 .lithium-vb_brdcrmbtrail a {
-  color: var(--colorbis);
+  color: var(--accent-dark);
   font-style: italic;
   transition: 0.2s;
 }
 .lithium-vb_brdcrmbtrail a:hover {
   opacity: 1;
-  background: var(--gradientbis);
+  background: var(--gradient-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -66,17 +64,18 @@ h1.lithium-vb_titlemap {
 .lithium-vb_blockmember {
   display: flex;
   flex-wrap: wrap;
-  border-radius: var(--mainradius);
-  background: var(--color02);
+  border-radius: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
   width: 100%;
   justify-content: space-between;
 }
 /* bloc qui va gérer l'affichage de la bande gauche avec l'avatar, le rang, le bloc des infos */
 .lithium-vb_blockperso {
   width: 250px;
-  background-color: var(--border);
+  background-color: var(--bg-elevated);
   border-radius: 0 0 0 5px;
-  border-right: var(--border) solid 1px;
+  border-right: 1px solid var(--border-default);
 }
 .lithium-vb_posttracker {
   position: sticky;
@@ -86,16 +85,16 @@ h1.lithium-vb_titlemap {
 }
 .lithium-vb_postname {
   width: 235px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-default);
   margin: 15px auto;
   padding: 0 0 10px 0;
-  border-radius: var(--mainradius);
+  border-radius: 12px;
   text-align: center;
 }
 .lithium-vb_postname strong {
-  color: #f1f1f1;
+  color: var(--text-primary);
   display: inline-block;
-  font: 15px var(--font-h3);
+  font: 600 15px var(--font-condensed);
   text-transform: uppercase;
 }
 .short-pseudo {
@@ -110,10 +109,10 @@ h1.lithium-vb_titlemap {
 }
 .lithium-vb_posteravatar {
   margin: 15px;
-  border: 5px solid var(--colorfont);
+  border: 5px solid var(--bg-surface);
   width: 220px;
   height: 340px;
-  outline: 1px solid var(--border);
+  outline: 1px solid var(--border-default);
   overflow: hidden;
   outline-offset: 5px;
 }
@@ -123,8 +122,8 @@ h1.lithium-vb_titlemap {
   object-fit:cover;
 }
 .lithium-vb_rank {
-  font: 15px var(--font-h4);
-  color: var(--colorfont);
+  font: 15px var(--font-condensed);
+  color: var(--text-secondary);
   text-transform: uppercase;
   margin: 10px;
   letter-spacing:1px;
@@ -132,11 +131,11 @@ h1.lithium-vb_titlemap {
 }
 .lithium-vb_rank > span {
   display: block;
-  font: 13px var(--font-h3);
+  font: 600 13px var(--font-condensed);
   letter-spacing: 0.5px;
   padding: 3px;
-  background: var(--color03);
-  border-radius: var(--radiusbis);
+  background: var(--bg-soft);
+  border-radius: 4px;
 }
 .group-label {
   text-align: center;
@@ -147,31 +146,31 @@ h1.lithium-vb_titlemap {
   height:150px;
   overflow:auto;
   padding: 10px;
-  background: var(--color03);
-  border-radius: var(--mainradius);
+  background: var(--bg-soft);
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  border: 1px solid rgba(255,255,255,0.05);
+  border: 1px solid var(--border-subtle);
 }
 .lithium-vb_charafield {
-  font: 11px var(--font-text);
+  font: 11px var(--font-sans);
   padding: 6px 8px;
-  border-radius: var(--mainradius);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
   position: relative;
   transition: 0.3s ease;
 }
 .lithium-vb_charalabel {
-  font: 10px var(--font-h4);
+  font: 10px var(--font-condensed);
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--colornews);
+  color: var(--gold-dark);
   opacity: 0.8;
 }
 .lithium-vb_characontent {
-  color: var(--colorfont);
+  color: var(--text-secondary);
   text-align: right;
   max-width: 120px;
 }
@@ -182,7 +181,7 @@ h1.lithium-vb_titlemap {
 /* bloc qui va gérer l'affichage général de la mise en page du texte, la date, les boutons edit */
 .lithium-vb_blockcontent {
   width: 765px;
-  background-color: var(--color03);
+  background-color: var(--bg-elevated);
   border-radius: 0 0 5px 0;
 }
 /* affichage des boutons d'édition */
@@ -201,15 +200,15 @@ h1.lithium-vb_titlemap {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color02);
+  background: var(--bg-surface);
   border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid var(--border-default);
   position: relative;
   transition: 0.25s;
 }
 .profile-icons a::before {
   font-size: 13px;
-  color: var(--colorfont);
+  color: var(--text-secondary);
 }
 .icon-quote::before { content: "❝"; }
 .icon-edit::before { content: "✎"; }
@@ -217,23 +216,23 @@ h1.lithium-vb_titlemap {
 .icon-ip::before { content: "⛨"; }
 
 .profile-icons a:hover {
-  background: var(--color03);
-  border-color: var(--colornews);
+  background: var(--accent-faded);
+  border-color: var(--accent);
   transform: translateY(-2px);
-  color:var(--colorfont);
+  color: var(--accent-dark);
 }
 .profile-icons a:hover::before {
-  color: var(--colornews);
+  color: var(--accent-dark);
 }
 .lithium-vb_content {
   padding: 40px;
   text-align: justify;
-  font: 12px var(--font-text);
-  color: var(--colorfont);
-  background-color: rgba(15, 15, 15, 0.4);
+  font: 12px var(--font-sans);
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
   margin: 20px;
   min-height: 790px;
-  border-radius: var(--mainradius);
+  border-radius: 12px;
 }
 .lithium-vb_content img {
   max-width:600px;
@@ -247,9 +246,9 @@ h1.lithium-vb_titlemap {
   gap: 16px;
   margin: 20px 0;
   padding: 0 0 0 14px;
-  border-radius: var(--radiusbis);
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 4px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
   backdrop-filter: blur(8px);
 }
 .quickmod {
@@ -270,18 +269,18 @@ h1.lithium-vb_titlemap {
 }
 .quickmod select {
   padding: 8px 12px;
-  background: var(--neutral);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: var(--bg-soft);
+  border: 1px solid var(--border-default);
   border-radius: 10px;
-  color: var(--text-color);
+  color: var(--text-primary);
   font-size: 13px;
 }
 .quickmod .button2 {
   padding: 8px 14px;
   border: none;
   border-radius: 10px;
-  background: linear-gradient(135deg, #7c5cff, #b084ff);
-  color: white;
+  background: var(--gradient-secondary);
+  color: var(--text-on-accent);
   font-weight: 600;
   cursor: pointer;
   transition: .2s ease;
@@ -307,18 +306,19 @@ h1.lithium-vb_titlemap {
   align-items: center;
   justify-content: center;
   border-radius: 12px;
-  background: rgba(255,255,255,0.04);
+  background: var(--accent-faded);
   transition:
     background .2s ease,
     transform .2s ease,
     opacity .2s ease;
-  color: #d5c6ff;
+  color: var(--accent-dark);
   position: relative;
   text-decoration: none;
   position: relative;
 }
 .lsvb_btnaction a:hover {
-  background: rgba(255,255,255,0.10);
+  background: var(--gold-faded);
+  color: var(--gold-dark);
   transform: translateY(-2px);
 }
 .lsvb_btnaction a img {
@@ -342,8 +342,8 @@ h1.lithium-vb_titlemap {
   bottom: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%) translateY(4px);
-  background: rgba(20, 20, 25, 0.95);
-  color: #fff;
+  background: var(--text-primary);
+  color: var(--text-on-accent);
   padding: 6px 10px;
   border-radius: 10px;
   font-size: 12px;
@@ -351,14 +351,14 @@ h1.lithium-vb_titlemap {
   opacity: 0;
   pointer-events: none;
   transition: .15s ease;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 30px var(--border-default);
 }
 .lsvb_btnaction a:hover::after {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
 .lsvb_btnaction a[href*="mode=delete"] {
-  color: #ff7b7b;
+  color: var(--text-important);
 }
 .lsvb_btnaction a[href*="delete"]::after {
   content: "Supprimer le sujet";
@@ -410,4 +410,3 @@ h1.lithium-vb_titlemap {
 .lsvb_btnaction a[href*="trash"]::after {
   content: "Corbeille";
 }
-/* ===================================== FIN VIEWTOPIC_BODY ===================================== */
