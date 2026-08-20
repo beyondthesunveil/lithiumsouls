@@ -60,10 +60,8 @@ h1.lithium-vb_titlemap {
   box-shadow: none;
   margin: 24px 0;
 }
-.sub-header-buttons {
-  display: flex;
-  float:right;
-  margin: 0 0 30px 0;
+.litso-msgsubheader {
+
 }
 /* bloc qui gère l'ensemble de la structure */
 .lithium-vb_blockmember {
