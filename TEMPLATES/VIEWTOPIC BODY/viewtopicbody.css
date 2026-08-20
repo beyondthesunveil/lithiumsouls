@@ -72,7 +72,7 @@ h1.lithium-vb_titlemap {
 }
 /* bloc qui va gérer l'affichage de la bande gauche avec l'avatar, le rang, le bloc des infos */
 .lithium-vb_blockperso {
-  width: 250px;
+  width: 280px;
   background-color: var(--bg-elevated);
   border-radius: 0 0 0 5px;
   border-right: 1px solid var(--border-default);
@@ -108,7 +108,7 @@ h1.lithium-vb_titlemap {
   width:220px;
 }
 .lithium-vb_posteravatar {
-  margin: 15px;
+  margin: 15px auto;
   border: 5px solid var(--bg-surface);
   width: 220px;
   height: 340px;
@@ -180,9 +180,8 @@ h1.lithium-vb_titlemap {
 }
 /* bloc qui va gérer l'affichage général de la mise en page du texte, la date, les boutons edit */
 .lithium-vb_blockcontent {
-  width: 765px;
+  width: 878px;
   background-color: var(--bg-elevated);
-  border-radius: 0 0 5px 0;
 }
 /* affichage des boutons d'édition */
 .lithium-vb_btnedit {
