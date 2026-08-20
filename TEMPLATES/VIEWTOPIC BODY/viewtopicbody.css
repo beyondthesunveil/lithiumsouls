@@ -1,6 +1,4 @@
-.lithium-vb_blocktitle {
-  width: 100%;
-  margin: 100px 0;
+.litso-msg_title {
 }
 h1.lithium-vb_titlemap {
   padding: 10px 20px;
@@ -12,6 +10,10 @@ h1.lithium-vb_titlemap {
   -webkit-text-fill-color: transparent;
   width: 100%;
   margin: 0;
+}
+.lithium-vb_blocktitle {
+  width: 100%;
+  margin: 100px 0;
 }
 .lithium-vb_brdcrmbtrail {
   margin-top: 12px;
@@ -64,7 +66,6 @@ h1.lithium-vb_titlemap {
 .lithium-vb_blockmember {
   display: flex;
   flex-wrap: wrap;
-  border-radius: 12px;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   width: 100%;
@@ -87,8 +88,7 @@ h1.lithium-vb_titlemap {
   width: 235px;
   border: 1px solid var(--border-default);
   margin: 15px auto;
-  padding: 0 0 10px 0;
-  border-radius: 12px;
+  padding: 3px 0 5px;
   text-align: center;
 }
 .lithium-vb_postname strong {
@@ -231,7 +231,6 @@ h1.lithium-vb_titlemap {
   background-color: var(--bg-surface);
   margin: 20px;
   min-height: 790px;
-  border-radius: 12px;
 }
 .lithium-vb_content img {
   max-width:600px;
