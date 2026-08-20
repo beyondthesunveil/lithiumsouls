@@ -13,15 +13,18 @@ h1.lithium-vb_titlemap {
 }
 .lithium-vb_blocktitle {
   margin: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--border-default);
+  background-color: var(--border-subtle);
+  justify-content: space-between;
 }
 .lithium-vb_brdcrmbtrail {
   font: 15px var(--font-condensed);
   letter-spacing: 1px;
   text-transform: lowercase;
-  padding: 6px 14px;
-  background: var(--bg-elevated);
+  padding: 12px 14px;
   color: var(--text-secondary);
-  border: 1px solid var(--border-default);
 }
 .lithium-vb_brdcrmbtrail a {
   color: var(--accent-dark);
