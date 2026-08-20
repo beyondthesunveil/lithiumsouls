@@ -1,20 +1,19 @@
 /* ----- BOUTONS & ICÔNES DU FORUM ----- */
 
 .rep-button, .rep-button:focus, .rep-button:active, .button, .button1, .button2 {
-  background: var(--bgcolor)!important;
-  position: relative!important;
-  display: inline-flex!important;
-  align-items: center!important;
-  gap: 6px!important;
-  border: 1px solid rgb(255 255 255 / 0.08)!important;
-  outline: none!important;
-  margin: 6px 6px 0 0!important;
-  cursor: pointer!important;
-  padding: 6px 12px!important;
-  border-radius: var(--mainradius)!important;
-  color: var(--colorfont)!important;
-  font: 13px var(--font-h4)!important;
-  transition: 0.25s ease!important;
+  background: var(--bg-surface) !important;
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border: 1px var(--border-default) !important;
+  outline: none !important;
+  margin: 6px 6px 0 0 !important;
+  cursor: pointer !important;
+  padding: 6px 12px !important;
+  color: var(--status-important) !important;
+  font: 12px var(--font-sans) !important;
+  transition: 0.25s ease !important;
 }
 
 .rep-button:hover {
