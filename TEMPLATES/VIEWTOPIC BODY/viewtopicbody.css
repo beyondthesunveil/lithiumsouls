@@ -12,19 +12,14 @@ h1.lithium-vb_titlemap {
   margin: 0;
 }
 .lithium-vb_blocktitle {
-  width: 100%;
-  margin: 100px 0;
+  margin: 10px 0;
 }
 .lithium-vb_brdcrmbtrail {
-  margin-top: 12px;
-  display: inline-block;
-  float: right;
   font: 15px var(--font-condensed);
   letter-spacing: 1px;
   text-transform: lowercase;
   padding: 6px 14px;
   background: var(--bg-elevated);
-  border-radius: 12px;
   color: var(--text-secondary);
   border: 1px solid var(--border-default);
 }
@@ -41,6 +36,14 @@ h1.lithium-vb_titlemap {
 }
 
 /* ----- début bloc sujet ----- */
+
+.ls-vb_runtime {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  height: 40px;
+}
   
 .lithium-vb_postprofile .row1,
 .lithium-vb_postprofile .row2 {
