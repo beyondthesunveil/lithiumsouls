@@ -109,6 +109,7 @@
 
 .litso-prvmsg_navbar {
   display: flex;
+  width:100%;
   align-items: stretch;
   border: 1px solid var(--border-default);
   border-top: 0;
