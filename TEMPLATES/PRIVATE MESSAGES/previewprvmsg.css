@@ -1,0 +1,349 @@
+/* =========================================================
+   PRÉVISUALISATION D’UN MESSAGE PRIVÉ
+   Nomenclature : litso-prevmsgprv_
+   ========================================================= */
+
+
+/* ---------- CONTENEUR GÉNÉRAL ---------- */
+
+.litso-prevmsgprv_ {
+  position: relative;
+  width: 100%;
+  margin: 0 0 30px;
+  color: var(--text-primary);
+}
+
+
+/* =========================================================
+   PETITS TITRES
+   ========================================================= */
+
+.litso-prevmsgprv_eyebrow {
+  display: block;
+  color: var(--gold);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   EN-TÊTE PRINCIPAL
+   ========================================================= */
+
+.litso-prevmsgprv_header {
+  position: relative;
+  min-height: 155px;
+  display: flex;
+  align-items: flex-end;
+  padding: 30px 32px;
+  overflow: hidden;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-bottom: 0;
+}
+
+.litso-prevmsgprv_headerGhost {
+  position: absolute;
+  z-index: 0;
+  top: -24px;
+  right: 25px;
+  color: transparent;
+  font-family: var(--font-display);
+  font-size: clamp(90px, 13vw, 155px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  white-space: nowrap;
+  -webkit-text-stroke: 1px var(--border-subtle);
+  user-select: none;
+  pointer-events: none;
+}
+
+.litso-prevmsgprv_headerContent {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+}
+
+.litso-prevmsgprv_title {
+  margin: 6px 0 0;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 54px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+}
+
+.litso-prevmsgprv_subtitle {
+  margin: 12px 0 0;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-style: italic;
+}
+
+
+/* =========================================================
+   MESSAGE PRÉVISUALISÉ
+   ========================================================= */
+
+.litso-prevmsgprv_message {
+  position: relative;
+  width: 100%;
+  padding: 30px 34px 38px;
+  background: linear-gradient(
+    90deg,
+    var(--bg-surface),
+    var(--bg-elevated)
+  );
+  border: 1px solid var(--border-default);
+}
+
+
+/* ---------- EN-TÊTE DU MESSAGE ---------- */
+
+.litso-prevmsgprv_messageHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.litso-prevmsgprv_messageHeader > div:first-child {
+  min-width: 0;
+}
+
+.litso-prevmsgprv_subject {
+  max-width: 100%;
+  margin: 7px 0 0;
+  overflow-wrap: break-word;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+
+/* ---------- MARQUEUR DE PRÉVISUALISATION ---------- */
+
+.litso-prevmsgprv_previewMark {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.litso-prevmsgprv_previewMark > i {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  border: 1px solid var(--border-default);
+  transform: rotate(45deg);
+  font-size: 17px;
+}
+
+.litso-prevmsgprv_previewMark > i::before {
+  display: block;
+  transform: rotate(-45deg);
+}
+
+
+/* =========================================================
+   INFORMATIONS DU MESSAGE
+   ========================================================= */
+
+.litso-prevmsgprv_metadata {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  margin-top: 24px;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.litso-prevmsgprv_route {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.litso-prevmsgprv_route strong {
+  color: var(--gold-dark);
+  font-weight: 700;
+}
+
+.litso-prevmsgprv_route strong a {
+  color: inherit;
+}
+
+.litso-prevmsgprv_route > i {
+  color: var(--accent-soft);
+  font-size: 13px;
+}
+
+.litso-prevmsgprv_date {
+  flex: 0 0 auto;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+
+/* ---------- SÉPARATEUR ---------- */
+
+.litso-prevmsgprv_separator {
+  display: grid;
+  grid-template-columns: 1fr 7px 1fr;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0 30px;
+}
+
+.litso-prevmsgprv_separator > span {
+  height: 1px;
+  background: var(--border-default);
+}
+
+.litso-prevmsgprv_separator > i {
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--accent-soft);
+  transform: rotate(45deg);
+}
+
+
+/* =========================================================
+   CONTENU DU MESSAGE
+   ========================================================= */
+
+.litso-prevmsgprv_content {
+  min-width: 0;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: break-word;
+}
+
+.litso-prevmsgprv_content > :first-child {
+  margin-top: 0;
+}
+
+.litso-prevmsgprv_content > :last-child {
+  margin-bottom: 0;
+}
+
+.litso-prevmsgprv_content p {
+  margin: 0 0 1.25em;
+}
+
+.litso-prevmsgprv_content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.litso-prevmsgprv_content a {
+  color: var(--accent);
+}
+
+.litso-prevmsgprv_content a:hover {
+  color: var(--gold);
+}
+
+.litso-prevmsgprv_content blockquote {
+  margin: 20px 0;
+  padding: 18px 22px;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border-left: 2px solid var(--gold);
+}
+
+.litso-prevmsgprv_content code {
+  padding: 2px 5px;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+.litso-prevmsgprv_content pre {
+  max-width: 100%;
+  padding: 18px;
+  overflow: auto;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 620px) {
+
+  .litso-prevmsgprv_header {
+    min-height: 140px;
+    padding: 25px;
+  }
+
+  .litso-prevmsgprv_headerGhost {
+    right: auto;
+    left: 10px;
+  }
+
+  .litso-prevmsgprv_message {
+    padding: 25px;
+  }
+
+  .litso-prevmsgprv_messageHeader {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .litso-prevmsgprv_previewMark {
+    align-self: flex-end;
+  }
+
+  .litso-prevmsgprv_metadata {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .litso-prevmsgprv_route {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .litso-prevmsgprv_route > i {
+    transform: rotate(90deg);
+  }
+
+  .litso-prevmsgprv_date {
+    text-align: left;
+  }
+
+}
