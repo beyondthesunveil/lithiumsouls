@@ -1,0 +1,893 @@
+/* =========================================================
+   LISTE DES MESSAGES PRIVÉS
+   Nomenclature : litso-prvmsg_
+   ========================================================= */
+
+
+/* ---------- CONTENEUR GÉNÉRAL ---------- */
+
+.litso-prvmsg_ {
+  position: relative;
+  width: min(1160px, calc(100% - 40px));
+  margin: 50px auto;
+  color: var(--text-primary);
+}
+
+
+/* ---------- EN-TÊTE ---------- */
+
+.litso-prvmsg_header {
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 35px 0;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.litso-prvmsg_headerGhost {
+  position: absolute;
+  inset: -34px auto auto 0;
+  z-index: 0;
+  max-width: 100%;
+  overflow: hidden;
+  color: transparent;
+  font-family: var(--font-display);
+  font-size: clamp(100px, 15vw, 210px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 0.85;
+  letter-spacing: -0.07em;
+  white-space: nowrap;
+  -webkit-text-stroke: 1px var(--border-subtle);
+  user-select: none;
+  pointer-events: none;
+}
+
+.litso-prvmsg_headerContent {
+  position: relative;
+  z-index: 1;
+  width: min(720px, 100%);
+  text-align: right;
+}
+
+.litso-prvmsg_headerIndex,
+.litso-prvmsg_eyebrow,
+.litso-prvmsg_rowEyebrow,
+.litso-prvmsg_filterLabel {
+  color: var(--gold);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.litso-prvmsg_headerIndex {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+
+.litso-prvmsg_headerIndex::before {
+  content: "";
+  width: 55px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.litso-prvmsg_headerTitle {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 82px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.litso-prvmsg_headerTitle em {
+  color: var(--accent-soft);
+  font-weight: 400;
+}
+
+.litso-prvmsg_headerSubtitle {
+  margin: 14px 0 0;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-style: italic;
+}
+
+
+/* ---------- NAVIGATION ---------- */
+
+.litso-prvmsg_navbar {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--border-default);
+  border-top: 0;
+  background: var(--bg-surface);
+}
+
+.litso-prvmsg_menu {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.litso-prvmsg_menuItem {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 22px;
+  border-right: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.litso-prvmsg_menuItem:hover {
+  background: var(--bg-soft);
+  color: var(--text-primary);
+}
+
+.litso-prvmsg_menuItem > i {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  font-size: 18px;
+  border: 1px solid var(--border-default);
+  transform: rotate(45deg);
+}
+
+.litso-prvmsg_menuItem > i::before {
+  transform: rotate(-45deg);
+}
+
+.litso-prvmsg_menuContent {
+  min-width: 0;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.litso-prvmsg_menuContent > a {
+  color: inherit;
+}
+
+.litso-prvmsg_menuIndex {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--text-muted);
+  font-size: 9px;
+}
+
+.litso-prvmsg_menuMarker,
+.litso-prvmsg_menuItem .active {
+  position: absolute;
+  right: 20px;
+  bottom: -1px;
+  left: 20px;
+  height: 1px;
+  background: transparent;
+}
+
+.litso-prvmsg_menuItem .active {
+  background: var(--gold);
+}
+
+.litso-prvmsg_newButton {
+  flex: 0 0 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 20px;
+  color: var(--text-invert);
+  background: var(--accent-deep);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.litso-prvmsg_newButton:hover {
+  color: var(--text-invert);
+  background: var(--gold-dark);
+}
+
+.litso-prvmsg_newButton i {
+  font-size: 19px;
+}
+
+
+/* ---------- BARRE D’INFORMATION ---------- */
+
+.litso-prvmsg_form {
+  margin-top: 20px;
+}
+
+.litso-prvmsg_toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
+  border: 1px solid var(--border-default);
+  background: var(--bg-elevated);
+}
+
+.litso-prvmsg_status {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 24px;
+}
+
+.litso-prvmsg_statusIcon {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  font-size: 18px;
+  border: 1px solid var(--border-default);
+  border-radius: 50%;
+}
+
+.litso-prvmsg_statusContent {
+  min-width: 0;
+}
+
+.litso-prvmsg_statusText {
+  margin-top: 5px;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 12px;
+}
+
+.litso-prvmsg_statusText p {
+  margin: 0;
+}
+
+.litso-prvmsg_filter {
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 18px 24px;
+  border-left: 1px solid var(--border-default);
+}
+
+.litso-prvmsg_filterControls {
+  display: flex;
+  margin-top: 7px;
+}
+
+.litso-prvmsg_select,
+.litso-prvmsg_filterSubmit {
+  min-height: 34px;
+  border: 1px solid var(--border-default);
+  border-radius: 0;
+  outline: 0;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.litso-prvmsg_select {
+  flex: 1;
+  min-width: 0;
+  padding: 0 12px;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+}
+
+.litso-prvmsg_filterSubmit {
+  padding: 0 15px;
+  color: var(--text-invert);
+  background: var(--accent-deep);
+  border-left: 0;
+  cursor: pointer;
+}
+
+
+/* ---------- EN-TÊTE DE LISTE ---------- */
+
+.litso-prvmsg_listHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 20px;
+  padding: 30px;
+  border: 1px solid var(--border-default);
+  border-bottom: 0;
+  background: var(--bg-surface);
+}
+
+.litso-prvmsg_listTitle {
+  margin: 6px 0 0;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.litso-prvmsg_listTitle em {
+  color: var(--accent-soft);
+  font-weight: 400;
+}
+
+.litso-prvmsg_markLinks {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.litso-prvmsg_markLinks a {
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.litso-prvmsg_markLinks a:hover {
+  color: var(--gold);
+}
+
+.litso-prvmsg_markLinks > span {
+  width: 3px;
+  height: 3px;
+  background: var(--accent-soft);
+  transform: rotate(45deg);
+}
+
+
+/* ---------- LISTE ET MESSAGES ---------- */
+
+.litso-prvmsg_list {
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border-default);
+  list-style: none;
+  background: var(--bg-surface);
+}
+
+.litso-prvmsg_row {
+  position: relative;
+  min-height: 132px;
+  display: grid;
+  grid-template-columns: 125px minmax(0, 1fr) 100px;
+  align-items: stretch;
+  border-bottom: 1px solid var(--border-default);
+  background:
+    linear-gradient(
+      90deg,
+      var(--bg-surface),
+      var(--bg-elevated)
+    );
+  overflow: hidden;
+  transition: background-color 0.25s ease;
+}
+
+.litso-prvmsg_row:last-child {
+  border-bottom: 0;
+}
+
+.litso-prvmsg_row:hover {
+  background: var(--bg-soft);
+}
+
+.litso-prvmsg_row::after {
+  content: "";
+  position: absolute;
+  top: 28px;
+  right: 99px;
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--accent-soft);
+  transform: rotate(45deg);
+  opacity: 0.7;
+}
+
+.litso-prvmsg_folder {
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-right: 1px solid var(--border-default);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 35px 35px;
+}
+
+.litso-prvmsg_folder::before {
+  content: "";
+  position: absolute;
+  width: 58px;
+  height: 58px;
+  border: 1px solid var(--border-default);
+  transform: rotate(45deg);
+}
+
+.litso-prvmsg_messageIcon {
+  position: absolute;
+  z-index: 2;
+  right: 24px;
+  bottom: 23px;
+  line-height: 0;
+}
+
+.litso-prvmsg_messageIcon img {
+  display: block;
+  max-width: 16px;
+  max-height: 16px;
+}
+
+.litso-prvmsg_rowContent {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 28px 34px;
+}
+
+.litso-prvmsg_rowEyebrow {
+  margin-bottom: 7px;
+}
+
+.litso-prvmsg_subject {
+  width: fit-content;
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.litso-prvmsg_subject:hover {
+  color: var(--accent);
+}
+
+.litso-prvmsg_subject.msg-unanswered,
+.litso-prvmsg_subject[class*="unanswered"] {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.litso-prvmsg_metadata {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.litso-prvmsg_author {
+  color: var(--gold-dark);
+  font-weight: 700;
+}
+
+.litso-prvmsg_author a {
+  color: inherit;
+}
+
+.litso-prvmsg_metadataSeparator {
+  width: 3px;
+  height: 3px;
+  background: var(--accent-soft);
+  transform: rotate(45deg);
+}
+
+.litso-prvmsg_rowAside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border-left: 1px solid var(--border-default);
+}
+
+
+/* ---------- CASE À COCHER ---------- */
+
+.litso-prvmsg_checkbox {
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.litso-prvmsg_checkbox input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.litso-prvmsg_checkboxVisual {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.litso-prvmsg_checkboxVisual::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background: transparent;
+  transform: rotate(45deg);
+  transition: background-color 0.2s ease;
+}
+
+.litso-prvmsg_checkbox input:checked + .litso-prvmsg_checkboxVisual {
+  border-color: var(--gold);
+}
+
+.litso-prvmsg_checkbox input:checked + .litso-prvmsg_checkboxVisual::after {
+  background: var(--gold);
+}
+
+.litso-prvmsg_checkbox input:focus-visible + .litso-prvmsg_checkboxVisual {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+
+/* ---------- BOUTON DE LECTURE ---------- */
+
+.litso-prvmsg_readButton {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+  border: 1px solid var(--border-default);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.litso-prvmsg_readButton i {
+  font-size: 16px;
+  transform: rotate(45deg);
+}
+
+.litso-prvmsg_readButton:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: var(--bg-surface);
+}
+
+
+/* ---------- MESSAGERIE VIDE ---------- */
+
+.litso-prvmsg_empty {
+  min-height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 35px;
+  color: var(--text-secondary);
+  text-align: left;
+}
+
+.litso-prvmsg_emptyIcon {
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  border: 1px solid var(--border-default);
+  border-radius: 50%;
+  font-size: 24px;
+}
+
+.litso-prvmsg_emptyContent strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 400;
+}
+
+
+/* ---------- PIED DE LISTE ---------- */
+
+.litso-prvmsg_listFooter {
+  min-height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 12px 20px;
+  border: 1px solid var(--border-default);
+  border-top: 0;
+  background: var(--bg-elevated);
+}
+
+.litso-prvmsg_pagination {
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 10px;
+}
+
+.litso-prvmsg_pagination .pagination {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
+/* ---------- ACTIONS ---------- */
+
+.litso-prvmsg_actions {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.8fr);
+  margin-top: 20px;
+  border: 1px solid var(--border-default);
+  background: var(--bg-surface);
+}
+
+.litso-prvmsg_actionsHeading {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px;
+  border-right: 1px solid var(--border-default);
+}
+
+.litso-prvmsg_actionsIndex {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+  font-family: var(--font-display);
+  font-size: 12px;
+}
+
+.litso-prvmsg_actionsIndex::first-line {
+  transform: rotate(-45deg);
+}
+
+.litso-prvmsg_actionsHeading > div {
+  min-width: 0;
+}
+
+.litso-prvmsg_actionsHeading strong {
+  display: block;
+  margin-top: 5px;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.litso-prvmsg_actionButtons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 20px;
+}
+
+.litso-prvmsg_action {
+  min-height: 36px;
+  padding: 0 15px;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: 0;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.litso-prvmsg_action:hover {
+  color: var(--text-primary);
+  background: var(--bg-soft);
+  border-color: var(--gold);
+}
+
+.litso-prvmsg_action--delete:hover {
+  color: var(--text-invert);
+  background: var(--accent-deep);
+  border-color: var(--accent-deep);
+}
+
+
+/* ---------- JUMPBOX ---------- */
+
+.litso-prvmsg_jumpbox {
+  margin-top: 15px;
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 900px) {
+
+  .litso-prvmsg_navbar {
+    flex-direction: column;
+  }
+
+  .litso-prvmsg_menu {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .litso-prvmsg_menuItem:nth-child(2) {
+    border-right: 0;
+  }
+
+  .litso-prvmsg_menuItem:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .litso-prvmsg_newButton {
+    flex-basis: auto;
+  }
+
+  .litso-prvmsg_toolbar,
+  .litso-prvmsg_actions {
+    grid-template-columns: 1fr;
+  }
+
+  .litso-prvmsg_filter,
+  .litso-prvmsg_actionsHeading {
+    border-left: 0;
+    border-right: 0;
+    border-top: 1px solid var(--border-default);
+  }
+
+  .litso-prvmsg_row {
+    grid-template-columns: 90px minmax(0, 1fr) 75px;
+  }
+
+  .litso-prvmsg_rowContent {
+    padding: 24px;
+  }
+
+  .litso-prvmsg_subject {
+    font-size: 25px;
+  }
+
+}
+
+@media (max-width: 620px) {
+
+  .litso-prvmsg_ {
+    width: calc(100% - 20px);
+    margin: 25px auto;
+  }
+
+  .litso-prvmsg_header {
+    min-height: 155px;
+  }
+
+  .litso-prvmsg_headerContent {
+    text-align: left;
+  }
+
+  .litso-prvmsg_headerIndex {
+    justify-content: flex-start;
+  }
+
+  .litso-prvmsg_headerIndex::before {
+    display: none;
+  }
+
+  .litso-prvmsg_menu {
+    grid-template-columns: 1fr;
+  }
+
+  .litso-prvmsg_menuItem {
+    border-right: 0;
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .litso-prvmsg_menuItem:nth-child(2) {
+    border-right: 0;
+  }
+
+  .litso-prvmsg_listHeader,
+  .litso-prvmsg_listFooter {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .litso-prvmsg_row {
+    grid-template-columns: 65px minmax(0, 1fr);
+  }
+
+  .litso-prvmsg_folder {
+    grid-row: 1;
+  }
+
+  .litso-prvmsg_folder::before {
+    width: 38px;
+    height: 38px;
+  }
+
+  .litso-prvmsg_rowAside {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 10px 18px;
+    border-top: 1px solid var(--border-default);
+    border-left: 0;
+  }
+
+  .litso-prvmsg_row::after {
+    display: none;
+  }
+
+  .litso-prvmsg_metadata {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .litso-prvmsg_metadataSeparator {
+    display: none;
+  }
+
+  .litso-prvmsg_actionButtons {
+    justify-content: flex-start;
+  }
+
+}
