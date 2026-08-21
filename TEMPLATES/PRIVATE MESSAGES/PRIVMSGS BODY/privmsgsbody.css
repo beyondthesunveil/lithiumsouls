@@ -14,7 +14,7 @@
 }
 
 
-/* ---------- EN-TÊTE ---------- */
+/* ---------- EN-TÊTE PRINCIPAL ---------- */
 
 .litso-prvmsg_header {
   position: relative;
@@ -29,8 +29,9 @@
 
 .litso-prvmsg_headerGhost {
   position: absolute;
-  inset: -34px auto auto 0;
   z-index: 0;
+  top: -34px;
+  left: 0;
   max-width: 100%;
   overflow: hidden;
   color: transparent;
@@ -53,10 +54,12 @@
   text-align: right;
 }
 
-.litso-prvmsg_headerIndex,
-.litso-prvmsg_eyebrow,
-.litso-prvmsg_rowEyebrow,
-.litso-prvmsg_filterLabel {
+.litso-prvmsg_headerIndex {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-bottom: 8px;
   color: var(--gold);
   font-family: var(--font-sans);
   font-size: 10px;
@@ -64,14 +67,6 @@
   line-height: 1.4;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-}
-
-.litso-prvmsg_headerIndex {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 14px;
-  margin-bottom: 8px;
 }
 
 .litso-prvmsg_headerIndex::before {
@@ -105,19 +100,54 @@
 }
 
 
-/* ---------- NAVIGATION ---------- */
+/* ---------- BOUTON NOUVEAU MESSAGE ---------- */
+
+.litso-prvmsg_ > .button1 {
+  position: absolute;
+  z-index: 5;
+  top: 155px;
+  left: 0;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  color: var(--gold);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 50%;
+  font-size: 0;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.litso-prvmsg_ > .button1::before {
+  content: "\f2bf";
+  font-family: "Ionicons";
+  font-size: 18px;
+}
+
+.litso-prvmsg_ > .button1:hover {
+  color: var(--text-invert);
+  background: var(--accent-deep);
+  border-color: var(--accent-deep);
+}
+
+
+/* ---------- NAVIGATION DES BOÎTES ---------- */
 
 .litso-prvmsg_navbar {
-  display: flex;
-  width:100%;
-  align-items: stretch;
+  width: 100%;
+  background: var(--bg-surface);
   border: 1px solid var(--border-default);
   border-top: 0;
-  background: var(--bg-surface);
 }
 
 .litso-prvmsg_menu {
-  flex: 1;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   margin: 0;
@@ -131,17 +161,23 @@
   display: flex;
   align-items: center;
   gap: 14px;
+  margin: 0;
   padding: 22px;
-  border-right: 1px solid var(--border-default);
   color: var(--text-secondary);
+  border-right: 1px solid var(--border-default);
+  list-style: none;
   transition:
-    background-color 0.25s ease,
-    color 0.25s ease;
+    color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.litso-prvmsg_menuItem:last-child {
+  border-right: 0;
 }
 
 .litso-prvmsg_menuItem:hover {
-  background: var(--bg-soft);
   color: var(--text-primary);
+  background: var(--bg-soft);
 }
 
 .litso-prvmsg_menuItem > i {
@@ -151,17 +187,19 @@
   display: grid;
   place-items: center;
   color: var(--gold);
-  font-size: 18px;
   border: 1px solid var(--border-default);
+  font-size: 18px;
   transform: rotate(45deg);
 }
 
 .litso-prvmsg_menuItem > i::before {
+  display: block;
   transform: rotate(-45deg);
 }
 
 .litso-prvmsg_menuContent {
   min-width: 0;
+  color: inherit;
   font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 700;
@@ -180,142 +218,76 @@
   font-size: 9px;
 }
 
-.litso-prvmsg_menuMarker,
+/* Indicateur injecté par Forumactif */
+
 .litso-prvmsg_menuItem .active {
   position: absolute;
   right: 20px;
   bottom: -1px;
   left: 20px;
   height: 1px;
-  background: transparent;
-}
-
-.litso-prvmsg_menuItem .active {
   background: var(--gold);
 }
 
-.litso-prvmsg_newButton {
-  flex: 0 0 210px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  padding: 20px;
-  color: var(--text-invert);
-  background: var(--accent-deep);
-  font-family: var(--font-sans);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  transition:
-    background-color 0.25s ease,
-    color 0.25s ease;
-}
 
-.litso-prvmsg_newButton:hover {
-  color: var(--text-invert);
-  background: var(--gold-dark);
-}
-
-.litso-prvmsg_newButton i {
-  font-size: 19px;
-}
-
-
-/* ---------- BARRE D’INFORMATION ---------- */
+/* ---------- FORMULAIRE ---------- */
 
 .litso-prvmsg_form {
+  width: 100%;
   margin-top: 20px;
 }
 
-.litso-prvmsg_toolbar {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: stretch;
-  border: 1px solid var(--border-default);
-  background: var(--bg-elevated);
+
+/* ---------- PETITS TITRES ---------- */
+
+.litso-prvmsg_eyebrow {
+  display: block;
+  color: var(--gold);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
+
+/* ---------- ÉTAT DE LA MESSAGERIE ---------- */
+
 .litso-prvmsg_status {
-  min-width: 0;
   display: flex;
   align-items: center;
   gap: 18px;
   padding: 20px 24px;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  font-family: var(--font-sans);
+  font-size: 12px;
 }
 
-.litso-prvmsg_statusIcon {
+.litso-prvmsg_status > i {
   flex: 0 0 42px;
   width: 42px;
   height: 42px;
   display: grid;
   place-items: center;
   color: var(--gold);
-  font-size: 18px;
   border: 1px solid var(--border-default);
   border-radius: 50%;
-}
-
-.litso-prvmsg_statusContent {
-  min-width: 0;
+  font-size: 18px;
 }
 
 .litso-prvmsg_statusText {
   margin-top: 5px;
-  color: var(--text-secondary);
-  font-family: var(--font-sans);
-  font-size: 12px;
 }
 
 .litso-prvmsg_statusText p {
   margin: 0;
 }
 
-.litso-prvmsg_filter {
-  min-width: 280px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 18px 24px;
-  border-left: 1px solid var(--border-default);
-}
 
-.litso-prvmsg_filterControls {
-  display: flex;
-  margin-top: 7px;
-}
-
-.litso-prvmsg_select,
-.litso-prvmsg_filterSubmit {
-  min-height: 34px;
-  border: 1px solid var(--border-default);
-  border-radius: 0;
-  outline: 0;
-  font-family: var(--font-sans);
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.litso-prvmsg_select {
-  flex: 1;
-  min-width: 0;
-  padding: 0 12px;
-  color: var(--text-secondary);
-  background: var(--bg-surface);
-}
-
-.litso-prvmsg_filterSubmit {
-  padding: 0 15px;
-  color: var(--text-invert);
-  background: var(--accent-deep);
-  border-left: 0;
-  cursor: pointer;
-}
-
-
-/* ---------- EN-TÊTE DE LISTE ---------- */
+/* ---------- EN-TÊTE DE LA LISTE ---------- */
 
 .litso-prvmsg_listHeader {
   display: flex;
@@ -324,9 +296,9 @@
   gap: 30px;
   margin-top: 20px;
   padding: 30px;
+  background: var(--bg-surface);
   border: 1px solid var(--border-default);
   border-bottom: 0;
-  background: var(--bg-surface);
 }
 
 .litso-prvmsg_listTitle {
@@ -342,6 +314,9 @@
   color: var(--accent-soft);
   font-weight: 400;
 }
+
+
+/* ---------- SÉLECTION GLOBALE ---------- */
 
 .litso-prvmsg_markLinks {
   display: flex;
@@ -364,6 +339,7 @@
 }
 
 .litso-prvmsg_markLinks > span {
+  flex: 0 0 3px;
   width: 3px;
   height: 3px;
   background: var(--accent-soft);
@@ -371,66 +347,65 @@
 }
 
 
-/* ---------- LISTE ET MESSAGES ---------- */
+/* ---------- LISTE DES MESSAGES ---------- */
 
 .litso-prvmsg_list {
+  width: 100%;
+  display: block;
   margin: 0;
   padding: 0;
+  background: var(--bg-surface);
   border: 1px solid var(--border-default);
   list-style: none;
-  background: var(--bg-surface);
 }
 
-.litso-prvmsg_row {
+.litso-prvmsg_list > .litso-prvmsg_row {
   position: relative;
+  float: none;
+  clear: both;
+  width: 100%;
   min-height: 132px;
   display: grid;
   grid-template-columns: 125px minmax(0, 1fr) 100px;
   align-items: stretch;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(
+    90deg,
+    var(--bg-surface),
+    var(--bg-elevated)
+  );
   border-bottom: 1px solid var(--border-default);
-  background:
-    linear-gradient(
-      90deg,
-      var(--bg-surface),
-      var(--bg-elevated)
-    );
   overflow: hidden;
+  list-style: none;
+  opacity: 1;
   transition: background-color 0.25s ease;
 }
 
-.litso-prvmsg_row:last-child {
+.litso-prvmsg_list > .litso-prvmsg_row:last-child {
   border-bottom: 0;
 }
 
-.litso-prvmsg_row:hover {
+.litso-prvmsg_list > .litso-prvmsg_row:hover {
   background: var(--bg-soft);
 }
 
-.litso-prvmsg_row::after {
-  content: "";
-  position: absolute;
-  top: 28px;
-  right: 99px;
-  width: 7px;
-  height: 7px;
-  border: 1px solid var(--accent-soft);
-  transform: rotate(45deg);
-  opacity: 0.7;
-}
+
+/* ---------- ICÔNE DU MESSAGE ---------- */
 
 .litso-prvmsg_folder {
   position: relative;
   display: grid;
   place-items: center;
-  border-right: 1px solid var(--border-default);
+  margin: 0;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 35px 35px;
+  border-right: 1px solid var(--border-default);
 }
 
 .litso-prvmsg_folder::before {
   content: "";
-  position: absolute;
   width: 58px;
   height: 58px;
   border: 1px solid var(--border-default);
@@ -451,23 +426,30 @@
   max-height: 16px;
 }
 
+
+/* ---------- CONTENU DU MESSAGE ---------- */
+
 .litso-prvmsg_rowContent {
   min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0;
   padding: 28px 34px;
 }
 
-.litso-prvmsg_rowEyebrow {
-  margin-bottom: 7px;
-}
-
-.litso-prvmsg_subject {
+.litso-prvmsg_subject,
+.litso-prvmsg_subject:link,
+.litso-prvmsg_subject:visited {
+  position: static;
+  float: none;
   width: fit-content;
   max-width: 100%;
+  margin-top: 7px;
+  padding: 0;
   overflow: hidden;
   color: var(--text-primary);
+  background: transparent;
   font-family: var(--font-display);
   font-size: 30px;
   font-weight: 400;
@@ -487,6 +469,9 @@
   font-style: italic;
 }
 
+
+/* ---------- MÉTADONNÉES ---------- */
+
 .litso-prvmsg_metadata {
   display: flex;
   align-items: center;
@@ -499,21 +484,22 @@
   text-transform: uppercase;
 }
 
-.litso-prvmsg_author {
+.litso-prvmsg_author,
+.litso-prvmsg_author a {
   color: var(--gold-dark);
   font-weight: 700;
 }
 
-.litso-prvmsg_author a {
-  color: inherit;
-}
-
 .litso-prvmsg_metadataSeparator {
+  flex: 0 0 3px;
   width: 3px;
   height: 3px;
   background: var(--accent-soft);
   transform: rotate(45deg);
 }
+
+
+/* ---------- COLONNE DE DROITE ---------- */
 
 .litso-prvmsg_rowAside {
   display: flex;
@@ -521,6 +507,7 @@
   align-items: center;
   justify-content: center;
   gap: 14px;
+  margin: 0;
   border-left: 1px solid var(--border-default);
 }
 
@@ -529,9 +516,9 @@
 
 .litso-prvmsg_checkbox {
   position: relative;
-  display: block;
   width: 18px;
   height: 18px;
+  display: block;
   cursor: pointer;
 }
 
@@ -541,17 +528,17 @@
   pointer-events: none;
 }
 
-.litso-prvmsg_checkboxVisual {
+.litso-prvmsg_checkbox > span {
   position: absolute;
   inset: 0;
-  border: 1px solid var(--border-strong);
   background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
   transition:
     border-color 0.2s ease,
     background-color 0.2s ease;
 }
 
-.litso-prvmsg_checkboxVisual::after {
+.litso-prvmsg_checkbox > span::after {
   content: "";
   position: absolute;
   inset: 4px;
@@ -560,15 +547,15 @@
   transition: background-color 0.2s ease;
 }
 
-.litso-prvmsg_checkbox input:checked + .litso-prvmsg_checkboxVisual {
+.litso-prvmsg_checkbox input:checked + span {
   border-color: var(--gold);
 }
 
-.litso-prvmsg_checkbox input:checked + .litso-prvmsg_checkboxVisual::after {
+.litso-prvmsg_checkbox input:checked + span::after {
   background: var(--gold);
 }
 
-.litso-prvmsg_checkbox input:focus-visible + .litso-prvmsg_checkboxVisual {
+.litso-prvmsg_checkbox input:focus-visible + span {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
@@ -590,42 +577,45 @@
 }
 
 .litso-prvmsg_readButton i {
+  display: block;
   font-size: 16px;
   transform: rotate(45deg);
 }
 
 .litso-prvmsg_readButton:hover {
   color: var(--gold);
-  border-color: var(--gold);
   background: var(--bg-surface);
+  border-color: var(--gold);
 }
 
 
-/* ---------- MESSAGERIE VIDE ---------- */
+/* ---------- AUCUN MESSAGE ---------- */
 
 .litso-prvmsg_empty {
-  min-height: 170px;
+  min-height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 22px;
-  padding: 35px;
+  gap: 20px;
+  margin: 0;
+  padding: 30px;
   color: var(--text-secondary);
-  text-align: left;
+  list-style: none;
 }
 
-.litso-prvmsg_emptyIcon {
-  width: 60px;
-  height: 60px;
+.litso-prvmsg_empty > i {
+  flex: 0 0 55px;
+  width: 55px;
+  height: 55px;
   display: grid;
   place-items: center;
   color: var(--gold);
   border: 1px solid var(--border-default);
   border-radius: 50%;
-  font-size: 24px;
+  font-size: 22px;
 }
 
-.litso-prvmsg_emptyContent strong {
+.litso-prvmsg_empty strong {
   display: block;
   margin-top: 6px;
   color: var(--text-primary);
@@ -644,72 +634,27 @@
   justify-content: space-between;
   gap: 25px;
   padding: 12px 20px;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
   border: 1px solid var(--border-default);
   border-top: 0;
-  background: var(--bg-elevated);
+  font-family: var(--font-sans);
+  font-size: 10px;
 }
 
 .litso-prvmsg_pagination {
-  color: var(--text-muted);
-  font-family: var(--font-sans);
-  font-size: 10px;
+  min-width: 0;
 }
 
 .litso-prvmsg_pagination .pagination {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 5px;
 }
 
 
 /* ---------- ACTIONS ---------- */
-
-.litso-prvmsg_actions {
-  display: grid;
-  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.8fr);
-  margin-top: 20px;
-  border: 1px solid var(--border-default);
-  background: var(--bg-surface);
-}
-
-.litso-prvmsg_actionsHeading {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 24px;
-  border-right: 1px solid var(--border-default);
-}
-
-.litso-prvmsg_actionsIndex {
-  flex: 0 0 42px;
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  transform: rotate(45deg);
-  font-family: var(--font-display);
-  font-size: 12px;
-}
-
-.litso-prvmsg_actionsIndex::first-line {
-  transform: rotate(-45deg);
-}
-
-.litso-prvmsg_actionsHeading > div {
-  min-width: 0;
-}
-
-.litso-prvmsg_actionsHeading strong {
-  display: block;
-  margin-top: 5px;
-  color: var(--text-primary);
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 400;
-  font-style: italic;
-}
 
 .litso-prvmsg_actionButtons {
   display: flex;
@@ -717,7 +662,7 @@
   justify-content: flex-end;
   flex-wrap: wrap;
   gap: 8px;
-  padding: 20px;
+  margin-top: 12px;
 }
 
 .litso-prvmsg_action {
@@ -759,43 +704,29 @@
 }
 
 
-/* ---------- RESPONSIVE ---------- */
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 
 @media (max-width: 900px) {
-
-  .litso-prvmsg_navbar {
-    flex-direction: column;
-  }
 
   .litso-prvmsg_menu {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .litso-prvmsg_menuItem:nth-child(2) {
-    border-right: 0;
-  }
-
-  .litso-prvmsg_menuItem:nth-child(-n + 2) {
+  .litso-prvmsg_menuItem {
     border-bottom: 1px solid var(--border-default);
   }
 
-  .litso-prvmsg_newButton {
-    flex-basis: auto;
-  }
-
-  .litso-prvmsg_toolbar,
-  .litso-prvmsg_actions {
-    grid-template-columns: 1fr;
-  }
-
-  .litso-prvmsg_filter,
-  .litso-prvmsg_actionsHeading {
-    border-left: 0;
+  .litso-prvmsg_menuItem:nth-child(2n) {
     border-right: 0;
-    border-top: 1px solid var(--border-default);
   }
 
-  .litso-prvmsg_row {
+  .litso-prvmsg_menuItem:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+  .litso-prvmsg_list > .litso-prvmsg_row {
     grid-template-columns: 90px minmax(0, 1fr) 75px;
   }
 
@@ -803,11 +734,14 @@
     padding: 24px;
   }
 
-  .litso-prvmsg_subject {
+  .litso-prvmsg_subject,
+  .litso-prvmsg_subject:link,
+  .litso-prvmsg_subject:visited {
     font-size: 25px;
   }
 
 }
+
 
 @media (max-width: 620px) {
 
@@ -816,8 +750,12 @@
     margin: 25px auto;
   }
 
+
+  /* En-tête */
+
   .litso-prvmsg_header {
     min-height: 155px;
+    padding-bottom: 25px;
   }
 
   .litso-prvmsg_headerContent {
@@ -832,18 +770,31 @@
     display: none;
   }
 
+  .litso-prvmsg_ > .button1 {
+    top: 125px;
+    right: 0;
+    left: auto;
+  }
+
+
+  /* Navigation */
+
   .litso-prvmsg_menu {
     grid-template-columns: 1fr;
   }
 
-  .litso-prvmsg_menuItem {
+  .litso-prvmsg_menuItem,
+  .litso-prvmsg_menuItem:nth-child(2n) {
     border-right: 0;
     border-bottom: 1px solid var(--border-default);
   }
 
-  .litso-prvmsg_menuItem:nth-child(2) {
-    border-right: 0;
+  .litso-prvmsg_menuItem:last-child {
+    border-bottom: 0;
   }
+
+
+  /* Liste */
 
   .litso-prvmsg_listHeader,
   .litso-prvmsg_listFooter {
@@ -851,7 +802,7 @@
     flex-direction: column;
   }
 
-  .litso-prvmsg_row {
+  .litso-prvmsg_list > .litso-prvmsg_row {
     grid-template-columns: 65px minmax(0, 1fr);
   }
 
@@ -864,17 +815,13 @@
     height: 38px;
   }
 
-  .litso-prvmsg_rowAside {
-    grid-column: 1 / -1;
-    flex-direction: row;
-    justify-content: flex-end;
-    padding: 10px 18px;
-    border-top: 1px solid var(--border-default);
-    border-left: 0;
+  .litso-prvmsg_messageIcon {
+    right: 10px;
+    bottom: 18px;
   }
 
-  .litso-prvmsg_row::after {
-    display: none;
+  .litso-prvmsg_rowContent {
+    padding: 22px 18px;
   }
 
   .litso-prvmsg_metadata {
@@ -887,94 +834,20 @@
     display: none;
   }
 
+  .litso-prvmsg_rowAside {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 10px 18px;
+    border-top: 1px solid var(--border-default);
+    border-left: 0;
+  }
+
+
+  /* Actions */
+
   .litso-prvmsg_actionButtons {
     justify-content: flex-start;
   }
 
-}
-
-/* Protection contre les styles natifs de Forumactif */
-
-.litso-prvmsg_list > .litso-prvmsg_row {
-  position: relative;
-  inset: auto;
-  float: none;
-  clear: both;
-  width: auto;
-  height: auto;
-  min-height: 132px;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 125px minmax(0, 1fr) 100px;
-  align-items: stretch;
-  overflow: hidden;
-  list-style: none;
-  opacity: 1;
-}
-
-.litso-prvmsg_row .litso-prvmsg_subject,
-.litso-prvmsg_row .litso-prvmsg_subject:link,
-.litso-prvmsg_row .litso-prvmsg_subject:visited {
-  position: static;
-  float: none;
-  margin: 0;
-  padding: 0;
-  color: var(--text-primary);
-  background: transparent;
-}
-
-.litso-prvmsg_row .litso-prvmsg_subject:hover {
-  color: var(--accent);
-}
-
-.litso-prvmsg_rowContent,
-.litso-prvmsg_rowAside,
-.litso-prvmsg_folder {
-  position: relative;
-  float: none;
-  margin: 0;
-}
-
-/* Protection contre les styles natifs de Forumactif */
-
-.litso-prvmsg_list > .litso-prvmsg_row {
-  position: relative;
-  inset: auto;
-  float: none;
-  clear: both;
-  width: auto;
-  height: auto;
-  min-height: 132px;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 125px minmax(0, 1fr) 100px;
-  align-items: stretch;
-  overflow: hidden;
-  list-style: none;
-  opacity: 1;
-}
-
-.litso-prvmsg_row .litso-prvmsg_subject,
-.litso-prvmsg_row .litso-prvmsg_subject:link,
-.litso-prvmsg_row .litso-prvmsg_subject:visited {
-  position: static;
-  float: none;
-  margin: 0;
-  padding: 0;
-  color: var(--text-primary);
-  background: transparent;
-}
-
-.litso-prvmsg_row .litso-prvmsg_subject:hover {
-  color: var(--accent);
-}
-
-.litso-prvmsg_rowContent,
-.litso-prvmsg_rowAside,
-.litso-prvmsg_folder {
-  position: relative;
-  float: none;
-  margin: 0;
 }
