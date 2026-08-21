@@ -891,3 +891,46 @@
   }
 
 }
+
+/* Protection contre les styles natifs de Forumactif */
+
+.litso-prvmsg_list > .litso-prvmsg_row {
+  position: relative;
+  inset: auto;
+  float: none;
+  clear: both;
+  width: auto;
+  height: auto;
+  min-height: 132px;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 125px minmax(0, 1fr) 100px;
+  align-items: stretch;
+  overflow: hidden;
+  list-style: none;
+  opacity: 1;
+}
+
+.litso-prvmsg_row .litso-prvmsg_subject,
+.litso-prvmsg_row .litso-prvmsg_subject:link,
+.litso-prvmsg_row .litso-prvmsg_subject:visited {
+  position: static;
+  float: none;
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+  background: transparent;
+}
+
+.litso-prvmsg_row .litso-prvmsg_subject:hover {
+  color: var(--accent);
+}
+
+.litso-prvmsg_rowContent,
+.litso-prvmsg_rowAside,
+.litso-prvmsg_folder {
+  position: relative;
+  float: none;
+  margin: 0;
+}
