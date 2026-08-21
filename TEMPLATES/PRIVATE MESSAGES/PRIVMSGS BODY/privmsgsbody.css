@@ -14,7 +14,9 @@
 }
 
 
-/* ---------- EN-TÊTE PRINCIPAL ---------- */
+/* =========================================================
+   EN-TÊTE PRINCIPAL
+   ========================================================= */
 
 .litso-prvmsg_header {
   position: relative;
@@ -100,87 +102,43 @@
 }
 
 
-/* ---------- BOUTON NOUVEAU MESSAGE ---------- */
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
-.litso-prvmsg_ > .button1 {
-  position: absolute;
-  z-index: 5;
-  top: 155px;
-  left: 0;
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  margin: 0;
-  padding: 0;
-  color: var(--gold);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
-  border-radius: 50%;
-  font-size: 0;
-  transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease;
-}
-
-.litso-prvmsg_ > .button1::before {
-  content: "\f2bf";
-  font-family: "Ionicons";
-  font-size: 18px;
-}
-
-.litso-prvmsg_ > .button1:hover {
-  color: var(--text-invert);
-  background: var(--accent-deep);
-  border-color: var(--accent-deep);
-}
-
-
-/* ---------- NAVIGATION DES BOÎTES ---------- */
-
-.litso-prvmsg_navbar {
+.litso-prvmsg_nav {
   width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
   border-top: 0;
 }
 
-.litso-prvmsg_menu {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.litso-prvmsg_menuItem {
+.litso-prvmsg_navItem {
   position: relative;
   min-width: 0;
   display: flex;
   align-items: center;
   gap: 14px;
-  margin: 0;
   padding: 22px;
   color: var(--text-secondary);
   border-right: 1px solid var(--border-default);
-  list-style: none;
   transition:
     color 0.25s ease,
     background-color 0.25s ease;
 }
 
-.litso-prvmsg_menuItem:last-child {
+.litso-prvmsg_navItem:last-child {
   border-right: 0;
 }
 
-.litso-prvmsg_menuItem:hover {
+.litso-prvmsg_navItem:hover {
   color: var(--text-primary);
   background: var(--bg-soft);
 }
 
-.litso-prvmsg_menuItem > i {
+.litso-prvmsg_navItem > i {
   flex: 0 0 36px;
   width: 36px;
   height: 36px;
@@ -192,12 +150,12 @@
   transform: rotate(45deg);
 }
 
-.litso-prvmsg_menuItem > i::before {
+.litso-prvmsg_navItem > i::before {
   display: block;
   transform: rotate(-45deg);
 }
 
-.litso-prvmsg_menuContent {
+.litso-prvmsg_navContent {
   min-width: 0;
   color: inherit;
   font-family: var(--font-sans);
@@ -207,38 +165,41 @@
   text-transform: uppercase;
 }
 
-.litso-prvmsg_menuContent > a {
-  color: inherit;
-}
-
-.litso-prvmsg_menuIndex {
+.litso-prvmsg_navContent > span {
   display: block;
   margin-bottom: 4px;
   color: var(--text-muted);
   font-size: 9px;
 }
 
-/* Indicateur injecté par Forumactif */
+.litso-prvmsg_navContent > a {
+  color: inherit;
+}
 
-.litso-prvmsg_menuItem .active {
+.litso-prvmsg_navMarker {
   position: absolute;
   right: 20px;
   bottom: -1px;
   left: 20px;
   height: 1px;
   background: var(--gold);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.litso-prvmsg_navItem:hover .litso-prvmsg_navMarker {
+  opacity: 1;
 }
 
 
-/* ---------- FORMULAIRE ---------- */
+/* =========================================================
+   FORMULAIRE ET PETITS TITRES
+   ========================================================= */
 
 .litso-prvmsg_form {
   width: 100%;
   margin-top: 20px;
 }
-
-
-/* ---------- PETITS TITRES ---------- */
 
 .litso-prvmsg_eyebrow {
   display: block;
@@ -252,7 +213,9 @@
 }
 
 
-/* ---------- ÉTAT DE LA MESSAGERIE ---------- */
+/* =========================================================
+   ÉTAT DE LA MESSAGERIE
+   ========================================================= */
 
 .litso-prvmsg_status {
   display: flex;
@@ -262,11 +225,9 @@
   color: var(--text-secondary);
   background: var(--bg-elevated);
   border: 1px solid var(--border-default);
-  font-family: var(--font-sans);
-  font-size: 12px;
 }
 
-.litso-prvmsg_status > i {
+.litso-prvmsg_statusIcon {
   flex: 0 0 42px;
   width: 42px;
   height: 42px;
@@ -278,12 +239,29 @@
   font-size: 18px;
 }
 
+.litso-prvmsg_statusContent {
+  min-width: 0;
+}
+
 .litso-prvmsg_statusText {
   margin-top: 5px;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 12px;
 }
 
 .litso-prvmsg_statusText p {
   margin: 0;
+}
+
+
+/* =========================================================
+   BLOC DES MESSAGES
+   ========================================================= */
+
+.litso-prvmsg_messages {
+  width: 100%;
+  margin-top: 20px;
 }
 
 
@@ -294,11 +272,14 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 30px;
-  margin-top: 20px;
   padding: 30px;
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
   border-bottom: 0;
+}
+
+.litso-prvmsg_listHeading {
+  min-width: 0;
 }
 
 .litso-prvmsg_listTitle {
@@ -316,7 +297,7 @@
 }
 
 
-/* ---------- SÉLECTION GLOBALE ---------- */
+/* ---------- LIENS DE SÉLECTION ---------- */
 
 .litso-prvmsg_markLinks {
   display: flex;
@@ -347,29 +328,23 @@
 }
 
 
-/* ---------- LISTE DES MESSAGES ---------- */
+/* =========================================================
+   LISTE ET LIGNES DE MESSAGES
+   ========================================================= */
 
 .litso-prvmsg_list {
   width: 100%;
-  display: block;
-  margin: 0;
-  padding: 0;
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
-  list-style: none;
 }
 
-.litso-prvmsg_list > .litso-prvmsg_row {
+.litso-prvmsg_row {
   position: relative;
-  float: none;
-  clear: both;
   width: 100%;
   min-height: 132px;
   display: grid;
   grid-template-columns: 125px minmax(0, 1fr) 100px;
   align-items: stretch;
-  margin: 0;
-  padding: 0;
   background: linear-gradient(
     90deg,
     var(--bg-surface),
@@ -377,16 +352,14 @@
   );
   border-bottom: 1px solid var(--border-default);
   overflow: hidden;
-  list-style: none;
-  opacity: 1;
   transition: background-color 0.25s ease;
 }
 
-.litso-prvmsg_list > .litso-prvmsg_row:last-child {
+.litso-prvmsg_row:last-child {
   border-bottom: 0;
 }
 
-.litso-prvmsg_list > .litso-prvmsg_row:hover {
+.litso-prvmsg_row:hover {
   background: var(--bg-soft);
 }
 
@@ -397,7 +370,6 @@
   position: relative;
   display: grid;
   place-items: center;
-  margin: 0;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 35px 35px;
@@ -434,19 +406,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0;
   padding: 28px 34px;
 }
 
 .litso-prvmsg_subject,
 .litso-prvmsg_subject:link,
 .litso-prvmsg_subject:visited {
-  position: static;
-  float: none;
   width: fit-content;
   max-width: 100%;
   margin-top: 7px;
-  padding: 0;
   overflow: hidden;
   color: var(--text-primary);
   background: transparent;
@@ -507,7 +475,6 @@
   align-items: center;
   justify-content: center;
   gap: 14px;
-  margin: 0;
   border-left: 1px solid var(--border-default);
 }
 
@@ -589,7 +556,9 @@
 }
 
 
-/* ---------- AUCUN MESSAGE ---------- */
+/* =========================================================
+   MESSAGERIE VIDE
+   ========================================================= */
 
 .litso-prvmsg_empty {
   min-height: 150px;
@@ -597,13 +566,11 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
-  margin: 0;
   padding: 30px;
   color: var(--text-secondary);
-  list-style: none;
 }
 
-.litso-prvmsg_empty > i {
+.litso-prvmsg_emptyIcon {
   flex: 0 0 55px;
   width: 55px;
   height: 55px;
@@ -615,7 +582,7 @@
   font-size: 22px;
 }
 
-.litso-prvmsg_empty strong {
+.litso-prvmsg_emptyContent strong {
   display: block;
   margin-top: 6px;
   color: var(--text-primary);
@@ -625,7 +592,9 @@
 }
 
 
-/* ---------- PIED DE LISTE ---------- */
+/* =========================================================
+   PIED DE LISTE
+   ========================================================= */
 
 .litso-prvmsg_listFooter {
   min-height: 55px;
@@ -654,7 +623,48 @@
 }
 
 
-/* ---------- ACTIONS ---------- */
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.litso-prvmsg_actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.litso-prvmsg_newButton {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 17px;
+  color: var(--text-invert);
+  background: var(--accent-deep);
+  border: 1px solid var(--accent-deep);
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.litso-prvmsg_newButton:hover {
+  color: var(--text-invert);
+  background: var(--gold-dark);
+  border-color: var(--gold-dark);
+}
+
+.litso-prvmsg_newButton i {
+  font-size: 17px;
+}
 
 .litso-prvmsg_actionButtons {
   display: flex;
@@ -662,11 +672,10 @@
   justify-content: flex-end;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 12px;
 }
 
 .litso-prvmsg_action {
-  min-height: 36px;
+  min-height: 38px;
   padding: 0 15px;
   color: var(--text-secondary);
   background: var(--bg-elevated);
@@ -705,28 +714,28 @@
 
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE — TABLETTE
    ========================================================= */
 
 @media (max-width: 900px) {
 
-  .litso-prvmsg_menu {
+  .litso-prvmsg_nav {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .litso-prvmsg_menuItem {
+  .litso-prvmsg_navItem {
     border-bottom: 1px solid var(--border-default);
   }
 
-  .litso-prvmsg_menuItem:nth-child(2n) {
+  .litso-prvmsg_navItem:nth-child(2n) {
     border-right: 0;
   }
 
-  .litso-prvmsg_menuItem:nth-last-child(-n + 2) {
+  .litso-prvmsg_navItem:nth-last-child(-n + 2) {
     border-bottom: 0;
   }
 
-  .litso-prvmsg_list > .litso-prvmsg_row {
+  .litso-prvmsg_row {
     grid-template-columns: 90px minmax(0, 1fr) 75px;
   }
 
@@ -740,8 +749,21 @@
     font-size: 25px;
   }
 
+  .litso-prvmsg_actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .litso-prvmsg_actionButtons {
+    justify-content: flex-start;
+  }
+
 }
 
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
 
 @media (max-width: 620px) {
 
@@ -770,31 +792,32 @@
     display: none;
   }
 
-  .litso-prvmsg_ > .button1 {
-    top: 125px;
-    right: 0;
-    left: auto;
-  }
-
 
   /* Navigation */
 
-  .litso-prvmsg_menu {
+  .litso-prvmsg_nav {
     grid-template-columns: 1fr;
   }
 
-  .litso-prvmsg_menuItem,
-  .litso-prvmsg_menuItem:nth-child(2n) {
+  .litso-prvmsg_navItem,
+  .litso-prvmsg_navItem:nth-child(2n) {
     border-right: 0;
     border-bottom: 1px solid var(--border-default);
   }
 
-  .litso-prvmsg_menuItem:last-child {
+  .litso-prvmsg_navItem:last-child {
     border-bottom: 0;
   }
 
 
-  /* Liste */
+  /* État */
+
+  .litso-prvmsg_status {
+    align-items: flex-start;
+  }
+
+
+  /* En-tête et pied de liste */
 
   .litso-prvmsg_listHeader,
   .litso-prvmsg_listFooter {
@@ -802,7 +825,10 @@
     flex-direction: column;
   }
 
-  .litso-prvmsg_list > .litso-prvmsg_row {
+
+  /* Messages */
+
+  .litso-prvmsg_row {
     grid-template-columns: 65px minmax(0, 1fr);
   }
 
@@ -846,8 +872,12 @@
 
   /* Actions */
 
+  .litso-prvmsg_newButton {
+    width: 100%;
+  }
+
   .litso-prvmsg_actionButtons {
-    justify-content: flex-start;
+    width: 100%;
   }
 
 }
