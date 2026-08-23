@@ -325,16 +325,6 @@
   left: 0;
 }
 
-.litso-lastpost_label {
-  display: block;
-  margin-bottom: 7px;
-  color: var(--text-secondary);
-  font: 600 7px var(--font-sans);
-  letter-spacing: .17em;
-  text-transform: uppercase;
-  opacity: .58;
-}
-
 .litso-lastpost_title {
   display: block;
   overflow: hidden;
