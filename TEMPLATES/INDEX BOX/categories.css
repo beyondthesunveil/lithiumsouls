@@ -583,11 +583,6 @@
   display: flex;
 }
 
-.litso-forum[data-topics="0"][data-posts="0"]
-.litso-lastpost_arrow--empty {
-  display: grid;
-}
-
 
 /* =========================================================
    OUTILS
