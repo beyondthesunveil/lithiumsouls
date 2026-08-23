@@ -383,6 +383,125 @@
     removeForumactifPostImages(meta);
   }
 
+  /* =======================================================
+   COMPTEURS DU FORUM
+   ======================================================= */
+
+function readForumCounters(forum) {
+  var counters = forum.querySelectorAll(
+    ".litso-stats strong"
+  );
+
+  function parseCounter(element) {
+    if (!element) {
+      return null;
+    }
+
+    var value = element.textContent
+      .replace(/[^\d]/g, "");
+
+    return value
+      ? parseInt(value, 10)
+      : 0;
+  }
+
+  return {
+    topics: parseCounter(counters[0]),
+    posts: parseCounter(counters[1])
+  };
+}
+
+
+/* =======================================================
+   FORUM SANS MESSAGE
+   ======================================================= */
+
+function initializeEmptyForum(forum) {
+  var counters = readForumCounters(forum);
+
+  var isEmpty =
+    counters.topics === 0 &&
+    counters.posts === 0;
+
+  forum.classList.toggle(
+    "litso-forum_empty",
+    isEmpty
+  );
+
+  if (!isEmpty) {
+    return false;
+  }
+
+  var realAvatar = forum.querySelector(
+    ".litso-lastpost_avatar--real"
+  );
+
+  var emptyAvatar = forum.querySelector(
+    ".litso-lastpost_avatar--empty"
+  );
+
+  var realContent = forum.querySelector(
+    ".litso-lastpost_content"
+  );
+
+  var emptyContent = forum.querySelector(
+    ".litso-lastpost_empty"
+  );
+
+  var arrow = forum.querySelector(
+    ".litso-lastpost_arrow"
+  );
+
+
+  /* Avatar réel */
+
+  if (realAvatar) {
+    realAvatar.hidden = true;
+  }
+
+
+  /* Avatar de substitution */
+
+  if (emptyAvatar) {
+    emptyAvatar.hidden = false;
+  }
+
+
+  /* Contenu réel */
+
+  if (realContent) {
+    realContent.hidden = true;
+  }
+
+
+  /* Texte de substitution */
+
+  if (emptyContent) {
+    emptyContent.hidden = false;
+  }
+
+
+  /* La flèche mène au forum */
+
+  if (arrow) {
+    var forumUrl =
+      arrow.getAttribute(
+        "data-forum-url"
+      );
+
+    if (forumUrl) {
+      arrow.href = forumUrl;
+    }
+
+    arrow.setAttribute(
+      "aria-label",
+      "Découvrir ce forum"
+    );
+  }
+
+  return true;
+}
+
 
   /* =======================================================
      INITIALISATION
@@ -463,8 +582,13 @@
             }
 
             setForumKicker(forum);
-            moveForumImage(forum);
-            initializeLastPost(forum);
+moveForumImage(forum);
+
+var forumIsEmpty =
+  initializeEmptyForum(forum);
+
+if (!forumIsEmpty) {
+  initializeLastPost(forum);
           }
         );
       }
