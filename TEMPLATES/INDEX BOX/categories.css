@@ -264,8 +264,8 @@
 .litso-lastpost::after {
   content: "REPÈRE — DERNIER PASSAGE";
   position: absolute;
-  top: 30px;
-  left: 31px;
+  top: 60px;
+  left: 0;
   width: 125px;
   padding-bottom: 8px;
   color: var(--gold);
@@ -321,10 +321,8 @@
 .litso-lastpost_content {
   position: absolute;
   z-index: 2;
-  right: 27px;
-  bottom: 23px;
-  left: 31px;
-  padding-right: 34px;
+  bottom: 35px;
+  left: 0;
 }
 
 .litso-lastpost_label {
