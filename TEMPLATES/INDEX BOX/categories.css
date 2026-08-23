@@ -338,20 +338,60 @@
   grid-template-columns: minmax(0, 1fr) 290px;
 }
 
+
+/* ---------- SUPPRESSION DE LA COLONNE VISUELLE ---------- */
+
 .litso-forum_no-image .litso-forum_visual {
   display: none;
 }
 
+
+/* ---------- CONTENU ÉLARGI ---------- */
+
 .litso-forum_no-image .litso-forum_body {
-  padding-left: 38px;
+  position: relative;
+  isolation: isolate;
+  padding-left: 72px;
 }
+
+
+/* ---------- DOUBLE CADRE DÉCORATIF ---------- */
+
+.litso-forum_no-image .litso-forum_body::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 15px;
+  bottom: 15px;
+  left: 18px;
+  width: min(320px, calc(100% - 50px));
+  border: 1px solid var(--border-subtle);
+  box-shadow:
+    inset 0 0 0 20px transparent,
+    inset 0 0 0 21px var(--border-subtle);
+  pointer-events: none;
+}
+
+
+/* ---------- CONTENU AU-DESSUS DU CADRE ---------- */
+
+.litso-forum_no-image .litso-forum_body > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ---------- PIED DU FORUM ---------- */
 
 .litso-forum_no-image .litso-forum_foot {
-  padding-left: 105px;
+  padding-left: 135px;
 }
 
+
+/* ---------- BADGE REPOSITIONNÉ ---------- */
+
 .litso-forum_no-image .litso-forum_badge {
-  left: 38px;
+  left: 72px;
   bottom: 19px;
 }
 
@@ -681,10 +721,6 @@
 }
 
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
 @media (max-width: 980px) {
   .litso-forum {
     grid-template-columns: 180px minmax(0, 1fr);
@@ -705,6 +741,7 @@
     grid-column: auto;
   }
 }
+
 
 @media (max-width: 650px) {
   .litso-cat_head {
@@ -733,7 +770,17 @@
 
   .litso-forum_body,
   .litso-forum_no-image .litso-forum_body {
-    padding: 22px 20px;
+    padding: 32px 30px 24px 48px;
+  }
+
+  .litso-forum_no-image .litso-forum_body::before {
+    top: 14px;
+    bottom: 14px;
+    left: 14px;
+    width: min(250px, calc(100% - 28px));
+    box-shadow:
+      inset 0 0 0 14px transparent,
+      inset 0 0 0 15px var(--border-subtle);
   }
 
   .litso-forum_foot,
@@ -745,7 +792,7 @@
   }
 
   .litso-forum_no-image .litso-forum_badge {
-    left: 20px;
+    left: 48px;
     bottom: 190px;
   }
 
