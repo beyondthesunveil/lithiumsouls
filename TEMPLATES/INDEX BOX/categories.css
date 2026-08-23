@@ -329,7 +329,7 @@
 
 .litso-lastpost_meta a { color: var(--accent); font-weight: 600; }
 
-litso-lastpost_meta > strong {
+litso-lastpost_meta strong {
   background-color: var(--bg-soft);
   padding: 2px 10px;
 }
