@@ -13,10 +13,7 @@
 
 
   /* =======================================================
-     KICKERS PERSONNALISÉS DES FORUMS
-     
-     La clé correspond au numéro du forum dans son URL :
-     /f12-nom-du-forum devient "f12".
+     PHRASES PERSONNALISÉES DES FORUMS
      ======================================================= */
 
   var forumKickers = {
@@ -28,7 +25,7 @@
 
 
   /* =======================================================
-     BADGES DES VISUELS
+     BADGES DES FORUMS
      ======================================================= */
 
   var forumBadges = [
@@ -40,7 +37,7 @@
 
 
   /* =======================================================
-     OUTILS GÉNÉRAUX
+     OUTILS
      ======================================================= */
 
   function pad(number) {
@@ -83,7 +80,7 @@
 
 
   /* =======================================================
-     IDENTIFIANT DU FORUM
+     IDENTIFIANT ET KICKER DU FORUM
      ======================================================= */
 
   function getForumKey(forum) {
@@ -107,10 +104,6 @@
       : "";
   }
 
-
-  /* =======================================================
-     KICKER DU FORUM
-     ======================================================= */
 
   function setForumKicker(forum) {
     var kicker = forum.querySelector(
@@ -203,10 +196,6 @@
         var href =
           link.getAttribute("href") || "";
 
-        /*
-         * Les liens précis des messages Forumactif
-         * contiennent généralement une ancre #xxxx.
-         */
         if (
           !exactLink &&
           href.indexOf("#") !== -1
@@ -228,7 +217,7 @@
 
 
   /* =======================================================
-     COULEUR DU GROUPE ET BADGE DE L’AUTEUR
+     BADGE DE L’AUTEUR
      ======================================================= */
 
   function decorateLastPostAuthor(meta) {
@@ -251,10 +240,6 @@
       }
     );
 
-    /*
-     * Certains templates placent le lien du membre
-     * autour d’un <strong style="color:...">.
-     */
     if (!authorLink) {
       var coloredName = meta.querySelector(
         "strong[style*='color'], span[style*='color']"
@@ -277,11 +262,6 @@
       ) ||
       authorLink;
 
-    /*
-     * La couleur est récupérée avant l’ajout de la classe,
-     * afin que le blanc du texte ne remplace pas la couleur
-     * de groupe dans getComputedStyle().
-     */
     var groupColor =
       window.getComputedStyle(
         colorSource
@@ -299,7 +279,7 @@
 
 
   /* =======================================================
-     NETTOYAGE DES IMAGES FORUMACTIF
+     NETTOYAGE DES IMAGES NATIVES
      ======================================================= */
 
   function removeForumactifPostImages(meta) {
@@ -315,10 +295,6 @@
         var parentLink =
           image.closest("a");
 
-        /*
-         * Si le lien ne contient que l’image, on retire
-         * tout le lien après avoir récupéré son URL.
-         */
         if (
           parentLink &&
           !parentLink.textContent.trim()
@@ -334,7 +310,7 @@
 
 
   /* =======================================================
-     DERNIER MESSAGE
+     INITIALISATION DU DERNIER MESSAGE
      ======================================================= */
 
   function initializeLastPost(forum) {
@@ -354,10 +330,6 @@
       return;
     }
 
-    /*
-     * On récupère le lien exact AVANT de supprimer
-     * l’image native de Forumactif.
-     */
     var lastMessageLink =
       findLastMessageLink(meta);
 
@@ -370,10 +342,6 @@
         arrow.href = exactHref;
       }
 
-      /*
-       * Le titre mène lui aussi directement
-       * au dernier message.
-       */
       if (title) {
         title.href = exactHref;
       }
@@ -383,128 +351,115 @@
     removeForumactifPostImages(meta);
   }
 
+
   /* =======================================================
-   COMPTEURS DU FORUM
-   ======================================================= */
+     COMPTEURS
+     ======================================================= */
 
-function readForumCounters(forum) {
-  var counters = forum.querySelectorAll(
-    ".litso-stats strong"
-  );
-
-  function parseCounter(element) {
-    if (!element) {
-      return null;
-    }
-
-    var value = element.textContent
-      .replace(/[^\d]/g, "");
-
-    return value
-      ? parseInt(value, 10)
-      : 0;
-  }
-
-  return {
-    topics: parseCounter(counters[0]),
-    posts: parseCounter(counters[1])
-  };
-}
-
-
-/* =======================================================
-   FORUM SANS MESSAGE
-   ======================================================= */
-
-function initializeEmptyForum(forum) {
-  var counters = readForumCounters(forum);
-
-  var isEmpty =
-    counters.topics === 0 &&
-    counters.posts === 0;
-
-  forum.classList.toggle(
-    "litso-forum_empty",
-    isEmpty
-  );
-
-  if (!isEmpty) {
-    return false;
-  }
-
-  var realAvatar = forum.querySelector(
-    ".litso-lastpost_avatar--real"
-  );
-
-  var emptyAvatar = forum.querySelector(
-    ".litso-lastpost_avatar--empty"
-  );
-
-  var realContent = forum.querySelector(
-    ".litso-lastpost_content"
-  );
-
-  var emptyContent = forum.querySelector(
-    ".litso-lastpost_empty"
-  );
-
-  var arrow = forum.querySelector(
-    ".litso-lastpost_arrow"
-  );
-
-
-  /* Avatar réel */
-
-  if (realAvatar) {
-    realAvatar.hidden = true;
-  }
-
-
-  /* Avatar de substitution */
-
-  if (emptyAvatar) {
-    emptyAvatar.hidden = false;
-  }
-
-
-  /* Contenu réel */
-
-  if (realContent) {
-    realContent.hidden = true;
-  }
-
-
-  /* Texte de substitution */
-
-  if (emptyContent) {
-    emptyContent.hidden = false;
-  }
-
-
-  /* La flèche mène au forum */
-
-  if (arrow) {
-    var forumUrl =
-      arrow.getAttribute(
-        "data-forum-url"
-      );
-
-    if (forumUrl) {
-      arrow.href = forumUrl;
-    }
-
-    arrow.setAttribute(
-      "aria-label",
-      "Découvrir ce forum"
+  function readForumCounters(forum) {
+    var counters = forum.querySelectorAll(
+      ".litso-stats strong"
     );
-  }
 
-  return true;
-}
+    function parseCounter(element) {
+      if (!element) {
+        return null;
+      }
+
+      var value = element.textContent
+        .replace(/[^\d]/g, "");
+
+      return value
+        ? parseInt(value, 10)
+        : 0;
+    }
+
+    return {
+      topics: parseCounter(counters[0]),
+      posts: parseCounter(counters[1])
+    };
+  }
 
 
   /* =======================================================
-     INITIALISATION
+     FORUM SANS MESSAGE
+     ======================================================= */
+
+  function initializeEmptyForum(forum) {
+    var counters =
+      readForumCounters(forum);
+
+    var isEmpty =
+      counters.topics === 0 &&
+      counters.posts === 0;
+
+    forum.classList.toggle(
+      "litso-forum_empty",
+      isEmpty
+    );
+
+    if (!isEmpty) {
+      return false;
+    }
+
+    var realAvatar = forum.querySelector(
+      ".litso-lastpost_avatar--real"
+    );
+
+    var emptyAvatar = forum.querySelector(
+      ".litso-lastpost_avatar--empty"
+    );
+
+    var realContent = forum.querySelector(
+      ".litso-lastpost_content"
+    );
+
+    var emptyContent = forum.querySelector(
+      ".litso-lastpost_empty"
+    );
+
+    var arrow = forum.querySelector(
+      ".litso-lastpost_arrow"
+    );
+
+    if (realAvatar) {
+      realAvatar.hidden = true;
+    }
+
+    if (emptyAvatar) {
+      emptyAvatar.hidden = false;
+    }
+
+    if (realContent) {
+      realContent.hidden = true;
+    }
+
+    if (emptyContent) {
+      emptyContent.hidden = false;
+    }
+
+    if (arrow) {
+      var forumUrl =
+        arrow.getAttribute(
+          "data-forum-url"
+        );
+
+      if (forumUrl) {
+        arrow.href = forumUrl;
+      }
+
+      arrow.setAttribute(
+        "aria-label",
+        "Découvrir ce forum"
+      );
+    }
+
+    return true;
+  }
+
+
+  /* =======================================================
+     INITIALISATION GÉNÉRALE
      ======================================================= */
 
   function initializeLitsoIndexBox() {
@@ -582,13 +537,14 @@ function initializeEmptyForum(forum) {
             }
 
             setForumKicker(forum);
-moveForumImage(forum);
+            moveForumImage(forum);
 
-var forumIsEmpty =
-  initializeEmptyForum(forum);
+            var forumIsEmpty =
+              initializeEmptyForum(forum);
 
-if (!forumIsEmpty) {
-  initializeLastPost(forum);
+            if (!forumIsEmpty) {
+              initializeLastPost(forum);
+            }
           }
         );
       }
