@@ -338,57 +338,40 @@
   grid-template-columns: minmax(0, 1fr) 290px;
 }
 
-
-/* ---------- SUPPRESSION DE LA COLONNE VISUELLE ---------- */
-
 .litso-forum_no-image .litso-forum_visual {
   display: none;
 }
 
-
-/* ---------- CONTENU ÉLARGI ---------- */
-
 .litso-forum_no-image .litso-forum_body {
   position: relative;
-  isolation: isolate;
+  z-index: 0;
+  overflow: hidden;
   padding-left: 72px;
 }
-
-
-/* ---------- DOUBLE CADRE DÉCORATIF ---------- */
 
 .litso-forum_no-image .litso-forum_body::before {
   content: "";
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   top: 15px;
   bottom: 15px;
   left: 18px;
   width: min(320px, calc(100% - 50px));
   border: 1px solid var(--border-subtle);
   box-shadow:
-    inset 0 0 0 20px transparent,
+    inset 0 0 0 20px var(--bg-surface),
     inset 0 0 0 21px var(--border-subtle);
   pointer-events: none;
 }
-
-
-/* ---------- CONTENU AU-DESSUS DU CADRE ---------- */
 
 .litso-forum_no-image .litso-forum_body > * {
   position: relative;
   z-index: 1;
 }
 
-
-/* ---------- PIED DU FORUM ---------- */
-
 .litso-forum_no-image .litso-forum_foot {
   padding-left: 135px;
 }
-
-
-/* ---------- BADGE REPOSITIONNÉ ---------- */
 
 .litso-forum_no-image .litso-forum_badge {
   left: 72px;
