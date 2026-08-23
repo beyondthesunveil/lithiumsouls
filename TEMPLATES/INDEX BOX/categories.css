@@ -276,21 +276,16 @@
 
 .litso-lastpost_avatar {
   position: absolute;
-  z-index: 2;
-  top: 25px;
-  right: 30px;
-  width: 82px;
-  height: 82px;
+  top: -30px;
+  right: -20px;
+  width: 145px;
+  height: 145px;
   padding: 4px;
   background: var(--bg-surface);
-  border: 1px solid color-mix(in srgb, var(--gold) 72%, transparent);
+  border: 1px solid var(--gold);
   border-radius: 50%;
   outline: 1px solid var(--border-subtle);
   outline-offset: 5px;
-  transition:
-    border-color 350ms cubic-bezier(.22, .61, .36, 1),
-    outline-color 350ms cubic-bezier(.22, .61, .36, 1),
-    transform 350ms cubic-bezier(.22, .61, .36, 1);
 }
 
 .litso-lastpost_avatar img {
@@ -306,16 +301,6 @@
 [data-color-scheme="dark"] .litso-forum_visual-image img,
 [data-color-scheme="dark"] .litso-lastpost_avatar img {
   filter: grayscale(.58) saturate(.68) brightness(.78) contrast(1.04);
-}
-
-.litso-forum:hover .litso-lastpost_avatar {
-  border-color: var(--accent);
-  outline-color: var(--gold-faded);
-  transform: translateY(-2px);
-}
-
-.litso-forum:hover .litso-lastpost_avatar img {
-  filter: grayscale(.2) saturate(.85);
 }
 
 .litso-lastpost_content {
