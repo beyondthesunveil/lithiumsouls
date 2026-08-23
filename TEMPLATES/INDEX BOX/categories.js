@@ -13,7 +13,10 @@
 
 
   /* =======================================================
-     PHRASES PERSONNALISÉES DES FORUMS
+     KICKERS PERSONNALISÉS DES FORUMS
+
+     Exemple :
+     /f12-nom-du-forum correspond à la clé "f12".
      ======================================================= */
 
   var forumKickers = {
@@ -25,29 +28,23 @@
 
 
   /* =======================================================
-     BADGES DES VISUELS
+     BADGES DES FORUMS
+
+     Même principe que pour les kickers :
+     le badge dépend directement de l’identifiant du forum.
      ======================================================= */
 
-  var forumBadges = [
-    "Administration",
-    "Actualités",
-    "Personnages",
-    "Territoire"
-  ];
+  var forumBadges = {
+    "f1": "Administration",
+    "f2": "Actualités",
+    "f3": "Personnages",
+    "f4": "Territoire"
+  };
 
 
   /* =======================================================
-     OUTILS
+     OUTILS GÉNÉRAUX
      ======================================================= */
-
-  function pad(number) {
-    var value = String(number);
-
-    return value.length < 2
-      ? "0" + value
-      : value;
-  }
-
 
   function cleanText(element) {
     if (!element) {
@@ -57,6 +54,16 @@
     return element.textContent
       .replace(/\s+/g, " ")
       .trim();
+  }
+
+
+  function parseCounter(value) {
+    var cleanedValue = String(value || "")
+      .replace(/[^\d]/g, "");
+
+    return cleanedValue
+      ? parseInt(cleanedValue, 10)
+      : 0;
   }
 
 
@@ -73,9 +80,11 @@
       .split(" ")
       .filter(Boolean);
 
-    return words.length
-      ? words[words.length - 1].toUpperCase()
-      : "INFERNI";
+    if (!words.length) {
+      return "INFERNI";
+    }
+
+    return words[words.length - 1].toUpperCase();
   }
 
 
@@ -84,16 +93,16 @@
      ======================================================= */
 
   function getForumKey(forum) {
-    var link = forum.querySelector(
+    var forumLink = forum.querySelector(
       ".litso-forum_title a"
     );
 
-    if (!link) {
+    if (!forumLink) {
       return "";
     }
 
     var href =
-      link.getAttribute("href") || "";
+      forumLink.getAttribute("href") || "";
 
     var match = href.match(
       /\/f(\d+)(?:-|\/|$)/
@@ -106,29 +115,39 @@
 
 
   /* =======================================================
-     KICKER
+     TEXTES PERSONNALISÉS DU FORUM
      ======================================================= */
 
-  function setForumKicker(forum) {
+  function initializeForumTexts(forum) {
+    var forumKey = getForumKey(forum);
+
     var kicker = forum.querySelector(
       ".litso-forum_kicker"
     );
 
-    if (!kicker) {
-      return;
+    var badge = forum.querySelector(
+      ".litso-forum_badge"
+    );
+
+    if (kicker) {
+      kicker.textContent =
+        forumKickers[forumKey] ||
+        "Fragments d’un royaume sans fin";
     }
 
-    kicker.textContent =
-      forumKickers[getForumKey(forum)] ||
-      "Fragments d’un royaume sans fin";
+    if (badge) {
+      badge.textContent =
+        forumBadges[forumKey] ||
+        "Chapitre";
+    }
   }
 
 
   /* =======================================================
-     IMAGE DU FORUM
+     IMAGE ET DISPOSITION DU FORUM
      ======================================================= */
 
-  function moveForumImage(forum) {
+  function initializeForumImage(forum) {
     var description = forum.querySelector(
       ".litso-forum_desc"
     );
@@ -153,6 +172,10 @@
       return;
     }
 
+    forum.classList.remove(
+      "litso-forum_no-image"
+    );
+
     image.removeAttribute("width");
     image.removeAttribute("height");
 
@@ -161,7 +184,7 @@
 
 
   /* =======================================================
-     IDENTIFICATION DES LIENS
+     LIENS FORUMACTIF
      ======================================================= */
 
   function isUserProfileLink(link) {
@@ -184,36 +207,42 @@
       return null;
     }
 
-    var result = null;
+    var links = meta.querySelectorAll("a");
+    var exactLink = null;
+    var imageLink = null;
 
-    Array.prototype.some.call(
-      meta.querySelectorAll("a"),
+    Array.prototype.forEach.call(
+      links,
       function (link) {
         if (isUserProfileLink(link)) {
-          return false;
+          return;
         }
 
         var href =
           link.getAttribute("href") || "";
 
         if (
-          href.indexOf("#") !== -1 ||
-          link.querySelector("img")
+          !exactLink &&
+          href.indexOf("#") !== -1
         ) {
-          result = link;
-          return true;
+          exactLink = link;
         }
 
-        return false;
+        if (
+          !imageLink &&
+          link.querySelector("img")
+        ) {
+          imageLink = link;
+        }
       }
     );
 
-    return result;
+    return exactLink || imageLink;
   }
 
 
   /* =======================================================
-     BADGE DE L’AUTEUR
+     AUTEUR DU DERNIER MESSAGE
      ======================================================= */
 
   function decorateLastPostAuthor(meta) {
@@ -221,13 +250,14 @@
       return;
     }
 
-    var author = null;
+    var links = meta.querySelectorAll("a");
+    var authorElement = null;
 
     Array.prototype.some.call(
-      meta.querySelectorAll("a"),
+      links,
       function (link) {
         if (isUserProfileLink(link)) {
-          author = link;
+          authorElement = link;
           return true;
         }
 
@@ -235,29 +265,98 @@
       }
     );
 
-    if (!author) {
+    if (!authorElement) {
+      var coloredName = meta.querySelector(
+        "strong[style*='color'], span[style*='color']"
+      );
+
+      if (coloredName) {
+        authorElement =
+          coloredName.closest("a") ||
+          coloredName;
+      }
+    }
+
+    if (!authorElement) {
       return;
     }
 
     var colorSource =
-      author.querySelector(
+      authorElement.querySelector(
         "[style*='color']"
       ) ||
-      author;
+      authorElement;
 
-    var color =
+    var groupColor =
       window.getComputedStyle(
         colorSource
       ).color;
 
-    author.style.setProperty(
+    authorElement.style.setProperty(
       "--litso-author-color",
-      color
+      groupColor
     );
 
-    author.classList.add(
+    authorElement.classList.add(
       "litso-lastpost_author"
     );
+  }
+
+
+  /* =======================================================
+     NETTOYAGE DES IMAGES NATIVES
+     ======================================================= */
+
+  function removeForumactifPostImages(meta) {
+    if (!meta) {
+      return;
+    }
+
+    var images = meta.querySelectorAll("img");
+
+    Array.prototype.forEach.call(
+      images,
+      function (image) {
+        var parentLink =
+          image.closest("a");
+
+        if (
+          parentLink &&
+          !parentLink.textContent.trim()
+        ) {
+          parentLink.remove();
+          return;
+        }
+
+        image.remove();
+      }
+    );
+  }
+
+
+  /* =======================================================
+     FORUM SANS MESSAGE
+     ======================================================= */
+
+  function initializeEmptyForum(forum) {
+    var topics = parseCounter(
+      forum.getAttribute("data-topics")
+    );
+
+    var posts = parseCounter(
+      forum.getAttribute("data-posts")
+    );
+
+    var isEmpty =
+      topics === 0 &&
+      posts === 0;
+
+    forum.classList.toggle(
+      "litso-forum_empty",
+      isEmpty
+    );
+
+    return isEmpty;
   }
 
 
@@ -266,22 +365,12 @@
      ======================================================= */
 
   function initializeLastPost(forum) {
-    /*
-     * Le forum vide est entièrement géré par le CSS.
-     */
-    if (
-      forum.getAttribute("data-topics") === "0" &&
-      forum.getAttribute("data-posts") === "0"
-    ) {
-      return;
-    }
-
     var meta = forum.querySelector(
       ".litso-lastpost_meta"
     );
 
     var arrow = forum.querySelector(
-      ".litso-lastpost_arrow--real"
+      ".litso-lastpost_arrow"
     );
 
     var title = forum.querySelector(
@@ -292,112 +381,88 @@
       return;
     }
 
-    var messageLink =
+    var lastMessageLink =
       findLastMessageLink(meta);
 
-    var href = messageLink
-      ? messageLink.getAttribute("href") || ""
+    var exactHref = lastMessageLink
+      ? lastMessageLink.getAttribute("href")
       : "";
 
-    if (href) {
+    if (exactHref) {
       if (arrow) {
-        arrow.href = href;
+        arrow.href = exactHref;
       }
 
       if (title) {
-        title.href = href;
+        title.href = exactHref;
       }
     }
 
     decorateLastPostAuthor(meta);
+    removeForumactifPostImages(meta);
+  }
+
+
+  /* =======================================================
+     CATÉGORIE
+     ======================================================= */
+
+  function initializeCategory(category, categoryIndex) {
+    var titleElement = category.querySelector(
+      ".litso-cat_title"
+    );
+
+    var introElement = category.querySelector(
+      ".litso-cat_intro"
+    );
+
+    if (introElement) {
+      introElement.textContent =
+        categoryIntros[categoryIndex] ||
+        "";
+    }
+
+    category.setAttribute(
+      "data-ghost",
+      createGhostWord(titleElement)
+    );
+
+    var forums = category.querySelectorAll(
+      ".litso-forum"
+    );
 
     Array.prototype.forEach.call(
-      meta.querySelectorAll("img"),
-      function (image) {
-        image.remove();
+      forums,
+      function (forum) {
+        initializeForumTexts(forum);
+        initializeForumImage(forum);
+
+        var isEmpty =
+          initializeEmptyForum(forum);
+
+        if (!isEmpty) {
+          initializeLastPost(forum);
+        }
       }
     );
   }
 
 
   /* =======================================================
-     INITIALISATION
+     INITIALISATION GÉNÉRALE
      ======================================================= */
 
   function initializeLitsoIndexBox() {
-    var categories =
-      document.querySelectorAll(
-        ".litso-cat"
-      );
-
-    var globalForumIndex = 0;
+    var categories = document.querySelectorAll(
+      ".litso-cat"
+    );
 
     Array.prototype.forEach.call(
       categories,
-      function (
-        category,
-        categoryIndex
-      ) {
-        var indexElement =
-          category.querySelector(
-            ".litso-cat_index b"
-          );
-
-        var titleElement =
-          category.querySelector(
-            ".litso-cat_title"
-          );
-
-        var introElement =
-          category.querySelector(
-            ".litso-cat_intro"
-          );
-
-        if (indexElement) {
-          indexElement.textContent =
-            pad(categoryIndex + 1);
-        }
-
-        if (introElement) {
-          introElement.textContent =
-            categoryIntros[
-              categoryIndex
-            ] || "";
-        }
-
-        category.setAttribute(
-          "data-ghost",
-          createGhostWord(
-            titleElement
-          )
-        );
-
-        var forums =
-          category.querySelectorAll(
-            ".litso-forum"
-          );
-
-        Array.prototype.forEach.call(
-          forums,
-          function (forum) {
-            var badge =
-              forum.querySelector(
-                ".litso-forum_badge"
-              );
-
-            if (badge) {
-              badge.textContent =
-                forumBadges[
-                  globalForumIndex
-                ] || "Chapitre";
-            }
-
-            globalForumIndex += 1;
-
-            setForumKicker(forum);
-            moveForumImage(forum);
-            initializeLastPost(forum);
-          }
+      function (category, categoryIndex) {
+        initializeCategory(
+          category,
+          categoryIndex
         );
       }
     );
@@ -408,9 +473,7 @@
      LANCEMENT
      ======================================================= */
 
-  if (
-    document.readyState === "loading"
-  ) {
+  if (document.readyState === "loading") {
     document.addEventListener(
       "DOMContentLoaded",
       initializeLitsoIndexBox,
