@@ -1,10 +1,35 @@
 (function () {
   "use strict";
 
+
+  /* =======================================================
+     INTRODUCTIONS DES CATÉGORIES
+     ======================================================= */
+
   var categoryIntros = [
     "Toute éternité commence par un seuil. Les premiers fragments du royaume vous attendent ici.",
     "Au-delà des portes s’étendent les territoires où les âmes se cherchent, se rencontrent et se consument."
   ];
+
+
+  /* =======================================================
+     KICKERS PERSONNALISÉS DES FORUMS
+     
+     La clé correspond au numéro du forum dans son URL :
+     /f12-nom-du-forum devient "f12".
+     ======================================================= */
+
+  var forumKickers = {
+    "f1": "Les premières lois gravées dans la pierre",
+    "f2": "Les nouvelles portées par-delà les portes",
+    "f3": "Les âmes qui attendent encore un visage",
+    "f4": "Là où commencent les territoires du royaume"
+  };
+
+
+  /* =======================================================
+     BADGES DES VISUELS
+     ======================================================= */
 
   var forumBadges = [
     "Administration",
@@ -13,9 +38,15 @@
     "Territoire"
   ];
 
+
+  /* =======================================================
+     OUTILS GÉNÉRAUX
+     ======================================================= */
+
   function pad(number) {
     return String(number).padStart(2, "0");
   }
+
 
   function cleanText(element) {
     if (!element) {
@@ -26,6 +57,7 @@
       .replace(/\s+/g, " ")
       .trim();
   }
+
 
   function createGhostWord(titleElement) {
     var title = cleanText(titleElement);
@@ -49,6 +81,58 @@
     ].toUpperCase();
   }
 
+
+  /* =======================================================
+     IDENTIFIANT DU FORUM
+     ======================================================= */
+
+  function getForumKey(forum) {
+    var forumLink = forum.querySelector(
+      ".litso-forum_title a"
+    );
+
+    if (!forumLink) {
+      return "";
+    }
+
+    var href =
+      forumLink.getAttribute("href") || "";
+
+    var match = href.match(
+      /\/f(\d+)(?:-|\/|$)/
+    );
+
+    return match
+      ? "f" + match[1]
+      : "";
+  }
+
+
+  /* =======================================================
+     KICKER DU FORUM
+     ======================================================= */
+
+  function setForumKicker(forum) {
+    var kicker = forum.querySelector(
+      ".litso-forum_kicker"
+    );
+
+    if (!kicker) {
+      return;
+    }
+
+    var forumKey = getForumKey(forum);
+
+    kicker.textContent =
+      forumKickers[forumKey] ||
+      "Fragments d’un royaume sans fin";
+  }
+
+
+  /* =======================================================
+     IMAGE DU FORUM
+     ======================================================= */
+
   function moveForumImage(forum) {
     var description = forum.querySelector(
       ".litso-forum_desc"
@@ -62,7 +146,9 @@
       return;
     }
 
-    var image = description.querySelector("img");
+    var image = description.querySelector(
+      "img"
+    );
 
     if (!image) {
       forum.classList.add(
@@ -78,16 +164,244 @@
     visual.appendChild(image);
   }
 
-  function initializeLitsoIndexBox() {
-    var categories = document.querySelectorAll(
-      ".litso-cat"
+
+  /* =======================================================
+     LIENS DU DERNIER MESSAGE
+     ======================================================= */
+
+  function isUserProfileLink(link) {
+    if (!link) {
+      return false;
+    }
+
+    var href =
+      link.getAttribute("href") || "";
+
+    return (
+      /^\/u\d+(?:-|$)/.test(href) ||
+      /\/profile\?mode=viewprofile/.test(href)
     );
+  }
+
+
+  function findLastMessageLink(meta) {
+    if (!meta) {
+      return null;
+    }
+
+    var links = meta.querySelectorAll("a");
+    var exactLink = null;
+    var imageLink = null;
+
+    Array.prototype.forEach.call(
+      links,
+      function (link) {
+        if (isUserProfileLink(link)) {
+          return;
+        }
+
+        var href =
+          link.getAttribute("href") || "";
+
+        /*
+         * Les liens précis des messages Forumactif
+         * contiennent généralement une ancre #xxxx.
+         */
+        if (
+          !exactLink &&
+          href.indexOf("#") !== -1
+        ) {
+          exactLink = link;
+        }
+
+        if (
+          !imageLink &&
+          link.querySelector("img")
+        ) {
+          imageLink = link;
+        }
+      }
+    );
+
+    return exactLink || imageLink;
+  }
+
+
+  /* =======================================================
+     COULEUR DU GROUPE ET BADGE DE L’AUTEUR
+     ======================================================= */
+
+  function decorateLastPostAuthor(meta) {
+    if (!meta) {
+      return;
+    }
+
+    var links = meta.querySelectorAll("a");
+    var authorLink = null;
+
+    Array.prototype.some.call(
+      links,
+      function (link) {
+        if (isUserProfileLink(link)) {
+          authorLink = link;
+          return true;
+        }
+
+        return false;
+      }
+    );
+
+    /*
+     * Certains templates placent le lien du membre
+     * autour d’un <strong style="color:...">.
+     */
+    if (!authorLink) {
+      var coloredName = meta.querySelector(
+        "strong[style*='color'], span[style*='color']"
+      );
+
+      if (coloredName) {
+        authorLink =
+          coloredName.closest("a") ||
+          coloredName;
+      }
+    }
+
+    if (!authorLink) {
+      return;
+    }
+
+    var colorSource =
+      authorLink.querySelector(
+        "[style*='color']"
+      ) ||
+      authorLink;
+
+    /*
+     * La couleur est récupérée avant l’ajout de la classe,
+     * afin que le blanc du texte ne remplace pas la couleur
+     * de groupe dans getComputedStyle().
+     */
+    var groupColor =
+      window.getComputedStyle(
+        colorSource
+      ).color;
+
+    authorLink.style.setProperty(
+      "--litso-author-color",
+      groupColor
+    );
+
+    authorLink.classList.add(
+      "litso-lastpost_author"
+    );
+  }
+
+
+  /* =======================================================
+     NETTOYAGE DES IMAGES FORUMACTIF
+     ======================================================= */
+
+  function removeForumactifPostImages(meta) {
+    if (!meta) {
+      return;
+    }
+
+    var images = meta.querySelectorAll("img");
+
+    Array.prototype.forEach.call(
+      images,
+      function (image) {
+        var parentLink =
+          image.closest("a");
+
+        /*
+         * Si le lien ne contient que l’image, on retire
+         * tout le lien après avoir récupéré son URL.
+         */
+        if (
+          parentLink &&
+          !parentLink.textContent.trim()
+        ) {
+          parentLink.remove();
+          return;
+        }
+
+        image.remove();
+      }
+    );
+  }
+
+
+  /* =======================================================
+     DERNIER MESSAGE
+     ======================================================= */
+
+  function initializeLastPost(forum) {
+    var meta = forum.querySelector(
+      ".litso-lastpost_meta"
+    );
+
+    var arrow = forum.querySelector(
+      ".litso-lastpost_arrow"
+    );
+
+    var title = forum.querySelector(
+      ".litso-lastpost_title"
+    );
+
+    if (!meta) {
+      return;
+    }
+
+    /*
+     * On récupère le lien exact AVANT de supprimer
+     * l’image native de Forumactif.
+     */
+    var lastMessageLink =
+      findLastMessageLink(meta);
+
+    var exactHref = lastMessageLink
+      ? lastMessageLink.getAttribute("href")
+      : "";
+
+    if (exactHref) {
+      if (arrow) {
+        arrow.href = exactHref;
+      }
+
+      /*
+       * Le titre mène lui aussi directement
+       * au dernier message.
+       */
+      if (title) {
+        title.href = exactHref;
+      }
+    }
+
+    decorateLastPostAuthor(meta);
+    removeForumactifPostImages(meta);
+  }
+
+
+  /* =======================================================
+     INITIALISATION
+     ======================================================= */
+
+  function initializeLitsoIndexBox() {
+    var categories =
+      document.querySelectorAll(
+        ".litso-cat"
+      );
 
     var globalForumIndex = 0;
 
     Array.prototype.forEach.call(
       categories,
-      function (category, categoryIndex) {
+      function (
+        category,
+        categoryIndex
+      ) {
         var categoryNumber = pad(
           categoryIndex + 1
         );
@@ -121,7 +435,9 @@
 
         category.setAttribute(
           "data-ghost",
-          createGhostWord(titleElement)
+          createGhostWord(
+            titleElement
+          )
         );
 
         var forums =
@@ -146,19 +462,27 @@
                 ] || "Chapitre";
             }
 
+            setForumKicker(forum);
             moveForumImage(forum);
+            initializeLastPost(forum);
           }
         );
       }
     );
   }
 
+
+  /* =======================================================
+     LANCEMENT
+     ======================================================= */
+
   if (
     document.readyState === "loading"
   ) {
     document.addEventListener(
       "DOMContentLoaded",
-      initializeLitsoIndexBox
+      initializeLitsoIndexBox,
+      { once: true }
     );
   } else {
     initializeLitsoIndexBox();
