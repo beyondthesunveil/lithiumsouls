@@ -27,9 +27,6 @@
   opacity: 0.4;
 }
 
-
-/* ---------- EN-TÊTE DE CATÉGORIE ---------- */
-
 .litso-cat_head {
   display: grid;
   grid-template-columns: auto minmax(80px, 1fr) auto;
@@ -92,7 +89,7 @@
 
 
 /* =========================================================
-   VISUEL DU FORUM
+   VISUEL
    ========================================================= */
 
 .litso-forum_visual {
@@ -149,9 +146,6 @@
   transform: scale(1.045);
 }
 
-
-/* ---------- STATUT ---------- */
-
 .litso-forum_status {
   position: absolute;
   z-index: 5;
@@ -165,9 +159,6 @@
   background-repeat: no-repeat !important;
   filter: grayscale(1) brightness(1.8);
 }
-
-
-/* ---------- BADGE DU VISUEL ---------- */
 
 .litso-forum_badge {
   position: absolute;
@@ -186,7 +177,7 @@
 
 
 /* =========================================================
-   INFORMATIONS DU FORUM
+   CORPS DU FORUM
    ========================================================= */
 
 .litso-forum_body {
@@ -209,9 +200,6 @@
   opacity: 0.55;
 }
 
-
-/* ---------- KICKER ---------- */
-
 .litso-forum_kicker {
   margin-bottom: 0;
   color: var(--gold);
@@ -219,9 +207,6 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
-
-
-/* ---------- TITRE ---------- */
 
 .litso-forum_title {
   margin: 0;
@@ -241,9 +226,6 @@
 .litso-forum_title a:hover {
   color: var(--gold);
 }
-
-
-/* ---------- DESCRIPTION ---------- */
 
 .litso-forum_desc {
   max-height: 58px;
@@ -266,9 +248,6 @@
 .litso-forum_desc p {
   margin: 0;
 }
-
-
-/* ---------- PIED DU FORUM ---------- */
 
 .litso-forum_foot {
   display: flex;
@@ -368,7 +347,7 @@
 }
 
 
-/* ---------- AVATAR ---------- */
+/* ---------- AVATAR RÉEL ---------- */
 
 .litso-lastpost_avatar {
   position: absolute;
@@ -394,7 +373,6 @@
     grayscale(0.48)
     saturate(0.72)
     contrast(0.96);
-  transition: filter 350ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 [data-color-scheme="dark"]
@@ -409,7 +387,7 @@
 }
 
 
-/* ---------- CONTENU DU DERNIER MESSAGE ---------- */
+/* ---------- CONTENU RÉEL ---------- */
 
 .litso-lastpost_content {
   position: absolute;
@@ -442,7 +420,6 @@
 
 /* ---------- AUTEUR ---------- */
 
-.litso-lastpost_meta
 .litso-lastpost_author {
   width: 125px;
   min-height: 23px;
@@ -465,22 +442,14 @@
   white-space: nowrap;
 }
 
-.litso-lastpost_meta
 .litso-lastpost_author *,
-.litso-lastpost_meta
 .litso-lastpost_author:link,
-.litso-lastpost_meta
 .litso-lastpost_author:visited {
   color: #fff !important;
 }
 
-.litso-lastpost_meta
-.litso-lastpost_author:hover {
-  filter: brightness(1.12);
-}
 
-
-/* ---------- FLÈCHE ---------- */
+/* ---------- FLÈCHES ---------- */
 
 .litso-lastpost_arrow {
   position: absolute;
@@ -519,37 +488,59 @@
 
 
 /* =========================================================
-   PLACEHOLDER DES FORUMS SANS MESSAGE
+   FORUM VIDE — MASQUÉ PAR DÉFAUT
    ========================================================= */
 
-.litso-lastpost_avatar--empty {
+.litso-lastpost_avatar--placeholder,
+.litso-lastpost_empty,
+.litso-lastpost_arrow--empty {
   display: none;
+}
+
+
+/* ---------- SILHOUETTE CSS ---------- */
+
+.litso-lastpost_avatar--placeholder {
   place-items: center;
   background:
     radial-gradient(
-      circle at center,
+      circle,
       var(--bg-soft),
       var(--bg-surface) 72%
     );
 }
 
-.litso-lastpost_avatar--empty svg {
-  width: 43px;
-  height: 43px;
-  fill: none;
-  stroke: var(--text-muted);
-  stroke-width: 1;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  opacity: 0.32;
+.litso-lastpost_placeholderHead {
+  position: absolute;
+  top: 43px;
+  left: 58px;
+  width: 25px;
+  height: 25px;
+  border: 1px solid var(--text-muted);
+  border-radius: 50%;
+  opacity: 0.26;
 }
+
+.litso-lastpost_placeholderBody {
+  position: absolute;
+  top: 78px;
+  left: 38px;
+  width: 65px;
+  height: 40px;
+  border: 1px solid var(--text-muted);
+  border-bottom: 0;
+  border-radius: 42px 42px 0 0;
+  opacity: 0.26;
+}
+
+
+/* ---------- TEXTE VIDE ---------- */
 
 .litso-lastpost_empty {
   position: absolute;
   z-index: 2;
   bottom: 34px;
   left: 0;
-  display: none;
   flex-direction: column;
   align-items: flex-start;
 }
@@ -567,26 +558,40 @@
   letter-spacing: 0.03em;
 }
 
-.litso-forum_empty
+
+/* =========================================================
+   ACTIVATION DU FORUM VIDE — CSS UNIQUEMENT
+   ========================================================= */
+
+.litso-forum[data-topics="0"][data-posts="0"]
 .litso-lastpost_avatar--real,
-.litso-forum_empty
-.litso-lastpost_content {
+
+.litso-forum[data-topics="0"][data-posts="0"]
+.litso-lastpost_content,
+
+.litso-forum[data-topics="0"][data-posts="0"]
+.litso-lastpost_arrow--real {
   display: none;
 }
 
-.litso-forum_empty
-.litso-lastpost_avatar--empty {
+.litso-forum[data-topics="0"][data-posts="0"]
+.litso-lastpost_avatar--placeholder {
   display: grid;
 }
 
-.litso-forum_empty
+.litso-forum[data-topics="0"][data-posts="0"]
 .litso-lastpost_empty {
   display: flex;
 }
 
+.litso-forum[data-topics="0"][data-posts="0"]
+.litso-lastpost_arrow--empty {
+  display: grid;
+}
+
 
 /* =========================================================
-   OUTILS SOUS LES CATÉGORIES
+   OUTILS
    ========================================================= */
 
 .litso-index-tools {
@@ -666,50 +671,42 @@
   transform: translate(-50%, 0);
 }
 
-.litso-index-tools
-a[href*="search_id=newposts"] {
+.litso-index-tools a[href*="search_id=newposts"] {
   --litso-tool-icon:
     url("https://unpkg.com/lucide-static/icons/flame.svg");
 }
 
-.litso-index-tools
-a[href*="search_id=egosearch"] {
+.litso-index-tools a[href*="search_id=egosearch"] {
   --litso-tool-icon:
     url("https://unpkg.com/lucide-static/icons/inbox.svg");
 }
 
-.litso-index-tools
-a[href*="search_id=unanswered"] {
+.litso-index-tools a[href*="search_id=unanswered"] {
   --litso-tool-icon:
     url("https://unpkg.com/lucide-static/icons/message-circle.svg");
 }
 
-.litso-index-tools
-a[href*="mark=forums"] {
+.litso-index-tools a[href*="mark=forums"] {
   --litso-tool-icon:
     url("https://unpkg.com/lucide-static/icons/check-circle.svg");
 }
 
-.litso-index-tools
-a[href*="search_id=activetopics"] {
+.litso-index-tools a[href*="search_id=activetopics"] {
   --litso-tool-icon:
     url("https://unpkg.com/lucide-static/icons/calendar.svg");
 }
 
-.litso-index-tools
-a[href*="poster"] {
+.litso-index-tools a[href*="poster"] {
   --litso-tool-icon:
     url("https://unpkg.com/lucide-static/icons/trophy.svg");
 }
 
-.litso-index-tools
-a[href*="overall"] {
+.litso-index-tools a[href*="overall"] {
   --litso-tool-icon:
     url("https://unpkg.com/lucide-static/icons/bar-chart-2.svg");
 }
 
-.litso-index-tools
-a[href*="delete_cookies"] {
+.litso-index-tools a[href*="delete_cookies"] {
   --litso-tool-icon:
     url("https://unpkg.com/lucide-static/icons/trash-2.svg");
 }
@@ -733,7 +730,6 @@ a[href*="delete_cookies"] {
   }
 
 }
-
 
 @media (max-width: 650px) {
 
