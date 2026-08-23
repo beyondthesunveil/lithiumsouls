@@ -492,8 +492,7 @@
    ========================================================= */
 
 .litso-lastpost_avatar--placeholder,
-.litso-lastpost_empty,
-.litso-lastpost_arrow--empty {
+.litso-lastpost_empty {
   display: none;
 }
 
