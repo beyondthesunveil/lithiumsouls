@@ -189,8 +189,9 @@
   max-height: 58px;
   overflow: auto;
   padding-right: 7px;
+  text-align:justify;
   color: var(--text-secondary);
-  font: 12px/1.5 var(--font-sans);
+  font: 11px/1.5 var(--font-sans);
   opacity: .78;
 }
 
