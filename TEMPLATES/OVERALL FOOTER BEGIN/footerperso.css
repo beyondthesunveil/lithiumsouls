@@ -1,23 +1,30 @@
 /* =========================================================
-   FOOTER — CONTENEUR GÉNÉRAL
+   CONTENEUR GÉNÉRAL
    ========================================================= */
 
 .litso-footer_ {
   position: relative;
-  width: calc(100vw - 40px);
-  max-width: 1900px;
-  margin: 90px 0 0 50%;
+  left: 50%;
+  width: 100vw;
+  max-width: none;
+  margin: 90px 0 0 -50vw;
+  box-sizing: border-box;
+  overflow: visible;
   color: var(--text-primary);
   background-color: var(--bg-page);
   background-image: url(data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E);
   background-size: 180px 180px;
   border-top: 1px solid var(--border-default);
-  transform: translateX(-50%);
+}
+
+.litso-footer_,
+.litso-footer_ * {
+  box-sizing: border-box;
 }
 
 
 /* =========================================================
-   TITRE DU FOOTER
+   TITRE
    ========================================================= */
 
 .litso-footer_heading {
@@ -30,21 +37,11 @@
 
 .litso-footer_headingLine {
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--border-default),
-    var(--gold)
-  );
+  background: linear-gradient(90deg, transparent, var(--border-default), var(--gold));
 }
 
 .litso-footer_headingLine:last-child {
-  background: linear-gradient(
-    90deg,
-    var(--gold),
-    var(--border-default),
-    transparent
-  );
+  background: linear-gradient(90deg, var(--gold), var(--border-default), transparent);
 }
 
 .litso-footer_headingCopy {
@@ -74,6 +71,7 @@
 .litso-footer_grid {
   display: grid;
   grid-template-columns: 1fr;
+  width: 100%;
   border-top: 1px solid var(--border-default);
   border-bottom: 1px solid var(--border-default);
 }
@@ -81,6 +79,7 @@
 .litso-footer_section {
   position: relative;
   min-width: 0;
+  width: auto;
   padding: 25px 22px 28px;
   background-color: var(--bg-surface);
 }
@@ -91,7 +90,7 @@
 
 
 /* =========================================================
-   ENTÊTE DES BLOCS
+   ÉLÉMENTS COMMUNS
    ========================================================= */
 
 .litso-footer_sectionHead {
@@ -177,10 +176,10 @@
 
 
 /* =========================================================
-   DERNIERS SUJETS
+   TICKER
    ========================================================= */
 
-.litso-footer_topicCount {
+.litso-ticker_count {
   min-width: 17px;
   height: 17px;
   display: grid;
@@ -191,16 +190,16 @@
   font: 600 8px / 1 var(--font-sans);
 }
 
-.litso-footer_topicCount:empty {
+.litso-ticker_count:empty {
   display: none;
 }
 
-.litso-footer_topicList {
+.litso-ticker_list {
   display: flex;
   flex-direction: column;
 }
 
-.litso-footer_topicItem {
+.litso-ticker_item {
   display: grid;
   grid-template-columns: 42px minmax(0, 1fr);
   align-items: center;
@@ -210,7 +209,7 @@
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.litso-footer_topicAvatar {
+.litso-ticker_avatar {
   width: 38px;
   height: 38px;
   padding: 2px;
@@ -220,7 +219,7 @@
   outline-offset: 3px;
 }
 
-.litso-footer_topicAvatar img {
+.litso-ticker_avatar img {
   display: block;
   width: 100%;
   height: 100%;
@@ -229,15 +228,15 @@
   filter: grayscale(.5) saturate(.7) contrast(.96);
 }
 
-[data-color-scheme="dark"] .litso-footer_topicAvatar img {
+[data-color-scheme="dark"] .litso-ticker_avatar img {
   filter: grayscale(.58) saturate(.68) brightness(.78) contrast(1.04);
 }
 
-.litso-footer_topicContent {
+.litso-ticker_content {
   min-width: 0;
 }
 
-.litso-footer_topicTitle {
+.litso-ticker_title {
   display: block;
   overflow: hidden;
   color: var(--text-primary);
@@ -248,11 +247,11 @@
   transition: color 300ms ease;
 }
 
-.litso-footer_topicTitle:hover {
+.litso-ticker_title:hover {
   color: var(--gold);
 }
 
-.litso-footer_topicMeta {
+.litso-ticker_meta {
   display: flex;
   flex-wrap: wrap;
   gap: 3px 7px;
@@ -261,12 +260,12 @@
   font: 8px / 1.4 var(--font-sans);
 }
 
-.litso-footer_topicForum {
+.litso-ticker_forum {
   color: var(--gold);
 }
 
-.litso-footer_loading,
-.litso-footer_empty {
+.litso-ticker_loading,
+.litso-ticker_empty {
   padding: 30px 0;
   color: var(--text-muted);
   font: italic 14px / 1.4 var(--font-display);
@@ -329,9 +328,7 @@
   height: 13px;
   color: var(--accent);
   stroke-width: 1.5;
-  transition:
-    color 300ms ease,
-    transform 300ms ease;
+  transition: color 300ms ease, transform 300ms ease;
 }
 
 .litso-footer_wantedItem:hover > svg {
@@ -356,13 +353,10 @@
   width: 50px;
   height: 50px;
   display: block;
-  background: var(--bg-page);
+  background: linear-gradient(135deg, var(--bg-elevated), var(--bg-page));
   border: 1px solid var(--border-subtle);
   text-decoration: none;
-  transition:
-    border-color 300ms ease,
-    filter 300ms ease,
-    transform 300ms ease;
+  transition: border-color 300ms ease, filter 300ms ease, transform 300ms ease;
 }
 
 .litso-footer_partner:hover,
@@ -379,25 +373,6 @@
   height: 100%;
   object-fit: cover;
 }
-
-.litso-footer_partnerFallback {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  color: var(--text-secondary);
-  background:
-    linear-gradient(
-      135deg,
-      var(--bg-elevated),
-      var(--bg-page)
-    );
-  font: italic 14px / 1 var(--font-display);
-}
-
-
-/* ---------- TOOLTIP ---------- */
 
 .litso-footer_partner::after {
   content: attr(data-name);
@@ -418,10 +393,7 @@
   visibility: hidden;
   pointer-events: none;
   transform: translate(-50%, 4px);
-  transition:
-    opacity 200ms ease,
-    visibility 200ms ease,
-    transform 200ms ease;
+  transition: opacity 200ms ease, visibility 200ms ease, transform 200ms ease;
 }
 
 .litso-footer_partner:hover::after,
@@ -491,11 +463,11 @@
 @media (min-width: 1400px) {
   .litso-footer_grid {
     grid-template-columns:
-      minmax(170px, .85fr)
-      minmax(250px, 1.25fr)
-      minmax(180px, .9fr)
-      300px
-      minmax(180px, .95fr);
+      minmax(0, .85fr)
+      minmax(0, 1.35fr)
+      minmax(0, .9fr)
+      minmax(285px, 1.25fr)
+      minmax(0, .95fr);
   }
 
   .litso-footer_section + .litso-footer_section {
@@ -542,7 +514,9 @@
 
 @media (max-width: 699px) {
   .litso-footer_ {
-    width: calc(100vw - 20px);
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
   }
 
   .litso-footer_heading {
