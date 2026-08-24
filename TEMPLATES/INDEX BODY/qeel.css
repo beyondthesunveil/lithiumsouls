@@ -6,8 +6,8 @@
   position: relative;
   width: 100%;
   margin: 70px auto;
-  box-sizing: border-box;
   overflow: hidden;
+  box-sizing: border-box;
   color: var(--text-primary, #ece9e4);
   background: var(--bg-surface, #171717);
   border-top: 1px solid var(--border-default, #343434);
@@ -21,25 +21,27 @@
   box-sizing: border-box;
 }
 
+.litso-qeel_sources {
+  display: none;
+}
+
 
 /* =========================================================
-   ÉLÉMENTS TYPOGRAPHIQUES COMMUNS
+   TYPOGRAPHIE COMMUNE
    ========================================================= */
 
 .litso-qeel_eyebrow,
 .litso-qeel_label,
-.litso-qeel_recentLabel,
 .litso-qeel_groupIndex {
   display: block;
   color: var(--gold, #b4a16d);
-  font: 700 11px var(--font-text, "Inter", sans-serif);
-  letter-spacing: 2px;
+  font: 700 10px var(--font-text, "Inter", sans-serif);
+  letter-spacing: 1.8px;
   text-transform: uppercase;
 }
 
 .litso-qeel_label {
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--border-default, #343434);
+  color: var(--text-muted, #827d79);
 }
 
 
@@ -49,22 +51,21 @@
 
 .litso-qeel_header {
   position: relative;
-  min-height: 190px;
-  padding: 38px 42px;
+  min-height: 135px;
+  padding: 30px 38px;
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
-  gap: 40px;
+  justify-content: flex-end;
   overflow: hidden;
   border-bottom: 1px solid var(--border-default, #343434);
 }
 
 .litso-qeel_headerGhost {
   position: absolute;
-  top: -55px;
-  right: 20px;
+  top: -58px;
+  left: 24px;
   color: rgba(255, 255, 255, 0.025);
-  font: 400 clamp(120px, 15vw, 240px) var(--font-title, "Cormorant Garamond", serif);
+  font: 400 clamp(120px, 15vw, 215px) var(--font-title, "Cormorant Garamond", serif);
   line-height: 1;
   pointer-events: none;
   user-select: none;
@@ -73,66 +74,32 @@
 .litso-qeel_heading {
   position: relative;
   z-index: 1;
-  min-width: 0;
+  width: 100%;
+  text-align: right;
 }
 
 .litso-qeel_title {
-  margin: 8px 0 0;
+  margin: 7px 0 0;
   color: var(--text-primary, #ece9e4);
-  font: 400 clamp(48px, 5vw, 82px) var(--font-title, "Cormorant Garamond", serif);
-  line-height: 0.92;
+  font: 400 clamp(42px, 4.4vw, 70px) var(--font-title, "Cormorant Garamond", serif);
+  line-height: 0.95;
+  white-space: nowrap;
 }
 
 .litso-qeel_title em {
-  color: var(--text-secondary, #9c9794);
-  font-weight: 400;
-}
-
-.litso-qeel_presence {
-  position: relative;
-  z-index: 1;
-  width: min(100%, 410px);
-  padding-left: 24px;
-  border-left: 2px solid var(--accent, #77647f);
-}
-
-.litso-qeel_presence .litso-qeel_label {
-  padding-bottom: 6px;
-  border-bottom: 0;
-}
-
-.litso-qeel_presenceText {
   color: var(--text-secondary, #aaa5a2);
-  font: 400 13px var(--font-text, "Inter", sans-serif);
-  line-height: 1.7;
-}
-
-.litso-qeel_presenceText strong {
-  color: var(--text-primary, #ece9e4);
-  font-weight: 600;
+  font-weight: 400;
 }
 
 
 /* =========================================================
-   CORPS PRINCIPAL
+   REGISTRE PRINCIPAL
    ========================================================= */
 
-.litso-qeel_body {
+.litso-qeel_registry {
   display: grid;
-  grid-template-columns:
-    minmax(260px, 0.85fr)
-    minmax(320px, 1fr)
-    minmax(380px, 1.35fr);
-}
-
-.litso-qeel_block {
-  min-width: 0;
-  min-height: 285px;
-  padding: 34px 38px;
-}
-
-.litso-qeel_block + .litso-qeel_block {
-  border-left: 1px solid var(--border-default, #343434);
+  grid-template-columns: 255px minmax(0, 1fr);
+  min-height: 290px;
 }
 
 
@@ -141,24 +108,28 @@
    ========================================================= */
 
 .litso-qeel_newest {
+  min-width: 0;
+  padding: 30px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background: var(--bg-elevated, #1b1b1b);
+  border-right: 1px solid var(--border-default, #343434);
 }
 
 .litso-qeel_newestProfile {
-  margin-top: 28px;
-  display: grid;
-  grid-template-columns: 88px minmax(0, 1fr);
+  margin-top: 24px;
+  display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 18px;
 }
 
 .litso-qeel_newestAvatar {
   position: relative;
-  width: 88px;
-  height: 88px;
-  padding: 5px;
+  width: 78px;
+  height: 78px;
+  flex: 0 0 78px;
+  padding: 4px;
   border: 1px solid var(--border-default, #3b3b3b);
   border-radius: 50%;
 }
@@ -166,14 +137,14 @@
 .litso-qeel_newestAvatar::after {
   content: "";
   position: absolute;
-  inset: -7px;
+  inset: -6px;
   border: 1px solid rgba(180, 161, 109, 0.3);
   border-radius: inherit;
   pointer-events: none;
 }
 
 
-/* La balise doit conserver cet identifiant */
+/* Identifiant conservé pour ton script d’avatar */
 
 #ava_lastmember {
   display: block;
@@ -181,13 +152,7 @@
   height: 100%;
   overflow: hidden;
   border-radius: inherit;
-  background:
-    radial-gradient(
-      circle at 65% 25%,
-      rgba(119, 100, 127, 0.24),
-      transparent 42%
-    ),
-    var(--bg-page, #101010);
+  background: var(--bg-page, #101010);
 }
 
 #ava_lastmember a,
@@ -201,14 +166,15 @@
   object-fit: cover;
 }
 
-.litso-qeel_newestContent {
+.litso-qeel_newestIdentity {
   min-width: 0;
 }
 
 .litso-qeel_newestName {
   color: var(--text-primary, #ece9e4);
-  font: 400 34px var(--font-title, "Cormorant Garamond", serif);
+  font: 400 26px var(--font-title, "Cormorant Garamond", serif);
   line-height: 1;
+  overflow-wrap: anywhere;
 }
 
 .litso-qeel_newestName a {
@@ -217,115 +183,126 @@
 }
 
 .litso-qeel_newestText {
-  margin: 7px 0 0;
-  color: var(--text-secondary, #aaa5a2);
-  font: 400 12px var(--font-text, "Inter", sans-serif);
-}
-
-.litso-qeel_newestFooter {
-  margin-top: auto;
-  padding-top: 20px;
-  color: var(--text-muted, #777370);
-  font: 400 11px var(--font-text, "Inter", sans-serif);
-  letter-spacing: 0.5px;
-  border-top: 1px solid var(--border-default, #343434);
+  display: block;
+  margin-top: 7px;
+  color: var(--text-muted, #827d79);
+  font: 400 10px var(--font-text, "Inter", sans-serif);
+  line-height: 1.5;
 }
 
 
 /* =========================================================
-   STATISTIQUES
+   INFORMATIONS
    ========================================================= */
 
-.litso-qeel_stats {
-  display: flex;
-  flex-direction: column;
+.litso-qeel_information {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
 }
 
-.litso-qeel_statList {
-  margin-top: 26px;
+
+/* =========================================================
+   RÉSUMÉ ET STATISTIQUES
+   ========================================================= */
+
+.litso-qeel_summary {
+  min-width: 0;
+  min-height: 115px;
+  padding: 24px 34px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns:
+    minmax(115px, auto)
+    1px
+    minmax(150px, auto)
+    minmax(280px, 1fr);
+  align-items: center;
+  gap: 28px;
+  border-bottom: 1px solid var(--border-default, #343434);
 }
 
 .litso-qeel_stat {
   min-width: 0;
-}
-
-.litso-qeel_stat + .litso-qeel_stat {
-  padding-left: 26px;
-  border-left: 1px solid var(--border-default, #343434);
-}
-
-.litso-qeel_stat:first-child {
-  padding-right: 26px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
 }
 
 .litso-qeel_statValue {
   color: var(--text-primary, #ece9e4);
-  font: 400 13px var(--font-text, "Inter", sans-serif);
-  line-height: 1.7;
-}
-
-.litso-qeel_statValue strong {
-  display: block;
-  margin-bottom: 4px;
-  color: var(--text-primary, #ece9e4);
-  font: 400 46px var(--font-title, "Cormorant Garamond", serif);
+  font: 400 42px var(--font-title, "Cormorant Garamond", serif);
   line-height: 1;
 }
 
-.litso-qeel_statNote {
-  margin-top: auto;
-  padding-top: 20px;
-  color: var(--text-muted, #777370);
+.litso-qeel_statLabel {
+  max-width: 90px;
+  color: var(--text-muted, #827d79);
+  font: 700 9px var(--font-text, "Inter", sans-serif);
+  line-height: 1.45;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.litso-qeel_separator {
+  width: 1px;
+  height: 42px;
+  background: var(--border-default, #343434);
+}
+
+.litso-qeel_online {
+  min-width: 0;
+  padding-left: 26px;
+  border-left: 2px solid var(--accent, #77647f);
+}
+
+.litso-qeel_onlineText {
+  margin-top: 7px;
+  color: var(--text-secondary, #aaa5a2);
   font: 400 11px var(--font-text, "Inter", sans-serif);
-  line-height: 1.6;
-  border-top: 1px solid var(--border-default, #343434);
+  line-height: 1.65;
+}
+
+.litso-qeel_onlineText strong {
+  color: var(--text-primary, #ece9e4);
 }
 
 
 /* =========================================================
-   MEMBRES CONNECTÉS
+   LISTES DES MEMBRES
    ========================================================= */
 
-.litso-qeel_members {
-  display: flex;
-  flex-direction: column;
+.litso-qeel_memberLists {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.litso-qeel_connected {
-  margin-top: 24px;
+.litso-qeel_memberBlock {
+  min-width: 0;
+  padding: 25px 34px 28px;
+}
+
+.litso-qeel_memberBlock + .litso-qeel_memberBlock {
+  border-left: 1px solid var(--border-default, #343434);
+}
+
+.litso-qeel_connected,
+.litso-qeel_recent {
+  margin-top: 17px;
   color: var(--text-secondary, #aaa5a2);
-  font: 400 20px var(--font-title, "Cormorant Garamond", serif);
-  line-height: 1.55;
+  font: 400 13px var(--font-text, "Inter", sans-serif);
+  line-height: 1.75;
 }
 
-.litso-qeel_connected a {
+.litso-qeel_connected a,
+.litso-qeel_recent a {
   font-weight: 700;
   text-decoration: none;
 }
 
-.litso-qeel_recent {
-  margin-top: auto;
-  padding-top: 20px;
-  border-top: 1px solid var(--border-default, #343434);
-}
-
-.litso-qeel_recentLabel {
-  margin-bottom: 10px;
-  color: var(--text-muted, #777370);
-  font-size: 9px;
-}
-
-.litso-qeel_recentList,
 #logged_in_user_list {
-  color: var(--text-secondary, #aaa5a2);
-  font: 400 11px var(--font-text, "Inter", sans-serif);
-  line-height: 1.7;
-}
-
-#logged_in_user_list a {
-  text-decoration: none;
+  color: inherit;
+  font: inherit;
 }
 
 
@@ -334,17 +311,20 @@
    ========================================================= */
 
 .litso-qeel_groups {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(120px, 1fr));
+  display: flex;
+  align-items: stretch;
+  min-height: 62px;
   border-top: 1px solid var(--border-default, #343434);
 }
 
 .litso-qeel_group {
   position: relative;
   min-width: 0;
-  min-height: 88px;
-  padding: 21px 22px;
-  overflow: hidden;
+  flex: 1 1 0;
+  padding: 17px 20px 15px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
 }
 
 .litso-qeel_group + .litso-qeel_group {
@@ -354,32 +334,30 @@
 .litso-qeel_group::after {
   content: "";
   position: absolute;
-  left: 22px;
-  right: 22px;
+  left: 20px;
   bottom: 0;
+  width: 26px;
   height: 2px;
   background: var(--litso-qeel_groupColor);
-  transform: scaleX(0.25);
-  transform-origin: left;
-  transition: transform 0.25s ease;
+  transition: width 0.25s ease;
 }
 
 .litso-qeel_group:hover::after {
-  transform: scaleX(1);
+  width: calc(100% - 40px);
 }
 
 .litso-qeel_groupIndex {
+  flex: 0 0 auto;
   color: var(--litso-qeel_groupColor);
-  font-size: 9px;
+  font-size: 8px;
 }
 
 .litso-qeel_groupName {
-  display: block;
-  margin-top: 8px;
+  min-width: 0;
   overflow: hidden;
   color: var(--text-primary, #ece9e4);
-  font: 700 10px var(--font-text, "Inter", sans-serif);
-  letter-spacing: 1.1px;
+  font: 700 9px var(--font-text, "Inter", sans-serif);
+  letter-spacing: 0.9px;
   text-overflow: ellipsis;
   text-transform: uppercase;
   white-space: nowrap;
@@ -390,28 +368,29 @@
    RESPONSIVE
    ========================================================= */
 
-@media (max-width: 1050px) {
+@media (max-width: 1000px) {
 
-  .litso-qeel_header {
-    align-items: flex-start;
-    flex-direction: column;
+  .litso-qeel_title {
+    white-space: normal;
   }
 
-  .litso-qeel_presence {
-    width: 100%;
+  .litso-qeel_registry {
+    grid-template-columns: 220px minmax(0, 1fr);
   }
 
-  .litso-qeel_body {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .litso-qeel_summary {
+    grid-template-columns: minmax(100px, auto) 1px minmax(130px, auto);
   }
 
-  .litso-qeel_members {
+  .litso-qeel_online {
     grid-column: 1 / -1;
+    padding: 15px 0 0;
     border-top: 1px solid var(--border-default, #343434);
-    border-left: 0 !important;
+    border-left: 0;
   }
 
   .litso-qeel_groups {
+    display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
@@ -426,27 +405,39 @@
 }
 
 
-@media (max-width: 650px) {
+@media (max-width: 720px) {
 
   .litso-qeel_header {
-    min-height: 0;
-    padding: 30px 24px;
+    min-height: 120px;
+    padding: 28px 24px;
   }
 
-  .litso-qeel_title {
-    font-size: 48px;
-  }
-
-  .litso-qeel_body {
+  .litso-qeel_registry {
     display: block;
   }
 
-  .litso-qeel_block {
-    min-height: 250px;
-    padding: 30px 24px;
+  .litso-qeel_newest {
+    border-right: 0;
+    border-bottom: 1px solid var(--border-default, #343434);
   }
 
-  .litso-qeel_block + .litso-qeel_block {
+  .litso-qeel_newestProfile {
+    max-width: 330px;
+  }
+
+  .litso-qeel_summary {
+    padding: 24px;
+  }
+
+  .litso-qeel_memberLists {
+    display: block;
+  }
+
+  .litso-qeel_memberBlock {
+    padding: 24px;
+  }
+
+  .litso-qeel_memberBlock + .litso-qeel_memberBlock {
     border-top: 1px solid var(--border-default, #343434);
     border-left: 0;
   }
