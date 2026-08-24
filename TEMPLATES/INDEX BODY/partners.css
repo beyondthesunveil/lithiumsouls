@@ -1,0 +1,212 @@
+/* =========================================================
+   PARTENAIRES
+   ========================================================= */
+
+.litso-partners_ {
+  position: relative;
+  width: 100%;
+  margin: 0 auto 70px;
+  box-sizing: border-box;
+  overflow: visible;
+  color: var(--text-primary, #ece9e4);
+  background: var(--bg-surface, #171717);
+  border-top: 1px solid var(--border-default, #343434);
+  border-bottom: 1px solid var(--border-default, #343434);
+}
+
+.litso-partners_,
+.litso-partners_ *,
+.litso-partners_ *::before,
+.litso-partners_ *::after {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   EN-TÊTE
+   ========================================================= */
+
+.litso-partners_header {
+  min-height: 78px;
+  padding: 18px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  border-bottom: 1px solid var(--border-default, #343434);
+}
+
+.litso-partners_eyebrow {
+  display: block;
+  color: var(--gold, #b4a16d);
+  font: 700 8px var(--font-text, "Inter", sans-serif);
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.litso-partners_title {
+  margin-top: 3px;
+  color: var(--text-primary, #ece9e4);
+  font: 400 25px var(--font-title, "Cormorant Garamond", serif);
+  line-height: 1;
+}
+
+.litso-partners_title em {
+  color: var(--text-secondary, #aaa5a2);
+  font-weight: 400;
+}
+
+.litso-partners_note {
+  color: var(--text-muted, #827d79);
+  font: 700 8px var(--font-text, "Inter", sans-serif);
+  letter-spacing: 1.2px;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   GRILLE — 10 × 3
+   ========================================================= */
+
+.litso-partners_grid {
+  position: relative;
+  width: 100%;
+  padding: 28px 30px;
+  display: grid;
+  grid-template-columns: repeat(10, 50px);
+  justify-content: center;
+  gap: 12px;
+}
+
+
+/* =========================================================
+   BOUTONS
+   ========================================================= */
+
+.litso-partners_item {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 50px;
+  height: 50px;
+  padding: 3px;
+  background: var(--bg-page, #101010);
+  border: 1px solid var(--border-default, #343434);
+  text-decoration: none;
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    z-index 0s;
+}
+
+.litso-partners_item img {
+  display: block;
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  filter: grayscale(1) brightness(0.62) contrast(1.08);
+  transition:
+    filter 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.litso-partners_item:hover,
+.litso-partners_item:focus-visible {
+  z-index: 20;
+  border-color: var(--gold, #b4a16d);
+  transform: translateY(-3px);
+}
+
+.litso-partners_item:hover img,
+.litso-partners_item:focus-visible img {
+  filter: grayscale(0) brightness(1) contrast(1);
+}
+
+
+/* =========================================================
+   TOOLTIP
+   ========================================================= */
+
+.litso-partners_item::before,
+.litso-partners_item::after {
+  position: absolute;
+  left: 50%;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s ease;
+}
+
+.litso-partners_item::before {
+  content: "";
+  bottom: calc(100% + 5px);
+  border-top: 5px solid var(--gold, #b4a16d);
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  transform: translate(-50%, 4px);
+}
+
+.litso-partners_item::after {
+  content: attr(data-name);
+  bottom: calc(100% + 10px);
+  width: max-content;
+  max-width: 190px;
+  padding: 7px 10px;
+  color: var(--text-primary, #ece9e4);
+  background: var(--bg-page, #101010);
+  border: 1px solid var(--gold, #b4a16d);
+  font: 700 8px var(--font-text, "Inter", sans-serif);
+  line-height: 1.4;
+  letter-spacing: 0.8px;
+  text-align: center;
+  text-transform: uppercase;
+  transform: translate(-50%, 4px);
+}
+
+.litso-partners_item:hover::before,
+.litso-partners_item:hover::after,
+.litso-partners_item:focus-visible::before,
+.litso-partners_item:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .litso-partners_grid {
+    grid-template-columns: repeat(5, 50px);
+  }
+
+}
+
+
+@media (max-width: 520px) {
+
+  .litso-partners_header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .litso-partners_note {
+    text-align: left;
+  }
+
+  .litso-partners_grid {
+    padding: 25px 18px;
+    grid-template-columns: repeat(3, 50px);
+    gap: 10px;
+  }
+
+}
