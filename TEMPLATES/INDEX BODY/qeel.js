@@ -11,7 +11,15 @@
       return;
     }
 
-    qeel.setAttribute("data-litso-qeel-ready", "true");
+    qeel.setAttribute(
+      "data-litso-qeel-ready",
+      "true"
+    );
+
+
+    /* =====================================================
+       ÉLÉMENTS
+       ===================================================== */
 
     var newestSource = qeel.querySelector(
       "[data-litso-qeel_newestSource]"
@@ -37,8 +45,18 @@
       "[data-litso-qeel_posts]"
     );
 
+    var connectedMembers = qeel.querySelector(
+      "[data-litso-qeel_connected]"
+    );
 
-    /* ----- EXTRACTION D’UN NOMBRE ----- */
+    var recentMembers = qeel.querySelector(
+      "[data-litso-qeel_recent]"
+    );
+
+
+    /* =====================================================
+       EXTRACTION DES NOMBRES
+       ===================================================== */
 
     function extractNumber(element) {
       if (!element) {
@@ -49,7 +67,9 @@
         .replace(/\s+/g, " ")
         .trim();
 
-      var match = text.match(/\d[\d\s.,]*/);
+      var match = text.match(
+        /\d[\d\s.,]*/
+      );
 
       return match
         ? match[0].replace(/\s+/g, " ").trim()
@@ -57,19 +77,23 @@
     }
 
 
-    /* ----- DERNIER MEMBRE ----- */
+    /* =====================================================
+       DERNIER MEMBRE
+       ===================================================== */
 
     function displayNewestMember() {
       if (!newestSource || !newestTarget) {
         return;
       }
 
-      var profileLink = newestSource.querySelector("a");
+      var profileLink =
+        newestSource.querySelector("a");
 
       newestTarget.innerHTML = "";
 
       if (profileLink) {
-        var clonedLink = profileLink.cloneNode(true);
+        var clonedLink =
+          profileLink.cloneNode(true);
 
         newestTarget.appendChild(clonedLink);
         return;
@@ -85,7 +109,7 @@
           ""
         )
         .replace(
-          /le membre enregistré le plus récent est\s*/i,
+          /le membre enregistré(?:e)? le plus récent est\s*/i,
           ""
         )
         .trim();
@@ -95,7 +119,9 @@
     }
 
 
-    /* ----- STATISTIQUES ----- */
+    /* =====================================================
+       STATISTIQUES
+       ===================================================== */
 
     function displayStatistics() {
       if (usersTarget) {
@@ -110,8 +136,58 @@
     }
 
 
+    /* =====================================================
+       NETTOYAGE DES PHRASES FORUMACTIF
+       ===================================================== */
+
+    function cleanForumactifLabel(
+      element,
+      expressions
+    ) {
+      if (!element) {
+        return;
+      }
+
+      var content = element.innerHTML;
+
+      Array.prototype.forEach.call(
+        expressions,
+        function (expression) {
+          content = content.replace(
+            expression,
+            ""
+          );
+        }
+      );
+
+      element.innerHTML = content.trim();
+    }
+
+
+    function cleanMemberLists() {
+      cleanForumactifLabel(
+        connectedMembers,
+        [
+          /^\s*membres?\s+connecté(?:e)?s?\s+au\s+cours\s+des\s+24\s+dernières?\s+heures?\s*:\s*/i
+        ]
+      );
+
+      cleanForumactifLabel(
+        recentMembers,
+        [
+          /^\s*utilisateurs?\s+enregistré(?:e)?s?\s*:\s*/i
+        ]
+      );
+    }
+
+
+    /* =====================================================
+       INITIALISATION
+       ===================================================== */
+
     displayNewestMember();
     displayStatistics();
+    cleanMemberLists();
   }
 
 
