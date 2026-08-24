@@ -52,6 +52,29 @@
   border-bottom: 1px solid var(--border-default, #343434);
 }
 
+.litso-qeel_header::before {
+  content: "QUI EST EN LIGNE";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max-content;
+  color: transparent;
+  font: italic 400 clamp(95px, 12vw, 210px) var(--font-title, "Cormorant Garamond", serif);
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  transform: translate(-50%, -50%);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.045);
+}
+
+.litso-qeel_headerIndex,
+.litso-qeel_title {
+  position: relative;
+  z-index: 1;
+}
+
 .litso-qeel_headerIndex {
   display: flex;
   align-items: center;
