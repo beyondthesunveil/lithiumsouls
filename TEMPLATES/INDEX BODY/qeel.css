@@ -25,11 +25,6 @@
   display: none;
 }
 
-
-/* =========================================================
-   TYPOGRAPHIE COMMUNE
-   ========================================================= */
-
 .litso-qeel_label,
 .litso-qeel_groupIndex {
   display: block;
@@ -41,64 +36,49 @@
 
 
 /* =========================================================
-   EN-TÊTE
+   EN-TÊTE COMPACT
    ========================================================= */
 
 .litso-qeel_header {
   position: relative;
-  min-height: 225px;
-  padding: 35px 42px 42px;
+  min-height: 125px;
+  padding: 25px 38px 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background: transparent;
   border-bottom: 1px solid var(--border-default, #343434);
 }
 
-.litso-qeel_headerGhost {
-  position: absolute;
-  top: -75px;
-  left: 50%;
-  color: rgba(255, 255, 255, 0.025);
-  font: 400 clamp(150px, 18vw, 280px) var(--font-title, "Cormorant Garamond", serif);
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-  transform: translateX(-50%);
-}
-
 .litso-qeel_headerIndex {
-  position: relative;
-  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 18px;
   color: var(--gold, #b4a16d);
-  font: 700 10px var(--font-text, "Inter", sans-serif);
-  letter-spacing: 2.7px;
+  font: 700 9px var(--font-text, "Inter", sans-serif);
+  letter-spacing: 2.4px;
   text-transform: uppercase;
 }
 
 .litso-qeel_headerIndex span {
-  width: 70px;
+  width: 65px;
   height: 1px;
   background: var(--gold, #b4a16d);
-  opacity: 0.72;
+  opacity: 0.65;
 }
 
 .litso-qeel_title {
-  position: relative;
-  z-index: 1;
   width: 100%;
-  margin: 18px 0 0;
+  margin: 15px 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-primary, #ece9e4);
-  font: 400 clamp(54px, 6vw, 105px) var(--font-title, "Cormorant Garamond", serif);
-  line-height: 0.82;
+  font: 400 50px var(--font-title, "Cormorant Garamond", serif);
+  line-height: 0.9;
   text-align: center;
   text-transform: uppercase;
   white-space: nowrap;
@@ -110,7 +90,7 @@
 }
 
 .litso-qeel_title em {
-  margin-left: 25px;
+  margin-left: 18px;
   color: transparent;
   font-weight: 400;
   font-style: italic;
@@ -119,13 +99,26 @@
 
 
 /* =========================================================
-   REGISTRE PRINCIPAL
+   STRUCTURE PRINCIPALE
    ========================================================= */
 
 .litso-qeel_registry {
   display: grid;
-  grid-template-columns: minmax(360px, 0.7fr) minmax(0, 2.3fr);
-  min-height: 330px;
+  grid-template-columns: minmax(390px, 0.8fr) minmax(0, 2.2fr);
+}
+
+.litso-qeel_aside {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elevated, #1b1b1b);
+  border-right: 1px solid var(--border-default, #343434);
+}
+
+.litso-qeel_information {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
 }
 
 
@@ -135,19 +128,14 @@
 
 .litso-qeel_newest {
   min-width: 0;
-  padding: 34px 42px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: var(--bg-elevated, #1b1b1b);
-  border-right: 1px solid var(--border-default, #343434);
+  padding: 27px 34px 24px;
 }
 
 .litso-qeel_newestVisual {
   position: relative;
   width: 100%;
-  height: 190px;
-  margin-top: 24px;
+  height: 145px;
+  margin-top: 20px;
   overflow: hidden;
   background: var(--bg-page, #101010);
   border: 1px solid var(--border-default, #343434);
@@ -171,7 +159,7 @@
     linear-gradient(
       to bottom,
       transparent 25%,
-      rgba(10, 10, 10, 0.48) 100%
+      rgba(10, 10, 10, 0.5) 100%
     );
 }
 
@@ -189,17 +177,17 @@
 
 .litso-qeel_newestName {
   position: absolute;
-  left: 28px;
-  right: 28px;
-  bottom: 22px;
+  left: 22px;
+  right: 22px;
+  bottom: 17px;
   z-index: 2;
-  padding: 12px 18px;
+  padding: 10px 14px;
   color: var(--text-primary, #ece9e4);
   background: rgba(13, 13, 13, 0.92);
   border-left: 4px solid var(--gold, #b4a16d);
-  font: 700 11px var(--font-text, "Inter", sans-serif);
-  line-height: 1.45;
-  letter-spacing: 1px;
+  font: 700 10px var(--font-text, "Inter", sans-serif);
+  line-height: 1.4;
+  letter-spacing: 0.8px;
   text-align: center;
   text-transform: uppercase;
 }
@@ -212,22 +200,46 @@
 }
 
 .litso-qeel_newestText {
-  margin-top: 16px;
+  margin-top: 13px;
   color: var(--text-muted, #827d79);
-  font: 400 10px var(--font-text, "Inter", sans-serif);
-  letter-spacing: 0.6px;
+  font: 400 9px var(--font-text, "Inter", sans-serif);
+  letter-spacing: 0.5px;
   text-align: center;
 }
 
 
 /* =========================================================
-   INFORMATIONS
+   DISCLAIMER INTÉGRÉ
    ========================================================= */
 
-.litso-qeel_information {
-  min-width: 0;
+.litso-qeel_disclaimer {
+  margin-top: auto;
+  padding: 21px 34px;
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-columns: 58px minmax(0, 1fr);
+  align-items: center;
+  gap: 20px;
+  background: var(--bg-page, #101010);
+  border-top: 1px solid var(--border-default, #343434);
+}
+
+.litso-qeel_disclaimerAge {
+  color: var(--gold, #b4a16d);
+  font: 400 32px var(--font-title, "Cormorant Garamond", serif);
+  line-height: 1;
+}
+
+.litso-qeel_disclaimerContent {
+  min-width: 0;
+  padding-left: 20px;
+  border-left: 1px solid var(--border-default, #343434);
+}
+
+.litso-qeel_disclaimerContent p {
+  margin: 7px 0 0;
+  color: var(--text-muted, #827d79);
+  font: 400 8px var(--font-text, "Inter", sans-serif);
+  line-height: 1.6;
 }
 
 
@@ -238,15 +250,15 @@
 .litso-qeel_summary {
   min-width: 0;
   min-height: 135px;
-  padding: 27px 48px;
+  padding: 27px 45px;
   display: grid;
   grid-template-columns:
     minmax(150px, auto)
     1px
     minmax(180px, auto)
-    minmax(330px, 1fr);
+    minmax(300px, 1fr);
   align-items: center;
-  gap: 32px;
+  gap: 30px;
   border-bottom: 1px solid var(--border-default, #343434);
 }
 
@@ -254,38 +266,38 @@
   min-width: 0;
   display: flex;
   align-items: baseline;
-  gap: 13px;
+  gap: 12px;
 }
 
 .litso-qeel_statValue {
   color: var(--text-primary, #ece9e4);
-  font: 400 48px var(--font-title, "Cormorant Garamond", serif);
+  font: 400 45px var(--font-title, "Cormorant Garamond", serif);
   line-height: 1;
 }
 
 .litso-qeel_statLabel {
-  max-width: 100px;
+  max-width: 95px;
   color: var(--text-muted, #827d79);
   font: 700 9px var(--font-text, "Inter", sans-serif);
-  line-height: 1.45;
+  line-height: 1.4;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 .litso-qeel_separator {
   width: 1px;
-  height: 48px;
+  height: 44px;
   background: var(--border-default, #343434);
 }
 
 .litso-qeel_online {
   min-width: 0;
-  padding-left: 28px;
+  padding-left: 26px;
   border-left: 2px solid var(--accent, #77647f);
 }
 
 .litso-qeel_onlineText {
-  margin-top: 8px;
+  margin-top: 7px;
   color: var(--text-secondary, #aaa5a2);
   font: 400 11px var(--font-text, "Inter", sans-serif);
   line-height: 1.65;
@@ -304,7 +316,7 @@
 
 .litso-qeel_memberBlock {
   min-width: 0;
-  padding: 32px 48px;
+  padding: 30px 45px;
 }
 
 .litso-qeel_memberBlock + .litso-qeel_memberBlock {
@@ -313,7 +325,7 @@
 
 .litso-qeel_connected,
 .litso-qeel_recent {
-  margin-top: 20px;
+  margin-top: 18px;
   color: var(--text-secondary, #aaa5a2);
   font: 400 13px var(--font-text, "Inter", sans-serif);
   line-height: 1.8;
@@ -332,12 +344,12 @@
 
 
 /* =========================================================
-   GROUPES — PLEINE LARGEUR
+   GROUPES
    ========================================================= */
 
 .litso-qeel_groups {
   width: 100%;
-  min-height: 70px;
+  min-height: 68px;
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
   border-top: 1px solid var(--border-default, #343434);
@@ -346,11 +358,11 @@
 .litso-qeel_group {
   position: relative;
   min-width: 0;
-  padding: 20px 22px 18px;
+  padding: 19px 18px 17px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 11px;
+  gap: 10px;
 }
 
 .litso-qeel_group + .litso-qeel_group {
@@ -360,16 +372,16 @@
 .litso-qeel_group::after {
   content: "";
   position: absolute;
-  left: 22px;
+  left: 18px;
   bottom: 0;
-  width: 30px;
+  width: 28px;
   height: 2px;
   background: var(--litso-qeel_groupColor);
   transition: width 0.25s ease;
 }
 
 .litso-qeel_group:hover::after {
-  width: calc(100% - 44px);
+  width: calc(100% - 36px);
 }
 
 .litso-qeel_groupIndex {
@@ -381,72 +393,9 @@
 .litso-qeel_groupName {
   color: var(--text-primary, #ece9e4);
   font: 700 9px var(--font-text, "Inter", sans-serif);
-  letter-spacing: 0.8px;
+  letter-spacing: 0.7px;
   text-align: center;
   text-transform: uppercase;
-  white-space: normal;
-}
-
-
-/* =========================================================
-   DISCLAIMER
-   ========================================================= */
-
-.litso-qeel_disclaimer {
-  min-height: 105px;
-  padding: 24px 38px;
-  display: grid;
-  grid-template-columns: 220px minmax(0, 1fr) 230px;
-  align-items: center;
-  gap: 40px;
-  background: var(--bg-page, #101010);
-  border-top: 1px solid var(--border-default, #343434);
-}
-
-.litso-qeel_disclaimerAge {
-  display: flex;
-  align-items: center;
-  gap: 17px;
-}
-
-.litso-qeel_disclaimerAge strong {
-  color: var(--gold, #b4a16d);
-  font: 400 47px var(--font-title, "Cormorant Garamond", serif);
-  line-height: 1;
-}
-
-.litso-qeel_disclaimerAge span {
-  color: var(--text-muted, #827d79);
-  font: 700 8px var(--font-text, "Inter", sans-serif);
-  line-height: 1.6;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.litso-qeel_disclaimerText {
-  padding: 0 38px;
-  border-left: 1px solid var(--border-default, #343434);
-  border-right: 1px solid var(--border-default, #343434);
-}
-
-.litso-qeel_disclaimerText p {
-  margin: 8px 0 0;
-  color: var(--text-muted, #827d79);
-  font: 400 9px var(--font-text, "Inter", sans-serif);
-  line-height: 1.65;
-}
-
-.litso-qeel_disclaimerCredit {
-  color: var(--text-muted, #827d79);
-  font: 700 8px var(--font-text, "Inter", sans-serif);
-  line-height: 1.7;
-  letter-spacing: 1px;
-  text-align: right;
-  text-transform: uppercase;
-}
-
-.litso-qeel_disclaimerCredit strong {
-  color: var(--text-primary, #ece9e4);
 }
 
 
@@ -458,16 +407,15 @@
 
   .litso-qeel_title {
     flex-direction: column;
-    line-height: 0.85;
     white-space: normal;
   }
 
   .litso-qeel_title em {
-    margin: 5px 0 0;
+    margin: 4px 0 0;
   }
 
   .litso-qeel_registry {
-    grid-template-columns: 320px minmax(0, 1fr);
+    grid-template-columns: 330px minmax(0, 1fr);
   }
 
   .litso-qeel_summary {
@@ -479,7 +427,7 @@
 
   .litso-qeel_online {
     grid-column: 1 / -1;
-    padding: 18px 0 0;
+    padding: 17px 0 0;
     border-top: 1px solid var(--border-default, #343434);
     border-left: 0;
   }
@@ -496,36 +444,29 @@
     border-top: 1px solid var(--border-default, #343434);
   }
 
-  .litso-qeel_disclaimer {
-    grid-template-columns: 180px minmax(0, 1fr);
-  }
-
-  .litso-qeel_disclaimerCredit {
-    grid-column: 1 / -1;
-    padding-top: 18px;
-    text-align: center;
-    border-top: 1px solid var(--border-default, #343434);
-  }
-
 }
 
 
 @media (max-width: 750px) {
 
   .litso-qeel_header {
-    min-height: 190px;
-    padding: 30px 22px;
+    min-height: 110px;
+    padding: 24px 20px;
   }
 
   .litso-qeel_headerIndex span {
-    width: 30px;
+    width: 28px;
+  }
+
+  .litso-qeel_title {
+    font-size: 36px;
   }
 
   .litso-qeel_registry {
     display: block;
   }
 
-  .litso-qeel_newest {
+  .litso-qeel_aside {
     border-right: 0;
     border-bottom: 1px solid var(--border-default, #343434);
   }
@@ -535,7 +476,7 @@
   }
 
   .litso-qeel_summary {
-    padding: 27px 24px;
+    padding: 25px 22px;
   }
 
   .litso-qeel_memberLists {
@@ -543,7 +484,7 @@
   }
 
   .litso-qeel_memberBlock {
-    padding: 28px 24px;
+    padding: 26px 22px;
   }
 
   .litso-qeel_memberBlock + .litso-qeel_memberBlock {
@@ -561,23 +502,6 @@
 
   .litso-qeel_group:nth-child(n + 3) {
     border-top: 1px solid var(--border-default, #343434);
-  }
-
-  .litso-qeel_disclaimer {
-    display: block;
-    padding: 26px 24px;
-  }
-
-  .litso-qeel_disclaimerText {
-    margin-top: 22px;
-    padding: 22px 0 0;
-    border-top: 1px solid var(--border-default, #343434);
-    border-right: 0;
-    border-left: 0;
-  }
-
-  .litso-qeel_disclaimerCredit {
-    margin-top: 22px;
   }
 
 }
