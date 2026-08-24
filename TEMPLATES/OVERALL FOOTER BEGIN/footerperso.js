@@ -1,9 +1,9 @@
-$(function () {
+(function ($) {
   "use strict";
 
 
   /* =======================================================
-     CONFIGURATION DU TICKER
+     CONFIGURATION
      ======================================================= */
 
   var LITSO_TICKER_DEFAULT_AVATAR =
@@ -22,7 +22,8 @@ $(function () {
     ".postprofile-avatar img",
     ".litso-viewtopic_avatar img",
     "[class*='utppVB_avatar'] img",
-    ".lithium-vb_posteravatar img"
+    ".lithium-vb_posteravatar img",
+    "[class*='posteravatar'] img"
   ];
 
   var LITSO_TICKER_AUTHOR_SELECTORS = [
@@ -30,7 +31,8 @@ $(function () {
     ".litso-viewtopic_name",
     "[class*='utppVB_pseudo']",
     ".lithium-vb_postname",
-    ".username"
+    ".username",
+    "[class*='postname']"
   ];
 
   var LITSO_TICKER_DATE_SELECTORS = [
@@ -46,14 +48,14 @@ $(function () {
      OUTILS
      ======================================================= */
 
-  function LITSO_TICKER_clean(value) {
+  function clean(value) {
     return String(value || "")
       .replace(/\s+/g, " ")
       .trim();
   }
 
 
-  function LITSO_TICKER_url(value) {
+  function absoluteUrl(value) {
     if (!value) {
       return "";
     }
@@ -70,60 +72,93 @@ $(function () {
   }
 
 
-  function LITSO_TICKER_escape(value) {
+  function escapeHtml(value) {
     return $("<div>")
       .text(value || "")
       .html();
   }
 
 
-  function LITSO_TICKER_firstMatch(scope, selectors) {
-    var result = $();
+  function parsePage(html) {
+    return new window.DOMParser()
+      .parseFromString(
+        String(html || ""),
+        "text/html"
+      );
+  }
 
-    $.each(selectors, function (_, selector) {
-      var match = scope.find(selector).first();
 
-      if (match.length) {
-        result = match;
-        return false;
+  function firstMatch(scope, selectors) {
+    if (!scope) {
+      return null;
+    }
+
+    for (
+      var index = 0;
+      index < selectors.length;
+      index++
+    ) {
+      var result = scope.querySelector(
+        selectors[index]
+      );
+
+      if (result) {
+        return result;
       }
-    });
+    }
 
-    return result;
+    return null;
+  }
+
+
+  function findClosestRow(link) {
+    if (!link || !link.closest) {
+      return null;
+    }
+
+    return link.closest(
+      "li.row, .topic-row, .topiclist > li, tr, dl"
+    );
   }
 
 
   /* =======================================================
-     FORUM DU SUJET
+     NOM DU FORUM
      ======================================================= */
 
-  function LITSO_TICKER_extractForumName(row) {
-    if (!row || !row.length) {
+  function extractForumName(row) {
+    if (!row) {
       return "";
     }
 
-    var forumLink = row
-      .find("a[href*='/f']")
-      .filter(function () {
-        var href = $(this).attr("href") || "";
+    var links = row.querySelectorAll(
+      "a[href*='/f'], a[href^='f']"
+    );
 
-        return /\/f\d+/i.test(href);
-      })
-      .first();
+    for (
+      var index = 0;
+      index < links.length;
+      index++
+    ) {
+      var href =
+        links[index].getAttribute("href") || "";
 
-    if (forumLink.length) {
-      return LITSO_TICKER_clean(
-        forumLink.text()
-      );
+      if (
+        /(?:^|\/)f\d+/i.test(href)
+      ) {
+        return clean(
+          links[index].textContent
+        );
+      }
     }
 
-    var forumElement = row
-      .find(".forum-name, .topic-forum, .row3")
-      .first();
-
-    return LITSO_TICKER_clean(
-      forumElement.text()
+    var forumElement = row.querySelector(
+      ".forum-name, .topic-forum, .row3"
     );
+
+    return forumElement
+      ? clean(forumElement.textContent)
+      : "";
   }
 
 
@@ -131,62 +166,73 @@ $(function () {
      EXTRACTION DES SUJETS
      ======================================================= */
 
-  function LITSO_TICKER_extractTopics(html) {
+  function extractTopics(html) {
+    var documentPage = parsePage(html);
     var topics = [];
     var seen = {};
 
-    var page = $("<div>").html(html);
+    var links = documentPage.querySelectorAll(
+      "a.topictitle, a[href*='/t'], a[href^='t']"
+    );
 
-    page
-      .find("a.topictitle, a[href*='/t']")
-      .each(function () {
-        var link = $(this);
-        var href = link.attr("href") || "";
-        var idMatch = href.match(/\/t(\d+)/i);
+    for (
+      var index = 0;
+      index < links.length;
+      index++
+    ) {
+      var link = links[index];
 
-        if (!idMatch) {
-          return;
-        }
+      var href =
+        link.getAttribute("href") || "";
 
-        var topicId = idMatch[1];
+      var match = href.match(
+        /(?:^|\/)t(\d+)/i
+      );
 
-        if (seen[topicId]) {
-          return;
-        }
+      if (!match) {
+        continue;
+      }
 
-        var title = LITSO_TICKER_clean(
-          link.text()
-        );
+      var topicId = match[1];
 
-        if (!title || title.length < 3) {
-          return;
-        }
+      if (seen[topicId]) {
+        continue;
+      }
 
-        var row = link.closest(
-          "li.row, .topic-row, .topiclist > li, tr"
-        );
+      var title = clean(
+        link.textContent
+      );
 
-        seen[topicId] = true;
+      if (
+        !title ||
+        title.length < 3
+      ) {
+        continue;
+      }
 
-        topics.push({
-          id: topicId,
-          title: title,
-          url: LITSO_TICKER_url(href),
-          avatar: LITSO_TICKER_DEFAULT_AVATAR,
-          forum:
-            LITSO_TICKER_extractForumName(row) ||
-            "Sujet récent",
-          author: "Dernière activité",
-          date: ""
-        });
+      var row = findClosestRow(link);
 
-        if (
-          topics.length >=
-          LITSO_TICKER_TOPIC_LIMIT
-        ) {
-          return false;
-        }
+      seen[topicId] = true;
+
+      topics.push({
+        id: topicId,
+        title: title,
+        url: absoluteUrl(href),
+        avatar: LITSO_TICKER_DEFAULT_AVATAR,
+        forum:
+          extractForumName(row) ||
+          "Sujet récent",
+        author: "Dernière activité",
+        date: ""
       });
+
+      if (
+        topics.length >=
+        LITSO_TICKER_TOPIC_LIMIT
+      ) {
+        break;
+      }
+    }
 
     return topics;
   }
@@ -196,14 +242,14 @@ $(function () {
      AFFICHAGE
      ======================================================= */
 
-  function LITSO_TICKER_render(topics) {
+  function renderTopics(topics) {
     var container = $(
       "[data-litso-ticker-list]"
-    );
+    ).first();
 
     var counter = $(
       "[data-litso-ticker-count]"
-    );
+    ).first();
 
     if (!container.length) {
       return;
@@ -231,7 +277,7 @@ $(function () {
         ? (
             '<span class="litso-ticker_date">' +
               "· " +
-              LITSO_TICKER_escape(topic.date) +
+              escapeHtml(topic.date) +
             "</span>"
           )
         : "";
@@ -241,27 +287,27 @@ $(function () {
 
           '<div class="litso-ticker_avatar">' +
             '<img src="' +
-              LITSO_TICKER_escape(avatar) +
+              escapeHtml(avatar) +
               '" alt="">' +
           "</div>" +
 
           '<div class="litso-ticker_content">' +
 
             '<a class="litso-ticker_title" href="' +
-              LITSO_TICKER_escape(topic.url) +
+              escapeHtml(topic.url) +
             '">' +
-              LITSO_TICKER_escape(topic.title) +
+              escapeHtml(topic.title) +
             "</a>" +
 
             '<div class="litso-ticker_meta">' +
 
               '<span class="litso-ticker_forum">' +
                 "#" +
-                LITSO_TICKER_escape(topic.forum) +
+                escapeHtml(topic.forum) +
               "</span>" +
 
               '<span class="litso-ticker_author">' +
-                LITSO_TICKER_escape(topic.author) +
+                escapeHtml(topic.author) +
               "</span>" +
 
               date +
@@ -277,58 +323,60 @@ $(function () {
 
 
   /* =======================================================
-     DERNIER MESSAGE
+     INFORMATIONS DU DERNIER MESSAGE
      ======================================================= */
 
-  function LITSO_TICKER_extractLastPost(html) {
-    var page = $("<div>").html(html);
+  function extractLastPost(html) {
+    var documentPage = parsePage(html);
 
-    var posts = page.find(
+    var posts = documentPage.querySelectorAll(
       LITSO_TICKER_POST_SELECTORS.join(",")
     );
 
     var scope = posts.length
-      ? posts.last()
-      : page;
+      ? posts[posts.length - 1]
+      : documentPage;
 
-    var avatarElement =
-      LITSO_TICKER_firstMatch(
-        scope,
-        LITSO_TICKER_AVATAR_SELECTORS
-      );
+    var avatarElement = firstMatch(
+      scope,
+      LITSO_TICKER_AVATAR_SELECTORS
+    );
 
-    var authorElement =
-      LITSO_TICKER_firstMatch(
-        scope,
-        LITSO_TICKER_AUTHOR_SELECTORS
-      );
+    var authorElement = firstMatch(
+      scope,
+      LITSO_TICKER_AUTHOR_SELECTORS
+    );
 
-    var dateElement =
-      LITSO_TICKER_firstMatch(
-        scope,
-        LITSO_TICKER_DATE_SELECTORS
-      );
+    var dateElement = firstMatch(
+      scope,
+      LITSO_TICKER_DATE_SELECTORS
+    );
 
-    var avatar =
-      avatarElement.attr("src") || "";
+    var avatar = avatarElement
+      ? avatarElement.getAttribute("src") || ""
+      : "";
 
     return {
       avatar: avatar
-        ? LITSO_TICKER_url(avatar)
+        ? absoluteUrl(avatar)
         : "",
 
-      author: LITSO_TICKER_clean(
-        authorElement.text()
-      ),
+      author: authorElement
+        ? clean(authorElement.textContent)
+        : "",
 
-      date: LITSO_TICKER_clean(
-        dateElement.text()
-      )
+      date: dateElement
+        ? clean(dateElement.textContent)
+        : ""
     };
   }
 
 
-  function LITSO_TICKER_enrichTopic(
+  /* =======================================================
+     ENRICHISSEMENT
+     ======================================================= */
+
+  function enrichTopic(
     topic,
     index,
     topics
@@ -336,43 +384,50 @@ $(function () {
     $.ajax({
       url: topic.url,
       method: "GET",
+      dataType: "html",
       cache: false,
+      timeout: 15000
+    })
 
-      success: function (html) {
-        var lastPost =
-          LITSO_TICKER_extractLastPost(html);
+    .done(function (html) {
+      var lastPost =
+        extractLastPost(html);
 
-        if (lastPost.avatar) {
-          topics[index].avatar =
-            lastPost.avatar;
-        }
-
-        if (lastPost.author) {
-          topics[index].author =
-            "Par " + lastPost.author;
-        }
-
-        if (lastPost.date) {
-          topics[index].date =
-            lastPost.date;
-        }
-
-        LITSO_TICKER_render(topics);
+      if (lastPost.avatar) {
+        topics[index].avatar =
+          lastPost.avatar;
       }
+
+      if (lastPost.author) {
+        topics[index].author =
+          "Par " + lastPost.author;
+      }
+
+      if (lastPost.date) {
+        topics[index].date =
+          lastPost.date;
+      }
+
+      renderTopics(topics);
     });
   }
 
 
-  function LITSO_TICKER_enrichTopics(topics) {
-    topics.forEach(function (topic, index) {
-      window.setTimeout(function () {
-        LITSO_TICKER_enrichTopic(
-          topic,
-          index,
-          topics
+  function enrichTopics(topics) {
+    topics.forEach(
+      function (topic, index) {
+        window.setTimeout(
+          function () {
+            enrichTopic(
+              topic,
+              index,
+              topics
+            );
+          },
+          index * 180
         );
-      }, index * 180);
-    });
+      }
+    );
   }
 
 
@@ -380,14 +435,14 @@ $(function () {
      CHARGEMENT
      ======================================================= */
 
-  function LITSO_TICKER_load() {
+  function loadTicker() {
     var container = $(
       "[data-litso-ticker-list]"
-    );
+    ).first();
 
     var counter = $(
       "[data-litso-ticker-count]"
-    );
+    ).first();
 
     if (!container.length) {
       return;
@@ -404,28 +459,30 @@ $(function () {
     $.ajax({
       url: "/search?search_id=latest",
       method: "GET",
+      dataType: "html",
       cache: false,
+      timeout: 15000
+    })
 
-      success: function (html) {
-        var topics =
-          LITSO_TICKER_extractTopics(html);
+    .done(function (html) {
+      var topics =
+        extractTopics(html);
 
-        LITSO_TICKER_render(topics);
+      renderTopics(topics);
 
-        if (topics.length) {
-          LITSO_TICKER_enrichTopics(topics);
-        }
-      },
-
-      error: function () {
-        counter.text("");
-
-        container.html(
-          '<div class="litso-ticker_empty">' +
-            "Impossible d’entendre les derniers murmures." +
-          "</div>"
-        );
+      if (topics.length) {
+        enrichTopics(topics);
       }
+    })
+
+    .fail(function () {
+      counter.text("");
+
+      container.html(
+        '<div class="litso-ticker_empty">' +
+          "Impossible d’entendre les derniers murmures." +
+        "</div>"
+      );
     });
   }
 
@@ -434,7 +491,7 @@ $(function () {
      INITIALISATION
      ======================================================= */
 
-  function LITSO_TICKER_initialize() {
+  function initializeTicker() {
     var footer = $(
       "[data-litso-footer]"
     ).first();
@@ -458,7 +515,7 @@ $(function () {
       "true"
     );
 
-    LITSO_TICKER_load();
+    loadTicker();
 
     if (window.lucide) {
       window.lucide.createIcons();
@@ -470,5 +527,6 @@ $(function () {
      LANCEMENT
      ======================================================= */
 
-  LITSO_TICKER_initialize();
-});
+  $(initializeTicker);
+
+})(jQuery);
