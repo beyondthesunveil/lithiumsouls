@@ -1,0 +1,466 @@
+/* =========================================================
+   QUI EST EN LIGNE
+   ========================================================= */
+
+.litso-qeel_ {
+  position: relative;
+  width: 100%;
+  margin: 70px auto;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: var(--text-primary, #ece9e4);
+  background: var(--bg-surface, #171717);
+  border-top: 1px solid var(--border-default, #343434);
+  border-bottom: 1px solid var(--border-default, #343434);
+}
+
+.litso-qeel_,
+.litso-qeel_ *,
+.litso-qeel_ *::before,
+.litso-qeel_ *::after {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   ÉLÉMENTS TYPOGRAPHIQUES COMMUNS
+   ========================================================= */
+
+.litso-qeel_eyebrow,
+.litso-qeel_label,
+.litso-qeel_recentLabel,
+.litso-qeel_groupIndex {
+  display: block;
+  color: var(--gold, #b4a16d);
+  font: 700 11px var(--font-text, "Inter", sans-serif);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.litso-qeel_label {
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-default, #343434);
+}
+
+
+/* =========================================================
+   EN-TÊTE
+   ========================================================= */
+
+.litso-qeel_header {
+  position: relative;
+  min-height: 190px;
+  padding: 38px 42px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-default, #343434);
+}
+
+.litso-qeel_headerGhost {
+  position: absolute;
+  top: -55px;
+  right: 20px;
+  color: rgba(255, 255, 255, 0.025);
+  font: 400 clamp(120px, 15vw, 240px) var(--font-title, "Cormorant Garamond", serif);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.litso-qeel_heading {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.litso-qeel_title {
+  margin: 8px 0 0;
+  color: var(--text-primary, #ece9e4);
+  font: 400 clamp(48px, 5vw, 82px) var(--font-title, "Cormorant Garamond", serif);
+  line-height: 0.92;
+}
+
+.litso-qeel_title em {
+  color: var(--text-secondary, #9c9794);
+  font-weight: 400;
+}
+
+.litso-qeel_presence {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 410px);
+  padding-left: 24px;
+  border-left: 2px solid var(--accent, #77647f);
+}
+
+.litso-qeel_presence .litso-qeel_label {
+  padding-bottom: 6px;
+  border-bottom: 0;
+}
+
+.litso-qeel_presenceText {
+  color: var(--text-secondary, #aaa5a2);
+  font: 400 13px var(--font-text, "Inter", sans-serif);
+  line-height: 1.7;
+}
+
+.litso-qeel_presenceText strong {
+  color: var(--text-primary, #ece9e4);
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   CORPS PRINCIPAL
+   ========================================================= */
+
+.litso-qeel_body {
+  display: grid;
+  grid-template-columns:
+    minmax(260px, 0.85fr)
+    minmax(320px, 1fr)
+    minmax(380px, 1.35fr);
+}
+
+.litso-qeel_block {
+  min-width: 0;
+  min-height: 285px;
+  padding: 34px 38px;
+}
+
+.litso-qeel_block + .litso-qeel_block {
+  border-left: 1px solid var(--border-default, #343434);
+}
+
+
+/* =========================================================
+   DERNIER MEMBRE
+   ========================================================= */
+
+.litso-qeel_newest {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elevated, #1b1b1b);
+}
+
+.litso-qeel_newestProfile {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  align-items: center;
+  gap: 22px;
+}
+
+.litso-qeel_newestAvatar {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  padding: 5px;
+  border: 1px solid var(--border-default, #3b3b3b);
+  border-radius: 50%;
+}
+
+.litso-qeel_newestAvatar::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border: 1px solid rgba(180, 161, 109, 0.3);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+
+/* La balise doit conserver cet identifiant */
+
+#ava_lastmember {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  background:
+    radial-gradient(
+      circle at 65% 25%,
+      rgba(119, 100, 127, 0.24),
+      transparent 42%
+    ),
+    var(--bg-page, #101010);
+}
+
+#ava_lastmember a,
+#ava_lastmember img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#ava_lastmember img {
+  object-fit: cover;
+}
+
+.litso-qeel_newestContent {
+  min-width: 0;
+}
+
+.litso-qeel_newestName {
+  color: var(--text-primary, #ece9e4);
+  font: 400 34px var(--font-title, "Cormorant Garamond", serif);
+  line-height: 1;
+}
+
+.litso-qeel_newestName a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.litso-qeel_newestText {
+  margin: 7px 0 0;
+  color: var(--text-secondary, #aaa5a2);
+  font: 400 12px var(--font-text, "Inter", sans-serif);
+}
+
+.litso-qeel_newestFooter {
+  margin-top: auto;
+  padding-top: 20px;
+  color: var(--text-muted, #777370);
+  font: 400 11px var(--font-text, "Inter", sans-serif);
+  letter-spacing: 0.5px;
+  border-top: 1px solid var(--border-default, #343434);
+}
+
+
+/* =========================================================
+   STATISTIQUES
+   ========================================================= */
+
+.litso-qeel_stats {
+  display: flex;
+  flex-direction: column;
+}
+
+.litso-qeel_statList {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.litso-qeel_stat {
+  min-width: 0;
+}
+
+.litso-qeel_stat + .litso-qeel_stat {
+  padding-left: 26px;
+  border-left: 1px solid var(--border-default, #343434);
+}
+
+.litso-qeel_stat:first-child {
+  padding-right: 26px;
+}
+
+.litso-qeel_statValue {
+  color: var(--text-primary, #ece9e4);
+  font: 400 13px var(--font-text, "Inter", sans-serif);
+  line-height: 1.7;
+}
+
+.litso-qeel_statValue strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--text-primary, #ece9e4);
+  font: 400 46px var(--font-title, "Cormorant Garamond", serif);
+  line-height: 1;
+}
+
+.litso-qeel_statNote {
+  margin-top: auto;
+  padding-top: 20px;
+  color: var(--text-muted, #777370);
+  font: 400 11px var(--font-text, "Inter", sans-serif);
+  line-height: 1.6;
+  border-top: 1px solid var(--border-default, #343434);
+}
+
+
+/* =========================================================
+   MEMBRES CONNECTÉS
+   ========================================================= */
+
+.litso-qeel_members {
+  display: flex;
+  flex-direction: column;
+}
+
+.litso-qeel_connected {
+  margin-top: 24px;
+  color: var(--text-secondary, #aaa5a2);
+  font: 400 20px var(--font-title, "Cormorant Garamond", serif);
+  line-height: 1.55;
+}
+
+.litso-qeel_connected a {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.litso-qeel_recent {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-default, #343434);
+}
+
+.litso-qeel_recentLabel {
+  margin-bottom: 10px;
+  color: var(--text-muted, #777370);
+  font-size: 9px;
+}
+
+.litso-qeel_recentList,
+#logged_in_user_list {
+  color: var(--text-secondary, #aaa5a2);
+  font: 400 11px var(--font-text, "Inter", sans-serif);
+  line-height: 1.7;
+}
+
+#logged_in_user_list a {
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   GROUPES
+   ========================================================= */
+
+.litso-qeel_groups {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(120px, 1fr));
+  border-top: 1px solid var(--border-default, #343434);
+}
+
+.litso-qeel_group {
+  position: relative;
+  min-width: 0;
+  min-height: 88px;
+  padding: 21px 22px;
+  overflow: hidden;
+}
+
+.litso-qeel_group + .litso-qeel_group {
+  border-left: 1px solid var(--border-default, #343434);
+}
+
+.litso-qeel_group::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 0;
+  height: 2px;
+  background: var(--litso-qeel_groupColor);
+  transform: scaleX(0.25);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.litso-qeel_group:hover::after {
+  transform: scaleX(1);
+}
+
+.litso-qeel_groupIndex {
+  color: var(--litso-qeel_groupColor);
+  font-size: 9px;
+}
+
+.litso-qeel_groupName {
+  display: block;
+  margin-top: 8px;
+  overflow: hidden;
+  color: var(--text-primary, #ece9e4);
+  font: 700 10px var(--font-text, "Inter", sans-serif);
+  letter-spacing: 1.1px;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+  .litso-qeel_header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .litso-qeel_presence {
+    width: 100%;
+  }
+
+  .litso-qeel_body {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .litso-qeel_members {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--border-default, #343434);
+    border-left: 0 !important;
+  }
+
+  .litso-qeel_groups {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .litso-qeel_group:nth-child(5) {
+    border-left: 0;
+  }
+
+  .litso-qeel_group:nth-child(n + 5) {
+    border-top: 1px solid var(--border-default, #343434);
+  }
+
+}
+
+
+@media (max-width: 650px) {
+
+  .litso-qeel_header {
+    min-height: 0;
+    padding: 30px 24px;
+  }
+
+  .litso-qeel_title {
+    font-size: 48px;
+  }
+
+  .litso-qeel_body {
+    display: block;
+  }
+
+  .litso-qeel_block {
+    min-height: 250px;
+    padding: 30px 24px;
+  }
+
+  .litso-qeel_block + .litso-qeel_block {
+    border-top: 1px solid var(--border-default, #343434);
+    border-left: 0;
+  }
+
+  .litso-qeel_groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .litso-qeel_group:nth-child(odd) {
+    border-left: 0;
+  }
+
+  .litso-qeel_group:nth-child(n + 3) {
+    border-top: 1px solid var(--border-default, #343434);
+  }
+
+}
