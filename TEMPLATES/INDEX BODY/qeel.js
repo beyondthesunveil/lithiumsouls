@@ -2,11 +2,15 @@
   "use strict";
 
   function initializeLitsoQeel() {
-    var qeel = document.querySelector("[data-litso-qeel]");
+    var qeel = document.querySelector(
+      "[data-litso-qeel]"
+    );
 
     if (
       !qeel ||
-      qeel.getAttribute("data-litso-qeel-ready") === "true"
+      qeel.getAttribute(
+        "data-litso-qeel-ready"
+      ) === "true"
     ) {
       return;
     }
@@ -92,18 +96,16 @@
       newestTarget.innerHTML = "";
 
       if (profileLink) {
-        var clonedLink =
-          profileLink.cloneNode(true);
+        newestTarget.appendChild(
+          profileLink.cloneNode(true)
+        );
 
-        newestTarget.appendChild(clonedLink);
         return;
       }
 
       var sourceText = newestSource.textContent
         .replace(/\s+/g, " ")
-        .trim();
-
-      sourceText = sourceText
+        .trim()
         .replace(
           /l['’]utilisateur(?:rice)? enregistré(?:e)? le plus récent est\s*/i,
           ""
@@ -137,10 +139,10 @@
 
 
     /* =====================================================
-       NETTOYAGE DES PHRASES FORUMACTIF
+       NETTOYAGE DES LIBELLÉS FORUMACTIF
        ===================================================== */
 
-    function cleanForumactifLabel(
+    function cleanTextNodes(
       element,
       expressions
     ) {
@@ -148,34 +150,55 @@
         return;
       }
 
-      var content = element.innerHTML;
-
-      Array.prototype.forEach.call(
-        expressions,
-        function (expression) {
-          content = content.replace(
-            expression,
-            ""
-          );
-        }
+      var walker = document.createTreeWalker(
+        element,
+        NodeFilter.SHOW_TEXT,
+        null,
+        false
       );
 
-      element.innerHTML = content.trim();
+      var textNodes = [];
+      var currentNode;
+
+      while (
+        (currentNode = walker.nextNode())
+      ) {
+        textNodes.push(currentNode);
+      }
+
+      Array.prototype.forEach.call(
+        textNodes,
+        function (textNode) {
+          var content = textNode.nodeValue;
+
+          Array.prototype.forEach.call(
+            expressions,
+            function (expression) {
+              content = content.replace(
+                expression,
+                ""
+              );
+            }
+          );
+
+          textNode.nodeValue = content;
+        }
+      );
     }
 
 
     function cleanMemberLists() {
-      cleanForumactifLabel(
+      cleanTextNodes(
         connectedMembers,
         [
-          /^\s*membres?\s+connecté(?:e)?s?\s+au\s+cours\s+des\s+24\s+dernières?\s+heures?\s*:\s*/i
+          /membres?\s+connecté(?:e)?s?\s+au\s+cours\s+des\s+24\s+dernières?\s+heures?\s*:\s*/gi
         ]
       );
 
-      cleanForumactifLabel(
+      cleanTextNodes(
         recentMembers,
         [
-          /^\s*utilisateurs?\s+enregistré(?:e)?s?\s*:\s*/i
+          /utilisateurs?\s+enregistré(?:e)?s?\s*:\s*/gi
         ]
       );
     }
