@@ -3,36 +3,29 @@ $(function () {
 
 
   /* =======================================================
-     CONFIGURATION DES DERNIERS SUJETS
+     CONFIGURATION DU TICKER
      ======================================================= */
 
-  var LITSO_FOOTER_DEFAULT_AVATAR =
+  var LITSO_TICKER_DEFAULT_AVATAR =
     "https://zupimages.net/up/26/20/z3y2.jpg";
 
-  var LITSO_FOOTER_TOPIC_LIMIT = 10;
+  var LITSO_TICKER_TOPIC_LIMIT = 10;
 
-
-  /*
-   * Sélecteurs permettant de retrouver les messages,
-   * avatars, auteurs et dates dans différentes structures
-   * de templates Forumactif.
-   */
-
-  var LITSO_FOOTER_POST_SELECTORS = [
+  var LITSO_TICKER_POST_SELECTORS = [
     ".post",
     ".litso-viewtopic_post",
     "[class*='utppVB_post']",
     ".lithium-vb_post"
   ];
 
-  var LITSO_FOOTER_AVATAR_SELECTORS = [
+  var LITSO_TICKER_AVATAR_SELECTORS = [
     ".postprofile-avatar img",
     ".litso-viewtopic_avatar img",
     "[class*='utppVB_avatar'] img",
     ".lithium-vb_posteravatar img"
   ];
 
-  var LITSO_FOOTER_AUTHOR_SELECTORS = [
+  var LITSO_TICKER_AUTHOR_SELECTORS = [
     ".postprofile-name",
     ".litso-viewtopic_name",
     "[class*='utppVB_pseudo']",
@@ -40,7 +33,7 @@ $(function () {
     ".username"
   ];
 
-  var LITSO_FOOTER_DATE_SELECTORS = [
+  var LITSO_TICKER_DATE_SELECTORS = [
     ".postbody .author",
     ".litso-viewtopic_date",
     "[class*='utppVB_date']",
@@ -53,14 +46,14 @@ $(function () {
      OUTILS
      ======================================================= */
 
-  function LITSO_FOOTER_clean(value) {
+  function LITSO_TICKER_clean(value) {
     return String(value || "")
       .replace(/\s+/g, " ")
       .trim();
   }
 
 
-  function LITSO_FOOTER_url(value) {
+  function LITSO_TICKER_url(value) {
     if (!value) {
       return "";
     }
@@ -77,120 +70,34 @@ $(function () {
   }
 
 
-  function LITSO_FOOTER_escape(value) {
+  function LITSO_TICKER_escape(value) {
     return $("<div>")
       .text(value || "")
       .html();
   }
 
 
-  function LITSO_FOOTER_firstMatch(
-    scope,
-    selectors
-  ) {
+  function LITSO_TICKER_firstMatch(scope, selectors) {
     var result = $();
 
-    $.each(
-      selectors,
-      function (_, selector) {
-        var match = scope
-          .find(selector)
-          .first();
+    $.each(selectors, function (_, selector) {
+      var match = scope.find(selector).first();
 
-        if (match.length) {
-          result = match;
-          return false;
-        }
+      if (match.length) {
+        result = match;
+        return false;
       }
-    );
+    });
 
     return result;
   }
 
 
   /* =======================================================
-     EXTRACTION DES SUJETS DEPUIS LA RECHERCHE
+     FORUM DU SUJET
      ======================================================= */
 
-  function LITSO_FOOTER_extractTopics(html) {
-    var topics = [];
-    var seen = {};
-
-    var page = $("<div>").html(html);
-
-    var links = page.find(
-      "a.topictitle, a[href*='/t']"
-    );
-
-    links.each(function () {
-      var link = $(this);
-
-      var href =
-        link.attr("href") || "";
-
-      var idMatch = href.match(
-        /\/t(\d+)/i
-      );
-
-      if (!idMatch) {
-        return;
-      }
-
-      var topicId = idMatch[1];
-
-      if (seen[topicId]) {
-        return;
-      }
-
-      var title = LITSO_FOOTER_clean(
-        link.text()
-      );
-
-      if (
-        !title ||
-        title.length < 3
-      ) {
-        return;
-      }
-
-      var row = link.closest(
-        "li.row, .topic-row, .topiclist > li, tr"
-      );
-
-      var forumName =
-        LITSO_FOOTER_extractForumName(
-          row
-        );
-
-      seen[topicId] = true;
-
-      topics.push({
-        id: topicId,
-        title: title,
-        url: LITSO_FOOTER_url(href),
-        avatar: LITSO_FOOTER_DEFAULT_AVATAR,
-        forum: forumName || "Sujet récent",
-        author: "Dernière activité",
-        date: ""
-      });
-
-      if (
-        topics.length >=
-        LITSO_FOOTER_TOPIC_LIMIT
-      ) {
-        return false;
-      }
-    });
-
-    return topics;
-  }
-
-
-  /* =======================================================
-     NOM DU FORUM
-     ======================================================= */
-
-  function LITSO_FOOTER_extractForumName(row) {
+  function LITSO_TICKER_extractForumName(row) {
     if (!row || !row.length) {
       return "";
     }
@@ -198,44 +105,104 @@ $(function () {
     var forumLink = row
       .find("a[href*='/f']")
       .filter(function () {
-        var href =
-          $(this).attr("href") || "";
+        var href = $(this).attr("href") || "";
 
         return /\/f\d+/i.test(href);
       })
       .first();
 
     if (forumLink.length) {
-      return LITSO_FOOTER_clean(
+      return LITSO_TICKER_clean(
         forumLink.text()
       );
     }
 
     var forumElement = row
-      .find(
-        ".forum-name, .topic-forum, .row3"
-      )
+      .find(".forum-name, .topic-forum, .row3")
       .first();
 
-    return LITSO_FOOTER_clean(
+    return LITSO_TICKER_clean(
       forumElement.text()
     );
   }
 
 
   /* =======================================================
-     AFFICHAGE DES SUJETS
+     EXTRACTION DES SUJETS
      ======================================================= */
 
-  function LITSO_FOOTER_renderTopics(
-    topics
-  ) {
+  function LITSO_TICKER_extractTopics(html) {
+    var topics = [];
+    var seen = {};
+
+    var page = $("<div>").html(html);
+
+    page
+      .find("a.topictitle, a[href*='/t']")
+      .each(function () {
+        var link = $(this);
+        var href = link.attr("href") || "";
+        var idMatch = href.match(/\/t(\d+)/i);
+
+        if (!idMatch) {
+          return;
+        }
+
+        var topicId = idMatch[1];
+
+        if (seen[topicId]) {
+          return;
+        }
+
+        var title = LITSO_TICKER_clean(
+          link.text()
+        );
+
+        if (!title || title.length < 3) {
+          return;
+        }
+
+        var row = link.closest(
+          "li.row, .topic-row, .topiclist > li, tr"
+        );
+
+        seen[topicId] = true;
+
+        topics.push({
+          id: topicId,
+          title: title,
+          url: LITSO_TICKER_url(href),
+          avatar: LITSO_TICKER_DEFAULT_AVATAR,
+          forum:
+            LITSO_TICKER_extractForumName(row) ||
+            "Sujet récent",
+          author: "Dernière activité",
+          date: ""
+        });
+
+        if (
+          topics.length >=
+          LITSO_TICKER_TOPIC_LIMIT
+        ) {
+          return false;
+        }
+      });
+
+    return topics;
+  }
+
+
+  /* =======================================================
+     AFFICHAGE
+     ======================================================= */
+
+  function LITSO_TICKER_render(topics) {
     var container = $(
-      "[data-litso-footer_topics]"
+      "[data-litso-ticker-list]"
     );
 
     var counter = $(
-      "[data-litso-footer_topic-count]"
+      "[data-litso-ticker-count]"
     );
 
     if (!container.length) {
@@ -243,16 +210,11 @@ $(function () {
     }
 
     container.empty();
-
-    if (counter.length) {
-      counter.text(
-        topics.length || ""
-      );
-    }
+    counter.text(topics.length || "");
 
     if (!topics.length) {
       container.html(
-        '<div class="litso-footer_empty">' +
+        '<div class="litso-ticker_empty">' +
           "Aucun murmure récent." +
         "</div>"
       );
@@ -263,47 +225,46 @@ $(function () {
     topics.forEach(function (topic) {
       var avatar =
         topic.avatar ||
-        LITSO_FOOTER_DEFAULT_AVATAR;
+        LITSO_TICKER_DEFAULT_AVATAR;
 
-      var dateContent = topic.date
+      var date = topic.date
         ? (
-            '<span class="litso-footer_topicDate">' +
+            '<span class="litso-ticker_date">' +
               "· " +
-              LITSO_FOOTER_escape(topic.date) +
+              LITSO_TICKER_escape(topic.date) +
             "</span>"
           )
         : "";
 
       container.append(
-        '<div class="litso-footer_topicItem">' +
+        '<div class="litso-ticker_item">' +
 
-          '<div class="litso-footer_topicAvatar">' +
+          '<div class="litso-ticker_avatar">' +
             '<img src="' +
-              LITSO_FOOTER_escape(avatar) +
+              LITSO_TICKER_escape(avatar) +
               '" alt="">' +
           "</div>" +
 
-          '<div class="litso-footer_topicContent">' +
+          '<div class="litso-ticker_content">' +
 
-            '<a class="litso-footer_topicTitle"' +
-              ' href="' +
-                LITSO_FOOTER_escape(topic.url) +
-              '">' +
-                LITSO_FOOTER_escape(topic.title) +
+            '<a class="litso-ticker_title" href="' +
+              LITSO_TICKER_escape(topic.url) +
+            '">' +
+              LITSO_TICKER_escape(topic.title) +
             "</a>" +
 
-            '<div class="litso-footer_topicMeta">' +
+            '<div class="litso-ticker_meta">' +
 
-              '<span class="litso-footer_topicForum">' +
+              '<span class="litso-ticker_forum">' +
                 "#" +
-                LITSO_FOOTER_escape(topic.forum) +
+                LITSO_TICKER_escape(topic.forum) +
               "</span>" +
 
-              '<span class="litso-footer_topicAuthor">' +
-                LITSO_FOOTER_escape(topic.author) +
+              '<span class="litso-ticker_author">' +
+                LITSO_TICKER_escape(topic.author) +
               "</span>" +
 
-              dateContent +
+              date +
 
             "</div>" +
 
@@ -316,19 +277,14 @@ $(function () {
 
 
   /* =======================================================
-     EXTRACTION DU DERNIER MESSAGE D’UN SUJET
+     DERNIER MESSAGE
      ======================================================= */
 
-  function LITSO_FOOTER_extractLastPost(
-    html
-  ) {
+  function LITSO_TICKER_extractLastPost(html) {
     var page = $("<div>").html(html);
 
-    var postSelector =
-      LITSO_FOOTER_POST_SELECTORS.join(",");
-
     var posts = page.find(
-      postSelector
+      LITSO_TICKER_POST_SELECTORS.join(",")
     );
 
     var scope = posts.length
@@ -336,53 +292,43 @@ $(function () {
       : page;
 
     var avatarElement =
-      LITSO_FOOTER_firstMatch(
+      LITSO_TICKER_firstMatch(
         scope,
-        LITSO_FOOTER_AVATAR_SELECTORS
+        LITSO_TICKER_AVATAR_SELECTORS
       );
 
     var authorElement =
-      LITSO_FOOTER_firstMatch(
+      LITSO_TICKER_firstMatch(
         scope,
-        LITSO_FOOTER_AUTHOR_SELECTORS
+        LITSO_TICKER_AUTHOR_SELECTORS
       );
 
     var dateElement =
-      LITSO_FOOTER_firstMatch(
+      LITSO_TICKER_firstMatch(
         scope,
-        LITSO_FOOTER_DATE_SELECTORS
+        LITSO_TICKER_DATE_SELECTORS
       );
 
     var avatar =
       avatarElement.attr("src") || "";
 
-    var author =
-      LITSO_FOOTER_clean(
-        authorElement.text()
-      );
-
-    var date =
-      LITSO_FOOTER_clean(
-        dateElement.text()
-      );
-
     return {
       avatar: avatar
-        ? LITSO_FOOTER_url(avatar)
+        ? LITSO_TICKER_url(avatar)
         : "",
 
-      author: author,
+      author: LITSO_TICKER_clean(
+        authorElement.text()
+      ),
 
-      date: date
+      date: LITSO_TICKER_clean(
+        dateElement.text()
+      )
     };
   }
 
 
-  /* =======================================================
-     ENRICHISSEMENT D’UN SUJET
-     ======================================================= */
-
-  function LITSO_FOOTER_enrichTopic(
+  function LITSO_TICKER_enrichTopic(
     topic,
     index,
     topics
@@ -394,9 +340,7 @@ $(function () {
 
       success: function (html) {
         var lastPost =
-          LITSO_FOOTER_extractLastPost(
-            html
-          );
+          LITSO_TICKER_extractLastPost(html);
 
         if (lastPost.avatar) {
           topics[index].avatar =
@@ -413,61 +357,46 @@ $(function () {
             lastPost.date;
         }
 
-        LITSO_FOOTER_renderTopics(
-          topics
-        );
+        LITSO_TICKER_render(topics);
       }
     });
   }
 
 
-  /* =======================================================
-     ENRICHISSEMENT DE TOUS LES SUJETS
-     ======================================================= */
-
-  function LITSO_FOOTER_enrichTopics(
-    topics
-  ) {
-    topics.forEach(
-      function (topic, index) {
-        window.setTimeout(
-          function () {
-            LITSO_FOOTER_enrichTopic(
-              topic,
-              index,
-              topics
-            );
-          },
-          index * 180
+  function LITSO_TICKER_enrichTopics(topics) {
+    topics.forEach(function (topic, index) {
+      window.setTimeout(function () {
+        LITSO_TICKER_enrichTopic(
+          topic,
+          index,
+          topics
         );
-      }
-    );
+      }, index * 180);
+    });
   }
 
 
   /* =======================================================
-     CHARGEMENT DES SUJETS
+     CHARGEMENT
      ======================================================= */
 
-  function LITSO_FOOTER_loadTopics() {
+  function LITSO_TICKER_load() {
     var container = $(
-      "[data-litso-footer_topics]"
+      "[data-litso-ticker-list]"
     );
 
     var counter = $(
-      "[data-litso-footer_topic-count]"
+      "[data-litso-ticker-count]"
     );
 
     if (!container.length) {
       return;
     }
 
-    if (counter.length) {
-      counter.text("");
-    }
+    counter.text("");
 
     container.html(
-      '<div class="litso-footer_loading">' +
+      '<div class="litso-ticker_loading">' +
         "Chargement des derniers murmures…" +
       "</div>"
     );
@@ -479,28 +408,20 @@ $(function () {
 
       success: function (html) {
         var topics =
-          LITSO_FOOTER_extractTopics(
-            html
-          );
+          LITSO_TICKER_extractTopics(html);
 
-        LITSO_FOOTER_renderTopics(
-          topics
-        );
+        LITSO_TICKER_render(topics);
 
         if (topics.length) {
-          LITSO_FOOTER_enrichTopics(
-            topics
-          );
+          LITSO_TICKER_enrichTopics(topics);
         }
       },
 
       error: function () {
-        if (counter.length) {
-          counter.text("");
-        }
+        counter.text("");
 
         container.html(
-          '<div class="litso-footer_empty">' +
+          '<div class="litso-ticker_empty">' +
             "Impossible d’entendre les derniers murmures." +
           "</div>"
         );
@@ -513,26 +434,31 @@ $(function () {
      INITIALISATION
      ======================================================= */
 
-  function LITSO_FOOTER_initialize() {
+  function LITSO_TICKER_initialize() {
     var footer = $(
       "[data-litso-footer]"
+    ).first();
+
+    var ticker = footer.find(
+      "[data-litso-ticker-list]"
     );
 
     if (
       !footer.length ||
+      !ticker.length ||
       footer.attr(
-        "data-litso-footer-ready"
+        "data-litso-ticker-ready"
       ) === "true"
     ) {
       return;
     }
 
     footer.attr(
-      "data-litso-footer-ready",
+      "data-litso-ticker-ready",
       "true"
     );
 
-    LITSO_FOOTER_loadTopics();
+    LITSO_TICKER_load();
 
     if (window.lucide) {
       window.lucide.createIcons();
@@ -544,5 +470,5 @@ $(function () {
      LANCEMENT
      ======================================================= */
 
-  LITSO_FOOTER_initialize();
+  LITSO_TICKER_initialize();
 });
