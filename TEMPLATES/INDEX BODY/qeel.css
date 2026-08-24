@@ -109,7 +109,7 @@
 
 .litso-qeel_newest {
   min-width: 0;
-  padding: 30px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -117,42 +117,39 @@
   border-right: 1px solid var(--border-default, #343434);
 }
 
-.litso-qeel_newestProfile {
-  margin-top: 24px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.litso-qeel_newestAvatar {
+.litso-qeel_newestVisual {
   position: relative;
-  width: 78px;
-  height: 78px;
-  flex: 0 0 78px;
-  padding: 4px;
-  border: 1px solid var(--border-default, #3b3b3b);
-  border-radius: 50%;
-}
-
-.litso-qeel_newestAvatar::after {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  border: 1px solid rgba(180, 161, 109, 0.3);
-  border-radius: inherit;
-  pointer-events: none;
+  width: 100%;
+  height: 145px;
+  margin-top: 20px;
+  overflow: hidden;
+  background: var(--bg-page, #101010);
+  border: 1px solid var(--border-default, #343434);
 }
 
 
-/* Identifiant conservé pour ton script d’avatar */
+/* Identifiant conservé pour le script de l’avatar */
 
 #ava_lastmember {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  border-radius: inherit;
-  background: var(--bg-page, #101010);
+}
+
+#ava_lastmember::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 30%,
+      rgba(10, 10, 10, 0.28) 100%
+    );
 }
 
 #ava_lastmember a,
@@ -164,30 +161,48 @@
 
 #ava_lastmember img {
   object-fit: cover;
+  object-position: center;
 }
 
-.litso-qeel_newestIdentity {
-  min-width: 0;
-}
+
+/* Pseudo superposé à l’avatar */
 
 .litso-qeel_newestName {
+  position: absolute;
+  left: 50%;
+  bottom: 17px;
+  z-index: 2;
+  max-width: calc(100% - 28px);
+  padding: 9px 16px;
   color: var(--text-primary, #ece9e4);
-  font: 400 26px var(--font-title, "Cormorant Garamond", serif);
-  line-height: 1;
-  overflow-wrap: anywhere;
+  background: rgba(13, 13, 13, 0.92);
+  border-left: 3px solid var(--gold, #b4a16d);
+  font: 700 11px var(--font-text, "Inter", sans-serif);
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  white-space: nowrap;
 }
 
 .litso-qeel_newestName a {
+  display: block;
+  overflow: hidden;
   color: inherit;
   text-decoration: none;
+  text-overflow: ellipsis;
 }
 
+
+/* Phrase sous l’avatar */
+
 .litso-qeel_newestText {
-  display: block;
-  margin-top: 7px;
+  margin-top: 14px;
   color: var(--text-muted, #827d79);
   font: 400 10px var(--font-text, "Inter", sans-serif);
+  letter-spacing: 0.5px;
   line-height: 1.5;
+  text-align: center;
 }
 
 
