@@ -95,10 +95,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 35px;
-  color: var(--text-primary, #ece9e4);
   background: var(--bg-surface, #171717);
-  border-top: 1px solid var(--border-default, #343434);
-  border-bottom: 1px solid var(--border-default, #343434);
+  border: 1px solid var(--border-default, #343434);
 }
 
 .litso-memberlist_filtersHeading {
@@ -163,13 +161,13 @@
 .litso-memberlist_input:focus,
 .litso-memberlist_field select:hover,
 .litso-memberlist_field select:focus {
-  color: var(--text-primary, #ece9e4);
-  background: var(--bg-elevated, #1b1b1b);
-  border-color: var(--gold, #b4a16d);
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border-color: var(--gold);
 }
 
 input[type="text"]:hover, .inputbox:hover {
-  border-bottom: 1px solid var(--status-important);
+  border-bottom: 1px solid var(--gold);
 }
 
 .litso-memberlist_submit {
