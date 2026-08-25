@@ -423,6 +423,25 @@
   letter-spacing: 0.6px;
 }
 
+.litso-memberlist_stat--lastvisit {
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.litso-memberlist_stat--lastvisit .litso-memberlist_statLabel,
+.litso-memberlist_stat--lastvisit strong {
+  width: 100%;
+  text-align: center;
+}
+
+.litso-memberlist_stat--lastvisit strong {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+}
+
 
 /* =========================================================
    MESSAGE PRIVÉ
