@@ -1,0 +1,599 @@
+/* =========================================================
+   LISTE DES MEMBRES
+   ========================================================= */
+
+.litso-memberlist_ {
+  position: relative;
+  width: 100%;
+  margin: 70px auto;
+  box-sizing: border-box;
+  color: var(--text-primary, #ece9e4);
+}
+
+.litso-memberlist_,
+.litso-memberlist_ *,
+.litso-memberlist_ *::before,
+.litso-memberlist_ *::after {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   EN-TÊTE
+   ========================================================= */
+
+.litso-memberlist_header {
+  position: relative;
+  min-height: 145px;
+  padding: 28px 38px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: transparent;
+  border-top: 1px solid var(--border-default, #343434);
+  border-bottom: 1px solid var(--border-default, #343434);
+}
+
+.litso-memberlist_headerGhost {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max-content;
+  color: transparent;
+  font: italic 400 clamp(110px, 15vw, 220px) var(--font-title, "Cormorant Garamond", serif);
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  transform: translate(-50%, -50%);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.035);
+}
+
+.litso-memberlist_headerIndex {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  color: var(--gold, #b4a16d);
+  font: 700 9px var(--font-text, "Inter", sans-serif);
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+}
+
+.litso-memberlist_headerIndex span {
+  width: 65px;
+  height: 1px;
+  background: var(--gold, #b4a16d);
+  opacity: 0.65;
+}
+
+.litso-memberlist_title {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin: 15px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary, #ece9e4);
+  font: 400 50px var(--font-title, "Cormorant Garamond", serif);
+  line-height: 0.9;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.litso-memberlist_title span,
+.litso-memberlist_title em {
+  display: block;
+}
+
+.litso-memberlist_title em {
+  margin-left: 18px;
+  color: transparent;
+  font-weight: 400;
+  font-style: italic;
+  -webkit-text-stroke: 1px var(--text-secondary, #aaa5a2);
+}
+
+
+/* =========================================================
+   FORMULAIRE
+   ========================================================= */
+
+.litso-memberlist_filters {
+  width: 100%;
+  margin: 24px 0 35px;
+  padding: 22px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  color: var(--text-primary, #ece9e4);
+  background: var(--bg-surface, #171717);
+  border-top: 1px solid var(--border-default, #343434);
+  border-bottom: 1px solid var(--border-default, #343434);
+}
+
+.litso-memberlist_filtersHeading {
+  flex: 0 0 auto;
+}
+
+.litso-memberlist_eyebrow {
+  display: block;
+  color: var(--gold, #b4a16d);
+  font: 700 8px var(--font-text, "Inter", sans-serif);
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+}
+
+.litso-memberlist_filtersHeading strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--text-primary, #ece9e4);
+  font: italic 400 25px var(--font-title, "Cormorant Garamond", serif);
+}
+
+.litso-memberlist_filterFields {
+  min-width: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 13px;
+}
+
+.litso-memberlist_field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.litso-memberlist_field > span {
+  color: var(--text-muted, #827d79);
+  font: 700 8px var(--font-text, "Inter", sans-serif);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.litso-memberlist_input,
+.litso-memberlist_field select {
+  min-width: 165px;
+  height: 35px;
+  padding: 0 12px;
+  outline: 0;
+  color: var(--text-secondary, #aaa5a2);
+  background: var(--bg-page, #101010);
+  border: 1px solid var(--border-default, #343434);
+  border-radius: 0;
+  font: 400 10px var(--font-text, "Inter", sans-serif);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.litso-memberlist_input:hover,
+.litso-memberlist_input:focus,
+.litso-memberlist_field select:hover,
+.litso-memberlist_field select:focus {
+  color: var(--text-primary, #ece9e4);
+  background: var(--bg-elevated, #1b1b1b);
+  border-color: var(--gold, #b4a16d);
+}
+
+.litso-memberlist_submit {
+  height: 35px;
+  padding: 0 20px;
+  cursor: pointer;
+  color: var(--text-primary, #ece9e4);
+  background: transparent;
+  border: 1px solid var(--gold, #b4a16d);
+  border-radius: 0;
+  font: 700 9px var(--font-text, "Inter", sans-serif);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.litso-memberlist_submit:hover {
+  color: var(--bg-page, #101010);
+  background: var(--gold, #b4a16d);
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   GRILLE
+   ========================================================= */
+
+.litso-memberlist_grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 222px);
+  justify-content: center;
+  align-items: start;
+  gap: 24px;
+}
+
+
+/* =========================================================
+   CARTE D’UN MEMBRE
+   ========================================================= */
+
+.litso-memberlist_member {
+  --litso-memberlist_groupColor: var(--gold, #b4a16d);
+
+  position: relative;
+  width: 222px;
+  height: 342px;
+  padding: 10px;
+  overflow: hidden;
+  background: var(--bg-surface, #171717);
+  border: 1px solid var(--border-default, #4a4a4a);
+  transition:
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.litso-memberlist_member:hover,
+.litso-memberlist_member:focus-within {
+  border-color: var(--litso-memberlist_groupColor);
+  transform: translateY(-4px);
+}
+
+.litso-memberlist_profile {
+  position: relative;
+  display: block;
+  width: 200px;
+  height: 320px;
+  overflow: hidden;
+  color: inherit;
+  background: var(--bg-page, #101010);
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   AVATAR 200 × 320
+   ========================================================= */
+
+.litso-memberlist_avatar {
+  position: absolute;
+  inset: 0;
+  width: 200px;
+  height: 320px;
+  overflow: hidden;
+}
+
+.litso-memberlist_avatar img {
+  display: block;
+  width: 200px !important;
+  min-width: 200px;
+  max-width: none;
+  height: 320px !important;
+  min-height: 320px;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.88);
+  transition:
+    filter 0.4s ease,
+    transform 0.5s ease;
+}
+
+.litso-memberlist_member:hover .litso-memberlist_avatar img,
+.litso-memberlist_member:focus-within .litso-memberlist_avatar img {
+  filter: brightness(0.42) grayscale(0.3);
+  transform: scale(1.035);
+}
+
+
+/* =========================================================
+   VOILE AU SURVOL
+   ========================================================= */
+
+.litso-memberlist_overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.litso-memberlist_overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(10, 10, 10, 0.08) 0%,
+      rgba(10, 10, 10, 0.18) 35%,
+      rgba(10, 10, 10, 0.9) 100%
+    );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.litso-memberlist_member:hover .litso-memberlist_overlay::before,
+.litso-memberlist_member:focus-within .litso-memberlist_overlay::before {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   PSEUDO
+   ========================================================= */
+
+.litso-memberlist_pseudo {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  right: 12px;
+  z-index: 3;
+  padding: 9px 12px;
+  color: #fff;
+  background: rgba(20, 20, 20, 0.82);
+  border-left: 3px solid var(--litso-memberlist_groupColor);
+  font: 700 10px var(--font-text, "Inter", sans-serif);
+  line-height: 1.4;
+  letter-spacing: 0.7px;
+  text-align: center;
+  text-transform: uppercase;
+  transform: translateY(-50%);
+  transition:
+    top 0.4s ease,
+    background 0.3s ease;
+}
+
+@supports (
+  background:
+    color-mix(
+      in srgb,
+      red 50%,
+      transparent
+    )
+) {
+
+  .litso-memberlist_pseudo {
+    background:
+      color-mix(
+        in srgb,
+        var(--litso-memberlist_groupColor) 72%,
+        transparent
+      );
+  }
+
+}
+
+.litso-memberlist_pseudo strong,
+.litso-memberlist_pseudo span,
+.litso-memberlist_pseudo a {
+  color: #fff !important;
+  font: inherit;
+}
+
+.litso-memberlist_member:hover .litso-memberlist_pseudo,
+.litso-memberlist_member:focus-within .litso-memberlist_pseudo {
+  top: 64px;
+  background:
+    color-mix(
+      in srgb,
+      var(--litso-memberlist_groupColor) 82%,
+      rgba(10, 10, 10, 0.65)
+    );
+}
+
+
+/* =========================================================
+   STATISTIQUES RÉVÉLÉES
+   ========================================================= */
+
+.litso-memberlist_stats {
+  position: absolute;
+  right: 14px;
+  bottom: 17px;
+  left: 14px;
+  z-index: 3;
+  display: grid;
+  gap: 7px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.35s ease 0.08s,
+    transform 0.35s ease 0.08s;
+}
+
+.litso-memberlist_member:hover .litso-memberlist_stats,
+.litso-memberlist_member:focus-within .litso-memberlist_stats {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.litso-memberlist_stat {
+  min-width: 0;
+  padding: 7px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.17);
+}
+
+.litso-memberlist_statLabel {
+  color: rgba(255, 255, 255, 0.6);
+  font: 700 7px var(--font-text, "Inter", sans-serif);
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+}
+
+.litso-memberlist_stat strong {
+  min-width: 0;
+  overflow: hidden;
+  color: #fff;
+  font: 500 8px var(--font-text, "Inter", sans-serif);
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   MESSAGE PRIVÉ
+   ========================================================= */
+
+.litso-memberlist_mp {
+  position: absolute;
+  top: 19px;
+  right: 19px;
+  z-index: 5;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(12, 12, 12, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transform: translateY(-8px);
+  transition:
+    opacity 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.litso-memberlist_member:hover .litso-memberlist_mp,
+.litso-memberlist_member:focus-within .litso-memberlist_mp {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.litso-memberlist_mp a {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  font-size: 0;
+}
+
+.litso-memberlist_mp img {
+  display: none;
+}
+
+.litso-memberlist_mp a::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background: #fff;
+  -webkit-mask: url("https://unpkg.com/lucide-static/icons/mail.svg") center / contain no-repeat;
+  mask: url("https://unpkg.com/lucide-static/icons/mail.svg") center / contain no-repeat;
+}
+
+.litso-memberlist_mp:hover {
+  border-color: var(--litso-memberlist_groupColor);
+}
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+.litso-memberlist_pagination {
+  margin-top: 35px;
+  padding: 18px 22px;
+  color: var(--text-secondary, #aaa5a2);
+  background: var(--bg-surface, #171717);
+  border-top: 1px solid var(--border-default, #343434);
+  border-bottom: 1px solid var(--border-default, #343434);
+  font: 400 10px var(--font-text, "Inter", sans-serif);
+  text-align: right;
+}
+
+.litso-memberlist_pagination a,
+.litso-memberlist_pagination strong {
+  display: inline-grid;
+  min-width: 27px;
+  height: 27px;
+  margin-left: 4px;
+  place-items: center;
+  color: var(--text-secondary, #aaa5a2);
+  border: 1px solid var(--border-default, #343434);
+  text-decoration: none;
+}
+
+.litso-memberlist_pagination strong {
+  color: var(--bg-page, #101010);
+  background: var(--gold, #b4a16d);
+  border-color: var(--gold, #b4a16d);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+  .litso-memberlist_title {
+    flex-direction: column;
+    white-space: normal;
+  }
+
+  .litso-memberlist_title em {
+    margin: 5px 0 0;
+  }
+
+  .litso-memberlist_filters {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .litso-memberlist_filterFields {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+}
+
+
+@media (max-width: 520px) {
+
+  .litso-memberlist_header {
+    min-height: 130px;
+    padding: 25px 20px;
+  }
+
+  .litso-memberlist_headerIndex span {
+    width: 28px;
+  }
+
+  .litso-memberlist_title {
+    font-size: 36px;
+  }
+
+  .litso-memberlist_filters {
+    padding: 22px 20px;
+  }
+
+  .litso-memberlist_field,
+  .litso-memberlist_input,
+  .litso-memberlist_field select,
+  .litso-memberlist_submit {
+    width: 100%;
+  }
+
+  .litso-memberlist_filterFields {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+}
