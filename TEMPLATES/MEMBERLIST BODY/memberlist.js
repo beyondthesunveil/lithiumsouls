@@ -38,40 +38,39 @@
           ".usr_grp_clr"
         );
 
-        if (!groupMarker) {
-          return;
+        var groupClass = "";
+
+
+        /* ----- CLASSE PRÉSENTE DANS LE PSEUDO ----- */
+
+        if (groupMarker) {
+          groupClass = Array.prototype.find.call(
+            groupMarker.classList,
+            function (className) {
+              return className.indexOf("group-") === 0;
+            }
+          ) || "";
         }
 
 
-        /* ----- CLASSE DU GROUPE ----- */
+        /* ----- SECOURS AVEC USER_GROUP_ID ----- */
 
-        var groupClass = Array.prototype.find.call(
-          groupMarker.classList,
-          function (className) {
-            return className.indexOf("group-") === 0;
+        if (!groupClass) {
+          var groupId = memberCard.getAttribute(
+            "data-group"
+          );
+
+          if (groupId) {
+            groupClass = "group-" + groupId;
           }
-        );
+        }
+
+
+        /* ----- APPLICATION ----- */
 
         if (groupClass) {
           memberCard.classList.add(groupClass);
           pseudo.classList.add(groupClass);
-        }
-
-
-        /* ----- COULEUR RÉELLE DU GROUPE ----- */
-
-        var groupColor =
-          window.getComputedStyle(groupMarker).color;
-
-        if (
-          groupColor &&
-          groupColor !== "rgba(0, 0, 0, 0)" &&
-          groupColor !== "transparent"
-        ) {
-          memberCard.style.setProperty(
-            "--litso-memberlist_groupColor",
-            groupColor
-          );
         }
       }
     );
