@@ -644,7 +644,7 @@
 }
 
 
-/* Groupes de liens
+/* Groupes
    ========================================================= */
 
 .litso-index-tools_group {
@@ -667,12 +667,11 @@
    ========================================================= */
 
 .litso-index-tools_link {
-  position: relative;
   display: flex;
   align-items: center;
   gap: 9px;
-  min-height: 38px;
-  padding: 0 13px;
+  min-height: 40px;
+  padding: 5px 13px 5px 6px;
   color: var(--text-secondary);
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
@@ -692,41 +691,22 @@
 }
 
 
-/* Petit accent inférieur
-   ========================================================= */
-
-.litso-index-tools_link::after {
-  content: "";
-  position: absolute;
-  right: 13px;
-  bottom: -1px;
-  left: 13px;
-  height: 1px;
-  background: var(--gold);
-  opacity: 0;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition:
-    opacity 250ms ease,
-    transform 350ms cubic-bezier(.22, .61, .36, 1);
-}
-
-.litso-index-tools_link:hover::after {
-  opacity: 1;
-  transform: scaleX(1);
-}
-
-
-/* Icônes
+/* Icônes circulaires
    ========================================================= */
 
 .litso-index-tools_icon {
   display: grid;
   place-items: center;
-  width: 21px;
-  height: 21px;
-  flex: 0 0 21px;
-  border-right: 1px solid var(--border-default);
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-default);
+  border-radius: 50%;
+  transition:
+    background 250ms ease,
+    border-color 250ms ease,
+    transform 300ms cubic-bezier(.22, .61, .36, 1);
 }
 
 .litso-index-tools_icon::before {
@@ -742,9 +722,15 @@
     transform 250ms ease;
 }
 
+.litso-index-tools_link:hover .litso-index-tools_icon {
+  background: var(--bg-surface);
+  border-color: var(--gold);
+  transform: rotate(-6deg);
+}
+
 .litso-index-tools_link:hover .litso-index-tools_icon::before {
   background: var(--accent);
-  transform: translateY(-1px);
+  transform: scale(1.08);
 }
 
 
@@ -772,7 +758,13 @@
   border-color: var(--accent);
 }
 
-.litso-index-tools_link--delete::after {
+.litso-index-tools_link--delete:hover
+.litso-index-tools_icon {
+  border-color: var(--accent);
+}
+
+.litso-index-tools_link--delete:hover
+.litso-index-tools_icon::before {
   background: var(--accent);
 }
 
@@ -839,10 +831,6 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .litso-index-tools_link {
-    justify-content: flex-start;
-  }
-
   .litso-index-tools_group--secondary {
     width: auto;
     align-self: flex-end;
@@ -875,10 +863,6 @@
     min-height: 42px;
   }
 }
-
-
-/* Très petits écrans
-   ========================================================= */
 
 @media (max-width: 430px) {
   .litso-index-tools_group:first-child {
