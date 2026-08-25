@@ -536,6 +536,46 @@
   border-color: var(--gold, #b4a16d);
 }
 
+/* =========================================================
+   COULEURS DES GROUPES
+   ========================================================= */
+
+.litso-memberlist_member.group-2 {
+  --litso-memberlist_groupColor: #BAAB7B;
+}
+
+.litso-memberlist_member.group-3 {
+  --litso-memberlist_groupColor: #C66C23;
+}
+
+.litso-memberlist_member.group-4 {
+  --litso-memberlist_groupColor: #D67663;
+}
+
+.litso-memberlist_member.group-5 {
+  --litso-memberlist_groupColor: #C96477;
+}
+
+.litso-memberlist_member.group-6 {
+  --litso-memberlist_groupColor: #68597C;
+}
+
+.litso-memberlist_member.group-7 {
+  --litso-memberlist_groupColor: #364A5A;
+}
+
+.litso-memberlist_member.group-8 {
+  --litso-memberlist_groupColor: #517B77;
+}
+
+.litso-memberlist_member.group-9 {
+  --litso-memberlist_groupColor: #98A8AE;
+}
+
+.litso-memberlist_member.group-10 {
+  --litso-memberlist_groupColor: #B2ADA4;
+}
+
 
 /* =========================================================
    RESPONSIVE
