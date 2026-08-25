@@ -1,5 +1,9 @@
 /* =========================================================
-   VIEWFORUM — EN-TÊTE
+   VIEWFORUM BODY
+   ========================================================= */
+
+
+/* Décoration et mot fantôme
    ========================================================= */
 
 .litso-viewforum_deco {
@@ -27,7 +31,7 @@
 }
 
 
-/* Titre
+/* Titre du forum
    ========================================================= */
 
 .litso-viewforum_title {
@@ -37,8 +41,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: -62px;
-  padding: 61px 20px 18px;
+  margin-top: -63px;
+  padding: 60px 20px 20px;
   text-align: center;
 }
 
@@ -59,7 +63,6 @@
 }
 
 .litso-viewforum_title a {
-  position: relative;
   color: var(--text-primary);
   font: 600 54px/.9 var(--font-title);
   letter-spacing: -2px;
@@ -68,10 +71,18 @@
   transition: color 250ms ease;
 }
 
-.litso-viewforum_title a::before {
+.litso-viewforum_title a:hover {
+  color: var(--gold);
+}
+
+
+/* Micro-titre
+   ========================================================= */
+
+.litso-viewforum_title > a::before {
   content: "Archives — registre des âmes";
   position: absolute;
-  top: -25px;
+  top: 27px;
   left: 50%;
   color: var(--gold);
   font: 700 8px/1 var(--font-sans);
@@ -81,27 +92,26 @@
   transform: translateX(-50%);
 }
 
-.litso-viewforum_title a:hover {
-  color: var(--gold);
-}
-
 
 /* Fil d’Ariane
    ========================================================= */
 
 .litso-viewforum_breadcrumb {
-  display: table;
-  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  width: fit-content;
   max-width: 100%;
-  margin: 12px auto 30px;
-  padding: 10px 17px;
+  margin: 10px auto 30px;
+  padding: 10px 16px;
   color: var(--text-muted);
   background: transparent;
   border-top: 1px solid var(--border-default);
   border-bottom: 1px solid var(--border-default);
-  font: 700 8px/1.6 var(--font-sans);
+  font: 700 8px/1.5 var(--font-sans);
   letter-spacing: 1px;
-  text-align: center;
   text-transform: uppercase;
 }
 
@@ -115,12 +125,20 @@
   color: var(--gold);
 }
 
+.litso-viewforum_breadcrumb .nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
 .litso-viewforum_breadcrumb .nav::after {
-  content: "◆";
-  margin: 0 8px;
-  color: var(--accent);
-  font-size: 5px;
-  vertical-align: middle;
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin-left: 3px;
+  background: var(--accent);
+  transform: rotate(45deg);
 }
 
 
@@ -130,7 +148,7 @@
 .litso-viewforum_description {
   position: relative;
   width: 100%;
-  margin: 0 0 20px;
+  margin: 0 0 22px;
   padding: 20px 25px 20px 75px;
   color: var(--text-secondary);
   background: var(--bg-surface);
@@ -167,19 +185,23 @@
    ========================================================= */
 
 .litso-viewforum_newTopic {
-  display: inline-flex !important;
+  display: inline-flex;
   align-items: center;
   min-height: 39px;
-  margin: 0 0 18px;
-  padding: 0 15px !important;
+  margin: 0 0 17px;
+  padding: 0 15px;
   color: var(--text-secondary) !important;
   background: var(--bg-surface) !important;
   border: 1px solid var(--border-default) !important;
-  border-radius: 0 !important;
-  font: 700 8px var(--font-sans) !important;
+  border-radius: 0;
+  font: 700 8px var(--font-sans);
   letter-spacing: 1px;
   text-decoration: none;
   text-transform: uppercase;
+  transition:
+    color 250ms ease,
+    background 250ms ease,
+    border-color 250ms ease;
 }
 
 .litso-viewforum_newTopic:hover {
@@ -190,7 +212,7 @@
 
 
 /* =========================================================
-   TITRES DES LISTES
+   TITRES DES DEUX LISTES
    ========================================================= */
 
 .litso-topiclist_titleRow {
@@ -200,29 +222,38 @@
   gap: 13px;
   width: 100%;
   min-height: 57px;
-  margin: 25px 0 10px;
+  margin: 23px 0 10px;
   color: var(--text-primary);
-  font: 600 28px/.9 var(--font-title);
+  font: 600 27px/.9 var(--font-title);
+  text-transform: none;
 }
 
 .litso-topiclist_titleRow::before {
-  content: "✦";
+  content: "";
   display: grid;
   place-items: center;
   width: 36px;
   height: 36px;
   flex: 0 0 36px;
-  color: var(--gold);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
+  background-color: var(--gold);
+  border: 10px solid var(--bg-surface);
   border-radius: 50%;
-  font: 13px var(--font-sans);
+  outline: 1px solid var(--border-default);
+  mask:
+    url("https://unpkg.com/lucide-static/icons/bell.svg")
+    center / 15px 15px no-repeat,
+    linear-gradient(#000 0 0);
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static/icons/bell.svg")
+    center / 15px 15px no-repeat,
+    linear-gradient(#000 0 0);
 }
 
 .litso-topiclist_titleRow::after {
   content: "";
   flex: 1;
   height: 1px;
+  margin-left: 4px;
   background: linear-gradient(
     90deg,
     var(--gold),
@@ -231,12 +262,23 @@
   );
 }
 
-.litso-topiclist_titleRow--regular::before {
-  content: "↗";
-  color: var(--accent);
+
+/* Deuxième titre : sujets ordinaires
+   ========================================================= */
+
+.litso-topiclist_announcements ~ .litso-topiclist_titleRow::before {
+  background-color: var(--accent);
+  mask:
+    url("https://unpkg.com/lucide-static/icons/feather.svg")
+    center / 15px 15px no-repeat,
+    linear-gradient(#000 0 0);
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static/icons/feather.svg")
+    center / 15px 15px no-repeat,
+    linear-gradient(#000 0 0);
 }
 
-.litso-topiclist_titleRow--regular::after {
+.litso-topiclist_announcements ~ .litso-topiclist_titleRow::after {
   background: linear-gradient(
     90deg,
     var(--accent),
@@ -245,8 +287,12 @@
 }
 
 
-/* Listes natives
+/* Conteneurs natifs
    ========================================================= */
+
+.litso-topiclist_announcements {
+  width: 100%;
+}
 
 .litso-topiclist_topics {
   display: flex;
@@ -256,14 +302,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.litso-topiclist_nativeTitle {
-  display: none;
-}
-
-.litso-topiclist_selectAll {
-  accent-color: var(--gold);
 }
 
 
@@ -277,8 +315,9 @@
   min-height: 112px;
   margin: 0;
   overflow: hidden;
-  background: var(--bg-surface);
+  background: var(--bg-surface) !important;
   border: 1px solid var(--border-default);
+  border-radius: 0;
   transition:
     background 300ms ease,
     border-color 300ms ease,
@@ -286,61 +325,101 @@
 }
 
 .litso-topiclist_row:hover {
-  background: var(--bg-elevated);
+  background: var(--bg-elevated) !important;
   border-color: var(--border-strong);
   transform: translateY(-2px);
 }
 
-.litso-topiclist_icon {
+.litso-topiclist_row .litso-topiclist_icon {
   width: 100%;
   min-height: 110px;
   margin: 0;
 }
 
-.litso-topiclist_content {
+.litso-topiclist_row .dterm {
   position: relative;
   display: grid;
   grid-template-columns:
     minmax(300px, 1fr)
-    235px
+    240px
     100px;
   grid-template-rows: 110px;
   width: 100%;
   min-height: 110px;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 58px;
 }
 
 
-/* Bloc du titre
+/* Colonne de statut
+   ========================================================= */
+
+.litso-topiclist_row .dterm::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 57px;
+  width: 1px;
+  background: var(--border-default);
+}
+
+.litso-topiclist_row .dterm::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 18px;
+  width: 20px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.litso-topiclist_announcements
+.litso-topiclist_row
+.dterm::after {
+  background: var(--gold);
+}
+
+.litso-topiclist_announcements ~ ul
+.litso-topiclist_row
+.dterm::after {
+  background: var(--accent);
+}
+
+
+/* Bloc principal
    ========================================================= */
 
 .litso-topiclist_headingBlock {
   position: relative;
+  z-index: 2;
   grid-column: 1 / 3;
   grid-row: 1;
   display: grid;
   grid-template-columns:
     minmax(0, 1fr)
-    235px;
-  width: 100%;
+    240px;
+  width: auto;
   height: 100%;
+  margin: 0;
 }
 
 .litso-topiclist_heading {
   display: flex;
-  align-content: flex-start;
+  align-content: center;
   align-items: center;
   align-self: start;
   flex-wrap: wrap;
   gap: 8px;
+  width: auto;
   min-width: 0;
-  padding: 20px 22px 0;
+  padding: 21px 22px 0;
 }
 
 .litso-topiclist_topicTitle {
   min-width: 0;
   font: 600 23px/1 var(--font-title);
+  text-transform: none;
 }
 
 .litso-topiclist_topicTitle a {
@@ -358,6 +437,26 @@
 }
 
 
+/* Icône annonce
+   ========================================================= */
+
+.litso-topiclist_announcements .litso-topiclist_topicTitle {
+  display: flex;
+  align-items: center;
+}
+
+.litso-topiclist_announcements .litso-topiclist_topicTitle::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  margin-right: 8px;
+  flex: 0 0 12px;
+  background: var(--gold);
+  mask: url("https://unpkg.com/lucide-static/icons/bell.svg") center / contain no-repeat;
+  -webkit-mask: url("https://unpkg.com/lucide-static/icons/bell.svg") center / contain no-repeat;
+}
+
+
 /* Auteur
    ========================================================= */
 
@@ -369,6 +468,7 @@
   color: var(--text-muted);
   background: var(--bg-page);
   border: 1px solid var(--border-default);
+  border-radius: 0;
   font: 700 7px var(--font-sans);
   letter-spacing: .8px;
   text-transform: uppercase;
@@ -380,9 +480,14 @@
   color: var(--gold);
 }
 
+
+/* Participation
+   ========================================================= */
+
 .litso-topiclist_heading > img {
   width: 13px;
   height: 13px;
+  margin: 0;
   object-fit: contain;
 }
 
@@ -395,7 +500,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: auto;
   height: 100%;
+  margin: 0;
   padding: 15px 17px;
   border-left: 1px solid var(--border-default);
 }
@@ -407,21 +514,37 @@
   font: 8px var(--font-sans);
 }
 
-.litso-topiclist_counters {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--text-muted);
-  font: 700 8px var(--font-sans);
-  letter-spacing: .6px;
-  text-transform: uppercase;
+.litso-topiclist_pages:empty {
+  display: none;
 }
 
-.litso-topiclist_counters > span {
-  width: 3px;
-  height: 3px;
-  background: var(--accent);
-  transform: rotate(45deg);
+.litso-topiclist_pages .pagination {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin: 0;
+}
+
+.litso-topiclist_pages .pagination span a {
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  padding: 0;
+  color: var(--text-secondary);
+  background: var(--bg-page);
+  border: 1px solid var(--border-default);
+  border-radius: 50%;
+  font: 8px var(--font-sans);
+}
+
+.litso-topiclist_counters {
+  color: var(--text-muted);
+  font: 700 8px/1.4 var(--font-sans);
+  letter-spacing: .7px;
+  text-align: left;
+  text-transform: uppercase;
 }
 
 
@@ -430,22 +553,26 @@
 
 .litso-topiclist_details {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   grid-column: 1 / 3;
   grid-row: 1;
   align-self: end;
   display: grid;
   grid-template-columns:
     minmax(0, 1fr)
-    235px;
+    240px;
   align-items: end;
+  width: auto;
+  min-width: 0;
+  margin: 0;
   pointer-events: none;
 }
 
 .litso-topiclist_description {
   position: relative;
+  display: block;
   min-width: 0;
-  margin: 0 22px 15px;
+  margin: 0 22px 16px;
   padding-top: 8px;
   overflow: hidden;
   color: var(--text-muted);
@@ -494,14 +621,6 @@
   text-transform: uppercase;
 }
 
-.litso-topiclist_lastpost > span {
-  width: 3px;
-  height: 3px;
-  margin: 0 7px;
-  background: var(--accent);
-  transform: rotate(45deg);
-}
-
 .litso-topiclist_lastpost a,
 .litso-topiclist_lastpost strong {
   color: var(--gold);
@@ -524,13 +643,17 @@
   grid-row: 1;
   display: grid;
   place-items: center;
+  width: auto;
   height: 100%;
+  margin: 0;
   border-left: 1px solid var(--border-default);
 }
 
 .litso-topiclist_avatar {
+  position: relative;
   width: 56px;
   height: 56px;
+  margin: 0;
   padding: 4px;
   border: 1px solid var(--gold);
   border-radius: 50%;
@@ -539,6 +662,7 @@
 .litso-topiclist_avatar img {
   width: 100%;
   height: 100%;
+  border: 0;
   border-radius: 50%;
   filter: grayscale(1);
   object-fit: cover;
@@ -551,13 +675,16 @@
 }
 
 
-/* Statut du sujet
+/* Icône native du sujet
    ========================================================= */
 
 .litso-topiclist_statusIcon {
   position: absolute;
   right: 7px;
   bottom: 7px;
+  top: auto;
+  left: auto;
+  display: block;
   width: 22px;
   height: 22px;
   background-color: var(--bg-page);
@@ -565,15 +692,18 @@
   background-repeat: no-repeat;
   background-size: 11px;
   border: 1px solid var(--border-default);
+  border-radius: 0;
+  transform: none;
 }
 
 
-/* Sélection
+/* Checkbox et radio natifs
    ========================================================= */
 
-.litso-topiclist_selection {
+.litso-topiclist_row > input,
+.litso-topiclist_row input[type="radio"] {
   position: absolute;
-  z-index: 5;
+  z-index: 10;
   top: 7px;
   right: 7px;
   width: 12px;
@@ -589,7 +719,9 @@
 .litso-topiclist_empty {
   display: grid;
   place-items: center;
+  width: 100%;
   min-height: 100px;
+  margin: 0;
   padding: 22px;
   color: var(--text-secondary);
   background: var(--bg-surface);
@@ -597,6 +729,7 @@
   font: 700 9px var(--font-sans);
   letter-spacing: 1px;
   list-style: none;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -607,11 +740,12 @@
 
 
 /* =========================================================
-   OUTILS INFÉRIEURS
+   LIENS ET PAGINATION
    ========================================================= */
 
 .litso-viewforum_links {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 8px;
   margin: 20px 0;
@@ -625,6 +759,7 @@
   color: var(--text-secondary);
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
+  border-radius: 0;
   font: 700 8px var(--font-sans);
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -633,6 +768,7 @@
 .litso-viewforum_links a {
   color: inherit;
   text-decoration: none;
+  transition: color 250ms ease;
 }
 
 .litso-viewforum_links a:hover {
@@ -644,7 +780,7 @@
   color: var(--gold);
 }
 
-.litso-viewforum_pagination {
+.litso-viewforum_links + .litso-viewforum_pagination {
   margin: 15px 0;
   color: var(--text-secondary);
   font: 9px var(--font-sans);
@@ -656,17 +792,42 @@
    ========================================================= */
 
 .litso-viewforum_permissions {
+  width: 100%;
   margin: 34px 0 52px;
 }
 
 .litso-viewforum_permissionsTitle {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 13px;
+  width: 100%;
   min-height: 57px;
   color: var(--text-primary);
   font: 600 27px/.9 var(--font-title);
+  text-align: left;
   text-transform: none;
+}
+
+.litso-viewforum_permissionsTitle::before {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  margin: 0;
+  background-color: var(--gold);
+  border: 10px solid var(--bg-surface);
+  border-radius: 50%;
+  outline: 1px solid var(--border-default);
+  mask:
+    url("https://unpkg.com/lucide-static/icons/lock-keyhole.svg")
+    center / 15px 15px no-repeat,
+    linear-gradient(#000 0 0);
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static/icons/lock-keyhole.svg")
+    center / 15px 15px no-repeat,
+    linear-gradient(#000 0 0);
 }
 
 .litso-viewforum_permissionsTitle::after {
@@ -677,16 +838,7 @@
 }
 
 .litso-viewforum_permissionsTitle > i {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  flex: 0 0 36px;
-  color: var(--gold);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
-  border-radius: 50%;
-  font-size: 14px;
+  display: none;
 }
 
 .litso-viewforum_permissionsContent {
@@ -696,6 +848,7 @@
   color: var(--text-secondary);
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
+  border-radius: 0;
   font: 10px/1.6 var(--font-sans);
 }
 
@@ -709,9 +862,9 @@
    ========================================================= */
 
 @media (max-width: 1000px) {
-  .litso-topiclist_content {
+  .litso-topiclist_row .dterm {
     grid-template-columns:
-      minmax(250px, 1fr)
+      minmax(260px, 1fr)
       205px
       88px;
   }
@@ -733,17 +886,25 @@
     font-size: 100px;
   }
 
+  .litso-viewforum_title {
+    margin-top: -50px;
+    padding-top: 50px;
+  }
+
   .litso-viewforum_title a {
     font-size: 42px;
   }
 
-  .litso-topiclist_row,
-  .litso-topiclist_icon,
-  .litso-topiclist_content {
+  .litso-topiclist_row {
+    min-height: 165px;
+  }
+
+  .litso-topiclist_row .litso-topiclist_icon,
+  .litso-topiclist_row .dterm {
     min-height: 163px;
   }
 
-  .litso-topiclist_content {
+  .litso-topiclist_row .dterm {
     grid-template-columns:
       minmax(0, 1fr)
       88px;
@@ -792,7 +953,7 @@
 @media (max-width: 560px) {
   .litso-viewforum_title::before,
   .litso-viewforum_title::after {
-    width: 28px;
+    width: 30px;
   }
 
   .litso-viewforum_title a {
@@ -806,6 +967,27 @@
   .litso-topiclist_titleRow,
   .litso-viewforum_permissionsTitle {
     font-size: 23px;
+  }
+
+  .litso-topiclist_row .dterm {
+    padding-left: 43px;
+  }
+
+  .litso-topiclist_row .dterm::before {
+    left: 42px;
+  }
+
+  .litso-topiclist_row .dterm::after {
+    left: 11px;
+  }
+
+  .litso-topiclist_heading {
+    padding-right: 13px;
+    padding-left: 13px;
+  }
+
+  .litso-topiclist_topicTitle {
+    font-size: 20px;
   }
 
   .litso-viewforum_links {
