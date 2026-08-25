@@ -230,8 +230,6 @@
    ========================================================= */
 
 .litso-memberlist_member {
-  --litso-memberlist_groupColor: var(--gold, #b4a16d);
-
   position: relative;
   width: 222px;
   height: 342px;
@@ -246,7 +244,7 @@
 
 .litso-memberlist_member:hover,
 .litso-memberlist_member:focus-within {
-  border-color: var(--litso-memberlist_groupColor);
+  border-color: var(--border-strong, #696969);
   transform: translateY(-4px);
 }
 
@@ -311,6 +309,7 @@
   content: "";
   position: absolute;
   inset: 0;
+  opacity: 0;
   background:
     linear-gradient(
       to bottom,
@@ -318,7 +317,6 @@
       rgba(10, 10, 10, 0.18) 35%,
       rgba(10, 10, 10, 0.9) 100%
     );
-  opacity: 0;
   transition: opacity 0.35s ease;
 }
 
@@ -341,7 +339,7 @@
   padding: 9px 12px;
   color: #fff;
   background: rgba(20, 20, 20, 0.82);
-  border-left: 3px solid var(--litso-memberlist_groupColor);
+  border-left: 3px solid rgba(255, 255, 255, 0.45);
   font: 700 10px var(--font-text, "Inter", sans-serif);
   line-height: 1.4;
   letter-spacing: 0.7px;
@@ -351,26 +349,6 @@
   transition:
     top 0.4s ease,
     background 0.3s ease;
-}
-
-@supports (
-  background:
-    color-mix(
-      in srgb,
-      red 50%,
-      transparent
-    )
-) {
-
-  .litso-memberlist_pseudo {
-    background:
-      color-mix(
-        in srgb,
-        var(--litso-memberlist_groupColor) 72%,
-        transparent
-      );
-  }
-
 }
 
 .litso-memberlist_pseudo strong,
@@ -383,12 +361,56 @@
 .litso-memberlist_member:hover .litso-memberlist_pseudo,
 .litso-memberlist_member:focus-within .litso-memberlist_pseudo {
   top: 64px;
-  background:
-    color-mix(
-      in srgb,
-      var(--litso-memberlist_groupColor) 82%,
-      rgba(10, 10, 10, 0.65)
-    );
+}
+
+
+/* =========================================================
+   COULEURS DES GROUPES
+   ========================================================= */
+
+.litso-memberlist_pseudo.group-2 {
+  background: rgba(186, 171, 123, 0.82);
+  border-left-color: #BAAB7B;
+}
+
+.litso-memberlist_pseudo.group-3 {
+  background: rgba(198, 108, 35, 0.82);
+  border-left-color: #C66C23;
+}
+
+.litso-memberlist_pseudo.group-4 {
+  background: rgba(214, 118, 99, 0.82);
+  border-left-color: #D67663;
+}
+
+.litso-memberlist_pseudo.group-5 {
+  background: rgba(201, 100, 119, 0.82);
+  border-left-color: #C96477;
+}
+
+.litso-memberlist_pseudo.group-6 {
+  background: rgba(104, 89, 124, 0.82);
+  border-left-color: #68597C;
+}
+
+.litso-memberlist_pseudo.group-7 {
+  background: rgba(54, 74, 90, 0.82);
+  border-left-color: #364A5A;
+}
+
+.litso-memberlist_pseudo.group-8 {
+  background: rgba(81, 123, 119, 0.82);
+  border-left-color: #517B77;
+}
+
+.litso-memberlist_pseudo.group-9 {
+  background: rgba(152, 168, 174, 0.82);
+  border-left-color: #98A8AE;
+}
+
+.litso-memberlist_pseudo.group-10 {
+  background: rgba(178, 173, 164, 0.82);
+  border-left-color: #B2ADA4;
 }
 
 
@@ -499,7 +521,7 @@
 }
 
 .litso-memberlist_mp:hover {
-  border-color: var(--litso-memberlist_groupColor);
+  border-color: var(--gold, #b4a16d);
 }
 
 
@@ -534,46 +556,6 @@
   color: var(--bg-page, #101010);
   background: var(--gold, #b4a16d);
   border-color: var(--gold, #b4a16d);
-}
-
-/* =========================================================
-   COULEURS DES GROUPES
-   ========================================================= */
-
-.litso-memberlist_member.group-2 {
-  --litso-memberlist_groupColor: #BAAB7B;
-}
-
-.litso-memberlist_member.group-3 {
-  --litso-memberlist_groupColor: #C66C23;
-}
-
-.litso-memberlist_member.group-4 {
-  --litso-memberlist_groupColor: #D67663;
-}
-
-.litso-memberlist_member.group-5 {
-  --litso-memberlist_groupColor: #C96477;
-}
-
-.litso-memberlist_member.group-6 {
-  --litso-memberlist_groupColor: #68597C;
-}
-
-.litso-memberlist_member.group-7 {
-  --litso-memberlist_groupColor: #364A5A;
-}
-
-.litso-memberlist_member.group-8 {
-  --litso-memberlist_groupColor: #517B77;
-}
-
-.litso-memberlist_member.group-9 {
-  --litso-memberlist_groupColor: #98A8AE;
-}
-
-.litso-memberlist_member.group-10 {
-  --litso-memberlist_groupColor: #B2ADA4;
 }
 
 
