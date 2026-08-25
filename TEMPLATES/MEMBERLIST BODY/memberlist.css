@@ -372,11 +372,11 @@
 .litso-memberlist_stats {
   position: absolute;
   right: 14px;
-  bottom: 17px;
+  bottom: 14px;
   left: 14px;
   z-index: 3;
   display: grid;
-  gap: 7px;
+  gap: 4px;
   opacity: 0;
   transform: translateY(18px);
   transition:
@@ -392,7 +392,7 @@
 
 .litso-memberlist_stat {
   min-width: 0;
-  padding: 7px 0;
+  padding: 6px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -415,6 +415,12 @@
   text-align: right;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.litso-memberlist_stat--group strong {
+  color: var(--litso-memberlist_groupColor, #fff);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
 }
 
 
