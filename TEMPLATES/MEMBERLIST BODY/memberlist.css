@@ -352,7 +352,6 @@
 }
 
 .litso-memberlist_pseudo strong,
-.litso-memberlist_pseudo span,
 .litso-memberlist_pseudo a {
   color: #fff !important;
   font: inherit;
@@ -364,54 +363,6 @@
 }
 
 
-/* =========================================================
-   COULEURS DES GROUPES
-   ========================================================= */
-
-.litso-memberlist_pseudo.group-2 {
-  background: rgba(186, 171, 123, 0.82);
-  border-left-color: #BAAB7B;
-}
-
-.litso-memberlist_pseudo.group-3 {
-  background: rgba(198, 108, 35, 0.82);
-  border-left-color: #C66C23;
-}
-
-.litso-memberlist_pseudo.group-4 {
-  background: rgba(214, 118, 99, 0.82);
-  border-left-color: #D67663;
-}
-
-.litso-memberlist_pseudo.group-5 {
-  background: rgba(201, 100, 119, 0.82);
-  border-left-color: #C96477;
-}
-
-.litso-memberlist_pseudo.group-6 {
-  background: rgba(104, 89, 124, 0.82);
-  border-left-color: #68597C;
-}
-
-.litso-memberlist_pseudo.group-7 {
-  background: rgba(54, 74, 90, 0.82);
-  border-left-color: #364A5A;
-}
-
-.litso-memberlist_pseudo.group-8 {
-  background: rgba(81, 123, 119, 0.82);
-  border-left-color: #517B77;
-}
-
-.litso-memberlist_pseudo.group-9 {
-  background: rgba(152, 168, 174, 0.82);
-  border-left-color: #98A8AE;
-}
-
-.litso-memberlist_pseudo.group-10 {
-  background: rgba(178, 173, 164, 0.82);
-  border-left-color: #B2ADA4;
-}
 
 
 /* =========================================================
