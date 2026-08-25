@@ -633,6 +633,278 @@
    ========================================================= */
 
 .litso-index-tools {
+  position: relative;
+  width: 100%;
+  min-height: 92px;
+  margin: -38px 0 50px;
+  display: grid;
+  grid-template-columns: 225px minmax(0, 1fr) auto;
+  align-items: stretch;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.litso-index-tools,
+.litso-index-tools *,
+.litso-index-tools *::before,
+.litso-index-tools *::after {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   INTRODUCTION
+   ========================================================= */
+
+.litso-index-tools_heading {
+  min-width: 0;
+  padding: 22px 27px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid var(--border-default);
+}
+
+.litso-index-tools_eyebrow {
+  display: block;
+  color: var(--gold);
+  font: 700 8px var(--font-sans);
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+}
+
+.litso-index-tools_heading strong {
+  display: block;
+  margin-top: 5px;
+  color: var(--text-primary);
+  font: 400 24px var(--font-title);
+  line-height: 1;
+}
+
+.litso-index-tools_heading em {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   GROUPES DE LIENS
+   ========================================================= */
+
+.litso-index-tools_actions {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(82px, 1fr));
+}
+
+.litso-index-tools_secondary {
+  display: flex;
+  border-left: 1px solid var(--border-default);
+}
+
+
+/* =========================================================
+   LIENS
+   ========================================================= */
+
+.litso-index-tools_link {
+  position: relative;
+  min-width: 0;
+  min-height: 91px;
+  padding: 13px 10px 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--text-muted);
+  background: transparent;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    color 300ms cubic-bezier(.22, .61, .36, 1),
+    background 300ms cubic-bezier(.22, .61, .36, 1);
+}
+
+.litso-index-tools_actions .litso-index-tools_link + .litso-index-tools_link {
+  border-left: 1px solid var(--border-default);
+}
+
+.litso-index-tools_link:hover,
+.litso-index-tools_link:focus-visible {
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+}
+
+
+/* Ligne colorée inférieure */
+
+.litso-index-tools_link::before {
+  content: "";
+  position: absolute;
+  right: 18px;
+  bottom: -1px;
+  left: 18px;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0.2);
+  transform-origin: center;
+  transition: transform 300ms cubic-bezier(.22, .61, .36, 1);
+}
+
+.litso-index-tools_link:hover::before,
+.litso-index-tools_link:focus-visible::before {
+  transform: scaleX(1);
+}
+
+
+/* Libellé court visible */
+
+.litso-index-tools_link > span {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  color: inherit;
+  font: 700 7px var(--font-sans);
+  letter-spacing: 0.7px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   ICÔNES
+   ========================================================= */
+
+.litso-index-tools_icon {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  flex: 0 0 34px;
+  place-items: center;
+  color: var(--gold);
+  border: 1px solid var(--border-default);
+  transform: rotate(45deg);
+  transition:
+    color 300ms cubic-bezier(.22, .61, .36, 1),
+    border-color 300ms cubic-bezier(.22, .61, .36, 1),
+    transform 300ms cubic-bezier(.22, .61, .36, 1);
+}
+
+.litso-index-tools_icon::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background: currentColor;
+  mask: var(--litso-tool-icon) center / contain no-repeat;
+  -webkit-mask: var(--litso-tool-icon) center / contain no-repeat;
+  transform: rotate(-45deg);
+}
+
+.litso-index-tools_link:hover .litso-index-tools_icon,
+.litso-index-tools_link:focus-visible .litso-index-tools_icon {
+  color: var(--accent);
+  border-color: var(--gold);
+  transform: rotate(45deg) scale(1.08);
+}
+
+
+/* =========================================================
+   TOOLTIP COMPLET
+   ========================================================= */
+
+.litso-index-tools_link::after {
+  content: attr(data-title);
+  position: absolute;
+  z-index: 50;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  width: max-content;
+  max-width: 230px;
+  padding: 7px 10px;
+  color: #fff;
+  background: var(--bg-page);
+  border: 1px solid var(--border-default);
+  font: 400 9px var(--font-sans);
+  line-height: 1.4;
+  white-space: normal;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, 5px);
+  transition:
+    opacity 200ms ease,
+    visibility 200ms ease,
+    transform 200ms ease;
+}
+
+.litso-index-tools_link:hover::after,
+.litso-index-tools_link:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+
+/* =========================================================
+   SUPPRESSION DES COOKIES
+   ========================================================= */
+
+.litso-index-tools_link--delete {
+  width: 105px;
+}
+
+.litso-index-tools_link--delete::before {
+  background: var(--text-muted);
+}
+
+.litso-index-tools_link--delete:hover,
+.litso-index-tools_link--delete:focus-visible {
+  color: var(--text-primary);
+}
+
+
+/* =========================================================
+   ASSOCIATION DES ICÔNES
+   ========================================================= */
+
+.litso-index-tools_link[href*="search_id=newposts"] {
+  --litso-tool-icon: url("https://unpkg.com/lucide-static/icons/flame.svg");
+}
+
+.litso-index-tools_link[href*="search_id=egosearch"] {
+  --litso-tool-icon: url("https://unpkg.com/lucide-static/icons/inbox.svg");
+}
+
+.litso-index-tools_link[href*="search_id=unanswered"] {
+  --litso-tool-icon: url("https://unpkg.com/lucide-static/icons/message-circle.svg");
+}
+
+.litso-index-tools_link[href*="mark=forums"] {
+  --litso-tool-icon: url("https://unpkg.com/lucide-static/icons/check-circle.svg");
+}
+
+.litso-index-tools_link[href*="search_id=activetopics"] {
+  --litso-tool-icon: url("https://unpkg.com/lucide-static/icons/calendar.svg");
+}
+
+.litso-index-tools_link[href*="poster"] {
+  --litso-tool-icon: url("https://unpkg.com/lucide-static/icons/trophy.svg");
+}
+
+.litso-index-tools_link[href*="overall"] {
+  --litso-tool-icon: url("https://unpkg.com/lucide-static/icons/bar-chart-2.svg");
+}
+
+.litso-index-tools_link[href*="delete_cookies"] {
+  --litso-tool-icon: url("https://unpkg.com/lucide-static/icons/trash-2.svg");
+}
+
+/* .litso-index-tools {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -740,7 +1012,7 @@
 
 .litso-index-tools a[href*="delete_cookies"] {
   --litso-tool-icon: url("https://unpkg.com/lucide-static/icons/trash-2.svg");
-}
+} */
 
 
 @media (max-width: 980px) {
