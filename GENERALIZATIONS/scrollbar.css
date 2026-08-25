@@ -1,38 +1,31 @@
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
-
 ::-webkit-scrollbar-track {
   background:
     linear-gradient(
       90deg,
-      transparent calc(50% - 0.5px),
-      var(--border-default) calc(50% - 0.5px),
-      var(--border-default) calc(50% + 0.5px),
-      transparent calc(50% + 0.5px)
+      transparent 0,
+      transparent 3.5px,
+      var(--border-default) 3.5px,
+      var(--border-default) 4.5px,
+      transparent 4.5px,
+      transparent 100%
     );
 }
-
 ::-webkit-scrollbar-thumb {
-  min-height: 45px;
-  border: 2px solid transparent;
+  background: linear-gradient(
+    180deg,
+    var(--gold-light),
+    var(--gold, var(--accent))
+  );
   border-radius: 10px;
-  background:
-    var(--gradient-accent-vertical)
-    padding-box;
-  transition:
-    filter 0.2s ease,
-    box-shadow 0.2s ease;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  opacity: 1;
+  transition: 0.2s ease;
 }
-
-::-webkit-scrollbar-thumb:hover {
-  filter: brightness(1.18);
-  box-shadow:
-    0 0 8px var(--gold-faded),
-    0 0 12px var(--accent-faded);
-}
-
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
