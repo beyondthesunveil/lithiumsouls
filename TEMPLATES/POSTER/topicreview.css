@@ -17,10 +17,6 @@
 }
 
 
-/* =========================================================
-   EN-TÊTE PRINCIPAL
-   ========================================================= */
-
 .litso-topicreview_header {
   position: relative;
   display: flex;
@@ -28,14 +24,13 @@
   justify-content: center;
   width: 100%;
   min-height: 155px;
-  gap: 18px;
   margin: 0;
   padding: 30px 20px;
   overflow: hidden;
   color: var(--text-primary);
   background: transparent;
   border-bottom: 1px solid var(--border-default);
-  text-align: left;
+  text-align: center;
 }
 
 
@@ -68,74 +63,101 @@
   position: absolute;
   bottom: 0;
   left: 50%;
-  width: 70px;
-  height: 2px;
+  width: 120px;
+  height: 3px;
   background: var(--gradient-accent);
   transform: translateX(-50%);
 }
 
 
-/* ----- ICÔNE PRINCIPALE ----- */
+/* ----- TITRE PRINCIPAL ----- */
 
-.litso-topicreview_headerIcon {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
-  flex: 0 0 46px;
-  color: var(--gold-dark);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
-  border-radius: 50%;
-}
-
-.litso-topicreview_headerIcon svg {
-  width: 19px;
-  height: 19px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-
-/* ----- GROUPE DES TITRES ----- */
-
-.litso-topicreview_headerHeading {
+.litso-topicreview_headerTitle {
   position: relative;
   z-index: 2;
   display: flex;
-  min-width: 0;
-  flex: 0 0 auto;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.litso-topicreview_headerHeading > span {
-  display: block;
-  margin: 0 0 7px;
-  color: var(--gold-dark);
-  font: 700 9px/1 var(--font-condensed);
-  letter-spacing: 2.2px;
-  text-transform: uppercase;
-}
-
-.litso-topicreview_headerHeading > strong {
-  display: block;
-  margin: 0;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
   color: var(--text-primary);
   font: 600 49px/.95 var(--font-display);
   letter-spacing: -2px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 
-/* ----- ANCIEN TRAIT DÉCORATIF ----- */
+/* ----- TRAITS AUTOUR DU TITRE ----- */
 
-.litso-topicreview_headerRule {
-  display: none;
+.litso-topicreview_headerTitle::before,
+.litso-topicreview_headerTitle::after {
+  content: "";
+  width: 115px;
+  height: 1px;
+  flex: 0 0 115px;
+  margin: 0 28px;
+  background: var(--gradient-accent);
+}
+
+.litso-topicreview_headerTitle::after {
+  background: var(--gradient-accent-reverse);
+}
+
+
+/* =========================================================
+   RESPONSIVE DE L’EN-TÊTE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .litso-topicreview_header {
+    min-height: 125px;
+    padding: 25px 14px;
+  }
+
+  .litso-topicreview_header::before {
+    font-size: 82px;
+    letter-spacing: -4px;
+  }
+
+  .litso-topicreview_headerTitle {
+    font-size: 39px;
+  }
+
+  .litso-topicreview_headerTitle::before,
+  .litso-topicreview_headerTitle::after {
+    width: 55px;
+    flex-basis: 55px;
+    margin: 0 15px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .litso-topicreview_header {
+    min-height: 105px;
+    padding: 20px 10px;
+  }
+
+  .litso-topicreview_header::before {
+    font-size: 58px;
+    letter-spacing: -3px;
+  }
+
+  .litso-topicreview_headerTitle {
+    font-size: 30px;
+    letter-spacing: -1px;
+  }
+
+  .litso-topicreview_headerTitle::before,
+  .litso-topicreview_headerTitle::after {
+    width: 25px;
+    flex-basis: 25px;
+    margin: 0 9px;
+  }
+
+  .litso-topicreview_header::after {
+    width: 75px;
+  }
 }
 
 
