@@ -11,47 +11,41 @@
 }
 
 
-/* =========================================================
-   EN-TÊTE
-   ========================================================= */
-
-.litso-topicreview_header {
+.litso-reviewmsg_header {
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
   min-height: 78px;
   gap: 14px;
   padding: 14px 20px;
   overflow: hidden;
+  color: var(--text-secondary);
   background: var(--bg-elevated);
   border: 1px solid var(--border-default);
 }
 
+/* ----- TITRE FANTÔME ----- */
 
-/* ----- GHOST ----- */
-
-.litso-topicreview_header::before {
+.litso-reviewmsg_header::before {
   content: attr(data-ghost);
   position: absolute;
   top: 50%;
   right: 18px;
-  overflow: hidden;
   color: transparent;
-  font: italic 70px/.8 var(--font-display);
+  font: italic 500 70px/.8 var(--font-display);
   letter-spacing: -4px;
   text-transform: uppercase;
   white-space: nowrap;
-  opacity: .6;
+  opacity: 0.12;
   pointer-events: none;
   transform: translateY(-50%);
-  -webkit-text-stroke:
-    1px var(--border-subtle);
+  -webkit-text-stroke: 1px var(--text-primary);
 }
-
 
 /* ----- ICÔNE ----- */
 
-.litso-topicreview_headerIcon {
+.litso-reviewmsg_headerIcon {
   position: relative;
   z-index: 2;
   display: grid;
@@ -65,7 +59,7 @@
   border-radius: 50%;
 }
 
-.litso-topicreview_headerIcon svg {
+.litso-reviewmsg_headerIcon svg {
   width: 18px;
   height: 18px;
   fill: none;
@@ -75,22 +69,19 @@
   stroke-linejoin: round;
 }
 
-
 /* ----- GROUPE DES TITRES ----- */
 
-.litso-topicreview_headerHeading {
+.litso-reviewmsg_headerHeading {
   position: relative;
   z-index: 2;
   display: flex;
   flex: 0 0 auto;
+  min-width: 0;
   flex-direction: column;
   align-items: flex-start;
 }
 
-
-/* Petit intitulé */
-
-.litso-topicreview_headerEyebrow {
+.litso-reviewmsg_headerEyebrow {
   display: block;
   margin: 0 0 4px;
   color: var(--gold-dark);
@@ -99,33 +90,24 @@
   text-transform: uppercase;
 }
 
-
-/* Titre principal */
-
-.litso-topicreview_headerTitle {
+.litso-reviewmsg_headerTitle {
   display: block;
   margin: 0;
   color: var(--text-primary);
   font: 600 27px/.95 var(--font-display);
 }
 
-
 /* ----- TRAIT DÉCORATIF ----- */
 
-.litso-topicreview_headerRule {
+.litso-reviewmsg_headerRule {
   position: relative;
   z-index: 2;
-  flex: 1;
   height: 1px;
+  flex: 1;
   margin-left: 6px;
   background: var(--gradient-accent);
-  opacity: .65;
+  opacity: 0.65;
 }
-
-
-/* =========================================================
-   LISTE DES MESSAGES
-   ========================================================= */
 
 .litso-topicreview_list {
   display: flex;
