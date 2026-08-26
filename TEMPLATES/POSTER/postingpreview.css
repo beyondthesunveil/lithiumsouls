@@ -17,22 +17,6 @@
   border: 1px solid var(--border-default);
 }
 
-.litso-postpreview_ghost {
-  position: absolute;
-  top: 50%;
-  right: 18px;
-  color: transparent;
-  font: italic 70px/.8 var(--font-display);
-  letter-spacing: -4px;
-  text-transform: uppercase;
-  white-space: nowrap;
-  opacity: .6;
-  pointer-events: none;
-  transform: translateY(-50%);
-  -webkit-text-stroke:
-    1px var(--border-subtle);
-}
-
 .litso-postpreview_icon {
   position: relative;
   z-index: 2;
@@ -76,16 +60,6 @@
   display: block;
   color: var(--text-primary);
   font: 600 27px/.95 var(--font-display);
-}
-
-.litso-postpreview_rule {
-  position: relative;
-  z-index: 2;
-  flex: 1;
-  height: 1px;
-  margin-left: 6px;
-  background: var(--gradient-accent);
-  opacity: .65;
 }
 
 .litso-postpreview_content {
@@ -139,11 +113,6 @@
   .litso-postpreview_header {
     min-height: 70px;
     padding: 12px 14px;
-  }
-
-  .litso-postpreview_ghost {
-    right: 8px;
-    font-size: 50px;
   }
 
   .litso-postpreview_heading > strong {
