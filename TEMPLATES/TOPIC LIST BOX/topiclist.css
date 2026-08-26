@@ -1,22 +1,5 @@
 /* ----- topic_list_box ----- */
 
-.litso-topiclist_background {
-  outline: 2px solid red !important;
-}
-
-.litso-topiclist_background.is-note {
-  outline-color: gold !important;
-}
-
-.litso-topiclist_background.is-announcement {
-  outline-color: cyan !important;
-}
-
-.litso-topiclist_background.is-global {
-  outline-color: magenta !important;
-}
-
-
 /* ----- TITRES DES SECTIONS ----- */
 
 .litso-topiclist_titlerow {
