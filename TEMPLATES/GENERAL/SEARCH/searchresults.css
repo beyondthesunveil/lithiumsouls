@@ -474,6 +474,7 @@
 .litso-searchresults_pagination {
   flex-wrap: wrap;
   gap: 5px;
+   
 }
 
 .litso-searchresults_pagination:empty {
@@ -535,11 +536,7 @@
 }
 
 .litso-searchresults_pagination .page-sep {
-  display: grid;
-  place-items: center;
-  min-width: 18px;
-  color: var(--text-faded);
-  font: 10px/1 var(--font-sans);
+  font-size:0;
 }
 
 
