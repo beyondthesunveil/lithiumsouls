@@ -1,0 +1,413 @@
+/* =========================================================
+   REVUE DES MESSAGES PRÉCÉDENTS
+   Nomenclature : litso-topicreview_
+   ========================================================= */
+
+.litso-topicreview_ {
+  position: relative;
+  width: 100%;
+  margin: 28px 0;
+  color: var(--text-secondary);
+}
+
+
+/* =========================================================
+   EN-TÊTE
+   ========================================================= */
+
+.litso-topicreview_header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 84px;
+  gap: 15px;
+  padding: 15px 21px;
+  overflow: hidden;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+.litso-topicreview_header::before {
+  content: attr(data-ghost);
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  max-width: 80%;
+  overflow: hidden;
+  color: transparent;
+  font: italic 72px/.8 var(--font-display);
+  letter-spacing: -4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: .6;
+  pointer-events: none;
+  transform: translateY(-50%);
+  -webkit-text-stroke:
+    1px var(--border-subtle);
+}
+
+
+/* Icône */
+
+.litso-topicreview_headerIcon {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  flex: 0 0 43px;
+  color: var(--gold-dark);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 50%;
+}
+
+.litso-topicreview_headerIcon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.55;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* Titre */
+
+.litso-topicreview_headerHeading {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+}
+
+.litso-topicreview_headerHeading > span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--gold-dark);
+  font: 700 8px/1 var(--font-condensed);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.litso-topicreview_headerHeading > strong {
+  display: block;
+  color: var(--text-primary);
+  font: 600 28px/.95 var(--font-display);
+}
+
+.litso-topicreview_headerRule {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  height: 1px;
+  margin-left: 8px;
+  background: var(--gradient-accent);
+  opacity: .65;
+}
+
+
+/* =========================================================
+   LISTE DES MESSAGES
+   ========================================================= */
+
+.litso-topicreview_list {
+  display: flex;
+  flex-direction: column;
+  max-height: 620px;
+  gap: 11px;
+  padding: 14px;
+  overflow: auto;
+  background: var(--bg-soft);
+  border: 1px solid var(--border-default);
+  border-top: 0;
+}
+
+.litso-topicreview_list::-webkit-scrollbar {
+  width: 7px;
+}
+
+.litso-topicreview_list::-webkit-scrollbar-track {
+  background: var(--bg-elevated);
+}
+
+.litso-topicreview_list::-webkit-scrollbar-thumb {
+  background: var(--gradient-accent-vertical);
+  border: 2px solid var(--bg-elevated);
+}
+
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.litso-topicreview_post {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+}
+
+.litso-topicreview_post::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 0;
+  width: 2px;
+  background: var(--gradient-accent-vertical);
+}
+
+.litso-topicreview_anchor {
+  position: absolute;
+  top: 0;
+}
+
+
+/* =========================================================
+   EN-TÊTE DU MESSAGE
+   ========================================================= */
+
+.litso-topicreview_postHeader {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(225px, auto);
+  align-items: center;
+  gap: 25px;
+  padding: 18px 23px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.litso-topicreview_postHeading {
+  min-width: 0;
+}
+
+.litso-topicreview_eyebrow {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--gold-dark);
+  font: 700 7px/1 var(--font-condensed);
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+}
+
+.litso-topicreview_subject {
+  margin: 0;
+  overflow: hidden;
+  color: var(--text-primary);
+  font: 600 24px/1 var(--font-display);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   AUTEUR ET DATE
+   ========================================================= */
+
+.litso-topicreview_author {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+  gap: 11px;
+}
+
+.litso-topicreview_authorIcon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 50%;
+}
+
+.litso-topicreview_authorIcon img {
+  display: block;
+  max-width: 17px;
+  max-height: 17px;
+  object-fit: contain;
+}
+
+.litso-topicreview_authorText {
+  min-width: 0;
+}
+
+.litso-topicreview_authorText > span {
+  display: block;
+  overflow: hidden;
+  color: var(--text-secondary);
+  font: 700 10px/1.4 var(--font-sans);
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.litso-topicreview_authorText > span a,
+.litso-topicreview_authorText > span strong {
+  color: var(--gold-dark);
+}
+
+.litso-topicreview_authorText time {
+  display: block;
+  margin-top: 3px;
+  color: var(--text-muted);
+  font: 9px/1.4 var(--font-sans);
+  text-align: right;
+}
+
+
+/* =========================================================
+   CONTENU DU MESSAGE
+   ========================================================= */
+
+.litso-topicreview_content {
+  min-height: 100px;
+  padding: 25px 28px;
+  overflow-wrap: anywhere;
+  color: var(--text-secondary);
+  font: 12px/1.7 var(--font-sans);
+  text-align: justify;
+}
+
+.litso-topicreview_content > :first-child {
+  margin-top: 0;
+}
+
+.litso-topicreview_content > :last-child {
+  margin-bottom: 0;
+}
+
+.litso-topicreview_content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.litso-topicreview_content a {
+  color: var(--accent-dark);
+}
+
+.litso-topicreview_content blockquote {
+  margin: 16px 0;
+  padding: 15px 19px;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border-left: 2px solid var(--gold);
+}
+
+
+/* =========================================================
+   MESSAGE MASQUÉ
+   ========================================================= */
+
+.litso-topicreview_hidden {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90px;
+  gap: 14px;
+  padding: 20px;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border: 1px dashed var(--border-strong);
+}
+
+.litso-topicreview_hiddenIcon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 50%;
+}
+
+.litso-topicreview_hiddenIcon svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.litso-topicreview_hiddenContent > span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--gold-dark);
+  font: 700 7px/1 var(--font-condensed);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.litso-topicreview_hiddenContent p {
+  margin: 0;
+  font: 11px/1.5 var(--font-sans);
+  text-align: left;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .litso-topicreview_header::before {
+    right: 8px;
+    font-size: 52px;
+  }
+
+  .litso-topicreview_headerRule {
+    display: none;
+  }
+
+  .litso-topicreview_postHeader {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .litso-topicreview_author {
+    justify-content: flex-start;
+  }
+
+  .litso-topicreview_authorText > span,
+  .litso-topicreview_authorText time {
+    text-align: left;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .litso-topicreview_header {
+    padding: 13px;
+  }
+
+  .litso-topicreview_headerHeading > strong {
+    font-size: 23px;
+  }
+
+  .litso-topicreview_list {
+    padding: 8px;
+  }
+
+  .litso-topicreview_postHeader {
+    padding: 16px;
+  }
+
+  .litso-topicreview_subject {
+    font-size: 21px;
+  }
+
+  .litso-topicreview_content {
+    padding: 21px 18px;
+  }
+}
