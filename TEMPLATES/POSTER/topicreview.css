@@ -1,15 +1,20 @@
 /* =========================================================
    REVUE DES MESSAGES PRÉCÉDENTS
-   Nomenclature : litso-topicreview_
+   Nomenclature : litso-reviewmsg_
    ========================================================= */
 
-.litso-topicreview_ {
+.litso-reviewmsg_ {
   position: relative;
   width: 100%;
   margin: 28px 0;
   color: var(--text-secondary);
+  font-family: var(--font-sans);
 }
 
+
+/* =========================================================
+   EN-TÊTE PRINCIPAL
+   ========================================================= */
 
 .litso-reviewmsg_header {
   position: relative;
@@ -24,6 +29,7 @@
   background: var(--bg-elevated);
   border: 1px solid var(--border-default);
 }
+
 
 /* ----- TITRE FANTÔME ----- */
 
@@ -43,7 +49,8 @@
   -webkit-text-stroke: 1px var(--text-primary);
 }
 
-/* ----- ICÔNE ----- */
+
+/* ----- ICÔNE PRINCIPALE ----- */
 
 .litso-reviewmsg_headerIcon {
   position: relative;
@@ -69,7 +76,8 @@
   stroke-linejoin: round;
 }
 
-/* ----- GROUPE DES TITRES ----- */
+
+/* ----- TITRES DE L’EN-TÊTE ----- */
 
 .litso-reviewmsg_headerHeading {
   position: relative;
@@ -97,6 +105,7 @@
   font: 600 27px/.95 var(--font-display);
 }
 
+
 /* ----- TRAIT DÉCORATIF ----- */
 
 .litso-reviewmsg_headerRule {
@@ -109,57 +118,152 @@
   opacity: 0.65;
 }
 
-.litso-topicreview_list {
+
+/* =========================================================
+   LISTE DES MESSAGES
+   ========================================================= */
+
+.litso-reviewmsg_list {
   display: flex;
-  flex-direction: column;
+  width: 100%;
   max-height: 620px;
-  gap: 11px;
+  flex-direction: column;
+  gap: 12px;
   padding: 14px;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   background: var(--bg-soft);
   border: 1px solid var(--border-default);
   border-top: 0;
 }
 
-.litso-topicreview_list::-webkit-scrollbar {
+.litso-reviewmsg_list::-webkit-scrollbar {
   width: 7px;
 }
 
-.litso-topicreview_list::-webkit-scrollbar-track {
+.litso-reviewmsg_list::-webkit-scrollbar-track {
   background: var(--bg-elevated);
 }
 
-.litso-topicreview_list::-webkit-scrollbar-thumb {
+.litso-reviewmsg_list::-webkit-scrollbar-thumb {
   background: var(--gradient-accent-vertical);
   border: 2px solid var(--bg-elevated);
 }
 
 
 /* =========================================================
-   MESSAGE
+   LIGNE D’UN MESSAGE
    ========================================================= */
 
-.litso-topicreview_post {
+.litso-reviewmsg_row {
   position: relative;
+  display: grid;
   width: 100%;
+  grid-template-columns: 180px minmax(0, 1fr);
   overflow: hidden;
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
 }
 
-.litso-topicreview_post::before {
+.litso-reviewmsg_row::before {
   content: "";
   position: absolute;
   top: 18px;
   bottom: 18px;
   left: 0;
+  z-index: 3;
   width: 2px;
   background: var(--gradient-accent-vertical);
 }
 
-.litso-topicreview_anchor {
+
+/* =========================================================
+   EXPÉDITEUR
+   ========================================================= */
+
+.litso-reviewmsg_sender {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 24px 20px;
+  background: var(--bg-elevated);
+  border-right: 1px solid var(--border-default);
+}
+
+
+/* ----- AVATAR ----- */
+
+.litso-reviewmsg_avatar {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  flex: 0 0 76px;
+  padding: 4px;
+  overflow: hidden;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 50%;
+}
+
+.litso-reviewmsg_avatar::after {
+  content: "";
   position: absolute;
-  top: 0;
+  inset: 3px;
+  border: 1px solid var(--gold-faded);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.litso-reviewmsg_avatar img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+
+/* ----- IDENTITÉ ----- */
+
+.litso-reviewmsg_identity {
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+}
+
+.litso-reviewmsg_eyebrow {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--gold-dark);
+  font: 700 7px/1 var(--font-condensed);
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+}
+
+.litso-reviewmsg_name {
+  overflow: hidden;
+  color: var(--text-primary);
+  font: 600 17px/1.2 var(--font-display);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.litso-reviewmsg_name a,
+.litso-reviewmsg_name strong {
+  color: inherit;
+}
+
+
+/* =========================================================
+   PARTIE PRINCIPALE DU MESSAGE
+   ========================================================= */
+
+.litso-reviewmsg_main {
+  min-width: 0;
 }
 
 
@@ -167,11 +271,11 @@
    EN-TÊTE DU MESSAGE
    ========================================================= */
 
-.litso-topicreview_postHeader {
+.litso-reviewmsg_messageHeader {
   display: grid;
   grid-template-columns:
-    minmax(0, 1fr)
-    minmax(225px, auto);
+    minmax(180px, 1fr)
+    minmax(250px, auto);
   align-items: center;
   gap: 25px;
   padding: 18px 23px;
@@ -179,84 +283,103 @@
   border-bottom: 1px solid var(--border-default);
 }
 
-.litso-topicreview_postHeading {
+
+/* ----- SUJET ----- */
+
+.litso-reviewmsg_subject {
   min-width: 0;
-}
-
-.litso-topicreview_eyebrow {
-  display: block;
-  margin-bottom: 5px;
-  color: var(--gold-dark);
-  font: 700 7px/1 var(--font-condensed);
-  letter-spacing: 1.7px;
-  text-transform: uppercase;
-}
-
-.litso-topicreview_subject {
   margin: 0;
   overflow: hidden;
   color: var(--text-primary);
-  font: 600 24px/1 var(--font-display);
+  font: 600 23px/1 var(--font-display);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 
-/* =========================================================
-   AUTEUR ET DATE
-   ========================================================= */
+/* ----- MÉTADONNÉES ----- */
 
-.litso-topicreview_author {
+.litso-reviewmsg_metadata {
   display: flex;
+  min-width: 0;
   align-items: center;
   justify-content: flex-end;
-  min-width: 0;
-  gap: 11px;
+  gap: 6px;
+  color: var(--text-muted);
+  font: 9px/1.4 var(--font-sans);
+  white-space: nowrap;
 }
 
-.litso-topicreview_authorIcon {
+.litso-reviewmsg_metadata strong,
+.litso-reviewmsg_metadata a {
+  color: var(--gold-dark);
+  font-weight: 700;
+}
+
+.litso-reviewmsg_metadata time {
+  color: var(--text-muted);
+}
+
+
+/* ----- ICÔNE DU MESSAGE ----- */
+
+.litso-reviewmsg_miniIcon {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
-  flex: 0 0 34px;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  margin-right: 4px;
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
   border-radius: 50%;
 }
 
-.litso-topicreview_authorIcon img {
+.litso-reviewmsg_miniIcon img {
   display: block;
-  max-width: 17px;
-  max-height: 17px;
+  max-width: 14px;
+  max-height: 14px;
   object-fit: contain;
 }
 
-.litso-topicreview_authorText {
-  min-width: 0;
-}
 
-.litso-topicreview_authorText > span {
+/* ----- SÉPARATEUR DES MÉTADONNÉES ----- */
+
+.litso-reviewmsg_metadataSeparator {
   display: block;
-  overflow: hidden;
-  color: var(--text-secondary);
-  font: 700 10px/1.4 var(--font-sans);
-  text-align: right;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  width: 3px;
+  height: 3px;
+  flex: 0 0 3px;
+  margin: 0 3px;
+  background: var(--accent);
+  transform: rotate(45deg);
 }
 
-.litso-topicreview_authorText > span a,
-.litso-topicreview_authorText > span strong {
-  color: var(--gold-dark);
+
+/* =========================================================
+   SÉPARATEUR DÉCORATIF
+   ========================================================= */
+
+.litso-reviewmsg_separator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 17px 27px 0;
 }
 
-.litso-topicreview_authorText time {
+.litso-reviewmsg_separator > span {
+  height: 1px;
+  flex: 1;
+  background: var(--border-default);
+}
+
+.litso-reviewmsg_separator > i {
   display: block;
-  margin-top: 3px;
-  color: var(--text-muted);
-  font: 9px/1.4 var(--font-sans);
-  text-align: right;
+  width: 5px;
+  height: 5px;
+  flex: 0 0 5px;
+  background: var(--gradient-accent);
+  transform: rotate(45deg);
 }
 
 
@@ -264,33 +387,33 @@
    CONTENU DU MESSAGE
    ========================================================= */
 
-.litso-topicreview_content {
-  min-height: 100px;
-  padding: 25px 28px;
+.litso-reviewmsg_content {
+  min-height: 105px;
+  padding: 22px 28px 28px;
   overflow-wrap: anywhere;
   color: var(--text-secondary);
   font: 12px/1.7 var(--font-sans);
   text-align: justify;
 }
 
-.litso-topicreview_content > :first-child {
+.litso-reviewmsg_content > :first-child {
   margin-top: 0;
 }
 
-.litso-topicreview_content > :last-child {
+.litso-reviewmsg_content > :last-child {
   margin-bottom: 0;
 }
 
-.litso-topicreview_content img {
+.litso-reviewmsg_content img {
   max-width: 100%;
   height: auto;
 }
 
-.litso-topicreview_content a {
+.litso-reviewmsg_content a {
   color: var(--accent-dark);
 }
 
-.litso-topicreview_content blockquote {
+.litso-reviewmsg_content blockquote {
   margin: 16px 0;
   padding: 15px 19px;
   color: var(--text-muted);
@@ -300,56 +423,65 @@
 
 
 /* =========================================================
-   MESSAGE MASQUÉ
+   MESSAGE ACTUEL
    ========================================================= */
 
-.litso-topicreview_hidden {
+.litso-reviewmsg_row.current {
+  border-color: var(--accent);
+}
+
+.litso-reviewmsg_row.current::before {
+  background: var(--accent);
+}
+
+
+/* =========================================================
+   PIED DE LA REVUE
+   ========================================================= */
+
+.litso-reviewmsg_footer {
   display: flex;
+  min-height: 52px;
   align-items: center;
-  justify-content: center;
-  min-height: 90px;
-  gap: 14px;
-  padding: 20px;
-  color: var(--text-muted);
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 18px;
   background: var(--bg-elevated);
-  border: 1px dashed var(--border-strong);
-}
-
-.litso-topicreview_hiddenIcon {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  flex: 0 0 38px;
-  color: var(--text-muted);
-  background: var(--bg-surface);
   border: 1px solid var(--border-default);
-  border-radius: 50%;
+  border-top: 0;
 }
 
-.litso-topicreview_hiddenIcon svg {
-  width: 16px;
-  height: 16px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.litso-topicreview_hiddenContent > span {
-  display: block;
-  margin-bottom: 4px;
-  color: var(--gold-dark);
-  font: 700 7px/1 var(--font-condensed);
-  letter-spacing: 1.5px;
+.litso-reviewmsg_footerLabel {
+  color: var(--text-muted);
+  font: 700 8px/1 var(--font-condensed);
+  letter-spacing: 1.8px;
   text-transform: uppercase;
 }
 
-.litso-topicreview_hiddenContent p {
-  margin: 0;
-  font: 11px/1.5 var(--font-sans);
-  text-align: left;
+.litso-reviewmsg_pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  color: var(--text-muted);
+  font: 10px/1 var(--font-sans);
+}
+
+.litso-reviewmsg_pagination a {
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+}
+
+.litso-reviewmsg_pagination a:hover {
+  color: var(--text-on-accent);
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
 }
 
 
@@ -357,54 +489,102 @@
    RESPONSIVE
    ========================================================= */
 
-@media (max-width: 700px) {
-  .litso-topicreview_header::before {
+@media (max-width: 800px) {
+  .litso-reviewmsg_row {
+    grid-template-columns: 145px minmax(0, 1fr);
+  }
+
+  .litso-reviewmsg_messageHeader {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .litso-reviewmsg_metadata {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .litso-reviewmsg_header::before {
     right: 8px;
     font-size: 52px;
   }
 
-  .litso-topicreview_headerRule {
+  .litso-reviewmsg_headerRule {
     display: none;
   }
 
-  .litso-topicreview_postHeader {
+  .litso-reviewmsg_row {
     grid-template-columns: 1fr;
-    gap: 12px;
   }
 
-  .litso-topicreview_author {
+  .litso-reviewmsg_sender {
+    flex-direction: row;
     justify-content: flex-start;
+    padding: 16px 18px;
+    border-right: 0;
+    border-bottom: 1px solid var(--border-default);
   }
 
-  .litso-topicreview_authorText > span,
-  .litso-topicreview_authorText time {
+  .litso-reviewmsg_avatar {
+    width: 56px;
+    height: 56px;
+    flex-basis: 56px;
+  }
+
+  .litso-reviewmsg_identity {
     text-align: left;
+  }
+
+  .litso-reviewmsg_messageHeader {
+    padding: 16px 18px;
+  }
+
+  .litso-reviewmsg_subject {
+    font-size: 21px;
+  }
+
+  .litso-reviewmsg_separator {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .litso-reviewmsg_content {
+    padding: 20px 18px 24px;
+  }
+
+  .litso-reviewmsg_footer {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 
 
 @media (max-width: 480px) {
-  .litso-topicreview_header {
-    padding: 13px;
+  .litso-reviewmsg_header {
+    min-height: 70px;
+    padding: 12px 13px;
   }
 
-  .litso-topicreview_headerHeading > strong {
+  .litso-reviewmsg_headerIcon {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+
+  .litso-reviewmsg_headerTitle {
     font-size: 23px;
   }
 
-  .litso-topicreview_list {
+  .litso-reviewmsg_list {
+    gap: 8px;
     padding: 8px;
   }
 
-  .litso-topicreview_postHeader {
-    padding: 16px;
-  }
-
-  .litso-topicreview_subject {
-    font-size: 21px;
-  }
-
-  .litso-topicreview_content {
-    padding: 21px 18px;
+  .litso-reviewmsg_metadata {
+    gap: 5px;
   }
 }
