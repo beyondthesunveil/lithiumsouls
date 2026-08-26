@@ -1,0 +1,611 @@
+/* =========================================================
+   RECHERCHE
+   Nomenclature : litso-search_
+   ========================================================= */
+
+.litso-search_,
+.litso-search_ * {
+  box-sizing: border-box;
+}
+
+.litso-search_ {
+  position: relative;
+  width: 100%;
+  margin: 25px 0 50px;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+}
+
+
+/* =========================================================
+   EN-TÊTE GHOST
+   ========================================================= */
+
+.litso-search_header {
+  position: relative;
+  display: flex;
+  min-height: 170px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 35px 20px;
+  overflow: hidden;
+  background: transparent;
+  border-bottom: 1px solid var(--border-default);
+  text-align: center;
+}
+
+.litso-search_header::before {
+  content: attr(data-ghost);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  overflow: hidden;
+  color: transparent;
+  font: italic 500 125px/.75 var(--font-display);
+  letter-spacing: -7px;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.6;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  -webkit-text-stroke: 1px var(--border-subtle);
+}
+
+.litso-search_header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 110px;
+  height: 3px;
+  background: var(--gradient-accent);
+  transform: translateX(-50%);
+}
+
+.litso-search_headerEyebrow {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  color: var(--gold-dark);
+  font: 700 9px/1 var(--font-condensed);
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+}
+
+.litso-search_headerEyebrow::before,
+.litso-search_headerEyebrow::after {
+  content: "";
+  width: 55px;
+  height: 1px;
+  margin: 0 16px;
+  background: var(--gradient-accent);
+}
+
+.litso-search_headerEyebrow::after {
+  background: var(--gradient-accent-reverse);
+}
+
+.litso-search_headerTitle {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  color: var(--text-primary);
+  font: 600 50px/.95 var(--font-display);
+  letter-spacing: -2px;
+}
+
+
+/* =========================================================
+   FORMULAIRE ET GRILLE
+   ========================================================= */
+
+.litso-search_form {
+  width: 100%;
+  margin: 28px 0 0;
+}
+
+.litso-search_grid {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(330px, .85fr);
+  gap: 18px;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.litso-search_section {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+}
+
+.litso-search_section::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 0;
+  width: 2px;
+  background: var(--gradient-accent-vertical);
+}
+
+.litso-search_sectionHeader {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 42px;
+  align-items: center;
+  gap: 14px;
+  min-height: 88px;
+  padding: 18px 20px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.litso-search_sectionIndex {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  color: var(--gold-dark);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  font: 700 9px/1 var(--font-condensed);
+  letter-spacing: 1px;
+  transform: rotate(45deg);
+}
+
+.litso-search_sectionIndex::first-line {
+  transform: rotate(-45deg);
+}
+
+.litso-search_sectionHeading {
+  min-width: 0;
+}
+
+.litso-search_sectionHeading > span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--gold-dark);
+  font: 700 8px/1 var(--font-condensed);
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.litso-search_sectionHeading h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font: 600 26px/1 var(--font-display);
+}
+
+.litso-search_sectionIcon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  color: var(--accent-dark);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 50%;
+}
+
+.litso-search_sectionIcon svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.litso-search_sectionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 25px;
+}
+
+
+/* =========================================================
+   CHAMPS
+   ========================================================= */
+
+.litso-search_field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.litso-search_label {
+  color: var(--gold-dark);
+  font: 700 8px/1 var(--font-condensed);
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.litso-search_inputGroup,
+.litso-search_selectGroup {
+  position: relative;
+  width: 100%;
+}
+
+.litso-search_input,
+.litso-search_select {
+  display: block;
+  width: 100%;
+  height: 44px;
+  margin: 0;
+  padding: 0 45px;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: 0;
+  outline: 0;
+  font: 11px var(--font-sans);
+  transition:
+    background 200ms ease,
+    border-color 200ms ease;
+}
+
+.litso-search_select {
+  padding-right: 42px;
+  padding-left: 14px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.litso-search_input::placeholder {
+  color: var(--text-faded);
+}
+
+.litso-search_input:focus,
+.litso-search_select:focus {
+  background: var(--bg-surface);
+  border-color: var(--accent);
+}
+
+.litso-search_inputIcon,
+.litso-search_selectIcon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  color: var(--gold-dark);
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.litso-search_selectIcon {
+  right: 14px;
+  left: auto;
+  color: var(--text-muted);
+}
+
+.litso-search_inputIcon svg,
+.litso-search_selectIcon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   CHOIX, RADIOS ET CASES
+   ========================================================= */
+
+.litso-search_choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.litso-search_choice {
+  position: relative;
+  display: flex;
+  min-height: 36px;
+  flex: 1 1 150px;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 11px;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease;
+}
+
+.litso-search_choice:hover {
+  color: var(--text-primary);
+  background: var(--bg-soft);
+  border-color: var(--border-default);
+}
+
+.litso-search_choice input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.litso-search_choiceControl {
+  position: relative;
+  display: block;
+  width: 13px;
+  height: 13px;
+  flex: 0 0 13px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+}
+
+.litso-search_choice--checkbox
+.litso-search_choiceControl {
+  border-radius: 2px;
+}
+
+.litso-search_choiceControl::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: var(--gradient-accent);
+  border-radius: inherit;
+  opacity: 0;
+  transform: scale(0.3);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.litso-search_choice input:checked
++ .litso-search_choiceControl::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.litso-search_choice:has(input:checked) {
+  color: var(--text-primary);
+  background: var(--gold-faded);
+  border-color: var(--gold);
+}
+
+.litso-search_choice:has(input:focus-visible) {
+  outline: 2px solid var(--accent-faded);
+  outline-offset: 2px;
+}
+
+.litso-search_choiceText {
+  font: 10px/1.35 var(--font-sans);
+}
+
+
+/* =========================================================
+   RECHERCHE GOOGLE
+   ========================================================= */
+
+.litso-search_google {
+  display: inline-flex;
+  width: max-content;
+  max-width: 100%;
+  min-height: 36px;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 13px;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border-default);
+  cursor: pointer;
+  font: 700 8px/1 var(--font-condensed);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease;
+}
+
+.litso-search_google:hover {
+  color: var(--gold-dark);
+  background: var(--gold-faded);
+  border-color: var(--gold);
+}
+
+.litso-search_googleIcon {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+}
+
+.litso-search_googleIcon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   PIED ET VALIDATION
+   ========================================================= */
+
+.litso-search_footer {
+  display: flex;
+  min-height: 90px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  margin-top: 18px;
+  padding: 20px 25px;
+  overflow: hidden;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+.litso-search_footerCopy > span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--gold-dark);
+  font: 700 8px/1 var(--font-condensed);
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.litso-search_footerCopy > strong {
+  display: block;
+  color: var(--text-primary);
+  font: italic 600 19px/1.1 var(--font-display);
+}
+
+.litso-search_submitButton {
+  display: inline-flex;
+  min-width: 195px;
+  min-height: 46px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 0 17px;
+  color: var(--text-on-accent);
+  background: var(--accent-dark);
+  border: 1px solid var(--accent-dark);
+  cursor: pointer;
+  font: 700 9px/1 var(--font-condensed);
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease;
+}
+
+.litso-search_submitButton:hover {
+  color: var(--gold-dark);
+  background: var(--bg-surface);
+  border-color: var(--gold);
+}
+
+.litso-search_submitButton svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   JUMPBOX
+   ========================================================= */
+
+.litso-search_jumpbox {
+  margin-top: 18px;
+  color: var(--text-muted);
+  font: 10px var(--font-sans);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 850px) {
+  .litso-search_grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .litso-search_header {
+    min-height: 125px;
+    padding: 25px 14px;
+  }
+
+  .litso-search_header::before {
+    font-size: 80px;
+    letter-spacing: -4px;
+  }
+
+  .litso-search_headerTitle {
+    font-size: 38px;
+  }
+
+  .litso-search_headerEyebrow::before,
+  .litso-search_headerEyebrow::after {
+    width: 28px;
+    margin: 0 10px;
+  }
+
+  .litso-search_sectionHeader {
+    grid-template-columns: 35px minmax(0, 1fr);
+    padding: 16px;
+  }
+
+  .litso-search_sectionIndex {
+    width: 32px;
+    height: 32px;
+  }
+
+  .litso-search_sectionIcon {
+    display: none;
+  }
+
+  .litso-search_sectionContent {
+    padding: 19px 16px;
+  }
+
+  .litso-search_footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .litso-search_submit,
+  .litso-search_submitButton {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 420px) {
+  .litso-search_headerTitle {
+    font-size: 31px;
+  }
+
+  .litso-search_headerEyebrow {
+    font-size: 7px;
+    letter-spacing: 1.8px;
+  }
+
+  .litso-search_choices {
+    flex-direction: column;
+  }
+
+  .litso-search_choice {
+    flex-basis: auto;
+  }
+}
