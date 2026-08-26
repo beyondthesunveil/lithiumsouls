@@ -454,12 +454,184 @@
   border-top: 1px solid var(--border-default);
 }
 
-.litso-searchresults_pagination {
+/* =========================================================
+   PAGINATION ET SÉLECTEUR DE FORUM
+   ========================================================= */
+
+.litso-searchresults_pagination,
+.litso-searchresults_jumpbox {
+  display: flex;
+  align-items: center;
   min-width: 0;
+  font-family: var(--font-sans);
 }
 
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+.litso-searchresults_pagination {
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.litso-searchresults_pagination:empty {
+  display: none;
+}
+
+.litso-searchresults_pagination > span,
+.litso-searchresults_pagination .pagination {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 0;
+}
+
+.litso-searchresults_pagination a,
+.litso-searchresults_pagination strong {
+  display: grid;
+  place-items: center;
+  min-width: 31px;
+  height: 31px;
+  margin: 0;
+  padding: 0 8px;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 0;
+  font: 700 9px/1 var(--font-sans);
+  text-decoration: none;
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+.litso-searchresults_pagination a:hover {
+  color: var(--gold-dark);
+  background: var(--gold-faded);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.litso-searchresults_pagination strong {
+  position: relative;
+  color: var(--text-on-accent);
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+.litso-searchresults_pagination strong::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  bottom: -1px;
+  left: 6px;
+  height: 2px;
+  background: var(--gradient-accent);
+}
+
+.litso-searchresults_pagination .page-sep {
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  color: var(--text-faded);
+  font: 10px/1 var(--font-sans);
+}
+
+
+/* =========================================================
+   SÉLECTEUR « SAUTER VERS »
+   ========================================================= */
+
 .litso-searchresults_jumpbox {
+  justify-content: flex-end;
   margin-left: auto;
+}
+
+.litso-searchresults_jumpbox form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.litso-searchresults_jumpbox label,
+.litso-searchresults_jumpbox .jumpbox-label {
+  color: var(--text-muted);
+  font: 700 8px/1 var(--font-condensed);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.litso-searchresults_jumpbox select {
+  width: 230px;
+  max-width: 45vw;
+  height: 34px;
+  margin: 0;
+  padding: 0 36px 0 12px;
+  color: var(--text-secondary);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 0;
+  outline: none;
+  font: 10px var(--font-sans);
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.litso-searchresults_jumpbox select:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-elevated);
+  border-color: var(--gold);
+}
+
+.litso-searchresults_jumpbox select:focus {
+  color: var(--text-primary);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-faded);
+}
+
+
+/* Bouton généré par Forumactif */
+
+.litso-searchresults_jumpbox input[type="submit"],
+.litso-searchresults_jumpbox button {
+  display: inline-grid;
+  place-items: center;
+  min-width: 58px;
+  height: 34px;
+  margin: 0;
+  padding: 0 13px;
+  color: var(--text-on-accent);
+  background: var(--accent-dark);
+  border: 1px solid var(--accent-dark);
+  border-radius: 0;
+  outline: none;
+  font: 700 8px/1 var(--font-condensed);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+.litso-searchresults_jumpbox input[type="submit"]:hover,
+.litso-searchresults_jumpbox button:hover {
+  color: var(--text-primary);
+  background: var(--gold-faded);
+  border-color: var(--gold);
+  transform: translateY(-2px);
 }
 
 
@@ -530,5 +702,29 @@
 
   .litso-searchresults_jumpbox {
     margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .litso-searchresults_pagination,
+  .litso-searchresults_jumpbox {
+    width: 100%;
+  }
+
+  .litso-searchresults_jumpbox {
+    justify-content: flex-start;
+    margin-left: 0;
+  }
+
+  .litso-searchresults_jumpbox form {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .litso-searchresults_jumpbox select {
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    flex: 1;
   }
 }
