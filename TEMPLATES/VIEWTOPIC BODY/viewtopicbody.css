@@ -1,6 +1,6 @@
 .litso-msg_title {
 }
-h1.lithium-vb_titlemap {
+h1.litso-msg_titlemap {
   padding: 10px 20px;
   font: italic 30px var(--font-display);
   border-bottom: 1px solid var(--border-default);
@@ -11,7 +11,7 @@ h1.lithium-vb_titlemap {
   width: 100%;
   margin: 0;
 }
-.lithium-vb_blocktitle {
+.litso-msg_blocktitle {
   margin: 10px 0;
   display: flex;
   flex-wrap: wrap;
@@ -19,19 +19,19 @@ h1.lithium-vb_titlemap {
   background-color: var(--border-subtle);
   justify-content: space-between;
 }
-.lithium-vb_brdcrmbtrail {
+.litso-msg_brdcrmbtrail {
   font: 15px var(--font-condensed);
   letter-spacing: 1px;
   text-transform: lowercase;
   padding: 12px 14px;
   color: var(--text-secondary);
 }
-.lithium-vb_brdcrmbtrail a {
+.litso-msg_brdcrmbtrail a {
   color: var(--accent-dark);
   font-style: italic;
   transition: 0.2s;
 }
-.lithium-vb_brdcrmbtrail a:hover {
+.litso-msg_brdcrmbtrail a:hover {
   opacity: 1;
   background: var(--gradient-accent);
   -webkit-background-clip: text;
@@ -40,7 +40,7 @@ h1.lithium-vb_titlemap {
 
 /* ----- début bloc sujet ----- */
 
-.ls-vb_runtime {
+.litso-msg_runtime {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -48,8 +48,8 @@ h1.lithium-vb_titlemap {
   height: 40px;
 }
   
-.lithium-vb_postprofile .row1,
-.lithium-vb_postprofile .row2 {
+.litso-msg_postprofile .row1,
+.litso-msg_postprofile .row2 {
   background: transparent !important;
   box-shadow: none !important;
 }
@@ -63,11 +63,11 @@ h1.lithium-vb_titlemap {
   box-shadow: none;
   margin: 24px 0;
 }
-.litso-msgsubheader {
+.litso-msg_subheader {
 
 }
 /* bloc qui gère l'ensemble de la structure */
-.lithium-vb_blockmember {
+.litso-msg_blockmember {
   display: flex;
   flex-wrap: wrap;
   background: var(--bg-surface);
@@ -76,26 +76,26 @@ h1.lithium-vb_titlemap {
   justify-content: space-between;
 }
 /* bloc qui va gérer l'affichage de la bande gauche avec l'avatar, le rang, le bloc des infos */
-.lithium-vb_blockperso {
+.litso-msg_blockperso {
   width: 280px;
   background-color: var(--bg-elevated);
   border-radius: 0 0 0 5px;
   border-right: 1px solid var(--border-default);
 }
-.lithium-vb_posttracker {
+.litso-msg_posttracker {
   position: sticky;
   top: 45px;
   align-self: flex-start;
   margin-bottom:15px;
 }
-.lithium-vb_postname {
+.litso-msg_postname {
   width: 235px;
   border: 1px solid var(--border-default);
   margin: 15px auto;
   padding: 3px 0 5px;
   text-align: center;
 }
-.lithium-vb_postname strong {
+.litso-msg_postname strong {
   color: var(--text-primary);
   display: inline-block;
   font: 600 15px var(--font-condensed);
@@ -111,7 +111,7 @@ h1.lithium-vb_titlemap {
   transition: all 0.2s ease;
   width:220px;
 }
-.lithium-vb_posteravatar {
+.litso-msg_posteravatar {
   margin: 15px auto;
   border: 5px solid var(--bg-surface);
   width: 220px;
@@ -120,12 +120,12 @@ h1.lithium-vb_titlemap {
   overflow: hidden;
   outline-offset: 5px;
 }
-.lithium-vb_posteravatar img {
+.litso-msg_posteravatar img {
   max-width: 222px!important;
   margin: 0;
   object-fit:cover;
 }
-.lithium-vb_rank {
+.litso-msg_rank {
   font: 15px var(--font-condensed);
   color: var(--text-secondary);
   text-transform: uppercase;
@@ -133,7 +133,7 @@ h1.lithium-vb_titlemap {
   letter-spacing:1px;
   padding: 0 0 10px 0;
 }
-.lithium-vb_rank > span {
+.litso-msg_rank > span {
   display: block;
   font: 600 13px var(--font-condensed);
   letter-spacing: 0.5px;
@@ -145,7 +145,7 @@ h1.lithium-vb_titlemap {
   text-align: center;
   margin: 5px 0;
 }
-.lithium-vb_charafields {
+.litso-msg_charafields {
   margin: 15px;
   height:150px;
   overflow:auto;
@@ -157,7 +157,7 @@ h1.lithium-vb_titlemap {
   gap: 8px;
   border: 1px solid var(--border-subtle);
 }
-.lithium-vb_charafield {
+.litso-msg_charafield {
   font: 11px var(--font-sans);
   padding: 6px 8px;
   border-radius: 12px;
@@ -166,29 +166,29 @@ h1.lithium-vb_titlemap {
   position: relative;
   transition: 0.3s ease;
 }
-.lithium-vb_charalabel {
+.litso-msg_charalabel {
   font: 10px var(--font-condensed);
   letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--gold-dark);
   opacity: 0.8;
 }
-.lithium-vb_characontent {
+.litso-msg_characontent {
   color: var(--text-secondary);
   text-align: right;
   max-width: 120px;
 }
-.lithium-vb_characontent img {
+.litso-msg_characontent img {
   object-fit:cover!important;
   width: 183px!important;
 }
 /* bloc qui va gérer l'affichage général de la mise en page du texte, la date, les boutons edit */
-.lithium-vb_blockcontent {
+.litso-msg_blockcontent {
   width: 878px;
   background-color: var(--bg-elevated);
 }
 /* affichage des boutons d'édition */
-.lithium-vb_btnedit {
+.litso-msg_btnedit {
   margin: 6px;
 }
 .profile-icons {
@@ -227,7 +227,7 @@ h1.lithium-vb_titlemap {
 .profile-icons a:hover::before {
   color: var(--accent-dark);
 }
-.lithium-vb_content {
+.litso-msg_content {
   padding: 40px;
   text-align: justify;
   font: 12px var(--font-sans);
@@ -236,11 +236,11 @@ h1.lithium-vb_titlemap {
   margin: 20px;
   min-height: 790px;
 }
-.lithium-vb_content img {
+.litso-msg_content img {
   max-width:600px;
   object-fit:cover;
 }
-.lsvb_modoaction {
+.litso-msg_modoaction {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -291,7 +291,7 @@ h1.lithium-vb_titlemap {
   transform: translateY(-1px);
    opacity: .9;
 }
-.lsvb_btnaction {
+.litso-msg_btnaction {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -301,7 +301,7 @@ h1.lithium-vb_titlemap {
   border: none;
   backdrop-filter: none;
 }
-.lsvb_btnaction a {
+.litso-msg_btnaction a {
   width: 42px;
   height: 42px;
   display: flex;
@@ -318,15 +318,15 @@ h1.lithium-vb_titlemap {
   text-decoration: none;
   position: relative;
 }
-.lsvb_btnaction a:hover {
+.litso-msg_btnaction a:hover {
   background: var(--gold-faded);
   color: var(--gold-dark);
   transform: translateY(-2px);
 }
-.lsvb_btnaction a img {
+.litso-msg_btnaction a img {
   display: none;
 }
-.lsvb_btnaction a::before {
+.litso-msg_btnaction a::before {
   content: "";
   width: 18px;
   height: 18px;
@@ -338,7 +338,7 @@ h1.lithium-vb_titlemap {
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
 }
-.lsvb_btnaction a::after {
+.litso-msg_btnaction a::after {
   content: attr(title);
   position: absolute;
   bottom: calc(100% + 8px);
@@ -355,60 +355,60 @@ h1.lithium-vb_titlemap {
   transition: .15s ease;
   box-shadow: 0 10px 30px var(--border-default);
 }
-.lsvb_btnaction a:hover::after {
+.litso-msg_btnaction a:hover::after {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
-.lsvb_btnaction a[href*="mode=delete"] {
+.litso-msg_btnaction a[href*="mode=delete"] {
   color: var(--text-important);
 }
-.lsvb_btnaction a[href*="delete"]::after {
+.litso-msg_btnaction a[href*="delete"]::after {
   content: "Supprimer le sujet";
 }
-.lsvb_btnaction a[href*="mode=delete"]::before {
+.litso-msg_btnaction a[href*="mode=delete"]::before {
   mask-image: url("https://unpkg.com/lucide-static/icons/trash-2.svg");
   -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/trash-2.svg");
 }
-.lsvb_btnaction a[href*="mode=move"]::before {
+.litso-msg_btnaction a[href*="mode=move"]::before {
   mask-image: url("https://unpkg.com/lucide-static/icons/move-right.svg");
   -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/move-right.svg");
 }
-.lsvb_btnaction a[href*="move"]::after {
+.litso-msg_btnaction a[href*="move"]::after {
   content: "Déplacer le sujet";
 }
-.lsvb_btnaction a[href*="mode=lock"]::before {
+.litso-msg_btnaction a[href*="mode=lock"]::before {
   mask-image: url("https://unpkg.com/lucide-static/icons/lock.svg");
   -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/lock.svg");
 }
-.lsvb_btnaction a[href*="lock"]::after {
+.litso-msg_btnaction a[href*="lock"]::after {
   content: "Verrouiller le sujet";
 }
-.lsvb_btnaction a[href*="mode=unlock"]::before {
+.litso-msg_btnaction a[href*="mode=unlock"]::before {
   mask-image: url("https://unpkg.com/lucide-static/icons/lock-open.svg");
   -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/lock-open.svg");
 }
-.lsvb_btnaction a[href*="unlock"]::after {
+.litso-msg_btnaction a[href*="unlock"]::after {
   content: "Déverrouiller le sujet";
 }
-.lsvb_btnaction a[href*="mode=split"]::before {
+.litso-msg_btnaction a[href*="mode=split"]::before {
   mask-image: url("https://unpkg.com/lucide-static/icons/split.svg");
   -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/split.svg");
 }
-.lsvb_btnaction a[href*="split"]::after {
+.litso-msg_btnaction a[href*="split"]::after {
   content: "Diviser le sujet";
 }
-.lsvb_btnaction a[href*="/merge"]::before {
+.litso-msg_btnaction a[href*="/merge"]::before {
   mask-image: url("https://unpkg.com/lucide-static/icons/combine.svg");
   -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/combine.svg");
 }
-.lsvb_btnaction a[href*="/merge"]::after {
+.litso-msg_btnaction a[href*="/merge"]::after {
   content: "Fusionner les sujets";
 }
-.lsvb_btnaction a[href*="mode=trash"]::before,
-.lsvb_btnaction a[href*="mode=bin"]::before {
+.litso-msg_btnaction a[href*="mode=trash"]::before,
+.litso-msg_btnaction a[href*="mode=bin"]::before {
   mask-image: url("https://unpkg.com/lucide-static/icons/archive.svg");
   -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/archive.svg");
 }
-.lsvb_btnaction a[href*="trash"]::after {
+.litso-msg_btnaction a[href*="trash"]::after {
   content: "Corbeille";
 }
