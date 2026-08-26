@@ -1,0 +1,93 @@
+.litso-pagetle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 155px;
+  width: 100%;
+  margin: 25px 0;
+  padding: 30px 20px;
+  overflow: hidden;
+  color: var(--text-primary);
+  background: transparent;
+  border-bottom: 1px solid var(--border-default);
+  text-align: center;
+}
+
+.litso-pagetle::before {
+  content: attr(data-ghost);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  overflow: hidden;
+  color: transparent;
+  font: italic 115px/.75 var(--font-display);
+  letter-spacing: -6px;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: .65;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  -webkit-text-stroke:
+    1px var(--border-subtle);
+}
+
+.litso-pagetle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 70px;
+  height: 2px;
+  background: var(--gradient-accent);
+  transform: translateX(-50%);
+}
+
+.litso-pagetle > span {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  font: 600 49px/.95 var(--font-display);
+  letter-spacing: -2px;
+  text-transform: uppercase;
+}
+
+.litso-pagetle > span::before,
+.litso-pagetle > span::after {
+  content: "";
+  width: 65px;
+  height: 1px;
+  margin: 0 18px;
+  background: var(--gradient-accent);
+}
+
+.litso-pagetle > span::after {
+  background: var(--gradient-accent-reverse);
+}
+
+@media (max-width: 600px) {
+  .litso-pagetle {
+    min-height: 120px;
+    padding: 25px 12px;
+  }
+
+  .litso-pagetle::before {
+    font-size: 75px;
+    letter-spacing: -4px;
+  }
+
+  .litso-pagetle > span {
+    font-size: 36px;
+  }
+
+  .litso-pagetle > span::before,
+  .litso-pagetle > span::after {
+    width: 30px;
+    margin: 0 10px;
+  }
+}
