@@ -1,0 +1,294 @@
+/* ----- topic_list_box ----- */
+
+
+/* ----- TITRES DES SECTIONS ----- */
+
+.litso-topiclist_titlerow {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 25px 0 0;
+  color: var(--text-primary);
+  font: 600 20px var(--font-display);
+  text-transform: uppercase;
+}
+
+.litso-topiclist_titlerow::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  margin-left: 15px;
+  background: var(--gradient-accent);
+}
+
+
+/* ----- CONTENEUR DES ANNONCES ----- */
+
+.litso-topiclist_announcement {
+  position: relative;
+}
+
+
+/* ----- AUCUN SUJET ----- */
+
+.litso-topiclist_backgroundnone {
+  width: 100%;
+  margin: 20px 0;
+  padding: 30px;
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  font: 12px var(--font-sans);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+
+/* ----- BLOC D’UN SUJET ----- */
+
+.litso-topiclist_background {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 60px;
+  margin: 10px 0;
+  background-color: var(--bg-surface) !important;
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+}
+
+.litso-topiclist_icon {
+  width: 100%;
+  margin: 0;
+}
+
+
+/* ----- TITRE ET AUTEUR ----- */
+
+.litso-topiclist_blocktitle {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  width: 930px;
+  margin: 5px 10px 10px;
+}
+
+.litso-topiclist_topicauth {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 700px;
+  gap: 10px;
+}
+
+.litso-topiclist_topictleFRM {
+  font: 20px var(--font-condensed);
+  text-transform: uppercase;
+}
+
+.litso-topiclist_topictleFRM a {
+  color: var(--text-primary);
+}
+
+.litso-topiclist_announcement
+.litso-topiclist_topictleFRM {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.litso-topiclist_announcement
+.litso-topiclist_topictleFRM::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  background: var(--gradient-accent);
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static/icons/alert-circle.svg")
+    center / contain no-repeat;
+  mask:
+    url("https://unpkg.com/lucide-static/icons/alert-circle.svg")
+    center / contain no-repeat;
+}
+
+.litso-topiclist_author {
+  display: inline-flex;
+  align-items: center;
+  height: 16px;
+  padding: 0 10px;
+  color: var(--text-secondary);
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  font: 12px var(--font-sans);
+}
+
+.litso-topiclist_topicauth img {
+  display: inline-flex;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  object-fit: contain;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+
+/* ----- STATISTIQUES ----- */
+
+.litso-topiclist_blockstats {
+  width: 210px;
+  margin: 10px;
+}
+
+.litso-topiclist_pages::before {
+  content: none;
+}
+
+.litso-topiclist_pages.has-pages::before {
+  content: "Aller à la page →";
+  position: absolute;
+  margin: 0 -110px;
+  color: var(--text-muted);
+  font: 8px var(--font-sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.litso-topiclist_pages .pagination > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin: -3px;
+  font-size: 10px;
+}
+
+.pagination span.page-sep {
+  display: block;
+}
+
+.litso-topiclist_pages
+.pagination span a:link,
+.litso-topiclist_pages
+.pagination span a:visited,
+.litso-topiclist_pages
+.pagination span a:active {
+  width: 10px;
+  height: 10px;
+  margin: 0 1px;
+  padding: 0;
+  color: var(--accent-dark);
+  background-color: transparent;
+  font: 10px var(--font-sans);
+}
+
+.litso-topiclist_viewsreplies {
+  color: var(--gold-dark);
+  font: italic 10px var(--font-sans);
+  text-align: right;
+}
+
+
+/* ----- DESCRIPTION ET DERNIER MESSAGE ----- */
+
+.litso-topiclist_descblock {
+  position: relative;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  width: 925px;
+  gap: 10px;
+  margin: -13px 10px;
+  color: var(--text-muted);
+}
+
+.litso-topiclist_descblock::before {
+  content: "";
+  order: 1;
+  flex-grow: 1;
+  height: 1px;
+  background: var(--gradient-accent);
+  opacity: 0.5;
+}
+
+.litso-topiclist_topicdesc {
+  order: 0;
+  color: var(--text-muted);
+  font: italic 12px var(--font-sans);
+}
+
+.litso-topiclist_lastpostinfos {
+  display: flex;
+  order: 2;
+  color: var(--text-secondary);
+  font: 11px var(--font-sans);
+}
+
+.litso-topiclist_lastpostinfos a img {
+  display: block;
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+}
+
+.litso-topiclist_lastpostinfos strong {
+  margin-left: 5px;
+  padding: 0 10px;
+  color: var(--text-primary);
+  background-color: var(--bg-elevated);
+  border-radius: 4px;
+}
+
+
+/* ----- AVATAR DU DERNIER POSTEUR ----- */
+
+.litso-topiclist_blockava {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: -42px;
+}
+
+.litso-topiclist_lastpostava {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin: -2px 0;
+}
+
+.litso-topiclist_lastpostava img {
+  width: 100%;
+  height: 100%;
+  border: 5px solid var(--bg-elevated);
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+
+/* ----- ICÔNE D’ÉTAT DU SUJET ----- */
+
+.litso-topiclist_topicicon {
+  position: absolute;
+  top: 24%;
+  left: 100%;
+  width: 25px;
+  height: 25px;
+  background-color: var(--bg-elevated);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 15px 15px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
