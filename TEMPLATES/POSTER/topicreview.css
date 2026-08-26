@@ -19,23 +19,25 @@
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 84px;
-  gap: 15px;
-  padding: 15px 21px;
+  min-height: 78px;
+  gap: 14px;
+  padding: 14px 20px;
   overflow: hidden;
   background: var(--bg-elevated);
   border: 1px solid var(--border-default);
 }
+
+
+/* ----- GHOST ----- */
 
 .litso-topicreview_header::before {
   content: attr(data-ghost);
   position: absolute;
   top: 50%;
   right: 18px;
-  max-width: 80%;
   overflow: hidden;
   color: transparent;
-  font: italic 72px/.8 var(--font-display);
+  font: italic 70px/.8 var(--font-display);
   letter-spacing: -4px;
   text-transform: uppercase;
   white-space: nowrap;
@@ -47,16 +49,16 @@
 }
 
 
-/* Icône */
+/* ----- ICÔNE ----- */
 
 .litso-topicreview_headerIcon {
   position: relative;
   z-index: 2;
   display: grid;
   place-items: center;
-  width: 43px;
-  height: 43px;
-  flex: 0 0 43px;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
   color: var(--gold-dark);
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
@@ -68,41 +70,54 @@
   height: 18px;
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.55;
+  stroke-width: 1.6;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 
-/* Titre */
+/* ----- GROUPE DES TITRES ----- */
 
 .litso-topicreview_headerHeading {
   position: relative;
   z-index: 2;
+  display: flex;
   flex: 0 0 auto;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.litso-topicreview_headerHeading > span {
+
+/* Petit intitulé */
+
+.litso-topicreview_headerEyebrow {
   display: block;
-  margin-bottom: 5px;
+  margin: 0 0 4px;
   color: var(--gold-dark);
   font: 700 8px/1 var(--font-condensed);
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
-.litso-topicreview_headerHeading > strong {
+
+/* Titre principal */
+
+.litso-topicreview_headerTitle {
   display: block;
+  margin: 0;
   color: var(--text-primary);
-  font: 600 28px/.95 var(--font-display);
+  font: 600 27px/.95 var(--font-display);
 }
+
+
+/* ----- TRAIT DÉCORATIF ----- */
 
 .litso-topicreview_headerRule {
   position: relative;
   z-index: 2;
   flex: 1;
   height: 1px;
-  margin-left: 8px;
+  margin-left: 6px;
   background: var(--gradient-accent);
   opacity: .65;
 }
