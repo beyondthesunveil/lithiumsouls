@@ -25,14 +25,17 @@
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
-  min-height: 78px;
-  gap: 14px;
-  padding: 14px 20px;
+  min-height: 155px;
+  gap: 18px;
+  margin: 0;
+  padding: 30px 20px;
   overflow: hidden;
-  color: var(--text-secondary);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  background: transparent;
+  border-bottom: 1px solid var(--border-default);
+  text-align: left;
 }
 
 
@@ -42,16 +45,33 @@
   content: attr(data-ghost);
   position: absolute;
   top: 50%;
-  right: 18px;
+  left: 50%;
+  width: 100%;
+  overflow: hidden;
   color: transparent;
-  font: italic 500 70px/.8 var(--font-display);
-  letter-spacing: -4px;
+  font: italic 115px/.75 var(--font-display);
+  letter-spacing: -6px;
+  text-align: center;
   text-transform: uppercase;
   white-space: nowrap;
-  opacity: 0.12;
+  opacity: 0.65;
   pointer-events: none;
-  transform: translateY(-50%);
-  -webkit-text-stroke: 1px var(--text-primary);
+  transform: translate(-50%, -50%);
+  -webkit-text-stroke: 1px var(--border-subtle);
+}
+
+
+/* ----- ACCENT INFÉRIEUR ----- */
+
+.litso-topicreview_header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 70px;
+  height: 2px;
+  background: var(--gradient-accent);
+  transform: translateX(-50%);
 }
 
 
@@ -62,9 +82,9 @@
   z-index: 2;
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
-  flex: 0 0 42px;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
   color: var(--gold-dark);
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
@@ -72,8 +92,8 @@
 }
 
 .litso-topicreview_headerIcon svg {
-  width: 18px;
-  height: 18px;
+  width: 19px;
+  height: 19px;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.6;
@@ -96,10 +116,10 @@
 
 .litso-topicreview_headerHeading > span {
   display: block;
-  margin: 0 0 4px;
+  margin: 0 0 7px;
   color: var(--gold-dark);
-  font: 700 8px/1 var(--font-condensed);
-  letter-spacing: 2px;
+  font: 700 9px/1 var(--font-condensed);
+  letter-spacing: 2.2px;
   text-transform: uppercase;
 }
 
@@ -107,20 +127,15 @@
   display: block;
   margin: 0;
   color: var(--text-primary);
-  font: 600 27px/.95 var(--font-display);
+  font: 600 49px/.95 var(--font-display);
+  letter-spacing: -2px;
 }
 
 
-/* ----- TRAIT DÉCORATIF ----- */
+/* ----- ANCIEN TRAIT DÉCORATIF ----- */
 
 .litso-topicreview_headerRule {
-  position: relative;
-  z-index: 2;
-  height: 1px;
-  flex: 1;
-  margin-left: 6px;
-  background: var(--gradient-accent);
-  opacity: 0.65;
+  display: none;
 }
 
 
@@ -390,13 +405,25 @@
    ========================================================= */
 
 @media (max-width: 700px) {
-  .litso-topicreview_header::before {
-    right: 8px;
-    font-size: 52px;
+  .litso-topicreview_header {
+    min-height: 120px;
+    gap: 13px;
+    padding: 25px 12px;
   }
 
-  .litso-topicreview_headerRule {
-    display: none;
+  .litso-topicreview_header::before {
+    font-size: 75px;
+    letter-spacing: -4px;
+  }
+
+  .litso-topicreview_headerIcon {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  .litso-topicreview_headerHeading > strong {
+    font-size: 36px;
   }
 
   .litso-topicreview_postHeader {
@@ -417,18 +444,36 @@
 
 @media (max-width: 480px) {
   .litso-topicreview_header {
-    min-height: 70px;
-    padding: 13px;
+    min-height: 105px;
+    gap: 10px;
+    padding: 20px 10px;
+  }
+
+  .litso-topicreview_header::before {
+    font-size: 58px;
+    letter-spacing: -3px;
   }
 
   .litso-topicreview_headerIcon {
-    width: 38px;
-    height: 38px;
-    flex-basis: 38px;
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+
+  .litso-topicreview_headerIcon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .litso-topicreview_headerHeading > span {
+    margin-bottom: 5px;
+    font-size: 7px;
+    letter-spacing: 1.6px;
   }
 
   .litso-topicreview_headerHeading > strong {
-    font-size: 23px;
+    font-size: 28px;
+    letter-spacing: -1px;
   }
 
   .litso-topicreview_list {
