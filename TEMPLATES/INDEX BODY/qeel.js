@@ -20,11 +20,6 @@
       "true"
     );
 
-
-    /* =====================================================
-       ÉLÉMENTS
-       ===================================================== */
-
     var newestSource = qeel.querySelector(
       "[data-litso-qeel_newestSource]"
     );
@@ -57,11 +52,6 @@
       "[data-litso-qeel_recent]"
     );
 
-
-    /* =====================================================
-       EXTRACTION DES NOMBRES
-       ===================================================== */
-
     function extractNumber(element) {
       if (!element) {
         return "0";
@@ -79,11 +69,6 @@
         ? match[0].replace(/\s+/g, " ").trim()
         : "0";
     }
-
-
-    /* =====================================================
-       DERNIER MEMBRE
-       ===================================================== */
 
     function displayNewestMember() {
       if (!newestSource || !newestTarget) {
@@ -120,11 +105,6 @@
         sourceText || "Nouvelle âme";
     }
 
-
-    /* =====================================================
-       STATISTIQUES
-       ===================================================== */
-
     function displayStatistics() {
       if (usersTarget) {
         usersTarget.textContent =
@@ -136,11 +116,6 @@
           extractNumber(postsSource);
       }
     }
-
-
-    /* =====================================================
-       NETTOYAGE DES LIBELLÉS FORUMACTIF
-       ===================================================== */
 
     function cleanTextNodes(
       element,
@@ -202,11 +177,6 @@
         ]
       );
     }
-
-
-    /* =====================================================
-       INITIALISATION
-       ===================================================== */
 
     displayNewestMember();
     displayStatistics();
