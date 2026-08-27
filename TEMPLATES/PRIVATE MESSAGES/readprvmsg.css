@@ -1,22 +1,9 @@
-/* =========================================================
-   LECTURE DES MESSAGES PRIVÉS
-   Nomenclature : litso-readmsg_
-   ========================================================= */
-
-
-/* ---------- CONTENEUR GÉNÉRAL ---------- */
-
 .litso-readmsg_ {
   position: relative;
   width: min(1160px, calc(100% - 40px));
   margin: 50px auto;
   color: var(--text-primary);
 }
-
-
-/* =========================================================
-   EN-TÊTE PRINCIPAL
-   ========================================================= */
 
 .litso-readmsg_header {
   position: relative;
@@ -100,11 +87,6 @@
   font-size: 13px;
   font-style: italic;
 }
-
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
 
 .litso-readmsg_nav {
   width: 100%;
@@ -191,11 +173,6 @@
   opacity: 1;
 }
 
-
-/* =========================================================
-   BOUTON SUPÉRIEUR
-   ========================================================= */
-
 .litso-readmsg_topAction {
   display: flex;
   justify-content: flex-end;
@@ -233,11 +210,6 @@
   font-size: 17px;
 }
 
-
-/* =========================================================
-   ÉLÉMENTS COMMUNS
-   ========================================================= */
-
 .litso-readmsg_form {
   width: 100%;
   margin-top: 20px;
@@ -254,19 +226,11 @@
   text-transform: uppercase;
 }
 
-
-/* =========================================================
-   BLOC DU MESSAGE
-   ========================================================= */
-
 .litso-readmsg_message {
   width: 100%;
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
 }
-
-
-/* ---------- EN-TÊTE DU MESSAGE ---------- */
 
 .litso-readmsg_messageHeader {
   min-height: 125px;
@@ -294,9 +258,6 @@
   line-height: 1;
   letter-spacing: -0.025em;
 }
-
-
-/* ---------- OUTILS DU MESSAGE ---------- */
 
 .litso-readmsg_messageTools {
   flex: 0 0 auto;
@@ -339,19 +300,11 @@
   max-height: 18px;
 }
 
-
-/* ---------- STRUCTURE DU CORPS ---------- */
-
 .litso-readmsg_messageBody {
   display: grid;
   grid-template-columns: 245px minmax(0, 1fr);
   align-items: stretch;
 }
-
-
-/* =========================================================
-   EXPÉDITEUR
-   ========================================================= */
 
 .litso-readmsg_sender {
   min-width: 0;
@@ -417,9 +370,6 @@
   color: inherit;
 }
 
-
-/* ---------- CONTACTS ---------- */
-
 .litso-readmsg_contacts {
   display: flex;
   align-items: center;
@@ -455,18 +405,10 @@
   max-height: 16px;
 }
 
-
-/* =========================================================
-   CONTENU PRINCIPAL
-   ========================================================= */
-
 .litso-readmsg_main {
   min-width: 0;
   padding: 30px 36px 40px;
 }
-
-
-/* ---------- MÉTADONNÉES ---------- */
 
 .litso-readmsg_metadata {
   display: flex;
@@ -508,9 +450,6 @@
   text-align: right;
 }
 
-
-/* ---------- SÉPARATION DÉCORATIVE ---------- */
-
 .litso-readmsg_separator {
   display: grid;
   grid-template-columns: 1fr 7px 1fr;
@@ -530,9 +469,6 @@
   border: 1px solid var(--accent-soft);
   transform: rotate(45deg);
 }
-
-
-/* ---------- TEXTE DU MESSAGE ---------- */
 
 .litso-readmsg_messageContent {
   min-width: 0;
@@ -591,11 +527,6 @@
   background: var(--bg-elevated);
   border: 1px solid var(--border-default);
 }
-
-
-/* =========================================================
-   ACTIONS
-   ========================================================= */
 
 .litso-readmsg_actions {
   display: flex;
@@ -674,11 +605,6 @@
   font-size: 17px;
 }
 
-
-/* =========================================================
-   HISTORIQUE ET JUMPBOX
-   ========================================================= */
-
 .litso-readmsg_review {
   margin-top: 30px;
 }
@@ -686,11 +612,6 @@
 .litso-readmsg_jumpbox {
   margin-top: 15px;
 }
-
-
-/* =========================================================
-   RESPONSIVE — TABLETTE
-   ========================================================= */
 
 @media (max-width: 900px) {
 
@@ -744,20 +665,12 @@
 
 }
 
-
-/* =========================================================
-   RESPONSIVE — MOBILE
-   ========================================================= */
-
 @media (max-width: 620px) {
 
   .litso-readmsg_ {
     width: calc(100% - 20px);
     margin: 25px auto;
   }
-
-
-  /* En-tête */
 
   .litso-readmsg_header {
     min-height: 155px;
@@ -776,9 +689,6 @@
     display: none;
   }
 
-
-  /* Navigation */
-
   .litso-readmsg_nav {
     grid-template-columns: 1fr;
   }
@@ -793,15 +703,9 @@
     border-bottom: 0;
   }
 
-
-  /* Actions supérieures */
-
   .litso-readmsg_newButton {
     width: 100%;
   }
-
-
-  /* Message */
 
   .litso-readmsg_messageHeader {
     align-items: flex-start;
@@ -834,9 +738,6 @@
   .litso-readmsg_route i {
     transform: rotate(90deg);
   }
-
-
-  /* Actions */
 
   .litso-readmsg_actions {
     align-items: stretch;
