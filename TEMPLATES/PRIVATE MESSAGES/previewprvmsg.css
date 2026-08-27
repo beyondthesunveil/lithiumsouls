@@ -1,22 +1,9 @@
-/* =========================================================
-   PRÉVISUALISATION D’UN MESSAGE PRIVÉ
-   Nomenclature : litso-prevmsgprv_
-   ========================================================= */
-
-
-/* ---------- CONTENEUR GÉNÉRAL ---------- */
-
 .litso-prevmsgprv_ {
   position: relative;
   width: 100%;
   margin: 0 0 30px;
   color: var(--text-primary);
 }
-
-
-/* =========================================================
-   PETITS TITRES
-   ========================================================= */
 
 .litso-prevmsgprv_eyebrow {
   display: block;
@@ -28,11 +15,6 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
-
-
-/* =========================================================
-   EN-TÊTE PRINCIPAL
-   ========================================================= */
 
 .litso-prevmsgprv_header {
   position: relative;
@@ -88,11 +70,6 @@
   font-style: italic;
 }
 
-
-/* =========================================================
-   MESSAGE PRÉVISUALISÉ
-   ========================================================= */
-
 .litso-prevmsgprv_message {
   position: relative;
   width: 100%;
@@ -104,9 +81,6 @@
   );
   border: 1px solid var(--border-default);
 }
-
-
-/* ---------- EN-TÊTE DU MESSAGE ---------- */
 
 .litso-prevmsgprv_messageHeader {
   display: flex;
@@ -130,9 +104,6 @@
   line-height: 1.05;
   letter-spacing: -0.025em;
 }
-
-
-/* ---------- MARQUEUR DE PRÉVISUALISATION ---------- */
 
 .litso-prevmsgprv_previewMark {
   flex: 0 0 auto;
@@ -162,11 +133,6 @@
   display: block;
   transform: rotate(-45deg);
 }
-
-
-/* =========================================================
-   INFORMATIONS DU MESSAGE
-   ========================================================= */
 
 .litso-prevmsgprv_metadata {
   display: flex;
@@ -210,9 +176,6 @@
   text-align: right;
 }
 
-
-/* ---------- SÉPARATEUR ---------- */
-
 .litso-prevmsgprv_separator {
   display: grid;
   grid-template-columns: 1fr 7px 1fr;
@@ -232,11 +195,6 @@
   border: 1px solid var(--accent-soft);
   transform: rotate(45deg);
 }
-
-
-/* =========================================================
-   CONTENU DU MESSAGE
-   ========================================================= */
 
 .litso-prevmsgprv_content {
   min-width: 0;
@@ -295,11 +253,6 @@
   background: var(--bg-elevated);
   border: 1px solid var(--border-default);
 }
-
-
-/* =========================================================
-   RESPONSIVE — MOBILE
-   ========================================================= */
 
 @media (max-width: 620px) {
 
