@@ -50,9 +50,6 @@
   -webkit-text-stroke: 1px var(--border-subtle);
 }
 
-
-/* ----- ACCENT INFÉRIEUR ----- */
-
 .litso-topicreview_header::after {
   content: "";
   position: absolute;
@@ -64,17 +61,11 @@
   transform: translateX(-50%);
 }
 
-
-/* ----- ANCIENS ÉLÉMENTS MASQUÉS ----- */
-
 .litso-topicreview_headerIcon,
 .litso-topicreview_headerRule,
 .litso-topicreview_headerHeading > span {
   display: none;
 }
-
-
-/* ----- CONTENEUR DU TITRE ----- */
 
 .litso-topicreview_headerHeading {
   position: relative;
@@ -85,9 +76,6 @@
   align-items: center;
   justify-content: center;
 }
-
-
-/* ----- TITRE PRINCIPAL ----- */
 
 .litso-topicreview_headerTitle,
 .litso-topicreview_headerHeading > strong {
@@ -110,9 +98,6 @@
   white-space: nowrap;
 }
 
-
-/* ----- TRAITS AUTOUR DU TITRE ----- */
-
 .litso-topicreview_headerTitle::before,
 .litso-topicreview_headerTitle::after,
 .litso-topicreview_headerHeading > strong::before,
@@ -130,11 +115,6 @@
 .litso-topicreview_headerHeading > strong::after {
   background: var(--gradient-accent-reverse);
 }
-
-
-/* =========================================================
-   RESPONSIVE DE L’EN-TÊTE
-   ========================================================= */
 
 @media (max-width: 700px) {
   .litso-topicreview_header {
@@ -195,11 +175,6 @@
   }
 }
 
-
-/* =========================================================
-   LISTE DES MESSAGES
-   ========================================================= */
-
 .litso-topicreview_list {
   display: flex;
   width: 100%;
@@ -225,11 +200,6 @@
   background: var(--gradient-accent-vertical);
   border: 2px solid var(--bg-elevated);
 }
-
-
-/* =========================================================
-   MESSAGE
-   ========================================================= */
 
 .litso-topicreview_post {
   position: relative;
@@ -258,11 +228,6 @@
   left: 0;
 }
 
-
-/* =========================================================
-   EN-TÊTE DU MESSAGE
-   ========================================================= */
-
 .litso-topicreview_postHeader {
   display: grid;
   grid-template-columns:
@@ -288,10 +253,6 @@
   text-transform: uppercase;
 }
 
-/* =========================================================
-   SUJET DU MESSAGE
-   ========================================================= */
-
 .litso-topicreview_subject {
   position: relative;
   display: flex;
@@ -300,9 +261,6 @@
   align-items: center;
   overflow: hidden;
 }
-
-
-/* ----- ÉCRITURE FANTÔME ----- */
 
 .litso-topicreview_subject::before {
   content: attr(data-ghost);
@@ -326,9 +284,6 @@
   transform: translateY(-50%);
   -webkit-text-stroke: 1px var(--border-subtle);
 }
-
-
-/* ----- SUJET LISIBLE ----- */
 
 .litso-topicreview_subjectText {
   position: relative;
@@ -420,11 +375,6 @@
   text-align: right;
 }
 
-
-/* =========================================================
-   CONTENU DU MESSAGE
-   ========================================================= */
-
 .litso-topicreview_content {
   min-height: 100px;
   padding: 25px 28px;
@@ -458,11 +408,6 @@
   background: var(--bg-elevated);
   border-left: 2px solid var(--gold);
 }
-
-
-/* =========================================================
-   MESSAGE MASQUÉ
-   ========================================================= */
 
 .litso-topicreview_hidden {
   display: flex;
@@ -518,11 +463,6 @@
   font: 11px/1.5 var(--font-sans);
   text-align: left;
 }
-
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
 
 @media (max-width: 700px) {
   .litso-topicreview_header {
