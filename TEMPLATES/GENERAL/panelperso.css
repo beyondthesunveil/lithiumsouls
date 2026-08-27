@@ -1,10 +1,3 @@
-/* =========================================================
-   ESPACE PERSONNEL
-   ========================================================= */
-
-
-/* ---------- PANNEAU FLOTTANT ---------- */
-
 .litso-personal_ {
   position: fixed;
   z-index: 9998;
@@ -36,11 +29,6 @@
 .litso-personal_[hidden] {
   display: none;
 }
-
-
-/* =========================================================
-   EN-TÊTE
-   ========================================================= */
 
 .litso-personal_header {
   position: relative;
@@ -115,9 +103,6 @@
   font-style: italic;
 }
 
-
-/* ---------- FERMETURE ---------- */
-
 .litso-personal_close {
   position: relative;
   z-index: 1;
@@ -150,11 +135,6 @@
   background: var(--accent-deep);
   border-color: var(--accent-deep);
 }
-
-
-/* =========================================================
-   ONGLETS
-   ========================================================= */
 
 .litso-personal_tabs {
   flex: 0 0 auto;
@@ -233,11 +213,6 @@
   font-size: 8px;
 }
 
-
-/* =========================================================
-   CONTENU GÉNÉRAL
-   ========================================================= */
-
 .litso-personal_content {
   flex: 1 1 auto;
   min-height: 0;
@@ -268,9 +243,6 @@
 .litso-personal_panel[hidden] {
   display: none;
 }
-
-
-/* ---------- TITRE DES SECTIONS ---------- */
 
 .litso-personal_sectionHeader {
   display: flex;
@@ -304,11 +276,6 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-
-
-/* =========================================================
-   BLOC-NOTES
-   ========================================================= */
 
 .litso-personal_notepad {
   width: 100%;
@@ -355,11 +322,6 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-
-
-/* =========================================================
-   AJOUT D’UNE TÂCHE
-   ========================================================= */
 
 .litso-personal_taskForm {
   margin-bottom: 18px;
@@ -421,11 +383,6 @@
   background: var(--gold-dark);
 }
 
-
-/* =========================================================
-   TÂCHES
-   ========================================================= */
-
 .litso-personal_taskList {
   display: grid;
   gap: 7px;
@@ -466,9 +423,6 @@
   line-height: 1.45;
   overflow-wrap: break-word;
 }
-
-
-/* ---------- CASE À COCHER ---------- */
 
 .litso-personal_checkbox {
   position: relative;
@@ -512,9 +466,6 @@
   outline-offset: 3px;
 }
 
-
-/* ---------- SUPPRESSION ---------- */
-
 .litso-personal_taskDelete {
   width: 28px;
   height: 28px;
@@ -539,11 +490,6 @@
 .litso-personal_taskDelete i {
   font-size: 10px;
 }
-
-
-/* =========================================================
-   ÉTAT VIDE
-   ========================================================= */
 
 .litso-personal_empty {
   min-height: 185px;
@@ -589,11 +535,6 @@
   font-size: 9px;
 }
 
-
-/* =========================================================
-   PIED DE LA TO-DO
-   ========================================================= */
-
 .litso-personal_taskFooter {
   display: flex;
   align-items: center;
@@ -635,11 +576,6 @@
   display: none;
 }
 
-
-/* =========================================================
-   PIED DU PANNEAU
-   ========================================================= */
-
 .litso-personal_footer {
   flex: 0 0 auto;
   min-height: 42px;
@@ -668,11 +604,6 @@
   color: var(--gold);
 }
 
-
-/* =========================================================
-   ÉTAT DU BLOC MEMBRE
-   ========================================================= */
-
 .litso-nav_member[
   aria-controls="litso-personal-panel"
 ] {
@@ -685,11 +616,6 @@
   color: var(--gold);
   background: var(--bg-soft);
 }
-
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
 
 @media (max-width: 620px) {
 
