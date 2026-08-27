@@ -1,22 +1,9 @@
-/* =========================================================
-   PROFIL DÉTAILLÉ
-   Nomenclature : litso-profile_
-   ========================================================= */
-
-
-/* ---------- CONTENEUR ---------- */
-
 .litso-profile_ {
   position: relative;
   width: min(1160px, calc(100% - 40px));
   margin: 50px auto;
   color: var(--text-primary);
 }
-
-
-/* =========================================================
-   EN-TÊTE
-   ========================================================= */
 
 .litso-profile_header {
   position: relative;
@@ -93,11 +80,6 @@
   font-style: italic;
 }
 
-
-/* =========================================================
-   ÉLÉMENTS COMMUNS
-   ========================================================= */
-
 .litso-profile_eyebrow {
   display: block;
   color: var(--gold);
@@ -109,11 +91,6 @@
   text-transform: uppercase;
 }
 
-
-/* =========================================================
-   STRUCTURE PRINCIPALE
-   ========================================================= */
-
 .litso-profile_layout {
   display: grid;
   grid-template-columns: 265px minmax(0, 1fr);
@@ -123,20 +100,12 @@
   border: 1px solid var(--border-default);
 }
 
-
-/* =========================================================
-   IDENTITÉ À GAUCHE
-   ========================================================= */
-
 .litso-profile_identity {
   min-width: 0;
   padding: 28px 32px;
   background: var(--bg-elevated);
   border-right: 1px solid var(--border-default);
 }
-
-
-/* ---------- PRÉSENCE ---------- */
 
 .litso-profile_presence {
   min-height: 38px;
@@ -168,9 +137,6 @@
   border-radius: 50%;
   box-shadow: 0 0 0 4px var(--border-subtle);
 }
-
-
-/* ---------- AVATAR 200 × 320 ---------- */
 
 .litso-profile_avatar {
   position: relative;
@@ -214,9 +180,6 @@
   filter: grayscale(0.15);
 }
 
-
-/* ---------- NOM ET RANG ---------- */
-
 .litso-profile_identityText {
   margin-top: 26px;
   text-align: center;
@@ -252,9 +215,6 @@
   text-transform: uppercase;
 }
 
-
-/* ---------- GROUPES ---------- */
-
 .litso-profile_groups {
   margin-top: 24px;
   padding-top: 19px;
@@ -285,9 +245,6 @@
   border-color: var(--gold);
 }
 
-
-/* ---------- SUIVI ---------- */
-
 .litso-profile_follow {
   width: 100%;
   min-height: 39px;
@@ -309,9 +266,6 @@
   background: var(--gold-dark);
   border-color: var(--gold-dark);
 }
-
-
-/* ---------- ACTIONS RAPIDES ---------- */
 
 .litso-profile_quickActions {
   display: grid;
@@ -349,21 +303,11 @@
   text-align: center;
 }
 
-
-/* =========================================================
-   PARTIE DROITE
-   ========================================================= */
-
 .litso-profile_details {
   min-width: 0;
   display: flex;
   flex-direction: column;
 }
-
-
-/* =========================================================
-   ONGLETS
-   ========================================================= */
 
 .litso-profile_tabs {
   flex: 0 0 auto;
@@ -429,11 +373,6 @@
   background: var(--gold);
 }
 
-
-/* =========================================================
-   PANNEAUX
-   ========================================================= */
-
 .litso-profile_panel {
   flex: 1;
   min-height: 610px;
@@ -461,9 +400,6 @@
 .litso-profile_panel::-webkit-scrollbar-thumb {
   background: var(--gold);
 }
-
-
-/* ---------- EN-TÊTE DU PANNEAU ---------- */
 
 .litso-profile_panelHeader {
   display: flex;
@@ -498,11 +434,6 @@
   text-align: right;
   text-transform: uppercase;
 }
-
-
-/* =========================================================
-   CHAMPS DU PROFIL
-   ========================================================= */
 
 .litso-profile_fields {
   display: grid;
@@ -551,9 +482,6 @@
   color: var(--gold);
 }
 
-
-/* ---------- STATISTIQUES DANS UN CHAMP ---------- */
-
 .litso-profile_postStats {
   margin-top: 8px;
   color: var(--text-muted);
@@ -577,11 +505,6 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-
-
-/* =========================================================
-   ÉDITION AJAX
-   ========================================================= */
 
 .litso-profile_field.ajax-profil_parent {
   position: relative;
@@ -630,11 +553,6 @@
   color: var(--accent);
   font-size: 9px;
 }
-
-
-/* =========================================================
-   CONTACT ET COMMENTAIRES
-   ========================================================= */
 
 .litso-profile_contactForm {
   width: 100%;
@@ -696,11 +614,6 @@
   text-transform: uppercase;
   cursor: pointer;
 }
-
-
-/* =========================================================
-   ACTIVITÉ
-   ========================================================= */
 
 .litso-profile_activityGrid {
   display: grid;
@@ -809,11 +722,6 @@
   transform: rotate(45deg);
 }
 
-
-/* =========================================================
-   DISTINCTIONS ET GESTION
-   ========================================================= */
-
 .litso-profile_awards,
 .litso-profile_management {
   padding: 22px;
@@ -879,11 +787,6 @@
   text-transform: uppercase;
 }
 
-
-/* =========================================================
-   RPG
-   ========================================================= */
-
 .litso-profile_rpgLayout {
   display: grid;
   grid-template-columns: 190px minmax(0, 1fr);
@@ -932,11 +835,6 @@
   text-transform: uppercase;
 }
 
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
 @media (max-width: 950px) {
 
   .litso-profile_layout {
@@ -972,7 +870,6 @@
   }
 
 }
-
 
 @media (max-width: 700px) {
 
