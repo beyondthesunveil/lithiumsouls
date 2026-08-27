@@ -16,11 +16,6 @@
       "true"
     );
 
-
-    /* =====================================================
-       ÉLÉMENTS DE LA NAVBAR
-       ===================================================== */
-
     var linksContainer = navbar.querySelector(
       "[data-litso-nav_links]"
     );
@@ -40,11 +35,6 @@
     var status = navbar.querySelector(
       "[data-litso-nav_status]"
     );
-
-
-    /* =====================================================
-       ÉLÉMENTS DU PANNEAU PERSONNEL
-       ===================================================== */
 
     var personalPanel = document.querySelector(
       "[data-litso-personal]"
@@ -146,11 +136,6 @@
         )
       : null;
 
-
-    /* =====================================================
-       LIENS GÉNÉRÉS PAR FORUMACTIF
-       ===================================================== */
-
     function decorateLinks() {
       if (!linksContainer) {
         return;
@@ -195,11 +180,6 @@
         }
       );
     }
-
-
-    /* =====================================================
-       DONNÉES DU MEMBRE
-       ===================================================== */
 
     function extractAvatarSource(value) {
       if (
@@ -262,11 +242,6 @@
         "Les apartés de " + displayName + ".";
     }
 
-
-    /* =====================================================
-       AVATAR
-       ===================================================== */
-
     var avatarSource = extractAvatarSource(
       userData.avatar
     );
@@ -286,11 +261,6 @@
 
       avatar.appendChild(avatarImage);
     }
-
-
-    /* =====================================================
-       ÉTAT DES DONNÉES PERSONNELLES
-       ===================================================== */
 
     var personalData = {
       notes: "",
@@ -365,11 +335,6 @@
       }
     }
 
-
-    /* =====================================================
-       OUVERTURE ET FERMETURE DU PANNEAU
-       ===================================================== */
-
     function setPersonalPanel(open) {
       if (
         !loggedIn ||
@@ -433,11 +398,6 @@
         );
       }
     }
-
-
-    /* =====================================================
-       COMPORTEMENT DU BLOC MEMBRE
-       ===================================================== */
 
     if (member) {
       if (loggedIn) {
@@ -516,11 +476,6 @@
       }
     );
 
-
-    /* =====================================================
-       ONGLETS
-       ===================================================== */
-
     function activatePersonalTab(tabName, save) {
       var selectedTab =
         tabName === "tasks"
@@ -587,11 +542,6 @@
       }
     );
 
-
-    /* =====================================================
-       BLOC-NOTES
-       ===================================================== */
-
     function updateCharacterCounter() {
       if (
         !notesField ||
@@ -646,11 +596,6 @@
         scheduleNoteSave
       );
     }
-
-
-    /* =====================================================
-       TO-DO LIST
-       ===================================================== */
 
     function createTaskIdentifier() {
       return (
@@ -744,7 +689,6 @@
               ? "Marquer la tâche comme non terminée"
               : "Marquer la tâche comme terminée"
           );
-
 
           var checkboxVisual =
             document.createElement("span");
@@ -873,7 +817,6 @@
       }
     }
 
-
     function addTask(text) {
       var cleanText = text
         .replace(/\s+/g, " ")
@@ -893,7 +836,6 @@
       renderTasks();
     }
 
-
     if (taskForm && taskInput) {
       taskForm.addEventListener(
         "submit",
@@ -907,7 +849,6 @@
         }
       );
     }
-
 
     if (clearCompleted) {
       clearCompleted.addEventListener(
@@ -925,11 +866,6 @@
         }
       );
     }
-
-
-    /* =====================================================
-       INITIALISATION DU MODULE
-       ===================================================== */
 
     if (loggedIn) {
       loadPersonalData();
@@ -949,11 +885,6 @@
       );
     }
   }
-
-
-  /* =======================================================
-     LANCEMENT
-     ======================================================= */
 
   if (document.readyState === "loading") {
     document.addEventListener(
