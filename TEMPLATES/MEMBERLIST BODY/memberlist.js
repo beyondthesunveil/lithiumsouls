@@ -1,9 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  /* =====================================================
-     NOMS DES GROUPES
-     ===================================================== */
-
   var groupNames = {
     "group-2": "Administration",
     "group-3": "Infernaux",
@@ -15,11 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     "group-9": "Anomalies",
     "group-10": "Âmes errantes"
   };
-
-
-  /* =====================================================
-     CONVERSION DE LA COULEUR
-     ===================================================== */
 
   function convertToRgba(color, opacity) {
     var values = color.match(
@@ -37,11 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
       opacity + ")";
   }
 
-
-  /* =====================================================
-     INITIALISATION DES MEMBRES
-     ===================================================== */
-
   document.querySelectorAll(
     ".litso-memberlist_pseudo"
   ).forEach(function (pseudo) {
@@ -58,9 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-
-    /* ----- CLASSE DU GROUPE ----- */
-
     var groupClass = Array.from(
       groupSpan.classList
     ).find(function (className) {
@@ -70,9 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (groupClass) {
       pseudo.classList.add(groupClass);
     }
-
-
-    /* ----- COULEUR RÉELLE DU GROUPE ----- */
 
     var groupColor = window
       .getComputedStyle(groupSpan)
@@ -97,9 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-
-    /* ----- NOM DU GROUPE ----- */
-
     if (memberCard) {
       var groupNameTarget = memberCard.querySelector(
         "[data-litso-memberlist_groupName]"
@@ -111,9 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
           "Âme errante";
       }
     }
-
-
-    /* ----- PSEUDO EN BLANC ----- */
 
     groupSpan.style.setProperty(
       "color",
