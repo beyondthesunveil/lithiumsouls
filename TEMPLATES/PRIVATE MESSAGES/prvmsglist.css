@@ -1,22 +1,9 @@
-/* =========================================================
-   LISTE DES MESSAGES PRIVÉS
-   Nomenclature : litso-prvmsg_
-   ========================================================= */
-
-
-/* ---------- CONTENEUR GÉNÉRAL ---------- */
-
 .litso-prvmsg_ {
   position: relative;
   width: min(1160px, calc(100% - 40px));
   margin: 50px auto;
   color: var(--text-primary);
 }
-
-
-/* =========================================================
-   EN-TÊTE PRINCIPAL
-   ========================================================= */
 
 .litso-prvmsg_header {
   position: relative;
@@ -100,11 +87,6 @@
   font-size: 13px;
   font-style: italic;
 }
-
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
 
 .litso-prvmsg_nav {
   width: 100%;
@@ -191,11 +173,6 @@
   opacity: 1;
 }
 
-
-/* =========================================================
-   FORMULAIRE ET PETITS TITRES
-   ========================================================= */
-
 .litso-prvmsg_form {
   width: 100%;
   margin-top: 20px;
@@ -211,11 +188,6 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
-
-
-/* =========================================================
-   ÉTAT DE LA MESSAGERIE
-   ========================================================= */
 
 .litso-prvmsg_status {
   display: flex;
@@ -254,18 +226,10 @@
   margin: 0;
 }
 
-
-/* =========================================================
-   BLOC DES MESSAGES
-   ========================================================= */
-
 .litso-prvmsg_messages {
   width: 100%;
   margin-top: 20px;
 }
-
-
-/* ---------- EN-TÊTE DE LA LISTE ---------- */
 
 .litso-prvmsg_listHeader {
   display: flex;
@@ -296,9 +260,6 @@
   font-weight: 400;
 }
 
-
-/* ---------- LIENS DE SÉLECTION ---------- */
-
 .litso-prvmsg_markLinks {
   display: flex;
   align-items: center;
@@ -326,11 +287,6 @@
   background: var(--accent-soft);
   transform: rotate(45deg);
 }
-
-
-/* =========================================================
-   LISTE ET LIGNES DE MESSAGES
-   ========================================================= */
 
 .litso-prvmsg_list {
   width: 100%;
@@ -363,9 +319,6 @@
   background: var(--bg-soft);
 }
 
-
-/* ---------- ICÔNE DU MESSAGE ---------- */
-
 .litso-prvmsg_folder {
   position: relative;
   display: grid;
@@ -397,9 +350,6 @@
   max-width: 16px;
   max-height: 16px;
 }
-
-
-/* ---------- CONTENU DU MESSAGE ---------- */
 
 .litso-prvmsg_rowContent {
   min-width: 0;
@@ -437,9 +387,6 @@
   font-style: italic;
 }
 
-
-/* ---------- MÉTADONNÉES ---------- */
-
 .litso-prvmsg_metadata {
   display: flex;
   align-items: center;
@@ -466,9 +413,6 @@
   transform: rotate(45deg);
 }
 
-
-/* ---------- COLONNE DE DROITE ---------- */
-
 .litso-prvmsg_rowAside {
   display: flex;
   flex-direction: column;
@@ -477,9 +421,6 @@
   gap: 14px;
   border-left: 1px solid var(--border-default);
 }
-
-
-/* ---------- CASE À COCHER ---------- */
 
 .litso-prvmsg_checkbox {
   position: relative;
@@ -527,9 +468,6 @@
   outline-offset: 3px;
 }
 
-
-/* ---------- BOUTON DE LECTURE ---------- */
-
 .litso-prvmsg_readButton {
   width: 36px;
   height: 36px;
@@ -554,11 +492,6 @@
   background: var(--bg-surface);
   border-color: var(--gold);
 }
-
-
-/* =========================================================
-   MESSAGERIE VIDE
-   ========================================================= */
 
 .litso-prvmsg_empty {
   min-height: 150px;
@@ -591,11 +524,6 @@
   font-weight: 400;
 }
 
-
-/* =========================================================
-   PIED DE LISTE
-   ========================================================= */
-
 .litso-prvmsg_listFooter {
   min-height: 55px;
   display: flex;
@@ -621,11 +549,6 @@
   flex-wrap: wrap;
   gap: 5px;
 }
-
-
-/* =========================================================
-   ACTIONS
-   ========================================================= */
 
 .litso-prvmsg_actions {
   display: flex;
@@ -705,17 +628,9 @@
   border-color: var(--accent-deep);
 }
 
-
-/* ---------- JUMPBOX ---------- */
-
 .litso-prvmsg_jumpbox {
   margin-top: 15px;
 }
-
-
-/* =========================================================
-   RESPONSIVE — TABLETTE
-   ========================================================= */
 
 @media (max-width: 900px) {
 
@@ -760,20 +675,12 @@
 
 }
 
-
-/* =========================================================
-   RESPONSIVE — MOBILE
-   ========================================================= */
-
 @media (max-width: 620px) {
 
   .litso-prvmsg_ {
     width: calc(100% - 20px);
     margin: 25px auto;
   }
-
-
-  /* En-tête */
 
   .litso-prvmsg_header {
     min-height: 155px;
@@ -792,9 +699,6 @@
     display: none;
   }
 
-
-  /* Navigation */
-
   .litso-prvmsg_nav {
     grid-template-columns: 1fr;
   }
@@ -809,24 +713,15 @@
     border-bottom: 0;
   }
 
-
-  /* État */
-
   .litso-prvmsg_status {
     align-items: flex-start;
   }
-
-
-  /* En-tête et pied de liste */
 
   .litso-prvmsg_listHeader,
   .litso-prvmsg_listFooter {
     align-items: flex-start;
     flex-direction: column;
   }
-
-
-  /* Messages */
 
   .litso-prvmsg_row {
     grid-template-columns: 65px minmax(0, 1fr);
@@ -868,9 +763,6 @@
     border-top: 1px solid var(--border-default);
     border-left: 0;
   }
-
-
-  /* Actions */
 
   .litso-prvmsg_newButton {
     width: 100%;
