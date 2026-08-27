@@ -30,11 +30,6 @@
       "[data-litso-profile-panel]"
     );
 
-
-    /* =====================================================
-       ONGLETS
-       ===================================================== */
-
     function activateTab(tabName, moveFocus) {
       var selectedTab = null;
 
@@ -160,11 +155,6 @@
     );
 
     activateTab("identity", false);
-
-
-    /* =====================================================
-       ÉDITION AJAX DES CHAMPS
-       ===================================================== */
 
     if (
       !window.jQuery ||
