@@ -1,23 +1,10 @@
 (function () {
   "use strict";
 
-
-  /* =======================================================
-     INTRODUCTIONS DES CATÉGORIES
-     ======================================================= */
-
   var categoryIntros = [
     "Toute éternité commence par un seuil. Les premiers fragments du royaume vous attendent ici.",
     "Au-delà des portes s’étendent les territoires où les âmes se cherchent, se rencontrent et se consument."
   ];
-
-
-  /* =======================================================
-     KICKERS PERSONNALISÉS DES FORUMS
-
-     Exemple :
-     /f12-nom-du-forum correspond à la clé "f12".
-     ======================================================= */
 
   var forumKickers = {
     "f1": "Les premières lois gravées dans la pierre",
@@ -26,25 +13,12 @@
     "f4": "Là où commencent les territoires du royaume"
   };
 
-
-  /* =======================================================
-     BADGES DES FORUMS
-
-     Même principe que pour les kickers :
-     le badge dépend directement de l’identifiant du forum.
-     ======================================================= */
-
   var forumBadges = {
     "f1": "Administration",
     "f2": "Actualités",
     "f3": "Personnages",
     "f4": "Territoire"
   };
-
-
-  /* =======================================================
-     OUTILS GÉNÉRAUX
-     ======================================================= */
 
   function cleanText(element) {
     if (!element) {
@@ -87,11 +61,6 @@
     return words[words.length - 1].toUpperCase();
   }
 
-
-  /* =======================================================
-     IDENTIFIANT DU FORUM
-     ======================================================= */
-
   function getForumKey(forum) {
     var forumLink = forum.querySelector(
       ".litso-forum_title a"
@@ -112,11 +81,6 @@
       ? "f" + match[1]
       : "";
   }
-
-
-  /* =======================================================
-     TEXTES PERSONNALISÉS DU FORUM
-     ======================================================= */
 
   function initializeForumTexts(forum) {
     var forumKey = getForumKey(forum);
@@ -141,11 +105,6 @@
         "Chapitre";
     }
   }
-
-
-  /* =======================================================
-     IMAGE ET DISPOSITION DU FORUM
-     ======================================================= */
 
   function initializeForumImage(forum) {
     var description = forum.querySelector(
@@ -181,11 +140,6 @@
 
     visual.appendChild(image);
   }
-
-
-  /* =======================================================
-     LIENS FORUMACTIF
-     ======================================================= */
 
   function isUserProfileLink(link) {
     if (!link) {
@@ -239,11 +193,6 @@
 
     return exactLink || imageLink;
   }
-
-
-  /* =======================================================
-     AUTEUR DU DERNIER MESSAGE
-     ======================================================= */
 
   function decorateLastPostAuthor(meta) {
     if (!meta) {
@@ -302,11 +251,6 @@
     );
   }
 
-
-  /* =======================================================
-     NETTOYAGE DES IMAGES NATIVES
-     ======================================================= */
-
   function removeForumactifPostImages(meta) {
     if (!meta) {
       return;
@@ -333,11 +277,6 @@
     );
   }
 
-
-  /* =======================================================
-     FORUM SANS MESSAGE
-     ======================================================= */
-
   function initializeEmptyForum(forum) {
     var topics = parseCounter(
       forum.getAttribute("data-topics")
@@ -358,11 +297,6 @@
 
     return isEmpty;
   }
-
-
-  /* =======================================================
-     DERNIER MESSAGE
-     ======================================================= */
 
   function initializeLastPost(forum) {
     var meta = forum.querySelector(
@@ -401,11 +335,6 @@
     decorateLastPostAuthor(meta);
     removeForumactifPostImages(meta);
   }
-
-
-  /* =======================================================
-     CATÉGORIE
-     ======================================================= */
 
   function initializeCategory(category, categoryIndex) {
     var titleElement = category.querySelector(
@@ -447,11 +376,6 @@
     );
   }
 
-
-  /* =======================================================
-     INITIALISATION GÉNÉRALE
-     ======================================================= */
-
   function initializeLitsoIndexBox() {
     var categories = document.querySelectorAll(
       ".litso-cat"
@@ -467,11 +391,6 @@
       }
     );
   }
-
-
-  /* =======================================================
-     LANCEMENT
-     ======================================================= */
 
   if (document.readyState === "loading") {
     document.addEventListener(
