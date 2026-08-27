@@ -1,0 +1,139 @@
+/* ---------- BALISES CODE / QUOTE / HIDE / SPOILER / BLOCKQUOTE ---------- */
+
+blockquote, .quote {
+  border-left: 5px solid var(--coloradd);
+  background: var(--color02);
+  border-radius: var(--radiusbis);
+  font-style: italic;
+  text-align: justify;
+  font-size: 12px var(--font-text);
+  color: var(--bordercolor);
+  margin: 0 auto;
+}
+
+blockquote cite, .quote .quote-author {
+  margin-bottom: 5px;
+  color: var(--colornews);
+  font: 20px var(--font-h4);
+}
+blockquote:before {
+  content: "\f347";
+  color: rgb(0 0 0 / .1);
+  font-size: 17.6rem;
+  position: absolute;
+  right: 20px;
+  top: -5px;
+}
+
+/* CODE / [code] / .codebox */
+  dl.codebox.spoiler::before,
+dl.codebox.hidecode::before {
+    content: none !important;
+}
+.codebox {
+  border: none !important;
+  width: 100% !important;
+  border-radius: var(--radiusbis) !important;
+  background: var(--color02) !important;
+  color: #f8f8f2 !important;
+  font: 12px var(--font-text) !important;
+  padding: 12px !important;
+}
+dl.codebox dt {
+  border: none;
+  margin: 20px 35px;
+  font-size: 1.3rem;
+  font-weight: 400;
+  display: block;
+  color: #f1f1f1;
+}
+dl.codebox code {
+  overflow: auto;
+  display: block;
+  height: auto;
+  max-height: 250px;
+  white-space: normal;
+  padding: 10px;
+  text-align: justify;
+  font: .9em Courier, Courier New, monospace;
+  line-height: 1.3em;
+  color: #2E8B57;
+}
+  
+  dl.codebox:not(.spoiler):not(.hidecode)::before {
+    content: "\f271";
+    color: #f1f1f1;
+    position: absolute;
+    top: 35px;
+    font-family: "Ionicons";
+    left: 30px;
+    font-size: 13px;
+}
+  
+/* dl.codebox:before {
+  content: "\f271";
+  color: #f1f1f1;
+  position: absolute;
+  top: 35px;
+  font-family: "Ionicons";
+  left: 30px;
+  font-size: 13px;
+} */
+
+.codebox .genmed {
+  font-size: 14px;
+  color: #663300;
+  font-style: italic;
+}
+
+/* Bouton copier */
+.codebox button.copy-btn {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  background: var(--colorfont);
+  border: none;
+  color: var(--color02);
+  padding: 3px 10px;
+  border-radius: var(--mainradius);
+  cursor: pointer;
+  font-size: 12px;
+}
+.codebox button.copy-btn:hover {
+  background: #357ab8;
+}
+
+/* SPOILER / HIDE */
+.codebox.spoiler {
+  padding: 20px!important;
+  border-radius: var(--radiusbis) !important;
+  width: 100% !important;
+  margin: 0 auto!important;
+  background: var(--color02) !important;
+  border: none !important;
+}
+.codebox.spoiler dd {
+  padding: 10px 0 0 0!important;
+}
+.codebox.hidecode {
+  padding: 20px !important;
+  border-radius: var(--radiusbis) !important;
+  width: 100% !important;
+  margin: 15px auto;
+  background: var(--color02) !important;
+  border-right: 5px solid var(--colornews) !important;
+}
+.hidecode dt {
+  display:none!important;
+}
+.spoiler dt {
+  font: 20px var(--font-h4) !important;
+  padding: 0px 12px!important;
+  border: none !important;
+  width: 100%;
+  margin: 0px 0 0px 0 !important;
+  cursor: pointer;
+  background: var(--coloradd);
+  color: var(--colorfont)!important;
+  border-radius: var(--mainradius);
+}
