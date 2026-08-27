@@ -1,22 +1,9 @@
-/* =========================================================
-   HISTORIQUE DES MESSAGES PRIVÉS
-   Nomenclature : litso-reviewmsg_
-   ========================================================= */
-
-
-/* ---------- CONTENEUR GÉNÉRAL ---------- */
-
 .litso-reviewmsg_ {
   position: relative;
   width: 100%;
   margin-top: 30px;
   color: var(--text-primary);
 }
-
-
-/* =========================================================
-   PETITS TITRES
-   ========================================================= */
 
 .litso-reviewmsg_eyebrow {
   display: block;
@@ -28,11 +15,6 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
-
-
-/* =========================================================
-   EN-TÊTE
-   ========================================================= */
 
 .litso-reviewmsg_header {
   position: relative;
@@ -88,19 +70,11 @@
   font-style: italic;
 }
 
-
-/* =========================================================
-   LISTE DES MESSAGES
-   ========================================================= */
-
 .litso-reviewmsg_list {
   width: 100%;
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
 }
-
-
-/* ---------- LIGNE DE MESSAGE ---------- */
 
 .litso-reviewmsg_row {
   position: relative;
@@ -120,11 +94,6 @@
   border-bottom: 0;
 }
 
-
-/* =========================================================
-   EXPÉDITEUR
-   ========================================================= */
-
 .litso-reviewmsg_sender {
   min-width: 0;
   display: flex;
@@ -135,9 +104,6 @@
   background: var(--bg-elevated);
   border-right: 1px solid var(--border-default);
 }
-
-
-/* ---------- AVATAR ---------- */
 
 .litso-reviewmsg_avatar {
   position: relative;
@@ -175,9 +141,6 @@
   filter: grayscale(0.25);
 }
 
-
-/* ---------- IDENTITÉ ---------- */
-
 .litso-reviewmsg_identity {
   max-width: 100%;
   margin-top: 24px;
@@ -199,18 +162,10 @@
   color: inherit;
 }
 
-
-/* =========================================================
-   CONTENU DU MESSAGE
-   ========================================================= */
-
 .litso-reviewmsg_main {
   min-width: 0;
   padding: 30px 34px 36px;
 }
-
-
-/* ---------- SUJET ---------- */
 
 .litso-reviewmsg_messageHeader {
   display: flex;
@@ -228,9 +183,6 @@
   font-weight: 400;
   line-height: 1.1;
 }
-
-
-/* ---------- MÉTADONNÉES ---------- */
 
 .litso-reviewmsg_metadata {
   flex: 0 0 auto;
@@ -281,9 +233,6 @@
   transform: rotate(45deg);
 }
 
-
-/* ---------- SÉPARATEUR ---------- */
-
 .litso-reviewmsg_separator {
   display: grid;
   grid-template-columns: 1fr 7px 1fr;
@@ -303,9 +252,6 @@
   border: 1px solid var(--accent-soft);
   transform: rotate(45deg);
 }
-
-
-/* ---------- TEXTE ---------- */
 
 .litso-reviewmsg_content {
   min-width: 0;
@@ -365,11 +311,6 @@
   border: 1px solid var(--border-default);
 }
 
-
-/* =========================================================
-   MESSAGE ACTUEL
-   ========================================================= */
-
 .litso-reviewmsg_row.current {
   background: var(--bg-soft);
 }
@@ -385,11 +326,6 @@
   background: var(--gold);
   transform: rotate(45deg);
 }
-
-
-/* =========================================================
-   PIED ET PAGINATION
-   ========================================================= */
 
 .litso-reviewmsg_footer {
   min-height: 55px;
@@ -418,11 +354,6 @@
   flex-wrap: wrap;
   gap: 5px;
 }
-
-
-/* =========================================================
-   RESPONSIVE — TABLETTE
-   ========================================================= */
 
 @media (max-width: 900px) {
 
@@ -460,11 +391,6 @@
   }
 
 }
-
-
-/* =========================================================
-   RESPONSIVE — MOBILE
-   ========================================================= */
 
 @media (max-width: 620px) {
 
