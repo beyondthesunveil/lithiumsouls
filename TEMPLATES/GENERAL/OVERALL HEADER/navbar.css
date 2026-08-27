@@ -18,6 +18,7 @@ body {
 .mainmenu[href="/gallery/index.htm"],
 .mainmenu[href="/images"],
 .mainmenu[href="/discover"],
+.mainmenu[href="/groups"],
 .mainmenu[href="/faq"] {
   display: none !important;
 }
@@ -57,8 +58,6 @@ body {
   align-items: center;
   gap: 12px;
 }
-
-/* ----- RETOUR À L’ACCUEIL ----- */
 
 .litso-nav_home {
   width: 44px;
@@ -101,8 +100,6 @@ body {
 .litso-nav_home:focus-visible::before {
   transform: rotate(8deg) scale(1.08);
 }
-
-/* ----- MEMBRE CONNECTÉ ----- */
 
 .litso-nav_member {
   min-width: 178px;
@@ -273,8 +270,6 @@ body {
   color: var(--text-faded);
 }
 
-/* ----- LIENS GÉNÉRÉS PAR FORUMACTIF ----- */
-
 .litso-nav_links {
   min-width: 0;
   margin-left: auto;
@@ -303,7 +298,6 @@ body {
   white-space: nowrap;
 }
 
-/* Neutralise les dimensions et flottants natifs de Forumactif. */
 .litso-nav_links li,
 .litso-nav_links ul li,
 .litso-nav_links ul.navbar li,
@@ -342,7 +336,6 @@ body {
   transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
 }
 
-/* Accueil et recherche possèdent leurs propres modules à gauche. */
 .litso-nav_links a.mainmenu[href="/"],
 .litso-nav_links a.mainmenu[href="/search"] {
   display: none !important;
@@ -449,13 +442,10 @@ body {
   mask-image: url("https://unpkg.com/lucide-static@latest/icons/log-out.svg");
 }
 
-/* Icône de secours pour tout lien non prévu */
 .litso-nav_links a.mainmenu:not([href="/"]):not([href="/search"]):not([href="/memberlist"]):not([href="/groups"]):not([href="/profile?mode=editprofile"]):not([href="/privmsg?folder=inbox"]):not([href="/register"]):not([href="/login"]):not([href*="logout=1"])::before {
   -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/link.svg");
   mask-image: url("https://unpkg.com/lucide-static@latest/icons/link.svg");
 }
-
-/* ----- ÉCRANS PLUS ÉTROITS ----- */
 
 @media (max-width: 1050px) {
   .litso-nav_member {
