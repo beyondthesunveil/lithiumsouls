@@ -360,10 +360,6 @@
   bottom: 19px;
 }
 
-
-/* FIN PARTIE SANS IMAGE
-   ========================================================= */
-
 .litso-lastpost {
   position: relative;
   min-width: 0;
@@ -699,10 +695,6 @@
     url("https://unpkg.com/lucide-static/icons/trash-2.svg");
 }
 
-
-/* Responsive intermédiaire
-   ========================================================= */
-
 @media (max-width: 1100px) {
   .litso-index-tools {
     align-items: flex-start;
@@ -723,10 +715,6 @@
     align-self: flex-end;
   }
 }
-
-
-/* Responsive mobile
-   ========================================================= */
 
 @media (max-width: 700px) {
   .litso-index-tools {
