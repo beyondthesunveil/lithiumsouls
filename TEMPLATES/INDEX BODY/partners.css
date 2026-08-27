@@ -1,7 +1,3 @@
-/* =========================================================
-   PARTENAIRES
-   ========================================================= */
-
 .litso-partners_ {
   position: relative;
   width: 100%;
@@ -20,11 +16,6 @@
 .litso-partners_ *::after {
   box-sizing: border-box;
 }
-
-
-/* =========================================================
-   EN-TÊTE
-   ========================================================= */
 
 .litso-partners_header {
   min-height: 78px;
@@ -64,11 +55,6 @@
   text-transform: uppercase;
 }
 
-
-/* =========================================================
-   GRILLE — 10 × 3
-   ========================================================= */
-
 .litso-partners_grid {
   position: relative;
   width: 100%;
@@ -78,11 +64,6 @@
   justify-content: center;
   gap: 12px;
 }
-
-
-/* =========================================================
-   BOUTONS
-   ========================================================= */
 
 .litso-partners_item {
   position: relative;
@@ -122,11 +103,6 @@
 .litso-partners_item:focus-visible img {
   filter: grayscale(0) brightness(1) contrast(1);
 }
-
-
-/* =========================================================
-   TOOLTIP
-   ========================================================= */
 
 .litso-partners_item::before,
 .litso-partners_item::after {
@@ -176,11 +152,6 @@
   visibility: visible;
   transform: translate(-50%, 0);
 }
-
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
 
 @media (max-width: 900px) {
 
