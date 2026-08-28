@@ -1,10 +1,6 @@
 (function () {
   "use strict";
 
-  /* ==================================================
-     EN-TÊTE DU FORMULAIRE
-     ================================================== */
-
   function enhancePostingHeader() {
     const postingBox =
       document.querySelector(
@@ -13,8 +9,8 @@
 
     if (
       !postingBox ||
-      postingBox.dataset.litsoHeaderReady ===
-        "true"
+      postingBox.dataset
+        .litsoHeaderReady === "true"
     ) {
       return;
     }
@@ -28,12 +24,6 @@
       postingBox.querySelector(
         ".litsoPB_postingHeader"
       );
-
-    /*
-     * Si l’en-tête interne n’est pas présent
-     * dans une variante du template, il est
-     * recréé à partir du titre Forumactif.
-     */
 
     if (
       !postingHeader &&
@@ -53,19 +43,14 @@
           ":scope > .inner"
         );
 
-      const host =
+      const headerHost =
         inner || postingBox;
 
-      host.insertBefore(
+      headerHost.insertBefore(
         postingHeader,
-        host.firstChild
+        headerHost.firstChild
       );
     }
-
-    /*
-     * Le titre extérieur est masqué uniquement
-     * si l’en-tête interne existe réellement.
-     */
 
     if (
       postingHeader &&
@@ -76,11 +61,6 @@
         "litsoPB_postingHeaderLegacy"
       );
     }
-
-    /*
-     * Compatibilité avec l’ancien titre
-     * lspb_boxbgtle, s’il est encore présent.
-     */
 
     const oldBoxTitle =
       document.querySelector(
@@ -96,90 +76,92 @@
       );
     }
 
-    postingBox.dataset.litsoHeaderReady =
-      "true";
+    postingBox.dataset
+      .litsoHeaderReady = "true";
   }
 
-
-  /* ==================================================
-     COMPTEURS DE L’ÉDITEUR
-     ================================================== */
-
   function initEditorCounters() {
-    const postingForm =
-      document.querySelector(
-        'form[name="post"]'
-      );
-
     const postingBox =
       document.querySelector(
         "#postingbox"
       );
 
+    if (!postingBox) {
+      return false;
+    }
+    
     const messageBox =
-      postingBox &&
-      postingBox.querySelector(
-        "#message-box"
+      document.querySelector(
+        "#postingbox #message-box"
+      );
+
+    const textarea =
+      document.querySelector(
+        "#text_editor_textarea"
+      );
+
+    const actions =
+      document.querySelector(
+        [
+          "#postingbox fieldset.submit-buttons",
+          'form[name="post"] fieldset.submit-buttons',
+          "fieldset.submit-buttons"
+        ].join(",")
       );
 
     if (
-      !postingForm ||
-      !postingBox ||
       !messageBox ||
-      messageBox.dataset
-        .litsoCountersReady === "true"
+      !textarea ||
+      !actions
     ) {
-      return;
+      return false;
     }
 
-    /*
-     * Les boutons sont recherchés dans tout
-     * le formulaire et plus uniquement dans
-     * #postingbox.
-     */
+    let counters =
+      document.querySelector(
+        ".litsoPB_editorStats"
+      );
 
-    const actions =
-  postingForm.querySelector(
-    "fieldset.submit-buttons"
-  );
+    if (!counters) {
+      counters =
+        document.createElement("div");
 
-    const counterHost =
-      actions || messageBox;
+      counters.className =
+        "litsoPB_editorStats";
 
-    const counters =
-      document.createElement("div");
+      counters.setAttribute(
+        "aria-live",
+        "polite"
+      );
 
-    counters.className =
-      "litsoPB_editorStats";
+      counters.setAttribute(
+        "aria-atomic",
+        "true"
+      );
 
-    counters.setAttribute(
-      "aria-live",
-      "polite"
-    );
+      counters.innerHTML =
+        '<span class="litsoPB_editorStat">' +
+          '<strong data-character-count>0</strong> ' +
+          '<span data-character-label>caractères</span>' +
+        "</span>" +
 
-    counters.setAttribute(
-      "aria-atomic",
-      "true"
-    );
+        '<span class="litsoPB_editorStat">' +
+          '<strong data-word-count>0</strong> ' +
+          '<span data-word-label>mots</span>' +
+        "</span>";
 
-    counters.innerHTML =
-      '<span class="litsoPB_editorStat">' +
-        '<strong data-character-count>0</strong> ' +
-        '<span data-character-label>caractères</span>' +
-      "</span>" +
+      actions.insertBefore(
+        counters,
+        actions.firstChild
+      );
+    }
 
-      '<span class="litsoPB_editorStat">' +
-        '<strong data-word-count>0</strong> ' +
-        '<span data-word-label>mots</span>' +
-      "</span>";
-
-    counterHost.insertBefore(
-      counters,
-      counterHost.firstChild
-    );
-
-    messageBox.dataset
-      .litsoCountersReady = "true";
+    if (
+      counters.dataset
+        .litsoCounterReady === "true"
+    ) {
+      return true;
+    }
 
     const characterCount =
       counters.querySelector(
@@ -201,27 +183,31 @@
         "[data-word-label]"
       );
 
-    const boundEditors =
-      new WeakSet();
+    if (
+      !characterCount ||
+      !characterLabel ||
+      !wordCount ||
+      !wordLabel
+    ) {
+      return false;
+    }
 
-
-    /* ==================================================
-       ACTUALISATION DES VALEURS
-       ================================================== */
+    counters.dataset
+      .litsoCounterReady = "true";
 
     function updateCounters(text) {
       const value =
         String(text || "");
 
-      const words =
-        value.trim().match(/\S+/g);
-
       const characters =
         value.length;
 
-      const totalWords =
-        words
-          ? words.length
+      const matchedWords =
+        value.trim().match(/\S+/g);
+
+      const words =
+        matchedWords
+          ? matchedWords.length
           : 0;
 
       characterCount.textContent =
@@ -233,90 +219,88 @@
           : "caractères";
 
       wordCount.textContent =
-        String(totalWords);
+        String(words);
 
       wordLabel.textContent =
-        totalWords === 1
+        words === 1
           ? "mot"
           : "mots";
     }
 
-
-    /* ==================================================
-       MODE SOURCE
-       ================================================== */
-
-    function bindTextarea(textarea) {
-      if (
-        boundEditors.has(textarea)
-      ) {
-        return;
+    textarea.addEventListener(
+      "input",
+      function () {
+        updateCounters(
+          textarea.value
+        );
       }
+    );
 
-      boundEditors.add(textarea);
+    const connectedBodies =
+      new WeakSet();
 
-      textarea.addEventListener(
-        "input",
-        function () {
-          updateCounters(
-            textarea.value
-          );
-        }
-      );
-    }
+    function connectVisualEditor() {
+      const iframe =
+        document.querySelector(
+          "#postingbox .sceditor-container iframe"
+        ) ||
+        document.querySelector(
+          ".sceditor-container iframe"
+        );
 
-
-    /* ==================================================
-       MODE VISUEL
-       ================================================== */
-
-    function bindIframe(iframe) {
-      if (
-        boundEditors.has(iframe)
-      ) {
+      if (!iframe) {
         return;
       }
 
       function connectIframeBody() {
         try {
-          const body =
-            iframe.contentDocument &&
-            iframe.contentDocument.body;
+          const iframeDocument =
+            iframe.contentDocument;
 
-          if (
-            !body ||
-            boundEditors.has(body)
-          ) {
+          const iframeBody =
+            iframeDocument &&
+            iframeDocument.body;
+
+          if (!iframeBody) {
             return;
           }
 
-          boundEditors.add(body);
+          if (
+            !connectedBodies.has(
+              iframeBody
+            )
+          ) {
+            connectedBodies.add(
+              iframeBody
+            );
 
-          body.addEventListener(
-            "input",
-            function () {
-              updateCounters(
-                body.innerText ||
-                body.textContent ||
-                ""
-              );
-            }
-          );
+            iframeBody.addEventListener(
+              "input",
+              function () {
+                updateCounters(
+                  iframeBody.innerText ||
+                  iframeBody.textContent ||
+                  ""
+                );
+              }
+            );
+          }
 
-          updateCounters(
-            body.innerText ||
-            body.textContent ||
-            ""
-          );
+          if (
+            window
+              .getComputedStyle(iframe)
+              .display !== "none"
+          ) {
+            updateCounters(
+              iframeBody.innerText ||
+              iframeBody.textContent ||
+              ""
+            );
+          }
         } catch (error) {
-          /*
-           * Le compteur du mode source
-           * reste disponible.
-           */
+          
         }
       }
-
-      boundEditors.add(iframe);
 
       iframe.addEventListener(
         "load",
@@ -326,72 +310,10 @@
       connectIframeBody();
     }
 
-
-    /* ==================================================
-       CONNEXION À SCEDITOR
-       ================================================== */
-
-    function connectEditors() {
-      messageBox
-        .querySelectorAll("textarea")
-        .forEach(bindTextarea);
-
-      messageBox
-        .querySelectorAll("iframe")
-        .forEach(bindIframe);
-
-      const visibleTextarea =
-        Array.from(
-          messageBox.querySelectorAll(
-            "textarea"
-          )
-        ).find(
-          function (textarea) {
-            return (
-              window
-                .getComputedStyle(textarea)
-                .display !== "none"
-            );
-          }
-        );
-
-      if (visibleTextarea) {
-        updateCounters(
-          visibleTextarea.value
-        );
-
-        return;
-      }
-
-      const visibleIframe =
-        Array.from(
-          messageBox.querySelectorAll(
-            "iframe"
-          )
-        ).find(
-          function (iframe) {
-            return (
-              window
-                .getComputedStyle(iframe)
-                .display !== "none"
-            );
-          }
-        );
-
-      if (visibleIframe) {
-        bindIframe(visibleIframe);
-      }
-    }
-
-    connectEditors();
-
-
-    /* ==================================================
-       ÉDITEUR AJOUTÉ APRÈS LE CHARGEMENT
-       ================================================== */
+    connectVisualEditor();
 
     if (window.MutationObserver) {
-      const observer =
+      const editorObserver =
         new MutationObserver(
           function (mutations) {
             const editorWasAdded =
@@ -432,12 +354,12 @@
               );
 
             if (editorWasAdded) {
-              connectEditors();
+              connectVisualEditor();
             }
           }
         );
 
-      observer.observe(
+      editorObserver.observe(
         messageBox,
         {
           childList: true,
@@ -445,16 +367,77 @@
         }
       );
     }
+
+    document.addEventListener(
+      "click",
+      function (event) {
+        const editorButton =
+          event.target.closest(
+            "#postingbox .sceditor-button"
+          );
+
+        if (!editorButton) {
+          return;
+        }
+
+        window.setTimeout(
+          function () {
+            const iframe =
+              document.querySelector(
+                "#postingbox .sceditor-container iframe"
+              );
+
+            const iframeIsVisible =
+              iframe &&
+              window
+                .getComputedStyle(iframe)
+                .display !== "none";
+
+            if (iframeIsVisible) {
+              connectVisualEditor();
+            } else {
+              updateCounters(
+                textarea.value
+              );
+            }
+          },
+          100
+        );
+      }
+    );
+
+    updateCounters(
+      textarea.value
+    );
+
+    return true;
   }
-
-
-  /* ==================================================
-     INITIALISATION
-     ================================================== */
 
   function initPostingEditor() {
     enhancePostingHeader();
-    initEditorCounters();
+
+    let counterAttempts = 0;
+    const maximumAttempts = 40;
+
+    function tryInitializingCounters() {
+      counterAttempts += 1;
+
+      const counterIsReady =
+        initEditorCounters();
+
+      if (
+        !counterIsReady &&
+        counterAttempts <
+          maximumAttempts
+      ) {
+        window.setTimeout(
+          tryInitializingCounters,
+          100
+        );
+      }
+    }
+
+    tryInitializingCounters();
   }
 
   if (
