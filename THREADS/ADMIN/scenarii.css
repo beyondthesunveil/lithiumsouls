@@ -475,6 +475,15 @@
   text-align: justify;
 }
 
+.litso_scena_text h3 {
+  position: relative;
+  margin: 23px 0 13px;
+  padding-bottom: 10px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-default);
+  font: 600 20px/1 var(--font-display);
+}
+
 .litso_scena_text p {
   margin: 0 0 12px;
 }
