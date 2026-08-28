@@ -475,7 +475,7 @@
   text-align: justify;
 }
 
-.litso_scena_text h3 {
+.litso_scena_text span {
   position: relative;
   margin: 23px 0 13px;
   padding-bottom: 10px;
