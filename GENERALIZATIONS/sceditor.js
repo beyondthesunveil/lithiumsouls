@@ -139,9 +139,9 @@
      */
 
     const actions =
-      postingForm.querySelector(
-        "fieldset.submit-buttons"
-      );
+  postingForm.querySelector(
+    "fieldset.submit-buttons"
+  );
 
     const counterHost =
       actions || messageBox;
