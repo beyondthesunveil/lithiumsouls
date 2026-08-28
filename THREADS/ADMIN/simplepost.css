@@ -121,8 +121,8 @@
 
 .litso_simp_summaryLinks span {
   overflow: hidden;
-  font: 700 7px/1 var(--font-condensed);
-  letter-spacing: .8px;
+  font: 700 10px var(--font-condensed);
+  letter-spacing: 1px;
   text-overflow: ellipsis;
   text-transform: uppercase;
   white-space: nowrap;
