@@ -1,0 +1,487 @@
+.litso_pages {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 6px;
+  margin: -10px 0 15px;
+  float: right;
+  padding: 4px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+}
+
+.litso_pages__current {
+  min-height: 34px;
+  padding: 4px 6px 4px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border-radius: calc(4px - 4px);
+  white-space: nowrap;
+}
+
+.litso_pages__label {
+  font: 600 10px var(--font-condensed);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.litso_pages__number {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 7px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  background: var(--gradient-accent);
+  border-radius: 4px;
+  box-shadow: 0 3px 9px var(--shadow-default);
+  font: 700 14px var(--font-condensed);
+}
+
+.litso_pages__list {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding-left: 11px;
+  font-size: 0; 
+}
+
+.litso_pages__list::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  bottom: 7px;
+  left: 2px;
+  width: 1px;
+  background: var(--border-default);
+}
+
+.litso_pages__list a,
+.litso_pages__list strong {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 9px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 3px;
+  color: var(--text-secondary);
+  background: var(--bg-soft);
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  font: 13px var(--font-condensed);
+  text-decoration: none;
+  transition:
+    color 200ms,
+    background 200ms,
+    border-color 200ms,
+    box-shadow 200ms,
+    transform 200ms;
+}
+
+.litso_pages__list a:hover {
+  color: var(--text-primary);
+  background: var(--gradient-accent);
+  border-color: transparent;
+  box-shadow: 0 4px 10px var(--shadow-default);
+  transform: translateY(-2px);
+}
+
+.litso_pages__list strong {
+  color: var(--text-primary);
+  background: var(--accent-faded);
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+.litso_pages__list a img {
+  width: 14px;
+  height: 9px;
+  object-fit: contain;
+}
+
+.litso_pages__list a::before,
+.litso_pages__list a::after {
+  font-size: 15px;
+}
+
+.litso_permblock {
+  color: var(--text-secondary);
+  background: var(--gradient-surface);
+  border-radius: 5px;
+}
+
+.litso_permblock > div {
+  min-height: 42px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  color: var(--text-primary);
+  background: var(--gradient-surface);
+  border-radius: 5px;
+  font: 15px var(--font-display);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.litso_permblock > div > i {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static/icons/lock-keyhole.svg")
+    center / contain no-repeat;
+  mask:
+    url("https://unpkg.com/lucide-static/icons/lock-keyhole.svg")
+    center / contain no-repeat;
+}
+
+.litso_permblock > div > i::before {
+  content: none !important;
+  display: none !important;
+}
+
+.litso_permblock > p {
+  padding: 14px 18px 16px;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  font: 12px var(--font-sans);
+  border-radius: 0 0 5px 5px;
+}
+
+.litso_permblock > p a {
+  color: var(--accent-dark);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 200ms;
+}
+
+.litso_permblock > p a:hover {
+  color: var(--gold-dark);
+}
+
+.litso_permblock > p strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.litso_quickreply-legacy-title {
+  display: none !important;
+}
+
+#quick_reply {
+  width: 100%;
+  overflow: hidden;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border-radius: 5px;
+}
+
+#quick_reply #textarea_content {
+  box-shadow: none;
+}
+
+.litso_quickreply-head {
+  padding: 18px 20px 16px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: var(--gradient-surface);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.litso_quickreply-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: grid;
+  place-items: center;
+  color: var(--text-primary);
+  background: var(--gradient-accent);
+  border-radius: 14px;
+  box-shadow: 0 5px 14px var(--shadow-default);
+}
+
+.litso_quickreply-icon svg {
+  width: 19px;
+  height: 19px;
+  stroke-width: 2;
+}
+
+.litso_quickreply-heading {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+  text-align: left;
+}
+
+.litso_quickreply-eyebrow {
+  color: var(--accent-dark);
+  font: 700 9px var(--font-condensed);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.litso_quickreply-title {
+  color: var(--text-primary);
+  font: 18px/1.15 var(--font-display);
+  font-weight: 700;
+}
+
+.litso_quickreply-subtitle {
+  color: var(--text-muted);
+  font: 11px/1.4 var(--font-condensed);
+}
+
+#quick_reply > #textarea_content {
+  clear: none !important;
+  text-align: left !important;
+}
+
+#quick_reply .sceditor-container {
+  width: 100% !important;
+  overflow: hidden;
+}
+
+#quick_reply .sceditor-toolbar {
+  padding: 8px 9px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  background: var(--bg-elevated) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--border-default) !important;
+}
+
+#quick_reply .sceditor-group {
+  margin: 0 !important;
+  padding: 3px !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 2px;
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: 5px !important;
+}
+
+#quick_reply .sceditor-button {
+  width: 28px !important;
+  height: 28px !important;
+  margin: 0 !important;
+  display: grid !important;
+  place-items: center;
+  background-color: transparent !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  opacity: 0.72;
+  transition:
+    background 200ms,
+    opacity 200ms,
+    transform 200ms !important;
+}
+
+#quick_reply .sceditor-button:hover,
+#quick_reply .sceditor-button.hover,
+#quick_reply .sceditor-button.active {
+  background-color: var(--accent-faded) !important;
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+#quick_reply .sceditor-button.disabled {
+  opacity: 0.3;
+  transform: none;
+}
+
+#quick_reply .sceditor-container iframe,
+#quick_reply .sceditor-container textarea {
+  width: 100% !important;
+  min-height: 180px !important;
+  padding: 18px !important;
+  box-sizing: border-box !important;
+  color: var(--text-secondary) !important;
+  background: var(--bg-surface) !important;
+  border: 0 !important;
+  outline: 0 !important;
+  font: 14px/1.7 var(--font-sans) !important;
+  resize: vertical;
+}
+
+#quick_reply .sceditor-container textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.72;
+}
+
+#quick_reply .sceditor-grip {
+  height: 8px !important;
+  background: var(--bg-elevated) !important;
+  border: 0 !important;
+  border-top: 1px solid var(--border-default) !important;
+}
+
+.litso_quickreply-actions {
+  margin: 0 20px !important;
+  padding: 10px 0;
+  display: flex;
+  border-top: 1px solid var(--border-default);
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  text-align: initial !important;
+}
+
+.litso_quickreply-actions > input[type="submit"] {
+  min-height: 38px;
+  margin: 0 !important;
+  padding: 8px 16px !important;
+  border-radius: 4px !important;
+  font: 700 12px var(--font-condensed) !important;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.litso_quickreply-preview {
+  color: var(--text-secondary) !important;
+  background: var(--bg-soft) !important;
+  border: 1px solid var(--border-default) !important;
+}
+
+.litso_quickreply-preview:hover {
+  color: var(--accent-dark) !important;
+  background: var(--accent-faded) !important;
+  border-color: var(--accent) !important;
+}
+
+.litso_quickreply-send {
+  color: var(--text-primary) !important;
+  background: var(--gradient-accent) !important;
+  border: 1px solid transparent !important;
+  box-shadow: 0 5px 14px var(--shadow-default);
+}
+
+.litso_quickreply-send:hover {
+  box-shadow: 0 7px 18px var(--shadow-strong);
+  transform: translateY(-1px);
+}
+
+.litso_participant-tooltip {
+  position: fixed;
+  z-index: 99999;
+  padding: 7px 10px;
+  color: var(--bg-page);
+  background: var(--text-primary);
+  border-radius: 4px;
+  box-shadow:
+    0 6px 16px
+    var(--shadow-strong);
+  font: 600 10px var(--font-condensed);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform:
+    translateY(4px)
+    scale(0.97);
+  transition:
+    opacity 200ms,
+    transform 200ms;
+}
+
+.litso_participant-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+  transform:
+    translate(-50%, -50%)
+    rotate(45deg);
+}
+
+.litso_participant-tooltip.is-below::after {
+  top: 0;
+}
+
+.litso_participant-tooltip.is-visible {
+  opacity: 1;
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+#quick_reply .litso_quickreply-actions {
+  padding: 15px 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 20px;
+}
+
+/* Compteurs placés à gauche */
+#quick_reply .litso_quickreply-stats {
+  min-height: 32px;
+  margin-right: auto;
+  padding: 6px 10px;
+  box-sizing: border-box;
+
+  position: static;
+  inset: auto;
+  z-index: auto;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  order: -1;
+
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: 999px;
+
+  font: 10px var(--font-condensed);
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+#quick_reply .litso_quickreply-stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  white-space: nowrap;
+}
+
+#quick_reply
+  .litso_quickreply-stat
+  + .litso_quickreply-stat::before {
+  content: "";
+  width: 3px;
+  height: 3px;
+  margin-right: 5px;
+  align-self: center;
+
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+#quick_reply
+  .litso_quickreply-stat strong {
+  color: var(--accent-dark);
+  font-size: 11px;
+  font-weight: 800;
+}
