@@ -97,6 +97,53 @@
   border: 1px solid var(--border-default);
 }
 
+.litso_simp_summary {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 18px 0 28px;
+  padding: 13px 15px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+}
+
+.litso_simp_summaryLinks {
+  display: flex;
+  min-width: 0;
+  align-items: stretch;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.litso_simp_summaryLinks a {
+  display: flex;
+  min-width: 105px;
+  align-items: center;
+  gap: 7px;
+  flex: 1;
+  padding: 7px 11px;
+  color: var(--text-secondary);
+  border-left: 1px solid var(--border-subtle);
+  text-decoration: none;
+  transition:
+    color 200ms ease,
+    background 200ms ease;
+}
+
+.litso_simp_summaryLinks a:hover {
+  color: var(--accent-dark);
+  background: var(--bg-elevated);
+}
+
+.litso_simp_summaryLinks span {
+  overflow: hidden;
+  font: 700 7px/1 var(--font-condensed);
+  letter-spacing: .8px;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .litso_simp_text {
   color: var(--text-secondary);
   font: 10px/1.85 var(--font-sans);
