@@ -20,8 +20,6 @@
   gap: 30px;
   padding: 30px 35px;
   overflow: hidden;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
 
     &::before {
   content: attr(data-ghost);
