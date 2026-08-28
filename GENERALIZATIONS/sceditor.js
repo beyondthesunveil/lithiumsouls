@@ -1,9 +1,306 @@
 (function () {
   "use strict";
 
-  /* ==================================================
-     COMPTEUR DE MOTS ET DE CARACTÈRES
-     ================================================== */
+  function normalizeText(value) {
+    return String(value || "")
+      .trim()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  }
+
+  function hideDuplicatePostingHeadings(
+    referenceHeading,
+    postingBox
+  ) {
+    const referenceText =
+      normalizeText(
+        referenceHeading.textContent
+      );
+
+    if (!referenceText) {
+      return;
+    }
+
+    const searchRoot =
+      postingBox.parentElement ||
+      document.body;
+
+    searchRoot
+      .querySelectorAll(
+        [
+          "h1",
+          "h2",
+          "h3",
+          ".page-title",
+          ".topic-title"
+        ].join(",")
+      )
+      .forEach(function (heading) {
+        const belongsToReference =
+          heading === referenceHeading ||
+          referenceHeading.contains(
+            heading
+          ) ||
+          heading.closest(
+            ".litsoPB_postingHeader"
+          ) === referenceHeading;
+
+        const headingText =
+          normalizeText(
+            heading.textContent
+          );
+
+        if (
+          !belongsToReference &&
+          headingText === referenceText
+        ) {
+          heading.classList.add(
+            "litsoPB_postingHeaderLegacy"
+          );
+        }
+      });
+  }
+
+  function watchForDuplicatePostingHeadings(
+    referenceHeading,
+    postingBox
+  ) {
+    if (
+      !window.MutationObserver ||
+      postingBox.dataset
+        .litsoHeaderObserverReady ===
+          "true"
+    ) {
+      return;
+    }
+
+    const searchRoot =
+      postingBox.parentElement ||
+      document.body;
+
+    let scheduled = false;
+
+    const observer =
+      new MutationObserver(
+        function (mutations) {
+          const referenceText =
+            normalizeText(
+              referenceHeading.textContent
+            );
+
+          const duplicateMayExist =
+            mutations.some(
+              function (mutation) {
+                return Array.from(
+                  mutation.addedNodes
+                ).some(
+                  function (node) {
+                    if (
+                      normalizeText(
+                        node.textContent
+                      ) === referenceText
+                    ) {
+                      return true;
+                    }
+
+                    if (
+                      node.nodeType !==
+                      Node.ELEMENT_NODE
+                    ) {
+                      return false;
+                    }
+
+                    return Array.from(
+                      node.querySelectorAll(
+                        [
+                          "h1",
+                          "h2",
+                          "h3",
+                          ".page-title",
+                          ".topic-title"
+                        ].join(",")
+                      )
+                    ).some(
+                      function (child) {
+                        return (
+                          normalizeText(
+                            child.textContent
+                          ) === referenceText
+                        );
+                      }
+                    );
+                  }
+                );
+              }
+            );
+
+          if (
+            !duplicateMayExist ||
+            scheduled
+          ) {
+            return;
+          }
+
+          scheduled = true;
+
+          window.requestAnimationFrame(
+            function () {
+              hideDuplicatePostingHeadings(
+                referenceHeading,
+                postingBox
+              );
+
+              scheduled = false;
+            }
+          );
+        }
+      );
+
+    observer.observe(searchRoot, {
+      childList: true,
+      subtree: true
+    });
+
+    postingBox.dataset
+      .litsoHeaderObserverReady = "true";
+  }
+
+  function enhancePostingHeader() {
+    const postingBox =
+      document.querySelector(
+        "#postingbox"
+      );
+
+    if (
+      !postingBox ||
+      postingBox.dataset
+        .litsoHeaderReady === "true"
+    ) {
+      return;
+    }
+
+    const internalHeading =
+      postingBox.querySelector(
+        [
+          "h1",
+          "h2",
+          "h3",
+          ".litsoPB_postingHeader"
+        ].join(",")
+      );
+
+    if (internalHeading) {
+      internalHeading.classList.add(
+        "litsoPB_postingHeader"
+      );
+
+      hideDuplicatePostingHeadings(
+        internalHeading,
+        postingBox
+      );
+
+      watchForDuplicatePostingHeadings(
+        internalHeading,
+        postingBox
+      );
+
+      postingBox.dataset
+        .litsoHeaderReady = "true";
+
+      return;
+    }
+
+    const possibleHeadings =
+      Array.from(
+        document.querySelectorAll(
+          [
+            "h1",
+            "h2",
+            "h3",
+            ".page-title",
+            ".topic-title"
+          ].join(",")
+        )
+      ).filter(function (element) {
+        if (
+          postingBox.contains(element)
+        ) {
+          return false;
+        }
+
+        const position =
+          element.compareDocumentPosition(
+            postingBox
+          );
+
+        const isBeforePostingBox =
+          Boolean(
+            position &
+            Node.DOCUMENT_POSITION_FOLLOWING
+          );
+
+        const text =
+          normalizeText(
+            element.textContent
+          );
+
+        const isPostingHeading =
+          text.includes("poster") ||
+          text.includes("repondre") ||
+          text.includes("nouveau sujet") ||
+          text.includes("editer") ||
+          text.includes("modifier");
+
+        return (
+          isBeforePostingBox &&
+          isPostingHeading
+        );
+      });
+
+    const nativeHeading =
+      possibleHeadings[
+        possibleHeadings.length - 1
+      ];
+
+    if (!nativeHeading) {
+      postingBox.dataset
+        .litsoHeaderReady = "true";
+
+      return;
+    }
+
+    const newHeading =
+      document.createElement("h3");
+
+    newHeading.className =
+      "litsoPB_postingHeader";
+
+    newHeading.textContent =
+      nativeHeading.textContent.trim();
+
+    postingBox.insertBefore(
+      newHeading,
+      postingBox.firstChild
+    );
+
+    nativeHeading.classList.add(
+      "litsoPB_postingHeaderLegacy"
+    );
+
+    hideDuplicatePostingHeadings(
+      newHeading,
+      postingBox
+    );
+
+    watchForDuplicatePostingHeadings(
+      newHeading,
+      postingBox
+    );
+
+    postingBox.dataset
+      .litsoHeaderReady = "true";
+  }
 
   function initializeLitsoEditorCounter() {
     const postingBox =
@@ -33,11 +330,6 @@
       return;
     }
 
-
-    /* ================================================
-       CRÉATION DU COMPTEUR
-       ================================================ */
-
     const counters =
       document.createElement("div");
 
@@ -65,12 +357,6 @@
         '<span data-litso-word-label>mots</span>' +
       "</span>";
 
-
-    /*
-     * Le compteur est placé à gauche
-     * des boutons de prévisualisation et d’envoi.
-     */
-
     actions.insertBefore(
       counters,
       actions.firstChild
@@ -78,11 +364,6 @@
 
     messageBox.dataset
       .litsoCountersReady = "true";
-
-
-    /* ================================================
-       ÉLÉMENTS DU COMPTEUR
-       ================================================ */
 
     const characterCount =
       counters.querySelector(
@@ -107,11 +388,6 @@
     const boundEditors =
       new WeakSet();
 
-
-    /* ================================================
-       ACTUALISATION DES DONNÉES
-       ================================================ */
-
     function updateCounters(text) {
       const value =
         String(text || "")
@@ -126,7 +402,6 @@
 
       const totalWords =
         words ? words.length : 0;
-
 
       characterCount.textContent =
         String(characters);
@@ -145,11 +420,6 @@
           : "mots";
     }
 
-
-    /* ================================================
-       LECTURE DE L’ÉDITEUR ACTIF
-       ================================================ */
-
     function getCurrentEditorText() {
       const iframe =
         messageBox.querySelector(
@@ -160,11 +430,6 @@
         messageBox.querySelector(
           ".sceditor-container textarea"
         );
-
-
-      /*
-       * Mode visuel de SCEditor.
-       */
 
       if (
         iframe &&
@@ -185,27 +450,13 @@
             );
           }
         } catch (error) {
-          /*
-           * En cas d’impossibilité d’accéder
-           * à l’iframe, le textarea prend le relais.
-           */
+
         }
       }
-
-
-      /*
-       * Mode source de SCEditor.
-       */
 
       if (textarea) {
         return textarea.value || "";
       }
-
-
-      /*
-       * Textarea natif avant l’initialisation
-       * complète de SCEditor.
-       */
 
       const nativeTextarea =
         messageBox.querySelector(
@@ -223,11 +474,6 @@
         getCurrentEditorText()
       );
     }
-
-
-    /* ================================================
-       MODE SOURCE
-       ================================================ */
 
     function bindTextarea(textarea) {
       if (
@@ -263,11 +509,6 @@
         }
       );
     }
-
-
-    /* ================================================
-       MODE VISUEL
-       ================================================ */
 
     function bindIframe(iframe) {
       if (
@@ -316,13 +557,9 @@
 
           updateFromCurrentEditor();
         } catch (error) {
-          /*
-           * Le compteur du mode source
-           * reste disponible.
-           */
+          
         }
       }
-
 
       iframe.addEventListener(
         "load",
@@ -331,11 +568,6 @@
 
       connectIframeBody();
     }
-
-
-    /* ================================================
-       CONNEXION À SCEDITOR
-       ================================================ */
 
     function connectEditors() {
       const textareas =
@@ -362,13 +594,6 @@
 
     connectEditors();
 
-
-    /*
-     * Lors du passage entre le mode visuel
-     * et le mode source, SCEditor peut modifier
-     * ses éléments ou leur affichage.
-     */
-
     messageBox.addEventListener(
       "click",
       function () {
@@ -381,12 +606,6 @@
         );
       }
     );
-
-
-    /*
-     * Surveille uniquement l’apparition ou
-     * le remplacement des éléments de SCEditor.
-     */
 
     const observer =
       new MutationObserver(
@@ -443,10 +662,11 @@
     );
   }
 
+  function initializeLitsoPostingEditor() {
+    enhancePostingHeader();
+    initializeLitsoEditorCounter();
+  }
 
-  /* ==================================================
-     INITIALISATION
-     ================================================== */
 
   if (
     document.readyState ===
@@ -454,10 +674,10 @@
   ) {
     document.addEventListener(
       "DOMContentLoaded",
-      initializeLitsoEditorCounter,
+      initializeLitsoPostingEditor,
       { once: true }
     );
   } else {
-    initializeLitsoEditorCounter();
+    initializeLitsoPostingEditor();
   }
 })();
