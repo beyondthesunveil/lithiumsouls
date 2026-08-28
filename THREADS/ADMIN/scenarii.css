@@ -474,16 +474,13 @@
 }
 
 .litso_scena_text span {
-  position: relative;
-  margin: 23px 0 13px;
-  padding-bottom: 10px;
-  color: var(--text-primary);
+  color: var(--text-muted);
   border-bottom: 1px solid var(--border-default);
-  font: 600 20px/1 var(--font-display);
+  font: 600 20px / 1 var(--font-display);
 }
 
 .litso_scena_text p {
-  margin: 0 0 12px;
+  margin: 12px 0;
 }
 
 .litso_scena_text p:last-child {
