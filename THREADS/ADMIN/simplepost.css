@@ -97,6 +97,24 @@
   border: 1px solid var(--border-default);
 }
 
+.litso_simp_ava {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+}
+
+.litso_simp_ava img {
+  width: 80px;
+  height:80px;
+  object-fit:cover;
+  border: 1px var(--gold) solid;
+  outline: 1px solid var(--text-faded);
+  padding: 5px;
+  outline-offset: 5px;
+  border-radius: 100%;
+}
+
 .litso_simp_summary {
   display: flex;
   width: 100%;
