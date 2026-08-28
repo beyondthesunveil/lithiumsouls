@@ -408,7 +408,7 @@
   border-top: 1px solid var(--border-default) !important;
 }
 
-#postingbox .litsoPB_editorStats {
+form[name="post"] .litsoPB_editorStats {
   position: static;
   display: inline-flex;
   min-height: 32px;
@@ -426,14 +426,16 @@
   pointer-events: none;
 }
 
-#postingbox .litsoPB_editorStat {
+form[name="post"] .litsoPB_editorStat {
   display: inline-flex;
   align-items: baseline;
   gap: 3px;
   white-space: nowrap;
 }
 
-#postingbox .litsoPB_editorStat + .litsoPB_editorStat::before {
+form[name="post"]
+.litsoPB_editorStat
++ .litsoPB_editorStat::before {
   content: "";
   align-self: center;
   width: 3px;
@@ -443,7 +445,7 @@
   border-radius: 50%;
 }
 
-#postingbox .litsoPB_editorStat strong {
+form[name="post"] .litsoPB_editorStat strong {
   color: var(--gold-dark);
   font-size: 11px;
   font-weight: 800;
