@@ -97,20 +97,16 @@
   padding: 12px 18px !important;
   float: none !important;
   background: var(--bg-elevated);
-  border-right: 1px solid var(--border-default);
-  border-left: 1px solid var(--border-default);
 }
 
 #postingbox fieldset.fields1 > dl:first-of-type {
   padding-top: 18px !important;
-  border-top: 1px solid var(--border-default);
-  border-radius: 4px 4px 0 0;
+  border: 1px solid var(--border-default);
 }
 
 #postingbox fieldset.fields1 > dl:nth-of-type(2) {
   padding-bottom: 18px !important;
   border-bottom: 1px solid var(--border-default);
-  border-radius: 0 0 4px 4px;
 }
 
 #postingbox fieldset.fields1 > dl + dl::before {
@@ -164,7 +160,6 @@
   color: var(--text-primary);
   background: var(--bg-surface);
   border: 1px solid var(--border-strong);
-  border-radius: 4px;
   outline: 0;
   font: 13px var(--font-sans);
   transition:
@@ -210,7 +205,6 @@
   overflow: hidden;
   vertical-align: top;
   border: 1px solid var(--border-default);
-  border-radius: 4px;
 }
 
 #postingbox #smiley-box {
@@ -275,7 +269,6 @@
   color: var(--text-primary);
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
-  border-radius: 4px;
   outline: 0;
   font: 10px var(--font-sans);
 }
@@ -331,7 +324,6 @@
 
 #postingbox .sceditor-toolbar {
   display: flex;
-  min-height: 66px;
   align-content: center;
   align-items: center;
   justify-content: center;
@@ -351,7 +343,6 @@
   padding: 3px !important;
   background: var(--bg-surface) !important;
   border: 1px solid var(--border-default) !important;
-  border-radius: 4px !important;
 }
 
 #postingbox a.sceditor-button {
@@ -363,7 +354,6 @@
   padding: 0 !important;
   background-color: transparent !important;
   border: 1px solid transparent !important;
-  border-radius: 4px !important;
   transition:
     background 200ms ease,
     border-color 200ms ease,
@@ -462,7 +452,6 @@ form[name="post"] .litsoPB_editorStat strong {
   clear: both;
   margin-top: 14px !important;
   border: 1px solid var(--border-default) !important;
-  border-radius: 4px !important;
 }
 
 #postingbox fieldset.submit-buttons {
@@ -490,7 +479,6 @@ form[name="post"] .litsoPB_editorStat strong {
   color: var(--text-primary) !important;
   background: var(--bg-elevated) !important;
   border: 1px solid var(--border-strong) !important;
-  border-radius: 4px !important;
   outline: 0;
   font: 700 10px var(--font-condensed) !important;
   text-transform: none;
