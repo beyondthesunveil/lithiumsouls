@@ -1,0 +1,239 @@
+.litso_simp_,
+.litso_simp_ * {
+  box-sizing: border-box;
+}
+
+.litso_simp_ {
+  position: relative;
+  width: 650px;
+  margin: 35px auto;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+}
+
+.litso_simp_header {
+  position: relative;
+  display: flex;
+  min-height: 145px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 9px;
+  padding: 28px 25px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.litso_simp_header::before {
+  content: attr(data-ghost);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  overflow: hidden;
+  color: transparent;
+  font: italic 90px/.75 var(--font-display);
+  letter-spacing: -5px;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: .55;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  -webkit-text-stroke: 1px var(--border-subtle);
+}
+
+.litso_simp_header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 110px;
+  height: 2px;
+  background: var(--gradient-accent);
+  transform: translateX(-50%);
+}
+
+.litso_simp_eyebrow {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-dark);
+  font: 700 8px/1 var(--font-condensed);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.litso_simp_eyebrow::before,
+.litso_simp_eyebrow::after {
+  content: "";
+  width: 35px;
+  height: 1px;
+  margin: 0 13px;
+  background: var(--gradient-accent);
+}
+
+.litso_simp_eyebrow::after {
+  background: var(--gradient-accent-reverse);
+}
+
+.litso_simp_title {
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  color: var(--text-primary);
+  font: 600 39px/.95 var(--font-display);
+  letter-spacing: -1.5px;
+  text-transform: uppercase;
+}
+
+.litso_simp_body {
+  margin-top: 14px;
+  padding: 27px 29px 29px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+}
+
+.litso_simp_text {
+  color: var(--text-secondary);
+  font: 10px/1.85 var(--font-sans);
+  text-align: justify;
+}
+
+.litso_simp_text > :first-child {
+  margin-top: 0;
+}
+
+.litso_simp_text > :last-child {
+  margin-bottom: 0;
+}
+
+.litso_simp_text p {
+  margin: 0 0 13px;
+}
+
+.litso_simp_text h3 {
+  position: relative;
+  margin: 23px 0 13px;
+  padding-bottom: 10px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-default);
+  font: 600 20px/1 var(--font-display);
+}
+
+.litso_simp_text h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 45px;
+  height: 2px;
+  background: var(--gradient-accent);
+}
+
+.litso_simp_text strong,
+.litso_simp_text b {
+  color: var(--gold-dark);
+}
+
+.litso_simp_text em,
+.litso_simp_text i {
+  color: var(--accent-dark);
+}
+
+.litso_simp_text a {
+  color: var(--accent-dark);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.litso_simp_text a:hover {
+  color: var(--gold-dark);
+}
+
+.litso_simp_text blockquote {
+  position: relative;
+  margin: 20px 0 0;
+  padding: 17px 20px 17px 48px;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border: 0;
+  border-left: 2px solid var(--gold);
+  font: italic 13px/1.6 var(--font-display);
+}
+
+.litso_simp_text blockquote::before {
+  content: "“";
+  position: absolute;
+  top: 9px;
+  left: 16px;
+  color: var(--gold);
+  font: italic 42px/.8 var(--font-display);
+  opacity: .7;
+}
+
+.litso_simp_note {
+  display: grid;
+  grid-template-columns: 95px minmax(0, 1fr);
+  margin-top: 21px;
+  overflow: hidden;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+.litso_simp_note > span {
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  color: var(--text-on-accent);
+  background: var(--accent-dark);
+  font: 700 7px/1 var(--font-condensed);
+  letter-spacing: 1.3px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.litso_simp_note > p {
+  margin: 0;
+  padding: 14px 17px;
+  color: var(--text-muted);
+  font: 9px/1.65 var(--font-sans);
+}
+
+@media (max-width: 600px) {
+  .litso_simp_header {
+    min-height: 120px;
+    padding: 24px 18px;
+  }
+
+  .litso_simp_header::before {
+    font-size: 62px;
+    letter-spacing: -4px;
+  }
+
+  .litso_simp_title {
+    font-size: 32px;
+  }
+
+  .litso_simp_eyebrow::before,
+  .litso_simp_eyebrow::after {
+    width: 20px;
+    margin: 0 8px;
+  }
+
+  .litso_simp_body {
+    padding: 23px 20px 25px;
+  }
+
+  .litso_simp_text {
+    text-align: left;
+  }
+
+  .litso_simp_note {
+    grid-template-columns: 1fr;
+  }
+}
