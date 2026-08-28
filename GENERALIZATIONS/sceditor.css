@@ -213,8 +213,7 @@
   border-radius: 4px;
 }
 
-#postingbox #smiley-box,
-#postingbox #smiley-box.is-open {
+#postingbox #smiley-box {
   width: var(--litsoPB-smiley-width) !important;
   margin-right: var(--litsoPB-editor-gap) !important;
   margin-left: 0 !important;
@@ -223,8 +222,7 @@
   border-color: var(--border-default);
 }
 
-#postingbox #message-box,
-#postingbox #smiley-box.is-open + #message-box {
+#postingbox #message-box {
   width: calc(
     100%
     - var(--litsoPB-smiley-width)
@@ -243,13 +241,7 @@
   clear: both;
 }
 
-#postingbox .utppPB_smileyToggle,
-#postingbox .litsoPB_smileyToggle {
-  display: none !important;
-}
-
-#postingbox #smileyContainer,
-#postingbox #smiley-box.is-open #smileyContainer {
+#postingbox #smileyContainer {
   display: block !important;
   width: 100%;
   height: 468px;
@@ -571,9 +563,7 @@
   }
 
   #postingbox #smiley-box,
-  #postingbox #smiley-box.is-open,
-  #postingbox #message-box,
-  #postingbox #smiley-box.is-open + #message-box {
+  #postingbox #message-box {
     width: 100% !important;
     max-height: none;
     margin-right: 0 !important;
@@ -581,20 +571,17 @@
     float: none !important;
   }
 
-  #postingbox #smiley-box,
-  #postingbox #smiley-box.is-open {
+  #postingbox #smiley-box {
     height: 220px !important;
     min-height: 220px;
     margin-bottom: 10px !important;
   }
 
-  #postingbox #smileyContainer,
-  #postingbox #smiley-box.is-open #smileyContainer {
+  #postingbox #smileyContainer {
     height: 218px;
   }
 
-  #postingbox #message-box,
-  #postingbox #smiley-box.is-open + #message-box {
+  #postingbox #message-box {
     height: 470px !important;
     min-height: 470px;
     margin-top: 0 !important;
