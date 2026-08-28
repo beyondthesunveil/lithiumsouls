@@ -255,10 +255,9 @@
   color: var(--text-primary);
   background: var(--bg-elevated);
   border-left: 2px solid var(--gold);
-  font: 600 16px/1 var(--font-display);
-  letter-spacing: 1.5px;
+  font: 600 11px var(--font-display);
   text-align: center;
-  text-transform: uppercase;
+  text-transform: lowercase;
 }
 
 .litso_scena_fields {
@@ -284,8 +283,9 @@
 
 .litso_scena_fields span {
   color: var(--gold-dark);
-  font: 700 8px/1 var(--font-condensed);
-  letter-spacing: .8px;
+  font: 700 10px / 1 var(--font-condensed);
+  letter-spacing: 1px;
+  border-bottom: 1px solid;
   text-transform: uppercase;
 }
 
