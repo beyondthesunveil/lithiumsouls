@@ -1,0 +1,1071 @@
+/* =========================================================
+   ÉDITEUR FORUMACTIF
+   Réponse rapide + posting_body
+   Nomenclature : litsoPB_
+   ========================================================= */
+
+
+/* =========================================================
+   CONTENEUR GÉNÉRAL
+   ========================================================= */
+
+#postingbox {
+  width: 100%;
+  margin: 20px 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+}
+
+#postingbox,
+#postingbox * {
+  box-sizing: border-box;
+}
+
+#postingbox > .inner,
+#postingbox .inner {
+  padding: 0;
+}
+
+#postingbox .corners-top,
+#postingbox .corners-bottom {
+  display: none;
+}
+
+
+/* =========================================================
+   EN-TÊTE DU FORMULAIRE
+   ========================================================= */
+
+#postingbox h3,
+#postingbox .litsoPB_postingHeader {
+  position: relative;
+  display: flex;
+  min-height: 104px;
+  align-items: center;
+  margin: 0 0 18px !important;
+  padding: 24px 30px 24px 102px !important;
+  color: var(--text-primary);
+  background: var(--gradient-surface);
+  border-bottom: 1px solid var(--border-default);
+  font: 700 24px/1.15 var(--font-display);
+  text-transform: uppercase;
+}
+
+#postingbox h3::before,
+#postingbox .litsoPB_postingHeader::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  width: 52px;
+  height: 52px;
+  background: var(--gradient-accent);
+  border-radius: 4px;
+  transform: translateY(-50%);
+}
+
+#postingbox h3::after,
+#postingbox .litsoPB_postingHeader::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 45px;
+  width: 21px;
+  height: 21px;
+  background: var(--text-on-accent);
+  transform: translateY(-50%);
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static/icons/square-pen.svg")
+    center / contain no-repeat;
+  mask:
+    url("https://unpkg.com/lucide-static/icons/square-pen.svg")
+    center / contain no-repeat;
+}
+
+.litsoPB_postingHeaderLegacy {
+  display: none !important;
+}
+
+
+/* =========================================================
+   CONTENU NATIF DU FORMULAIRE
+   ========================================================= */
+
+#postingbox fieldset.fields1 {
+  width: 100% !important;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 0 18px 18px !important;
+  border: 0;
+}
+
+
+/* =========================================================
+   TITRE ET DESCRIPTION DU SUJET
+   ========================================================= */
+
+#postingbox fieldset.fields1 > dl {
+  position: relative;
+  display: grid;
+  width: 100% !important;
+  grid-template-columns: 235px minmax(0, 1fr);
+  align-items: center;
+  min-height: 70px;
+  gap: 16px;
+  margin: 0 !important;
+  padding: 12px 18px !important;
+  float: none !important;
+  background: var(--bg-elevated);
+  border-right: 1px solid var(--border-default);
+  border-left: 1px solid var(--border-default);
+}
+
+#postingbox fieldset.fields1 > dl:first-of-type {
+  padding-top: 18px !important;
+  border-top: 1px solid var(--border-default);
+}
+
+#postingbox fieldset.fields1 > dl:nth-of-type(2) {
+  padding-bottom: 18px !important;
+  border-bottom: 1px solid var(--border-default);
+}
+
+#postingbox fieldset.fields1 > dl dt,
+#postingbox fieldset.fields1 > dl dd {
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  float: none !important;
+}
+
+#postingbox fieldset.fields1 > dl dt label {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--text-muted);
+  font: 700 8px/1.25 var(--font-condensed);
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+#postingbox fieldset.fields1 > dl dt label::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  background: var(--accent-dark);
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static/icons/type.svg")
+    center / contain no-repeat;
+  mask:
+    url("https://unpkg.com/lucide-static/icons/type.svg")
+    center / contain no-repeat;
+}
+
+#postingbox fieldset.fields1 > dl:nth-of-type(2) dt label::before {
+  -webkit-mask-image:
+    url("https://unpkg.com/lucide-static/icons/text-align-start.svg");
+  mask-image:
+    url("https://unpkg.com/lucide-static/icons/text-align-start.svg");
+}
+
+
+/* =========================================================
+   CHAMPS DE SAISIE
+   ========================================================= */
+
+#postingbox input.inputbox,
+#postingbox select[name="topic_color"] {
+  height: 42px;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  outline: 0;
+  font: 13px var(--font-sans);
+  transition:
+    background 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+#postingbox input.inputbox {
+  width: 100% !important;
+  padding: 0 13px;
+}
+
+#postingbox input.inputbox:focus,
+#postingbox select[name="topic_color"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-faded);
+}
+
+#postingbox dl dd:has(select[name="topic_color"]) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 145px;
+  gap: 8px;
+}
+
+#postingbox select[name="topic_color"] {
+  width: 145px;
+  margin-left: 0 !important;
+  padding: 0 10px;
+}
+
+
+/* =========================================================
+   ÉMOTICÔNES + ÉDITEUR
+
+   Le conteneur .litsoPB_editorLayout est créé par le JS.
+   ========================================================= */
+
+#postingbox .litsoPB_editorLayout {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 190px minmax(0, 1fr);
+  align-items: stretch;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+
+/* Neutralise entièrement la disposition native */
+
+#postingbox .litsoPB_editorLayout #smiley-box,
+#postingbox .litsoPB_editorLayout #message-box {
+  position: relative;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 470px !important;
+  min-height: 470px;
+  max-height: 470px;
+  margin: 0 !important;
+  padding: 0;
+  float: none !important;
+  clear: none !important;
+  overflow: hidden;
+  vertical-align: top;
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+}
+
+
+/* =========================================================
+   ÉMOTICÔNES TOUJOURS OUVERTES
+   ========================================================= */
+
+#postingbox .litsoPB_editorLayout #smiley-box {
+  background: var(--bg-elevated);
+}
+
+#postingbox .litsoPB_smileyHeading {
+  position: relative;
+  display: flex;
+  min-height: 55px;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 13px;
+  color: var(--gold-dark);
+  background: var(--gradient-surface);
+  border-bottom: 1px solid var(--border-default);
+  font: 700 8px/1 var(--font-condensed);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+#postingbox .litsoPB_smileyHeading::before {
+  content: "";
+  width: 29px;
+  height: 29px;
+  flex: 0 0 29px;
+  background: var(--accent-dark);
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static/icons/smile-plus.svg")
+    center / 16px 16px no-repeat;
+  mask:
+    url("https://unpkg.com/lucide-static/icons/smile-plus.svg")
+    center / 16px 16px no-repeat;
+}
+
+#postingbox #smileyContainer {
+  display: block !important;
+  width: 100% !important;
+  height: 413px !important;
+  padding: 13px;
+  overflow: auto;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  background: var(--bg-elevated);
+}
+
+#postingbox #smileyContainer select {
+  width: 100%;
+  height: 35px;
+  margin: 0 0 12px;
+  padding: 0 8px;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  outline: 0;
+  font: 10px var(--font-sans);
+}
+
+#postingbox #smileyContainer select:focus {
+  border-color: var(--accent);
+}
+
+#postingbox #smileyContainer img {
+  margin: 5px;
+  transition: transform 200ms ease;
+}
+
+#postingbox #smileyContainer img:hover {
+  transform: scale(1.18);
+}
+
+#postingbox #smileyContainer::-webkit-scrollbar {
+  width: 7px;
+}
+
+#postingbox #smileyContainer::-webkit-scrollbar-track {
+  background: var(--bg-soft);
+}
+
+#postingbox #smileyContainer::-webkit-scrollbar-thumb {
+  background: var(--gradient-accent-vertical);
+  border: 2px solid var(--bg-soft);
+}
+
+
+/* Ancien bouton d’accordéon éventuel */
+
+#postingbox .utppPB_smileyToggle,
+#postingbox .litsoPB_smileyToggle {
+  display: none !important;
+}
+
+
+/* =========================================================
+   MESSAGE BOX
+   ========================================================= */
+
+#postingbox .litsoPB_editorLayout #message-box {
+  background: var(--bg-surface);
+}
+
+#postingbox #message-box > .left-box,
+#postingbox #message-box > br {
+  display: none;
+}
+
+#postingbox #textarea_content {
+  width: 100% !important;
+  height: 100%;
+  margin: 0 !important;
+}
+
+
+/* =========================================================
+   SCEDITOR
+   ========================================================= */
+
+#postingbox .sceditor-container {
+  display: flex;
+  width: 100% !important;
+  height: 468px !important;
+  min-height: 468px;
+  flex-direction: column;
+  color: var(--text-primary) !important;
+  background: var(--bg-surface) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+
+/* =========================================================
+   BARRE D’OUTILS
+   ========================================================= */
+
+#postingbox .sceditor-toolbar {
+  display: flex;
+  min-height: 68px;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px !important;
+  overflow: visible !important;
+  background: var(--bg-elevated) !important;
+  border-bottom: 1px solid var(--border-default) !important;
+}
+
+#postingbox .sceditor-group {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 2px;
+  margin: 0 !important;
+  padding: 3px !important;
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: 4px !important;
+}
+
+#postingbox a.sceditor-button {
+  display: grid !important;
+  place-items: center;
+  width: 29px !important;
+  height: 29px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 4px !important;
+  transition:
+    background 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+#postingbox a.sceditor-button:hover {
+  background-color: var(--accent-faded) !important;
+  border-color: var(--accent) !important;
+  transform: translateY(-1px);
+}
+
+#postingbox a.sceditor-button.active,
+#postingbox a.sceditor-button.hover {
+  background-color: var(--accent-faded) !important;
+  border-color: var(--accent) !important;
+}
+
+#postingbox a.sceditor-button.disabled {
+  opacity: .35;
+}
+
+#postingbox a.sceditor-button > div {
+  margin: auto !important;
+}
+
+
+/* =========================================================
+   ZONE D’ÉCRITURE
+   ========================================================= */
+
+#postingbox .sceditor-container iframe,
+#postingbox .sceditor-container textarea {
+  width: 100% !important;
+  min-height: 395px !important;
+  flex: 1 1 auto;
+  padding: 21px !important;
+  color: var(--text-primary) !important;
+  background: var(--bg-surface) !important;
+  border: 0 !important;
+  outline: 0 !important;
+  font: 14px/1.65 var(--font-sans) !important;
+}
+
+#postingbox .sceditor-grip {
+  background: var(--bg-elevated) !important;
+  border-top: 1px solid var(--border-default) !important;
+}
+
+
+/* =========================================================
+   MENUS SCEDITOR
+   ========================================================= */
+
+#postingbox .sceditor-dropdown {
+  color: var(--text-primary) !important;
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: 4px !important;
+}
+
+
+/* =========================================================
+   MOTIF D’ÉDITION
+   ========================================================= */
+
+#postingbox dl:has(input[name="edit_reason"]) {
+  clear: both;
+  margin-top: 14px !important;
+  border: 1px solid var(--border-default) !important;
+}
+
+
+/* =========================================================
+   COMPTEURS
+   ========================================================= */
+
+#postingbox .litsoPB_editorStats {
+  display: inline-flex;
+  min-height: 33px;
+  align-items: center;
+  gap: 8px;
+  margin-right: auto;
+  padding: 6px 11px;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: 999px;
+  font: 9px var(--font-sans);
+  letter-spacing: .02em;
+  pointer-events: none;
+}
+
+#postingbox .litsoPB_editorStat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  white-space: nowrap;
+}
+
+#postingbox .litsoPB_editorStat + .litsoPB_editorStat::before {
+  content: "";
+  align-self: center;
+  width: 3px;
+  height: 3px;
+  margin-right: 5px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+#postingbox .litsoPB_editorStat strong {
+  color: var(--gold-dark);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   BOUTONS DU FORMULAIRE
+   ========================================================= */
+
+#postingbox fieldset.submit-buttons {
+  display: flex;
+  width: calc(100% - 36px) !important;
+  min-height: 76px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  clear: both;
+  gap: 8px;
+  margin: 0 18px !important;
+  padding: 14px 0 !important;
+  border: 0;
+  border-top: 1px solid var(--border-default);
+}
+
+#postingbox fieldset.submit-buttons input[type="submit"] {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 !important;
+  padding: 0 17px !important;
+  color: var(--text-primary) !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-strong) !important;
+  border-radius: 4px !important;
+  outline: 0;
+  font: 700 10px var(--font-condensed) !important;
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+#postingbox fieldset.submit-buttons input[type="submit"]:hover {
+  color: var(--accent-dark) !important;
+  background: var(--accent-faded) !important;
+  border-color: var(--accent) !important;
+  transform: translateY(-1px);
+}
+
+#postingbox fieldset.submit-buttons input[name="post"],
+#postingbox fieldset.submit-buttons input[name="publish"] {
+  color: var(--text-on-accent) !important;
+  background: var(--gradient-accent) !important;
+  border-color: transparent !important;
+}
+
+#postingbox fieldset.submit-buttons input:disabled,
+#postingbox fieldset.submit-buttons input.disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+#postingbox fieldset.submit-buttons .info {
+  width: 100%;
+  margin-top: 6px;
+  color: var(--text-muted);
+  font: 10px/1.5 var(--font-sans);
+  text-align: right;
+}
+
+
+/* =========================================================
+   PANNEAUX SUPPLÉMENTAIRES TOUJOURS OUVERTS
+   ========================================================= */
+
+.litsoPB_extraHeader {
+  position: relative;
+  display: flex !important;
+  min-height: 56px;
+  align-items: center;
+  gap: 11px;
+  margin: 10px 0 0 !important;
+  padding: 9px 14px !important;
+  color: var(--text-primary) !important;
+  background: var(--gradient-surface) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: 4px !important;
+  font: 700 9px var(--font-condensed) !important;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  cursor: default !important;
+}
+
+.litsoPB_extraHeader::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  margin-left: auto;
+  background: var(--bg-surface);
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+}
+
+.litsoPB_extraHeader .forum-hide {
+  display: none !important;
+}
+
+.litsoPB_extraHeaderIcon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  color: var(--accent-dark);
+  background: var(--accent-faded);
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+}
+
+.litsoPB_extraHeaderIcon svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.7;
+}
+
+.litsoPB_extraPanel {
+  display: block !important;
+  margin: 8px 0 16px !important;
+  overflow: hidden;
+  color: var(--text-secondary) !important;
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: 4px !important;
+}
+
+.litsoPB_extraPanel[hidden] {
+  display: block !important;
+}
+
+.litsoPB_extraPanel > .inner {
+  padding: 18px !important;
+}
+
+.litsoPB_extraPanel .corners-top,
+.litsoPB_extraPanel .corners-bottom {
+  display: none !important;
+}
+
+.litsoPB_extraPanel fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.litsoPB_extraPanel hr.dashed {
+  margin: 18px 0;
+  border: 0;
+  border-top: 1px dashed var(--border-strong);
+}
+
+
+/* =========================================================
+   LANCER DE DÉS
+   ========================================================= */
+
+.litsoPB_diceList,
+.litsoPB_diceList tbody,
+.litsoPB_diceList tr,
+.litsoPB_diceList td {
+  display: block;
+  width: 100%;
+}
+
+.litsoPB_diceList tr + tr {
+  margin-top: 8px;
+}
+
+.litsoPB_diceList td {
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 12px;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  font: 10px var(--font-sans);
+}
+
+.litsoPB_diceList select,
+.litsoPB_diceList input[type="text"] {
+  height: 36px;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  outline: 0;
+  font: 10px var(--font-sans);
+}
+
+.litsoPB_diceList select {
+  min-width: 140px;
+  padding: 0 10px;
+}
+
+.litsoPB_diceList input[type="text"] {
+  width: 52px;
+  padding: 0 8px;
+  text-align: center;
+}
+
+.litsoPB_diceList a:has(.sprite-tabs_more) {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: var(--accent-dark);
+  background: var(--accent-faded);
+  border: 1px solid var(--border-default);
+  border-radius: 50%;
+}
+
+.litsoPB_diceList a:has(.sprite-tabs_more)::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background: currentColor;
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static/icons/plus.svg")
+    center / contain no-repeat;
+  mask:
+    url("https://unpkg.com/lucide-static/icons/plus.svg")
+    center / contain no-repeat;
+}
+
+.litsoPB_diceList .sprite-tabs_more {
+  display: none;
+}
+
+
+/* =========================================================
+   OPTIONS
+   ========================================================= */
+
+.litsoPB_optionsFieldset {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.litsoPB_optionsFieldset > br {
+  display: none;
+}
+
+.litsoPB_optionChoice {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 11px;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  font: 10px var(--font-sans);
+  cursor: pointer;
+}
+
+.litsoPB_optionChoice:hover {
+  background: var(--accent-faded);
+  border-color: var(--accent);
+}
+
+.litsoPB_optionChoice--checkbox input {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  flex: 0 0 36px;
+  margin: 0;
+  appearance: none;
+  background: var(--border-strong);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.litsoPB_optionChoice--checkbox input::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  background: var(--bg-surface);
+  border-radius: 50%;
+  transition: transform 200ms ease;
+}
+
+.litsoPB_optionChoice--checkbox input:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.litsoPB_optionChoice--checkbox input:checked::before {
+  transform: translateX(16px);
+}
+
+.litsoPB_optionLegend {
+  width: 100%;
+  margin-top: 8px;
+  color: var(--text-muted);
+  font: 700 7px var(--font-condensed);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.litsoPB_optionChoice--radio,
+.litsoPB_pollChoice {
+  border-radius: 999px;
+}
+
+.litsoPB_optionChoice--radio input,
+.litsoPB_pollChoice input {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+
+/* =========================================================
+   SONDAGE
+   ========================================================= */
+
+.litsoPB_pollFieldset {
+  display: grid;
+  gap: 10px;
+}
+
+.litsoPB_pollRow {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  margin: 0 !important;
+  padding: 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+.litsoPB_pollRow dt,
+.litsoPB_pollRow dd {
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  float: none !important;
+}
+
+.litsoPB_pollRow dt > label {
+  color: var(--text-primary);
+  font: 700 9px var(--font-condensed);
+}
+
+.litsoPB_pollRow .italic {
+  display: block;
+  margin-top: 5px;
+  color: var(--text-muted);
+  font: italic 9px/1.5 var(--font-sans);
+}
+
+.litsoPB_pollRow input[type="text"],
+.litsoPB_pollRow textarea {
+  width: 100% !important;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  outline: 0;
+  font: 11px var(--font-sans);
+}
+
+.litsoPB_pollRow input[type="text"] {
+  height: 40px;
+  padding: 0 11px;
+}
+
+.litsoPB_pollRow input.tiny {
+  width: 70px !important;
+  margin-right: 7px;
+  text-align: center;
+}
+
+.litsoPB_pollRow textarea {
+  min-height: 130px;
+  padding: 11px;
+  resize: vertical;
+}
+
+.litsoPB_pollChoice {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  gap: 6px;
+  margin: 3px 5px 3px 0;
+  padding: 6px 10px;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  font: 9px var(--font-sans);
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+  #postingbox .litsoPB_editorLayout {
+    grid-template-columns: 155px minmax(0, 1fr);
+  }
+
+  .litsoPB_pollRow {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 650px) {
+  #postingbox h3,
+  #postingbox .litsoPB_postingHeader {
+    min-height: 82px;
+    padding: 18px 20px 18px 78px !important;
+    font-size: 20px;
+  }
+
+  #postingbox h3::before,
+  #postingbox .litsoPB_postingHeader::before {
+    left: 20px;
+    width: 44px;
+    height: 44px;
+  }
+
+  #postingbox h3::after,
+  #postingbox .litsoPB_postingHeader::after {
+    left: 32px;
+  }
+
+  #postingbox fieldset.fields1 > dl {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  #postingbox dl dd:has(select[name="topic_color"]) {
+    grid-template-columns: 1fr;
+  }
+
+  #postingbox select[name="topic_color"] {
+    width: 100%;
+  }
+
+  #postingbox .litsoPB_editorLayout {
+    grid-template-columns: 1fr;
+  }
+
+  #postingbox .litsoPB_editorLayout #smiley-box {
+    height: 210px !important;
+    min-height: 210px;
+    max-height: 210px;
+  }
+
+  #postingbox #smileyContainer {
+    height: 153px !important;
+  }
+
+  #postingbox .litsoPB_editorLayout #message-box {
+    height: 470px !important;
+  }
+
+  #postingbox .sceditor-toolbar {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto !important;
+  }
+
+  #postingbox .sceditor-group {
+    flex: 0 0 auto;
+  }
+
+  .litsoPB_extraPanel > .inner {
+    padding: 12px !important;
+  }
+
+  .litsoPB_optionsFieldset {
+    align-items: stretch;
+  }
+
+  .litsoPB_optionChoice--checkbox {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  #postingbox fieldset.fields1 {
+    padding: 0 10px 10px !important;
+  }
+
+  #postingbox fieldset.submit-buttons {
+    width: calc(100% - 20px) !important;
+    margin: 0 10px !important;
+    padding: 12px 0 !important;
+  }
+
+  #postingbox fieldset.submit-buttons input[type="submit"] {
+    flex: 1 1 calc(50% - 8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #postingbox *,
+  #postingbox *::before,
+  #postingbox *::after {
+    transition-duration: .01ms !important;
+  }
+}
