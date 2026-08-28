@@ -1,15 +1,7 @@
-/* =========================================================
-   ÉDITEUR FORUMACTIF
-   Réponse rapide + posting_body
-   Nomenclature : litsoPB_
-   ========================================================= */
-
-
-/* =========================================================
-   CONTENEUR GÉNÉRAL
-   ========================================================= */
-
 #postingbox {
+  --litsoPB-smiley-width: 190px;
+  --litsoPB-editor-gap: 12px;
+
   width: 100%;
   margin: 20px 0 !important;
   padding: 0 !important;
@@ -34,11 +26,6 @@
 #postingbox .corners-bottom {
   display: none;
 }
-
-
-/* =========================================================
-   EN-TÊTE DU FORMULAIRE
-   ========================================================= */
 
 #postingbox h3,
 #postingbox .litsoPB_postingHeader {
@@ -90,11 +77,6 @@
   display: none !important;
 }
 
-
-/* =========================================================
-   CONTENU NATIF DU FORMULAIRE
-   ========================================================= */
-
 #postingbox fieldset.fields1 {
   width: 100% !important;
   min-width: 0;
@@ -103,18 +85,13 @@
   border: 0;
 }
 
-
-/* =========================================================
-   TITRE ET DESCRIPTION DU SUJET
-   ========================================================= */
-
 #postingbox fieldset.fields1 > dl {
   position: relative;
   display: grid;
   width: 100% !important;
+  min-height: 70px;
   grid-template-columns: 235px minmax(0, 1fr);
   align-items: center;
-  min-height: 70px;
   gap: 16px;
   margin: 0 !important;
   padding: 12px 18px !important;
@@ -127,11 +104,19 @@
 #postingbox fieldset.fields1 > dl:first-of-type {
   padding-top: 18px !important;
   border-top: 1px solid var(--border-default);
+  border-radius: 4px 4px 0 0;
 }
 
 #postingbox fieldset.fields1 > dl:nth-of-type(2) {
   padding-bottom: 18px !important;
   border-bottom: 1px solid var(--border-default);
+  border-radius: 0 0 4px 4px;
+}
+
+#postingbox fieldset.fields1 > dl + dl::before {
+  content: "";
+  position: absolute;
+  height: 1px;
 }
 
 #postingbox fieldset.fields1 > dl dt,
@@ -173,11 +158,6 @@
     url("https://unpkg.com/lucide-static/icons/text-align-start.svg");
 }
 
-
-/* =========================================================
-   CHAMPS DE SAISIE
-   ========================================================= */
-
 #postingbox input.inputbox,
 #postingbox select[name="topic_color"] {
   height: 42px;
@@ -200,6 +180,7 @@
 
 #postingbox input.inputbox:focus,
 #postingbox select[name="topic_color"]:focus {
+  background: var(--bg-surface);
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-faded);
 }
@@ -216,36 +197,15 @@
   padding: 0 10px;
 }
 
-
-/* =========================================================
-   ÉMOTICÔNES + ÉDITEUR
-
-   Le conteneur .litsoPB_editorLayout est créé par le JS.
-   ========================================================= */
-
-#postingbox .litsoPB_editorLayout {
-  display: grid;
-  width: 100%;
-  grid-template-columns: 190px minmax(0, 1fr);
-  align-items: stretch;
-  gap: 12px;
-  margin-top: 14px;
-}
-
-
-/* Neutralise entièrement la disposition native */
-
-#postingbox .litsoPB_editorLayout #smiley-box,
-#postingbox .litsoPB_editorLayout #message-box {
+#postingbox #smiley-box,
+#postingbox #message-box {
   position: relative;
-  width: 100% !important;
-  min-width: 0 !important;
   height: 470px !important;
   min-height: 470px;
   max-height: 470px;
-  margin: 0 !important;
-  padding: 0;
-  float: none !important;
+  margin-top: 14px !important;
+  margin-bottom: 0 !important;
+  box-sizing: border-box;
   clear: none !important;
   overflow: hidden;
   vertical-align: top;
@@ -253,61 +213,73 @@
   border-radius: 4px;
 }
 
-
-/* =========================================================
-   ÉMOTICÔNES TOUJOURS OUVERTES
-   ========================================================= */
-
-#postingbox .litsoPB_editorLayout #smiley-box {
+#postingbox #smiley-box,
+#postingbox #smiley-box.is-open {
+  width: var(--litsoPB-smiley-width) !important;
+  margin-right: var(--litsoPB-editor-gap) !important;
+  margin-left: 0 !important;
+  float: left !important;
   background: var(--bg-elevated);
+  border-color: var(--border-default);
 }
 
-#postingbox .litsoPB_smileyHeading {
-  position: relative;
-  display: flex;
-  min-height: 55px;
-  align-items: center;
-  gap: 10px;
-  padding: 11px 13px;
+#postingbox #message-box,
+#postingbox #smiley-box.is-open + #message-box {
+  width: calc(
+    100%
+    - var(--litsoPB-smiley-width)
+    - var(--litsoPB-editor-gap)
+  ) !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  padding: 0;
+  float: left !important;
+  background: var(--bg-surface);
+}
+
+#postingbox fieldset.fields1::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#postingbox .utppPB_smileyToggle,
+#postingbox .litsoPB_smileyToggle {
+  display: none !important;
+}
+
+#postingbox #smileyContainer,
+#postingbox #smiley-box.is-open #smileyContainer {
+  display: block !important;
+  width: 100%;
+  height: 468px;
+  padding: 14px;
+  overflow: auto;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  transition: none;
+}
+
+#postingbox #smileyContainer::before {
+  content: "Émotions";
+  display: block;
+  margin: 0 0 13px;
+  padding: 0 0 10px;
   color: var(--gold-dark);
-  background: var(--gradient-surface);
   border-bottom: 1px solid var(--border-default);
   font: 700 8px/1 var(--font-condensed);
   letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 
-#postingbox .litsoPB_smileyHeading::before {
-  content: "";
-  width: 29px;
-  height: 29px;
-  flex: 0 0 29px;
-  background: var(--accent-dark);
-  -webkit-mask:
-    url("https://unpkg.com/lucide-static/icons/smile-plus.svg")
-    center / 16px 16px no-repeat;
-  mask:
-    url("https://unpkg.com/lucide-static/icons/smile-plus.svg")
-    center / 16px 16px no-repeat;
-}
-
-#postingbox #smileyContainer {
-  display: block !important;
-  width: 100% !important;
-  height: 413px !important;
-  padding: 13px;
-  overflow: auto;
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-  background: var(--bg-elevated);
-}
-
 #postingbox #smileyContainer select {
   width: 100%;
-  height: 35px;
+  height: 36px;
   margin: 0 0 12px;
-  padding: 0 8px;
+  padding: 0 9px;
   color: var(--text-primary);
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
@@ -342,23 +314,6 @@
   border: 2px solid var(--bg-soft);
 }
 
-
-/* Ancien bouton d’accordéon éventuel */
-
-#postingbox .utppPB_smileyToggle,
-#postingbox .litsoPB_smileyToggle {
-  display: none !important;
-}
-
-
-/* =========================================================
-   MESSAGE BOX
-   ========================================================= */
-
-#postingbox .litsoPB_editorLayout #message-box {
-  background: var(--bg-surface);
-}
-
 #postingbox #message-box > .left-box,
 #postingbox #message-box > br {
   display: none;
@@ -369,11 +324,6 @@
   height: 100%;
   margin: 0 !important;
 }
-
-
-/* =========================================================
-   SCEDITOR
-   ========================================================= */
 
 #postingbox .sceditor-container {
   display: flex;
@@ -387,14 +337,9 @@
   border-radius: 0 !important;
 }
 
-
-/* =========================================================
-   BARRE D’OUTILS
-   ========================================================= */
-
 #postingbox .sceditor-toolbar {
   display: flex;
-  min-height: 68px;
+  min-height: 66px;
   align-content: center;
   align-items: center;
   justify-content: center;
@@ -420,8 +365,8 @@
 #postingbox a.sceditor-button {
   display: grid !important;
   place-items: center;
-  width: 29px !important;
-  height: 29px !important;
+  width: 30px !important;
+  height: 30px !important;
   margin: 0 !important;
   padding: 0 !important;
   background-color: transparent !important;
@@ -453,17 +398,12 @@
   margin: auto !important;
 }
 
-
-/* =========================================================
-   ZONE D’ÉCRITURE
-   ========================================================= */
-
 #postingbox .sceditor-container iframe,
 #postingbox .sceditor-container textarea {
   width: 100% !important;
-  min-height: 395px !important;
+  min-height: 400px !important;
   flex: 1 1 auto;
-  padding: 21px !important;
+  padding: 22px !important;
   color: var(--text-primary) !important;
   background: var(--bg-surface) !important;
   border: 0 !important;
@@ -476,41 +416,15 @@
   border-top: 1px solid var(--border-default) !important;
 }
 
-
-/* =========================================================
-   MENUS SCEDITOR
-   ========================================================= */
-
-#postingbox .sceditor-dropdown {
-  color: var(--text-primary) !important;
-  background: var(--bg-surface) !important;
-  border: 1px solid var(--border-default) !important;
-  border-radius: 4px !important;
-}
-
-
-/* =========================================================
-   MOTIF D’ÉDITION
-   ========================================================= */
-
-#postingbox dl:has(input[name="edit_reason"]) {
-  clear: both;
-  margin-top: 14px !important;
-  border: 1px solid var(--border-default) !important;
-}
-
-
-/* =========================================================
-   COMPTEURS
-   ========================================================= */
-
 #postingbox .litsoPB_editorStats {
+  position: static;
   display: inline-flex;
-  min-height: 33px;
+  min-height: 32px;
   align-items: center;
   gap: 8px;
+  order: -1;
   margin-right: auto;
-  padding: 6px 11px;
+  padding: 6px 10px;
   color: var(--text-muted);
   background: var(--bg-elevated);
   border: 1px solid var(--border-default);
@@ -543,10 +457,19 @@
   font-weight: 800;
 }
 
+#postingbox .sceditor-dropdown {
+  color: var(--text-primary) !important;
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: 4px !important;
+}
 
-/* =========================================================
-   BOUTONS DU FORMULAIRE
-   ========================================================= */
+#postingbox dl:has(input[name="edit_reason"]) {
+  clear: both;
+  margin-top: 14px !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: 4px !important;
+}
 
 #postingbox fieldset.submit-buttons {
   display: flex;
@@ -576,6 +499,7 @@
   border-radius: 4px !important;
   outline: 0;
   font: 700 10px var(--font-condensed) !important;
+  text-transform: none;
   cursor: pointer;
   transition:
     color 200ms ease,
@@ -613,366 +537,7 @@
   text-align: right;
 }
 
-
-/* =========================================================
-   PANNEAUX SUPPLÉMENTAIRES TOUJOURS OUVERTS
-   ========================================================= */
-
-.litsoPB_extraHeader {
-  position: relative;
-  display: flex !important;
-  min-height: 56px;
-  align-items: center;
-  gap: 11px;
-  margin: 10px 0 0 !important;
-  padding: 9px 14px !important;
-  color: var(--text-primary) !important;
-  background: var(--gradient-surface) !important;
-  border: 1px solid var(--border-default) !important;
-  border-radius: 4px !important;
-  font: 700 9px var(--font-condensed) !important;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  cursor: default !important;
-}
-
-.litsoPB_extraHeader::after {
-  content: "";
-  width: 5px;
-  height: 5px;
-  margin-left: auto;
-  background: var(--bg-surface);
-  border: 1px solid var(--gold);
-  transform: rotate(45deg);
-}
-
-.litsoPB_extraHeader .forum-hide {
-  display: none !important;
-}
-
-.litsoPB_extraHeaderIcon {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  flex: 0 0 36px;
-  color: var(--accent-dark);
-  background: var(--accent-faded);
-  border: 1px solid var(--border-default);
-  border-radius: 4px;
-}
-
-.litsoPB_extraHeaderIcon svg {
-  width: 18px;
-  height: 18px;
-  stroke-width: 1.7;
-}
-
-.litsoPB_extraPanel {
-  display: block !important;
-  margin: 8px 0 16px !important;
-  overflow: hidden;
-  color: var(--text-secondary) !important;
-  background: var(--bg-surface) !important;
-  border: 1px solid var(--border-default) !important;
-  border-radius: 4px !important;
-}
-
-.litsoPB_extraPanel[hidden] {
-  display: block !important;
-}
-
-.litsoPB_extraPanel > .inner {
-  padding: 18px !important;
-}
-
-.litsoPB_extraPanel .corners-top,
-.litsoPB_extraPanel .corners-bottom {
-  display: none !important;
-}
-
-.litsoPB_extraPanel fieldset {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-.litsoPB_extraPanel hr.dashed {
-  margin: 18px 0;
-  border: 0;
-  border-top: 1px dashed var(--border-strong);
-}
-
-
-/* =========================================================
-   LANCER DE DÉS
-   ========================================================= */
-
-.litsoPB_diceList,
-.litsoPB_diceList tbody,
-.litsoPB_diceList tr,
-.litsoPB_diceList td {
-  display: block;
-  width: 100%;
-}
-
-.litsoPB_diceList tr + tr {
-  margin-top: 8px;
-}
-
-.litsoPB_diceList td {
-  display: flex;
-  min-height: 58px;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 10px 12px;
-  color: var(--text-secondary);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-default);
-  font: 10px var(--font-sans);
-}
-
-.litsoPB_diceList select,
-.litsoPB_diceList input[type="text"] {
-  height: 36px;
-  color: var(--text-primary);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-strong);
-  border-radius: 4px;
-  outline: 0;
-  font: 10px var(--font-sans);
-}
-
-.litsoPB_diceList select {
-  min-width: 140px;
-  padding: 0 10px;
-}
-
-.litsoPB_diceList input[type="text"] {
-  width: 52px;
-  padding: 0 8px;
-  text-align: center;
-}
-
-.litsoPB_diceList a:has(.sprite-tabs_more) {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  color: var(--accent-dark);
-  background: var(--accent-faded);
-  border: 1px solid var(--border-default);
-  border-radius: 50%;
-}
-
-.litsoPB_diceList a:has(.sprite-tabs_more)::before {
-  content: "";
-  width: 15px;
-  height: 15px;
-  background: currentColor;
-  -webkit-mask:
-    url("https://unpkg.com/lucide-static/icons/plus.svg")
-    center / contain no-repeat;
-  mask:
-    url("https://unpkg.com/lucide-static/icons/plus.svg")
-    center / contain no-repeat;
-}
-
-.litsoPB_diceList .sprite-tabs_more {
-  display: none;
-}
-
-
-/* =========================================================
-   OPTIONS
-   ========================================================= */
-
-.litsoPB_optionsFieldset {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 9px;
-}
-
-.litsoPB_optionsFieldset > br {
-  display: none;
-}
-
-.litsoPB_optionChoice {
-  display: inline-flex;
-  min-height: 38px;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 11px;
-  color: var(--text-primary);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-default);
-  font: 10px var(--font-sans);
-  cursor: pointer;
-}
-
-.litsoPB_optionChoice:hover {
-  background: var(--accent-faded);
-  border-color: var(--accent);
-}
-
-.litsoPB_optionChoice--checkbox input {
-  position: relative;
-  width: 36px;
-  height: 20px;
-  flex: 0 0 36px;
-  margin: 0;
-  appearance: none;
-  background: var(--border-strong);
-  border: 1px solid var(--border-strong);
-  border-radius: 999px;
-  cursor: pointer;
-}
-
-.litsoPB_optionChoice--checkbox input::before {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 14px;
-  height: 14px;
-  background: var(--bg-surface);
-  border-radius: 50%;
-  transition: transform 200ms ease;
-}
-
-.litsoPB_optionChoice--checkbox input:checked {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
-.litsoPB_optionChoice--checkbox input:checked::before {
-  transform: translateX(16px);
-}
-
-.litsoPB_optionLegend {
-  width: 100%;
-  margin-top: 8px;
-  color: var(--text-muted);
-  font: 700 7px var(--font-condensed);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.litsoPB_optionChoice--radio,
-.litsoPB_pollChoice {
-  border-radius: 999px;
-}
-
-.litsoPB_optionChoice--radio input,
-.litsoPB_pollChoice input {
-  width: 14px;
-  height: 14px;
-  margin: 0;
-  accent-color: var(--accent);
-}
-
-
-/* =========================================================
-   SONDAGE
-   ========================================================= */
-
-.litsoPB_pollFieldset {
-  display: grid;
-  gap: 10px;
-}
-
-.litsoPB_pollRow {
-  display: grid;
-  grid-template-columns: minmax(180px, 260px) minmax(0, 1fr);
-  align-items: center;
-  gap: 16px;
-  margin: 0 !important;
-  padding: 12px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-default);
-}
-
-.litsoPB_pollRow dt,
-.litsoPB_pollRow dd {
-  width: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  float: none !important;
-}
-
-.litsoPB_pollRow dt > label {
-  color: var(--text-primary);
-  font: 700 9px var(--font-condensed);
-}
-
-.litsoPB_pollRow .italic {
-  display: block;
-  margin-top: 5px;
-  color: var(--text-muted);
-  font: italic 9px/1.5 var(--font-sans);
-}
-
-.litsoPB_pollRow input[type="text"],
-.litsoPB_pollRow textarea {
-  width: 100% !important;
-  color: var(--text-primary);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-strong);
-  border-radius: 4px;
-  outline: 0;
-  font: 11px var(--font-sans);
-}
-
-.litsoPB_pollRow input[type="text"] {
-  height: 40px;
-  padding: 0 11px;
-}
-
-.litsoPB_pollRow input.tiny {
-  width: 70px !important;
-  margin-right: 7px;
-  text-align: center;
-}
-
-.litsoPB_pollRow textarea {
-  min-height: 130px;
-  padding: 11px;
-  resize: vertical;
-}
-
-.litsoPB_pollChoice {
-  display: inline-flex;
-  min-height: 34px;
-  align-items: center;
-  gap: 6px;
-  margin: 3px 5px 3px 0;
-  padding: 6px 10px;
-  color: var(--text-primary);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
-  font: 9px var(--font-sans);
-  cursor: pointer;
-}
-
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media (max-width: 800px) {
-  #postingbox .litsoPB_editorLayout {
-    grid-template-columns: 155px minmax(0, 1fr);
-  }
-
-  .litsoPB_pollRow {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-}
-
-@media (max-width: 650px) {
+@media (max-width: 760px) {
   #postingbox h3,
   #postingbox .litsoPB_postingHeader {
     min-height: 82px;
@@ -1005,22 +570,34 @@
     width: 100%;
   }
 
-  #postingbox .litsoPB_editorLayout {
-    grid-template-columns: 1fr;
+  #postingbox #smiley-box,
+  #postingbox #smiley-box.is-open,
+  #postingbox #message-box,
+  #postingbox #smiley-box.is-open + #message-box {
+    width: 100% !important;
+    max-height: none;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    float: none !important;
   }
 
-  #postingbox .litsoPB_editorLayout #smiley-box {
-    height: 210px !important;
-    min-height: 210px;
-    max-height: 210px;
+  #postingbox #smiley-box,
+  #postingbox #smiley-box.is-open {
+    height: 220px !important;
+    min-height: 220px;
+    margin-bottom: 10px !important;
   }
 
-  #postingbox #smileyContainer {
-    height: 153px !important;
+  #postingbox #smileyContainer,
+  #postingbox #smiley-box.is-open #smileyContainer {
+    height: 218px;
   }
 
-  #postingbox .litsoPB_editorLayout #message-box {
+  #postingbox #message-box,
+  #postingbox #smiley-box.is-open + #message-box {
     height: 470px !important;
+    min-height: 470px;
+    margin-top: 0 !important;
   }
 
   #postingbox .sceditor-toolbar {
@@ -1031,18 +608,6 @@
 
   #postingbox .sceditor-group {
     flex: 0 0 auto;
-  }
-
-  .litsoPB_extraPanel > .inner {
-    padding: 12px !important;
-  }
-
-  .litsoPB_optionsFieldset {
-    align-items: stretch;
-  }
-
-  .litsoPB_optionChoice--checkbox {
-    width: 100%;
   }
 }
 
@@ -1066,6 +631,7 @@
   #postingbox *,
   #postingbox *::before,
   #postingbox *::after {
+    scroll-behavior: auto !important;
     transition-duration: .01ms !important;
   }
 }
