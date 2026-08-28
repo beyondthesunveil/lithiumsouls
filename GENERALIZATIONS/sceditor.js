@@ -455,3 +455,53 @@
     initPostingEditor();
   }
 })();
+
+window.addEventListener(
+  "load",
+  function () {
+    window.setTimeout(
+      function () {
+        const results = {
+          postingBox: Boolean(
+            document.querySelector(
+              "#postingbox"
+            )
+          ),
+
+          messageBox: Boolean(
+            document.querySelector(
+              "#postingbox #message-box"
+            )
+          ),
+
+          textarea: Boolean(
+            document.querySelector(
+              "#text_editor_textarea"
+            )
+          ),
+
+          buttons: Boolean(
+            document.querySelector(
+              "fieldset.submit-buttons"
+            )
+          ),
+
+          counter: Boolean(
+            document.querySelector(
+              ".litsoPB_editorStats"
+            )
+          )
+        };
+
+        window.alert(
+          JSON.stringify(
+            results,
+            null,
+            2
+          )
+        );
+      },
+      1000
+    );
+  }
+);
