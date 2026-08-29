@@ -237,7 +237,7 @@
   padding: 14px;
   color: var(--text-on-accent);
   background: var(--accent-dark);
-  font: 700 7px/1 var(--font-condensed);
+  font: 700 11px/1 var(--font-condensed);
   letter-spacing: 1.3px;
   text-align: center;
   text-transform: uppercase;
