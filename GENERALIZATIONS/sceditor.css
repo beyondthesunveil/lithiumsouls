@@ -383,7 +383,6 @@
 #postingbox .sceditor-container iframe,
 #postingbox .sceditor-container textarea {
   width: 100% !important;
-  min-height: 400px !important;
   flex: 1 1 auto;
   padding: 22px !important;
   color: var(--text-primary) !important;
