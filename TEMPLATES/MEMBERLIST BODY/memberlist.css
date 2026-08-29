@@ -195,11 +195,10 @@ input[type="text"]:hover, .inputbox:hover {
 
 .litso-memberlist_grid {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 222px);
-  justify-content: center;
-  align-items: start;
-  gap: 24px;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px 0px;
 }
 
 .litso-memberlist_member {
