@@ -422,13 +422,6 @@ a.litso-directory_name:hover {
   white-space: nowrap;
 }
 
-.litso-directory_entry n5::before {
-  content: "✦";
-  color: var(--text-primary);
-  font-size: 10px;
-  font-style: normal;
-}
-
 .litso-directory_entry n5 i {
   font: inherit;
 }
