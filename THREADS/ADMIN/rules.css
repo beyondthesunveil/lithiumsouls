@@ -350,8 +350,6 @@
 }
 
 .litso-rules_notice {
-  display: grid;
-  grid-template-columns: 105px minmax(0, 1fr);
   margin-top: 19px;
   background: var(--bg-elevated);
   border: 1px solid var(--border-default);
