@@ -315,6 +315,7 @@ a.litso-directory_name:hover {
   font: 8px var(--font-sans);
   text-transform: uppercase;
   letter-spacing: 0.88px;
+  color: var(--accent-light);
 }
 
 .litso-directory_status[data-status="taken"] {
