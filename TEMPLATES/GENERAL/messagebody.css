@@ -117,21 +117,19 @@
   overflow-wrap: anywhere;
 }
 
-.litso_messagebody_card {
+.litso_messagebody_bg {
   position: relative;
   display: grid;
-  width: min(100%, 780px);
+  width: 100%;
   min-height: 190px;
   grid-template-columns: 105px minmax(0, 1fr);
   margin: 0 auto;
   overflow: hidden;
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
-  border-radius: var(--radiusbis);
-  box-shadow: 0 12px 35px var(--shadow-soft);
 }
 
-.litso_messagebody_card::before {
+.litso_messagebody_bg::before {
   content: "";
   position: absolute;
   top: 18px;
@@ -177,14 +175,6 @@
   justify-content: center;
   flex-direction: column;
   padding: 30px;
-}
-
-.litso_messagebody_label {
-  margin-bottom: 10px;
-  color: var(--gold-dark);
-  font: 700 8px/1 var(--font-condensed);
-  letter-spacing: 1.7px;
-  text-transform: uppercase;
 }
 
 .litso_messagebody_text {
@@ -274,14 +264,6 @@
     min-height: 78px;
     border-right: 0;
     border-bottom: 1px solid var(--border-default);
-  }
-
-  .litso_messagebody_icon::after {
-    right: auto;
-    bottom: 17px;
-    left: 50%;
-    width: 47px;
-    transform: translateX(-50%);
   }
 
   .litso_messagebody_content {
