@@ -1,0 +1,413 @@
+.litso-directory_,
+.litso-directory_ * {
+  box-sizing: border-box;
+}
+
+.litso-directory_ {
+  position: relative;
+  width: min(100%, 900px);
+  margin: 35px auto;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+}
+
+.litso-directory_header {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 155px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 25px;
+  padding: 30px 20px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-default);
+  text-align: center;
+}
+
+.litso-directory_header::before {
+  content: attr(data-ghost);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  overflow: hidden;
+  color: transparent;
+  font: italic 115px/.75 var(--font-display);
+  letter-spacing: -6px;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: .65;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  -webkit-text-stroke: 1px var(--border-subtle);
+}
+
+.litso-directory_header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 120px;
+  height: 3px;
+  background: var(--gradient-accent);
+  transform: translateX(-50%);
+}
+
+.litso-directory_eyebrow {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-dark);
+  font: 700 8px/1 var(--font-condensed);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.litso-directory_eyebrow::before,
+.litso-directory_eyebrow::after {
+  content: "";
+  width: 55px;
+  height: 1px;
+  margin: 0 17px;
+  background: var(--gradient-accent);
+}
+
+.litso-directory_eyebrow::after {
+  background: var(--gradient-accent-reverse);
+}
+
+.litso-directory_title {
+  position: relative;
+  z-index: 2;
+  color: var(--text-primary);
+  font: 600 49px/.95 var(--font-display);
+  letter-spacing: -2px;
+  text-transform: uppercase;
+}
+
+.litso-directory_intro {
+  position: relative;
+  padding: 25px 28px 25px 31px;
+  overflow: hidden;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+.litso-directory_intro::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 0;
+  width: 2px;
+  background: var(--gradient-accent-vertical);
+}
+
+.litso-directory_introLabel {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--gold-dark);
+  font: 700 8px/1 var(--font-condensed);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.litso-directory_introText {
+  color: var(--text-secondary);
+  font: 11px/1.8 var(--font-sans);
+  text-align: justify;
+}
+
+.litso-directory_alphabet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 18px 0 28px;
+}
+
+.litso-directory_alphabet a {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  font: 700 10px/1 var(--font-sans);
+  text-decoration: none;
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+.litso-directory_alphabet a:hover {
+  color: var(--text-on-accent);
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+  transform: translateY(-2px);
+}
+
+.litso-directory_section {
+  position: relative;
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  margin-bottom: 14px;
+  overflow: hidden;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+}
+
+.litso-directory_letter {
+  position: relative;
+  width: 27px;
+  background: var(--bg-elevated);
+}
+
+.litso-directory_letter::before {
+  content: "";
+  position: absolute;
+  top: 17px;
+  right: 13px;
+  bottom: 17px;
+  width: 1px;
+  background: var(--border-default);
+}
+
+.litso-directory_letter::after {
+  content: "";
+  position: absolute;
+  right: 9px;
+  bottom: 20px;
+  width: 8px;
+  height: 8px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+}
+
+.litso-directory_sectionContent {
+  min-width: 0;
+  padding: 20px 20px 20px 0;
+  margin: 0 0 0 -45px;
+}
+
+.litso-directory_sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid var(--border-default);
+  margin-bottom: 10px;
+}
+
+.litso-directory_sectionHeader > span {
+  color: var(--text-muted);
+  font: 700 7px/1 var(--font-condensed);
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+}
+
+.litso-directory_sectionHeader > strong {
+  color: var(--gold-dark);
+  font: 600 25px/.8 var(--font-display);
+}
+
+.litso-directory_sectionHeader > i {
+  height: 1px;
+  flex: 1;
+  background: var(--border-subtle);
+}
+
+.litso-directory_sectionHeader > small {
+  color: var(--text-muted);
+  font: 8px/1 var(--font-sans);
+}
+
+.litso-directory_entries {
+  display: flex;
+  flex-direction: column;
+}
+
+.litso-directory_entry {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 12px;
+  padding: 3px;
+}
+
+.litso-directory_entry:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.litso-directory_name {
+  flex: 0 1 auto;
+  color: var(--text-primary);
+  font: 600 18px/1.1 var(--font-display);
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+a.litso-directory_name:hover {
+  color: var(--accent-dark);
+}
+
+.litso-directory_separator {
+  width: 4px;
+  height: 4px;
+  flex: 0 0 4px;
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+}
+
+.litso-directory_information {
+  min-width: 0;
+  overflow: hidden;
+  flex: 1;
+  color: var(--text-muted);
+  font: 9px/1.5 var(--font-sans);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   STATUTS
+
+   data-status="taken"    → pris
+   data-status="reserved" → réservé
+   data-status="available"→ libre
+   ========================================================= */
+
+.litso-directory_status {
+  flex: 0 0 auto;
+  padding: 6px 9px;
+  font: 700 7px/1 var(--font-condensed);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.litso-directory_status[data-status="taken"] {
+  color: var(--text-on-accent);
+  background: var(--accent-dark);
+  border: 1px solid var(--accent-dark);
+}
+
+.litso-directory_status[data-status="reserved"] {
+  color: var(--gold-dark);
+  background: var(--gold-faded);
+  border: 1px solid var(--gold);
+}
+
+.litso-directory_status[data-status="available"] {
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+.litso-directory_note {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 22px;
+  padding: 18px 21px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+.litso-directory_noteIcon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  color: var(--gold-dark);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+}
+
+.litso-directory_note > div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.litso-directory_note strong {
+  color: var(--text-primary);
+  font: 600 15px/1 var(--font-display);
+}
+
+.litso-directory_note div > span {
+  color: var(--text-muted);
+  font: 8px/1.5 var(--font-sans);
+}
+
+.litso-directory_section {
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 650px) {
+  .litso-directory_header {
+    min-height: 120px;
+    padding: 25px 12px;
+  }
+
+  .litso-directory_header::before {
+    font-size: 75px;
+    letter-spacing: -4px;
+  }
+
+  .litso-directory_title {
+    font-size: 36px;
+  }
+
+  .litso-directory_eyebrow::before,
+  .litso-directory_eyebrow::after {
+    width: 25px;
+    margin: 0 10px;
+  }
+
+  .litso-directory_section {
+    grid-template-columns: 55px minmax(0, 1fr);
+  }
+
+  .litso-directory_letter {
+    font-size: 42px;
+  }
+
+  .litso-directory_sectionContent {
+    padding: 19px 17px 20px;
+  }
+
+  .litso-directory_entry {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 7px 9px;
+  }
+
+  .litso-directory_name {
+    font-size: 17px;
+  }
+
+  .litso-directory_information {
+    width: 100%;
+    flex-basis: 100%;
+    white-space: normal;
+  }
+
+  .litso-directory_status {
+    margin-left: auto;
+  }
+}
