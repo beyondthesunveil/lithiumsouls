@@ -244,7 +244,6 @@
   min-width: 0;
   align-items: center;
   gap: 8px;
-  padding: 3px;
   box-sizing: border-box;
 }
 
@@ -274,7 +273,6 @@
 
 .litso-directory_entry > span {
   min-width: 0;
-  flex: 1 1 0;
   color: var(--text-secondary);
   overflow-wrap: anywhere;
 }
@@ -303,14 +301,13 @@ a.litso-directory_name:hover {
   min-width: 0;
   flex: 0 1 auto;
   margin-left: auto;
+  padding: 1px 10px;
 }
 
 .litso-directory_status a {
-  display: block;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font: 8px var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.88px;
 }
 
 .litso-directory_status[data-status="taken"] {
