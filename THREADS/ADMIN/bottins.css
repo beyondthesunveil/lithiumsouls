@@ -372,6 +372,48 @@ a.litso-directory_name:hover {
   scroll-margin-top: 100px;
 }
 
+/* =========================================================
+   BOTTIN DES OCCUPATIONS ET DES CERCLES
+   ========================================================= */
+
+.litso-directory_entry n3,
+.litso-directory_entry n4,
+.litso-directory_entry n5 {
+  display: block;
+  min-width: 0;
+}
+
+.litso-directory_entry n3 {
+  flex: 0 1 190px;
+  color: var(--text-secondary);
+  font: 700 10px/1.4 var(--font-sans);
+}
+
+.litso-directory_entry n3 a,
+.litso-directory_entry n3 strong {
+  color: inherit;
+}
+
+.litso-directory_entry n4 {
+  flex: 1;
+  color: var(--gold-light);
+  font: 12px/1.4 var(--font-display);
+  text-transform: uppercase;
+}
+
+.litso-directory_entry n5 {
+  flex: 0 1 210px;
+  color: var(--text-muted);
+  font: 700 9px/1.4 var(--font-sans);
+  font-style: italic;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.litso-directory_entry n5 i {
+  font-weight: 500;
+}
+
 @media (max-width: 650px) {
   .litso-directory_header {
     min-height: 120px;
