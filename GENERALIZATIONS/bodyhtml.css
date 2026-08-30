@@ -12,6 +12,7 @@ body {
   margin: 0;
   background: var(--bg-page);
   font-family: var(--font-sans);
+  font-size:12px;
   isolation: isolate;
 }
 
