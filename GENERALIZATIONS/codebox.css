@@ -2,10 +2,10 @@
    CITATIONS, CODES, SPOILERS ET CONTENUS MASQUÉS
    ========================================================= */
 
-.postbody blockquote,
-.postbody .quote,
-.postbody .codebox,
-.postbody .codebox * {
+blockquote,
+.quote,
+.codebox,
+.codebox * {
   box-sizing: border-box;
 }
 
@@ -14,8 +14,8 @@
    CITATIONS
    ========================================================= */
 
-.postbody blockquote,
-.postbody .quote {
+blockquote,
+.quote {
   position: relative;
   width: 100%;
   margin: 18px 0;
@@ -30,11 +30,8 @@
   text-align: justify;
 }
 
-
-/* Grande apostrophe décorative */
-
-.postbody blockquote::before,
-.postbody .quote::before {
+blockquote::before,
+.quote::before {
   content: "“";
   position: absolute;
   top: -28px;
@@ -45,11 +42,8 @@
   pointer-events: none;
 }
 
-
-/* Auteur de la citation */
-
-.postbody blockquote cite,
-.postbody .quote .quote-author {
+blockquote cite,
+.quote .quote-author {
   position: relative;
   z-index: 2;
   display: block;
@@ -62,32 +56,24 @@
   letter-spacing: .3px;
 }
 
-.postbody blockquote cite::before,
-.postbody .quote .quote-author::before {
+blockquote cite::before,
+.quote .quote-author::before {
   content: "—";
   margin-right: 6px;
   color: var(--accent);
 }
 
-
-/* Contenu */
-
-.postbody blockquote > :first-child,
-.postbody .quote > :first-child {
+blockquote > :first-child,
+.quote > :first-child {
   margin-top: 0;
 }
 
-.postbody blockquote > :last-child,
-.postbody .quote > :last-child {
+blockquote > :last-child,
+.quote > :last-child {
   margin-bottom: 0;
 }
 
-
-/* =========================================================
-   STRUCTURE COMMUNE DES CODEBOX
-   ========================================================= */
-
-.postbody dl.codebox {
+dl.codebox {
   position: relative;
   width: 100% !important;
   margin: 18px 0 !important;
@@ -100,7 +86,7 @@
   font-family: var(--font-sans);
 }
 
-.postbody dl.codebox::before {
+dl.codebox::before {
   content: "";
   position: absolute;
   top: 17px;
@@ -119,20 +105,12 @@
     center / contain no-repeat;
 }
 
-
-/* Pas d’icône de code sur les spoilers et contenus masqués */
-
-.postbody dl.codebox.spoiler::before,
-.postbody dl.codebox.hidecode::before {
+dl.codebox.spoiler::before,
+dl.codebox.hidecode::before {
   content: none;
 }
 
-
-/* =========================================================
-   EN-TÊTE D’UN BLOC CODE
-   ========================================================= */
-
-.postbody dl.codebox:not(.spoiler):not(.hidecode) dt {
+dl.codebox:not(.spoiler):not(.hidecode) dt {
   display: flex;
   min-height: 50px;
   align-items: center;
@@ -147,17 +125,12 @@
   text-transform: uppercase;
 }
 
-
-/* =========================================================
-   CONTENU DU CODE
-   ========================================================= */
-
-.postbody dl.codebox dd {
+dl.codebox dd {
   margin: 0 !important;
   padding: 0 !important;
 }
 
-.postbody dl.codebox code {
+dl.codebox code {
   display: block;
   width: 100%;
   height: auto;
@@ -175,37 +148,26 @@
   tab-size: 2;
 }
 
-
-/* Barre de défilement */
-
-.postbody dl.codebox code::-webkit-scrollbar {
+dl.codebox code::-webkit-scrollbar {
   width: 7px;
   height: 7px;
 }
 
-.postbody dl.codebox code::-webkit-scrollbar-track {
+dl.codebox code::-webkit-scrollbar-track {
   background: var(--bg-elevated);
 }
 
-.postbody dl.codebox code::-webkit-scrollbar-thumb {
+dl.codebox code::-webkit-scrollbar-thumb {
   background: var(--gradient-accent);
   border: 2px solid var(--bg-elevated);
 }
-
-
-/* Texte secondaire natif */
-
-.postbody .codebox .genmed {
+ 
+.codebox .genmed {
   color: var(--text-muted);
   font: italic 10px/1.6 var(--font-sans);
 }
 
-
-/* =========================================================
-   BOUTON COPIER
-   ========================================================= */
-
-.postbody .codebox button.copy-btn {
+.codebox button.copy-btn {
   position: absolute;
   top: 10px;
   right: 12px;
@@ -232,24 +194,19 @@
     transform 200ms ease;
 }
 
-.postbody .codebox button.copy-btn:hover {
+.codebox button.copy-btn:hover {
   color: var(--text-invert);
   background: var(--accent-deep);
   border-color: var(--accent-deep);
   transform: translateY(-1px);
 }
 
-.postbody .codebox button.copy-btn:focus-visible {
+.codebox button.copy-btn:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-
-/* =========================================================
-   SPOILER
-   ========================================================= */
-
-.postbody dl.codebox.spoiler {
+dl.codebox.spoiler {
   width: 100% !important;
   margin: 18px 0 !important;
   padding: 0 !important;
@@ -258,10 +215,7 @@
   border-radius: var(--radiusbis) !important;
 }
 
-
-/* Titre cliquable du spoiler */
-
-.postbody dl.codebox.spoiler dt {
+dl.codebox.spoiler dt {
   position: relative;
   display: flex;
   width: 100%;
@@ -280,10 +234,7 @@
   cursor: pointer;
 }
 
-
-/* Chevron décoratif */
-
-.postbody dl.codebox.spoiler dt::after {
+dl.codebox.spoiler dt::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -302,10 +253,7 @@
     center / contain no-repeat;
 }
 
-
-/* Contenu du spoiler */
-
-.postbody dl.codebox.spoiler dd {
+dl.codebox.spoiler dd {
   margin: 0 !important;
   padding: 18px 20px !important;
   color: var(--text-secondary);
@@ -313,11 +261,8 @@
   font: 12px/1.7 var(--font-sans);
 }
 
-
-/* Bouton natif du spoiler */
-
-.postbody dl.codebox.spoiler dt input,
-.postbody dl.codebox.spoiler dt button {
+dl.codebox.spoiler dt input,
+dl.codebox.spoiler dt button {
   margin: 0 !important;
   color: inherit !important;
   background: transparent !important;
@@ -329,12 +274,7 @@
   cursor: pointer;
 }
 
-
-/* =========================================================
-   CONTENU MASQUÉ — HIDE
-   ========================================================= */
-
-.postbody dl.codebox.hidecode {
+dl.codebox.hidecode {
   width: 100% !important;
   margin: 18px 0 !important;
   padding: 18px 20px !important;
@@ -345,34 +285,26 @@
   border-radius: var(--radiusbis) !important;
 }
 
-.postbody dl.codebox.hidecode dt {
+dl.codebox.hidecode dt {
   display: none !important;
 }
 
-.postbody dl.codebox.hidecode dd {
+dl.codebox.hidecode dd {
   margin: 0 !important;
   padding: 0 !important;
   color: var(--text-secondary);
   font: italic 11px/1.7 var(--font-sans);
 }
 
-
-/* Liens éventuels */
-
-.postbody dl.codebox.hidecode a {
+dl.codebox.hidecode a {
   color: var(--accent-deep);
   font-weight: 700;
   text-decoration: none;
 }
 
-.postbody dl.codebox.hidecode a:hover {
+dl.codebox.hidecode a:hover {
   color: var(--gold-dark);
 }
-
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
 
 @media (max-width: 600px) {
   .postbody blockquote,
@@ -401,11 +333,6 @@
     padding: 15px !important;
   }
 }
-
-
-/* =========================================================
-   RÉDUCTION DES ANIMATIONS
-   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .postbody .codebox button.copy-btn {
