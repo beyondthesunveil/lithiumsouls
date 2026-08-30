@@ -300,6 +300,9 @@ a.litso-directory_name:hover {
 .litso-directory_status {
   min-width: 0;
   flex: 0 1 auto;
+  font: 8px var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.88px;
   margin-left: auto;
   padding: 1px 10px;
 }
