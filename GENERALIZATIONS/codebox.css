@@ -9,11 +9,6 @@ blockquote,
   box-sizing: border-box;
 }
 
-
-/* =========================================================
-   CITATIONS
-   ========================================================= */
-
 blockquote,
 .quote {
   position: relative;
@@ -304,38 +299,4 @@ dl.codebox.hidecode a {
 
 dl.codebox.hidecode a:hover {
   color: var(--gold-dark);
-}
-
-@media (max-width: 600px) {
-  .postbody blockquote,
-  .postbody .quote {
-    padding: 17px 18px 17px 21px;
-    text-align: left;
-  }
-
-  .postbody blockquote::before,
-  .postbody .quote::before {
-    right: 8px;
-    font-size: 110px;
-  }
-
-  .postbody dl.codebox code {
-    padding: 15px;
-    font-size: 10px;
-  }
-
-  .postbody dl.codebox:not(.spoiler):not(.hidecode) dt {
-    padding-right: 65px !important;
-  }
-
-  .postbody dl.codebox.spoiler dd,
-  .postbody dl.codebox.hidecode {
-    padding: 15px !important;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .postbody .codebox button.copy-btn {
-    transition-duration: .01ms !important;
-  }
 }
