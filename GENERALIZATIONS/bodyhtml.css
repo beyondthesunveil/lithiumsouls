@@ -1,4 +1,33 @@
 html {
+  min-height: 100%;
+  margin: 0;
+  background: var(--bg-page);
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  background: transparent;
+  font-family: var(--font-sans);
+  isolation: isolate;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--bodybg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+/* html {
   scroll-behavior: smooth;
 }
 
@@ -11,7 +40,7 @@ body {
   background-attachment: fixed;
   font-family:var(--font-sans);
   font-size:12px;
-}
+} */
 
 #wrap {
   max-width: 1200px;
