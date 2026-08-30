@@ -431,7 +431,7 @@
 .litso-lastpost_title {
   display: block;
   overflow: hidden;
-  color: var(--colorbis) !important;
+  color: var(--text-muted) !important;
   font: 19px / 1.1 var(--font-display);
   text-decoration: none;
   text-overflow: ellipsis;
