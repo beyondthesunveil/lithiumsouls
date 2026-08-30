@@ -249,6 +249,7 @@
 
 .litso-directory_entry .mentiontag {
   padding:0px;
+  color: var(--accent-light) !important;
 }
 
 .litso-directory_entry:last-child {
