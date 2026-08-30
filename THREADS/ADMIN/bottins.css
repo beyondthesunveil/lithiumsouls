@@ -240,10 +240,12 @@
 
 .litso-directory_entry {
   display: flex;
+  width: 100%;
   min-width: 0;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   padding: 3px;
+  box-sizing: border-box;
 }
 
 .litso-directory_entry:last-child {
@@ -251,22 +253,30 @@
   border-bottom: 0;
 }
 
+.litso-directory_entry n1,
+.litso-directory_entry n2 {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
 .litso-directory_entry n1 {
+  color: var(--gold-light);
   font: 12px var(--font-display);
   text-transform: uppercase;
-  color: var(--gold-light);
 }
 
 .litso-directory_entry n2 {
-  text-transform: uppercase;
   color: var(--text-muted);
-  font-weight: bold;
-  font-style:italic;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
 }
 
 .litso-directory_entry > span {
-  flex: 1;
+  min-width: 0;
+  flex: 1 1 0;
   color: var(--text-secondary);
+  overflow-wrap: anywhere;
 }
 
 .litso-directory_name {
@@ -289,21 +299,18 @@ a.litso-directory_name:hover {
   transform: rotate(45deg);
 }
 
-
-/* =========================================================
-   STATUTS
-
-   data-status="taken"    → pris
-   data-status="reserved" → réservé
-   data-status="available"→ libre
-   ========================================================= */
-
 .litso-directory_status {
-  flex: 0 0 auto;
-  padding: 6px 9px;
-  font: 700 7px/1 var(--font-condensed);
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
+  min-width: 0;
+  flex: 0 1 auto;
+  margin-left: auto;
+}
+
+.litso-directory_status a {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .litso-directory_status[data-status="taken"] {
