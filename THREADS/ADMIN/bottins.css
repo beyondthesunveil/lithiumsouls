@@ -264,6 +264,11 @@
   font-style:italic;
 }
 
+.litso-directory_entry span {
+  flex: 1;
+  color: var(--text-secondary);
+}
+
 .litso-directory_name {
   flex: 0 1 auto;
   color: var(--text-primary);
@@ -282,11 +287,6 @@ a.litso-directory_name:hover {
   flex: 0 0 4px;
   border: 1px solid var(--gold);
   transform: rotate(45deg);
-}
-
-.litso-directory_information {
-  flex: 1;
-  color: var(--text-secondary);
 }
 
 
