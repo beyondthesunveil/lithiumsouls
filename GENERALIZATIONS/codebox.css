@@ -1,11 +1,4 @@
 blockquote,
-.quote,
-.codebox,
-.codebox * {
-  box-sizing: border-box;
-}
-
-blockquote,
 .quote {
   position: relative;
   width: 100%;
