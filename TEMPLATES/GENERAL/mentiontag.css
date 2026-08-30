@@ -253,6 +253,69 @@
   clip-path: inset(50%);
   white-space: nowrap;
 }
+/* =========================================================
+   NEUTRALISATION DU MENTIONTAG NATIF
+   ========================================================= */
+
+.main-tooltip.litso-mentiontag_ {
+  width: 370px !important;
+  max-width: calc(100vw - 24px) !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-default) !important;
+}
+
+.main-tooltip.litso-mentiontag_ > .tooltip-content {
+  position: static !important;
+  inset: auto !important;
+  width: auto !important;
+  max-width: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  overflow: visible !important;
+}
+
+.main-tooltip.litso-mentiontag_ > .tooltip-actions {
+  position: static !important;
+  inset: auto !important;
+  width: auto !important;
+  max-width: none !important;
+  height: auto !important;
+  min-height: 55px !important;
+  max-height: none !important;
+  margin: 0 !important;
+  overflow: visible !important;
+}
+
+
+/* Cadre extérieur généré par le moteur de tooltips */
+
+.tooltipster-base:has(.litso-mentiontag_),
+.tooltipster-default:has(.litso-mentiontag_) {
+  width: auto !important;
+  height: auto !important;
+  max-width: calc(100vw - 12px) !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.tooltipster-content:has(> .litso-mentiontag_) {
+  width: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+}
 
 @media (max-width: 430px) {
   .litso-mentiontag_content {
