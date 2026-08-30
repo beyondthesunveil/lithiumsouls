@@ -372,21 +372,24 @@ a.litso-directory_name:hover {
   scroll-margin-top: 100px;
 }
 
-/* =========================================================
-   BOTTIN DES OCCUPATIONS ET DES CERCLES
-   ========================================================= */
-
-.litso-directory_entry n3,
-.litso-directory_entry n4,
-.litso-directory_entry n5 {
-  display: block;
-  min-width: 0;
+.litso-directory_entry:has(> n3) {
+  display: grid;
+  grid-template-columns:
+    auto
+    auto
+    minmax(0, 1fr)
+    auto;
+  align-items: baseline;
+  column-gap: 8px;
+  color: var(--text-primary);
 }
 
 .litso-directory_entry n3 {
-  flex: 0 1 190px;
+  display: block;
+  min-width: 0;
   color: var(--text-secondary);
-  font: 700 10px/1.4 var(--font-sans);
+  font: 700 11px/1.4 var(--font-sans);
+  white-space: nowrap;
 }
 
 .litso-directory_entry n3 a,
@@ -395,23 +398,65 @@ a.litso-directory_name:hover {
 }
 
 .litso-directory_entry n4 {
-  flex: 1;
+  display: block;
+  min-width: 0;
   color: var(--gold-light);
-  font: 12px/1.4 var(--font-display);
-  text-transform: uppercase;
+  font: 600 14px/1.25 var(--font-display);
+}
+
+.litso-directory_entry n4 i {
+  color: inherit;
+  font-style: italic;
 }
 
 .litso-directory_entry n5 {
-  flex: 0 1 210px;
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
   color: var(--text-muted);
-  font: 700 9px/1.4 var(--font-sans);
-  font-style: italic;
+  font: italic 700 8px/1.4 var(--font-sans);
   text-align: right;
   text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.litso-directory_entry n5::before {
+  content: "✦";
+  color: var(--text-primary);
+  font-size: 10px;
+  font-style: normal;
 }
 
 .litso-directory_entry n5 i {
-  font-weight: 500;
+  font: inherit;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .litso-directory_entry:has(> n3) {
+    grid-template-columns:
+      auto
+      auto
+      minmax(0, 1fr);
+    align-items: baseline;
+    row-gap: 6px;
+  }
+
+  .litso-directory_entry n4 {
+    font-size: 12px;
+  }
+
+  .litso-directory_entry n5 {
+    grid-column: 1 / -1;
+    justify-self: end;
+    white-space: normal;
+  }
 }
 
 @media (max-width: 650px) {
