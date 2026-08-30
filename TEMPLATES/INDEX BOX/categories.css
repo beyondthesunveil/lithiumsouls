@@ -382,10 +382,10 @@
 
 .litso-lastpost_avatar {
   position: absolute;
-  top: -30px;
-  right: -20px;
-  width: 145px;
-  height: 145px;
+  top: 20px;
+  right: 20px;
+  width: 120px;
+  height: 120px;
   padding: 4px;
   background: var(--bg-surface);
   border: 1px solid var(--gold);
