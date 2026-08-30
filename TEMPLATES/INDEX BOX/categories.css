@@ -431,8 +431,8 @@
 .litso-lastpost_title {
   display: block;
   overflow: hidden;
-  color: var(--text-primary);
-  font: italic 19px / 1.1 var(--font-display);
+  color: var(--colorbis) !important;
+  font: 19px / 1.1 var(--font-display);
   text-decoration: none;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -450,8 +450,6 @@
 }
 
 .litso-lastpost_meta .litso-lastpost_author {
-  width: 125px;
-  min-height: 23px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
