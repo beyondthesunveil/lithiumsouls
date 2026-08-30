@@ -268,7 +268,6 @@
   color: var(--text-muted);
   font-weight: 700;
   font-style: italic;
-  text-transform: uppercase;
 }
 
 .litso-directory_entry > span {
