@@ -251,6 +251,19 @@
   border-bottom: 0;
 }
 
+.litso-directory_entry n1 {
+  font: 12px var(--font-display);
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+
+.litso-directory_entry n2 {
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: bold;
+  font-style:italic;
+}
+
 .litso-directory_name {
   flex: 0 1 auto;
   color: var(--text-primary);
@@ -272,13 +285,8 @@ a.litso-directory_name:hover {
 }
 
 .litso-directory_information {
-  min-width: 0;
-  overflow: hidden;
   flex: 1;
-  color: var(--text-muted);
-  font: 9px/1.5 var(--font-sans);
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  color: var(--text-secondary);
 }
 
 
