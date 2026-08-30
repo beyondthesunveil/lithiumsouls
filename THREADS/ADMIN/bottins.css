@@ -136,7 +136,7 @@
 .litso-directory_alphabet a {
   display: grid;
   place-items: center;
-  width: 34px;
+  padding:0 10px;
   height: 34px;
   color: var(--text-muted);
   background: var(--bg-surface);
