@@ -247,6 +247,10 @@
   box-sizing: border-box;
 }
 
+.litso-directory_entry .mentiontag {
+  padding:0px;
+}
+
 .litso-directory_entry:last-child {
   padding-bottom: 0;
   border-bottom: 0;
