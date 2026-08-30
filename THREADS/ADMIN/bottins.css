@@ -264,7 +264,7 @@
   font-style:italic;
 }
 
-.litso-directory_entry span {
+.litso-directory_entry > span {
   flex: 1;
   color: var(--text-secondary);
 }
