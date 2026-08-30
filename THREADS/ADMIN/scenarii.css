@@ -482,6 +482,7 @@
 
 .litso_scena_text p {
   margin: 12px 0;
+  font-size:12px;
 }
 
 .litso_scena_text p:last-child {
