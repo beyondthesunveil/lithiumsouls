@@ -1,0 +1,346 @@
+.litso_confirmbody_,
+.litso_confirmbody_ * {
+  box-sizing: border-box;
+}
+
+.litso_confirmbody_ {
+  position: relative;
+  width: 100%;
+  margin: 25px 0;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+}
+
+.litso_confirmbody_time {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radiusbis);
+  font: 8px/1.4 var(--font-sans);
+}
+
+.litso_confirmbody_separator {
+  width: 4px;
+  height: 4px;
+  flex: 0 0 4px;
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+}
+
+.litso_confirmbody_header {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 155px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 0 20px;
+  padding: 30px 20px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-default);
+  text-align: center;
+}
+
+.litso_confirmbody_header::before {
+  content: attr(data-ghost);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  overflow: hidden;
+  color: transparent;
+  font: italic 115px/.75 var(--font-display);
+  letter-spacing: -6px;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: .65;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  -webkit-text-stroke: 1px var(--border-subtle);
+}
+
+.litso_confirmbody_header::after {
+  content: "";
+  position: absolute;
+  right: calc(50% - 60px);
+  bottom: 0;
+  width: 120px;
+  height: 3px;
+  background: var(--gradient-accent);
+}
+
+.litso_confirmbody_eyebrow {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-dark);
+  font: 700 8px/1 var(--font-condensed);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.litso_confirmbody_eyebrow::before,
+.litso_confirmbody_eyebrow::after {
+  content: "";
+  width: 50px;
+  height: 1px;
+  margin: 0 16px;
+  background: var(--gradient-accent);
+}
+
+.litso_confirmbody_eyebrow::after {
+  background: var(--gradient-accent-reverse);
+}
+
+.litso_confirmbody_title {
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  color: var(--text-primary);
+  font: 600 46px/.95 var(--font-display);
+  letter-spacing: -1.5px;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.litso_confirmbody_card {
+  position: relative;
+  display: grid;
+  width: min(100%, 780px);
+  grid-template-columns: 105px minmax(0, 1fr);
+  margin: 0 auto;
+  overflow: hidden;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radiusbis);
+  box-shadow: 0 12px 35px var(--shadow-soft);
+}
+
+.litso_confirmbody_card::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 0;
+  z-index: 3;
+  width: 2px;
+  background: var(--gradient-accent-vertical);
+}
+
+.litso_confirmbody_icon {
+  display: grid;
+  place-items: center;
+  color: var(--gold-dark);
+  background: var(--bg-elevated);
+  border-right: 1px solid var(--border-default);
+}
+
+.litso_confirmbody_icon::after {
+  content: "";
+  position: absolute;
+  bottom: 22px;
+  left: 29px;
+  width: 47px;
+  height: 2px;
+  background: var(--gradient-accent);
+}
+
+.litso_confirmbody_icon svg {
+  width: 34px;
+  height: 34px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.litso_confirmbody_form {
+  min-width: 0;
+  margin: 0;
+  padding: 30px;
+}
+
+.litso_confirmbody_message {
+  position: relative;
+  padding: 20px 22px;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-left: 2px solid var(--gold);
+  border-radius: var(--radiusbis);
+  font: 12px/1.75 var(--font-sans);
+  text-align: left;
+}
+
+.litso_confirmbody_message > :first-child {
+  margin-top: 0;
+}
+
+.litso_confirmbody_message > :last-child {
+  margin-bottom: 0;
+}
+
+.litso_confirmbody_message strong {
+  color: var(--text-primary);
+}
+
+.litso_confirmbody_optional {
+  margin-top: 12px;
+}
+
+.litso_confirmbody_optional:empty {
+  display: none;
+}
+
+.litso_confirmbody_optional label {
+  display: flex;
+  min-height: 40px;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 12px;
+  color: var(--text-secondary);
+  background: var(--bg-soft);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radiusbis);
+  font: 10px/1.4 var(--font-sans);
+  cursor: pointer;
+}
+
+.litso_confirmbody_optional input[type="checkbox"],
+.litso_confirmbody_optional input[type="radio"] {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.litso_confirmbody_actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-default);
+}
+
+.litso_confirmbody_button {
+  display: inline-grid;
+  place-items: center;
+  min-width: 105px;
+  min-height: 40px;
+  margin: 0 !important;
+  padding: 0 18px !important;
+  border-radius: var(--radiusbis) !important;
+  outline: none;
+  font: 700 9px/1 var(--font-condensed) !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+.litso_confirmbody_button--cancel {
+  color: var(--text-secondary) !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-default) !important;
+}
+
+.litso_confirmbody_button--cancel:hover {
+  color: var(--text-primary) !important;
+  background: var(--bg-soft) !important;
+  border-color: var(--gold) !important;
+  transform: translateY(-1px);
+}
+
+.litso_confirmbody_button--confirm {
+  color: var(--text-invert) !important;
+  background: var(--gradient-accent) !important;
+  border: 1px solid transparent !important;
+  box-shadow: 0 5px 14px var(--shadow-default);
+}
+
+.litso_confirmbody_button--confirm:hover {
+  box-shadow: 0 8px 20px var(--shadow-strong);
+  transform: translateY(-1px);
+}
+
+.litso_confirmbody_button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 650px) {
+  .litso_confirmbody_header {
+    min-height: 120px;
+    padding: 25px 12px;
+  }
+
+  .litso_confirmbody_header::before {
+    font-size: 72px;
+    letter-spacing: -4px;
+  }
+
+  .litso_confirmbody_title {
+    font-size: 34px;
+  }
+
+  .litso_confirmbody_eyebrow::before,
+  .litso_confirmbody_eyebrow::after {
+    width: 24px;
+    margin: 0 9px;
+  }
+
+  .litso_confirmbody_card {
+    grid-template-columns: 1fr;
+  }
+
+  .litso_confirmbody_icon {
+    min-height: 78px;
+    border-right: 0;
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .litso_confirmbody_icon::after {
+    top: 58px;
+    bottom: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .litso_confirmbody_form {
+    padding: 20px;
+  }
+}
+
+
+@media (max-width: 420px) {
+  .litso_confirmbody_actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .litso_confirmbody_button {
+    width: 100%;
+  }
+}
