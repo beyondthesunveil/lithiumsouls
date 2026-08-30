@@ -218,7 +218,7 @@
 }
 
 .litso-directory_sectionHeader > strong {
-  color: var(--gold-dark);
+  color: var(--text-unread);
   font: 600 25px/.8 var(--font-display);
 }
 
