@@ -1,139 +1,414 @@
-/* ---------- BALISES CODE / QUOTE / HIDE / SPOILER / BLOCKQUOTE ---------- */
+/* =========================================================
+   CITATIONS, CODES, SPOILERS ET CONTENUS MASQUÉS
+   ========================================================= */
 
-blockquote, .quote {
-  border-left: 5px solid var(--coloradd);
-  background: var(--color02);
-  border-radius: var(--radiusbis);
-  font-style: italic;
-  text-align: justify;
-  font-size: 12px var(--font-text);
-  color: var(--bordercolor);
-  margin: 0 auto;
+.postbody blockquote,
+.postbody .quote,
+.postbody .codebox,
+.postbody .codebox * {
+  box-sizing: border-box;
 }
 
-blockquote cite, .quote .quote-author {
-  margin-bottom: 5px;
-  color: var(--colornews);
-  font: 20px var(--font-h4);
-}
-blockquote:before {
-  content: "\f347";
-  color: rgb(0 0 0 / .1);
-  font-size: 17.6rem;
-  position: absolute;
-  right: 20px;
-  top: -5px;
-}
 
-/* CODE / [code] / .codebox */
-  dl.codebox.spoiler::before,
-dl.codebox.hidecode::before {
-    content: none !important;
-}
-.codebox {
-  border: none !important;
-  width: 100% !important;
-  border-radius: var(--radiusbis) !important;
-  background: var(--color02) !important;
-  color: #f8f8f2 !important;
-  font: 12px var(--font-text) !important;
-  padding: 12px !important;
-}
-dl.codebox dt {
-  border: none;
-  margin: 20px 35px;
-  font-size: 1.3rem;
-  font-weight: 400;
-  display: block;
-  color: #f1f1f1;
-}
-dl.codebox code {
-  overflow: auto;
-  display: block;
-  height: auto;
-  max-height: 250px;
-  white-space: normal;
-  padding: 10px;
-  text-align: justify;
-  font: .9em Courier, Courier New, monospace;
-  line-height: 1.3em;
-  color: #2E8B57;
-}
-  
-  dl.codebox:not(.spoiler):not(.hidecode)::before {
-    content: "\f271";
-    color: #f1f1f1;
-    position: absolute;
-    top: 35px;
-    font-family: "Ionicons";
-    left: 30px;
-    font-size: 13px;
-}
-  
-/* dl.codebox:before {
-  content: "\f271";
-  color: #f1f1f1;
-  position: absolute;
-  top: 35px;
-  font-family: "Ionicons";
-  left: 30px;
-  font-size: 13px;
-} */
+/* =========================================================
+   CITATIONS
+   ========================================================= */
 
-.codebox .genmed {
-  font-size: 14px;
-  color: #663300;
-  font-style: italic;
-}
-
-/* Bouton copier */
-.codebox button.copy-btn {
-  position: absolute;
-  top: 30px;
-  right: 20px;
-  background: var(--colorfont);
-  border: none;
-  color: var(--color02);
-  padding: 3px 10px;
-  border-radius: var(--mainradius);
-  cursor: pointer;
-  font-size: 12px;
-}
-.codebox button.copy-btn:hover {
-  background: #357ab8;
-}
-
-/* SPOILER / HIDE */
-.codebox.spoiler {
-  padding: 20px!important;
-  border-radius: var(--radiusbis) !important;
-  width: 100% !important;
-  margin: 0 auto!important;
-  background: var(--color02) !important;
-  border: none !important;
-}
-.codebox.spoiler dd {
-  padding: 10px 0 0 0!important;
-}
-.codebox.hidecode {
-  padding: 20px !important;
-  border-radius: var(--radiusbis) !important;
-  width: 100% !important;
-  margin: 15px auto;
-  background: var(--color02) !important;
-  border-right: 5px solid var(--colornews) !important;
-}
-.hidecode dt {
-  display:none!important;
-}
-.spoiler dt {
-  font: 20px var(--font-h4) !important;
-  padding: 0px 12px!important;
-  border: none !important;
+.postbody blockquote,
+.postbody .quote {
+  position: relative;
   width: 100%;
-  margin: 0px 0 0px 0 !important;
+  margin: 18px 0;
+  padding: 20px 24px 20px 28px;
+  overflow: hidden;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radiusbis);
+  font: italic 12px/1.75 var(--font-sans);
+  text-align: justify;
+}
+
+
+/* Grande apostrophe décorative */
+
+.postbody blockquote::before,
+.postbody .quote::before {
+  content: "“";
+  position: absolute;
+  top: -28px;
+  right: 18px;
+  color: var(--text-primary);
+  font: italic 150px/.9 var(--font-display);
+  opacity: .045;
+  pointer-events: none;
+}
+
+
+/* Auteur de la citation */
+
+.postbody blockquote cite,
+.postbody .quote .quote-author {
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin: 0 0 12px;
+  padding-bottom: 9px;
+  color: var(--gold-dark);
+  border-bottom: 1px solid var(--border-default);
+  font: 700 17px/1.1 var(--font-display);
+  font-style: normal;
+  letter-spacing: .3px;
+}
+
+.postbody blockquote cite::before,
+.postbody .quote .quote-author::before {
+  content: "—";
+  margin-right: 6px;
+  color: var(--accent);
+}
+
+
+/* Contenu */
+
+.postbody blockquote > :first-child,
+.postbody .quote > :first-child {
+  margin-top: 0;
+}
+
+.postbody blockquote > :last-child,
+.postbody .quote > :last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   STRUCTURE COMMUNE DES CODEBOX
+   ========================================================= */
+
+.postbody dl.codebox {
+  position: relative;
+  width: 100% !important;
+  margin: 18px 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+  color: var(--text-secondary) !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: var(--radiusbis) !important;
+  font-family: var(--font-sans);
+}
+
+.postbody dl.codebox::before {
+  content: "";
+  position: absolute;
+  top: 17px;
+  left: 18px;
+  z-index: 2;
+  width: 16px;
+  height: 16px;
+  color: var(--accent-dark);
+  background: currentColor;
+  pointer-events: none;
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static/icons/code-2.svg")
+    center / contain no-repeat;
+  mask:
+    url("https://unpkg.com/lucide-static/icons/code-2.svg")
+    center / contain no-repeat;
+}
+
+
+/* Pas d’icône de code sur les spoilers et contenus masqués */
+
+.postbody dl.codebox.spoiler::before,
+.postbody dl.codebox.hidecode::before {
+  content: none;
+}
+
+
+/* =========================================================
+   EN-TÊTE D’UN BLOC CODE
+   ========================================================= */
+
+.postbody dl.codebox:not(.spoiler):not(.hidecode) dt {
+  display: flex;
+  min-height: 50px;
+  align-items: center;
+  margin: 0 !important;
+  padding: 12px 70px 12px 45px !important;
+  color: var(--text-primary);
+  background: var(--gradient-surface);
+  border: 0;
+  border-bottom: 1px solid var(--border-default);
+  font: 700 9px/1 var(--font-condensed);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CONTENU DU CODE
+   ========================================================= */
+
+.postbody dl.codebox dd {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.postbody dl.codebox code {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  margin: 0;
+  padding: 18px 20px;
+  overflow: auto;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border: 0;
+  font: 11px/1.65 "Courier New", Courier, monospace;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  tab-size: 2;
+}
+
+
+/* Barre de défilement */
+
+.postbody dl.codebox code::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.postbody dl.codebox code::-webkit-scrollbar-track {
+  background: var(--bg-elevated);
+}
+
+.postbody dl.codebox code::-webkit-scrollbar-thumb {
+  background: var(--gradient-accent);
+  border: 2px solid var(--bg-elevated);
+}
+
+
+/* Texte secondaire natif */
+
+.postbody .codebox .genmed {
+  color: var(--text-muted);
+  font: italic 10px/1.6 var(--font-sans);
+}
+
+
+/* =========================================================
+   BOUTON COPIER
+   ========================================================= */
+
+.postbody .codebox button.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  z-index: 5;
+  display: inline-grid;
+  place-items: center;
+  min-width: 56px;
+  height: 30px;
+  margin: 0;
+  padding: 0 11px;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radiusbis);
+  outline: none;
+  font: 700 7px/1 var(--font-condensed);
+  letter-spacing: 1px;
+  text-transform: uppercase;
   cursor: pointer;
-  background: var(--coloradd);
-  color: var(--colorfont)!important;
-  border-radius: var(--mainradius);
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+.postbody .codebox button.copy-btn:hover {
+  color: var(--text-invert);
+  background: var(--accent-deep);
+  border-color: var(--accent-deep);
+  transform: translateY(-1px);
+}
+
+.postbody .codebox button.copy-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   SPOILER
+   ========================================================= */
+
+.postbody dl.codebox.spoiler {
+  width: 100% !important;
+  margin: 18px 0 !important;
+  padding: 0 !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: var(--radiusbis) !important;
+}
+
+
+/* Titre cliquable du spoiler */
+
+.postbody dl.codebox.spoiler dt {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+  align-items: center;
+  margin: 0 !important;
+  padding: 12px 48px 12px 18px !important;
+  color: var(--text-primary) !important;
+  background: var(--gradient-surface);
+  border: 0 !important;
+  border-bottom: 1px solid var(--border-default) !important;
+  border-radius: 0;
+  font: 700 10px/1.2 var(--font-condensed) !important;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+
+/* Chevron décoratif */
+
+.postbody dl.codebox.spoiler dt::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  width: 16px;
+  height: 16px;
+  color: var(--accent-dark);
+  background: currentColor;
+  pointer-events: none;
+  transform: translateY(-50%);
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static/icons/chevron-down.svg")
+    center / contain no-repeat;
+  mask:
+    url("https://unpkg.com/lucide-static/icons/chevron-down.svg")
+    center / contain no-repeat;
+}
+
+
+/* Contenu du spoiler */
+
+.postbody dl.codebox.spoiler dd {
+  margin: 0 !important;
+  padding: 18px 20px !important;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  font: 12px/1.7 var(--font-sans);
+}
+
+
+/* Bouton natif du spoiler */
+
+.postbody dl.codebox.spoiler dt input,
+.postbody dl.codebox.spoiler dt button {
+  margin: 0 !important;
+  color: inherit !important;
+  background: transparent !important;
+  border: 0 !important;
+  outline: none;
+  font: inherit !important;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   CONTENU MASQUÉ — HIDE
+   ========================================================= */
+
+.postbody dl.codebox.hidecode {
+  width: 100% !important;
+  margin: 18px 0 !important;
+  padding: 18px 20px !important;
+  color: var(--text-secondary) !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-default) !important;
+  border-right: 3px solid var(--accent) !important;
+  border-radius: var(--radiusbis) !important;
+}
+
+.postbody dl.codebox.hidecode dt {
+  display: none !important;
+}
+
+.postbody dl.codebox.hidecode dd {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--text-secondary);
+  font: italic 11px/1.7 var(--font-sans);
+}
+
+
+/* Liens éventuels */
+
+.postbody dl.codebox.hidecode a {
+  color: var(--accent-deep);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.postbody dl.codebox.hidecode a:hover {
+  color: var(--gold-dark);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .postbody blockquote,
+  .postbody .quote {
+    padding: 17px 18px 17px 21px;
+    text-align: left;
+  }
+
+  .postbody blockquote::before,
+  .postbody .quote::before {
+    right: 8px;
+    font-size: 110px;
+  }
+
+  .postbody dl.codebox code {
+    padding: 15px;
+    font-size: 10px;
+  }
+
+  .postbody dl.codebox:not(.spoiler):not(.hidecode) dt {
+    padding-right: 65px !important;
+  }
+
+  .postbody dl.codebox.spoiler dd,
+  .postbody dl.codebox.hidecode {
+    padding: 15px !important;
+  }
+}
+
+
+/* =========================================================
+   RÉDUCTION DES ANIMATIONS
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .postbody .codebox button.copy-btn {
+    transition-duration: .01ms !important;
+  }
 }
