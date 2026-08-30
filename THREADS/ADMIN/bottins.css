@@ -400,8 +400,8 @@ a.litso-directory_name:hover {
 .litso-directory_entry n4 {
   display: block;
   min-width: 0;
-  color: var(--gold-light);
-  font: 600 14px/1.25 var(--font-display);
+  color: var(--text-muted);
+  font: 12px/1.25 var(--font-display);
 }
 
 .litso-directory_entry n4 i {
@@ -415,7 +415,7 @@ a.litso-directory_name:hover {
   align-items: center;
   justify-content: flex-end;
   gap: 10px;
-  color: var(--text-muted);
+  color: var(--gold-light);
   font: italic 700 8px/1.4 var(--font-sans);
   text-align: right;
   text-transform: uppercase;
