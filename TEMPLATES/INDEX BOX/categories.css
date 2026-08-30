@@ -291,7 +291,7 @@
 }
 
 .litso-forum_no-image {
-  grid-template-columns: minmax(0, 1fr) 290px;
+  grid-template-columns: minmax(0, 1fr) 330px;
 }
 
 .litso-forum_no-image .litso-forum_visual {
@@ -452,6 +452,7 @@
 .litso-lastpost_meta .litso-lastpost_author {
   display: inline-flex;
   align-items: center;
+  width:150px;
   justify-content: center;
   margin-top: 5px;
   padding: 4px 10px;
@@ -475,18 +476,17 @@
 .litso-lastpost_arrow {
   position: absolute;
   z-index: 3;
-  right: 108px;
-  border-radius: 50%;
-  bottom: 45px;
+  right: 150px;
+  bottom: 35px;
   display: grid;
   place-items: center;
   background-color: var(--bg-surface);
-  width: 27px;
-  height: 27px;
+ width: 20px;
+  height: 18px;
   color: var(--gold);
   border: 1px solid var(--border-default);
   text-decoration: none;
-  transition: color 350ms cubic-bezier(.22, .61, .36, 1), border-color 350ms cubic-bezier(.22, .61, .36, 1), transform 350ms cubic-bezier(.22, .61, .36, 1); 
+  transition: color 350ms cubic-bezier(.22, .61, .36, 1), border-color 350ms cubic-bezier(.22, .61, .36, 1), transform 350ms cubic-bezier(.22, .61, .36, 1);
 }
 
 .litso-lastpost_arrow:hover {
@@ -496,7 +496,7 @@
 }
 
 .litso-lastpost_arrow svg {
-  width: 14px;
+  width: 11px;
   height: 14px;
   fill: none;
   stroke: var(--gold);
