@@ -148,17 +148,17 @@
 
 .litso_simp_text {
   color: var(--text-secondary);
-  font: 10px/1.85 var(--font-sans);
+  font: 12px var(--font-sans)
   text-align: justify;
 }
 
-.litso_simp_text > :first-child {
+/* .litso_simp_text > :first-child {
   margin-top: 0;
 }
 
 .litso_simp_text > :last-child {
   margin-bottom: 0;
-}
+} */
 
 .litso_simp_text h3 {
   position: relative;
@@ -240,10 +240,10 @@
 }
 
 .litso_simp_note > p {
-  margin: 0;
   padding: 14px 17px;
   color: var(--text-muted);
-  font: 9px/1.65 var(--font-sans);
+  font: 11px var(--font-sans);
+  font-style: italic !important;
 }
 
 @media (max-width: 600px) {
