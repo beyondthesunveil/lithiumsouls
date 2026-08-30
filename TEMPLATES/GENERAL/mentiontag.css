@@ -1,0 +1,297 @@
+.litso-mentiontag_,
+.litso-mentiontag_ * {
+  box-sizing: border-box;
+}
+
+.litso-mentiontag_ {
+  position: relative;
+  width: 370px;
+  max-width: calc(100vw - 24px);
+  overflow: hidden;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 0;
+  box-shadow: 0 16px 45px var(--shadow-default);
+  font-family: var(--font-sans);
+}
+
+.litso-mentiontag_::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 0;
+  z-index: 3;
+  width: 2px;
+  background: var(--gradient-accent-vertical);
+}
+
+.litso-mentiontag_content {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 21px;
+  background: var(--bg-surface);
+}
+
+.litso-mentiontag_avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 82px;
+  height: 82px;
+  padding: 5px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: 50%;
+}
+
+.litso-mentiontag_avatar::after {
+  content: "";
+  position: absolute;
+  right: 3px;
+  bottom: 5px;
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  border: 3px solid var(--bg-surface);
+  border-radius: 50%;
+}
+
+.litso-mentiontag_avatar img {
+  display: block;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.litso-mentiontag_identity {
+  min-width: 0;
+}
+
+.litso-mentiontag_eyebrow {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--gold-dark);
+  font: 700 7px/1 var(--font-condensed);
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+}
+
+.litso-mentiontag_name {
+  min-width: 0;
+  color: var(--text-primary);
+  font: 600 22px/.95 var(--font-display);
+  overflow-wrap: anywhere;
+}
+
+.litso-mentiontag_name a,
+.litso-mentiontag_name strong,
+.litso-mentiontag_name span {
+  color: inherit !important;
+}
+
+.litso-mentiontag_rank {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+  color: var(--text-muted);
+  font: 8px/1.4 var(--font-sans);
+}
+
+.litso-mentiontag_rank > span {
+  text-transform: uppercase;
+}
+
+.litso-mentiontag_rank > strong {
+  color: var(--gold-dark);
+  font-weight: 700;
+}
+
+.litso-mentiontag_follow {
+  display: inline-flex !important;
+  min-width: 0;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin: 0 !important;
+  padding: 0 11px !important;
+  color: var(--text-on-accent) !important;
+  background: var(--accent-dark) !important;
+  border: 1px solid var(--accent-dark) !important;
+  border-radius: 0 !important;
+  outline: 0;
+  font: 700 7px/1 var(--font-condensed) !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+.litso-mentiontag_follow::before {
+  content: none !important;
+}
+
+.litso-mentiontag_follow svg {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.litso-mentiontag_follow:hover {
+  color: var(--text-primary) !important;
+  background: var(--gold-faded) !important;
+  border-color: var(--gold) !important;
+  transform: translateY(-2px);
+}
+
+.litso-mentiontag_follow:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.litso-mentiontag_stats {
+  display: grid;
+  grid-column: 2 / -1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+}
+
+.litso-mentiontag_stat {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+  padding: 8px 10px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+.litso-mentiontag_stat strong {
+  color: var(--gold-dark);
+  font: 600 17px/1 var(--font-display);
+}
+
+.litso-mentiontag_stat span {
+  overflow: hidden;
+  color: var(--text-muted);
+  font: 700 7px/1 var(--font-condensed);
+  letter-spacing: 1px;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.litso-mentiontag_actions {
+  display: flex;
+  min-height: 55px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+  padding: 10px 20px;
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border-default);
+}
+
+.litso-mentiontag_actions > a {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: var(--gold-dark);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  text-decoration: none;
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+.litso-mentiontag_actions > a:hover {
+  color: var(--text-on-accent);
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+  transform: translateY(-2px);
+}
+
+.litso-mentiontag_actions svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.litso-mentiontag_nativeIcon {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 430px) {
+  .litso-mentiontag_content {
+    grid-template-columns: 66px minmax(0, 1fr);
+    gap: 13px;
+    padding: 18px;
+  }
+
+  .litso-mentiontag_avatar {
+    width: 66px;
+    height: 66px;
+  }
+
+  .litso-mentiontag_avatar img {
+    width: 54px;
+    height: 54px;
+  }
+
+  .litso-mentiontag_name {
+    font-size: 19px;
+  }
+
+  .litso-mentiontag_follow {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .litso-mentiontag_stats {
+    grid-column: 1 / -1;
+  }
+
+  .litso-mentiontag_actions {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .litso-mentiontag_follow,
+  .litso-mentiontag_actions > a {
+    transition-duration: .01ms !important;
+  }
+}
