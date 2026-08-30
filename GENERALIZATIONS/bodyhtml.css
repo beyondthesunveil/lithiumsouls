@@ -10,12 +10,12 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   margin: 0;
-  background: transparent;
+  background: var(--bg-page);
   font-family: var(--font-sans);
   isolation: isolate;
 }
 
-body::before {
+/* body::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -25,7 +25,7 @@ body::before {
   background-size: cover;
   background-repeat: no-repeat;
   pointer-events: none;
-}
+} */
 
 /* html {
   scroll-behavior: smooth;
