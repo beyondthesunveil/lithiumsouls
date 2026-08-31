@@ -395,11 +395,10 @@
 }
 
 .litso-viewforum_permContent {
-  display: flex;
   align-items: center;
-  padding: 20px 24px;
+  padding: 24px 24px;
   color: var(--text-muted);
-  font: 9px/1.7 var(--font-sans);
+  font: 12px/1.7 var(--font-sans);
 }
 
 .litso-viewforum_permContent a {
