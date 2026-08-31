@@ -87,19 +87,6 @@
   transition: border-color 200ms ease, background 200ms ease, transform 200ms ease;
 }
 
-.litso-topiclist_background::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background:
-    linear-gradient(90deg, var(--bg-elevated), transparent 22%),
-    radial-gradient(circle at 82% 20%, var(--border-subtle) 0 1px, transparent 1.5px);
-  background-size: auto, 7px 7px;
-  opacity: .42;
-  pointer-events: none;
-}
-
 .litso-topiclist_background:hover {
   background: var(--bg-elevated);
   border-color: var(--border-strong);
