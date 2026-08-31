@@ -14,18 +14,20 @@
   font: 13px/1.85 var(--font-sans);
 }
 
+/* =========================================================
+   EN-TÊTE ET TITRE FANTÔME
+   ========================================================= */
+
 .litso_context_header {
   position: relative;
-  display: grid;
-  min-height: 245px;
-  grid-template-columns: minmax(0, 1fr) 270px;
+  display: flex;
+  min-height: 440px;
   align-items: center;
-  gap: 32px;
-  padding: 38px 42px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 45px 42px 48px;
   overflow: hidden;
-  background:
-    linear-gradient(120deg, var(--bg-elevated), transparent 70%),
-    var(--bg-surface);
+  background: var(--bg-surface);
   border-bottom: 1px solid var(--border-default);
   isolation: isolate;
 }
@@ -33,89 +35,106 @@
 .litso_context_header::before {
   content: attr(data-ghost);
   position: absolute;
-  top: 50%;
-  left: 24px;
+  top: 53px;
+  left: 50%;
   z-index: -1;
   color: var(--border-subtle);
-  font: 700 clamp(70px, 12vw, 138px)/.75 var(--font-display);
-  letter-spacing: -5px;
+  font: 700 clamp(82px, 15vw, 145px)/.8 var(--font-display);
+  letter-spacing: -4px;
   text-transform: uppercase;
-  transform: translateY(-50%);
+  transform: translateX(-50%);
   white-space: nowrap;
   pointer-events: none;
 }
 
 .litso_context_heading {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
   min-width: 0;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 .litso_context_title {
-  position: relative;
-  display: inline-block;
-  padding-bottom: 17px;
+  margin-top: 16px;
   color: var(--text-primary);
-  font: 700 clamp(39px, 6vw, 66px)/.9 var(--font-display);
-  letter-spacing: -1.5px;
-}
-
-.litso_context_title::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 92px;
-  height: 3px;
-  background: var(--gradient-accent, linear-gradient(90deg, var(--gold), var(--accent)));
+  font: 700 clamp(50px, 8vw, 79px)/.88 var(--font-display);
+  letter-spacing: -2px;
+  text-transform: uppercase;
 }
 
 .litso_context_subtitle {
-  max-width: 510px;
-  margin-top: 20px;
-  color: var(--text-muted);
-  font: italic 11px/1.7 var(--font-sans);
+  display: flex;
+  width: min(100%, 675px);
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: var(--gold-dark, var(--gold));
+  font: 700 9px/1.5 var(--font-sans);
+  letter-spacing: 2.1px;
+  text-transform: uppercase;
+}
+
+.litso_context_subtitle::before,
+.litso_context_subtitle::after {
+  content: "";
+  width: 70px;
+  height: 1px;
+  flex: 0 0 70px;
+  background: var(--gradient-accent, linear-gradient(90deg, var(--gold), var(--accent)));
+}
+
+.litso_context_subtitle::after {
+  background: var(--gradient-accent-reverse, linear-gradient(90deg, var(--accent), var(--gold)));
+}
+
+.litso_context_headerDivider {
+  width: 220px;
+  height: 3px;
+  margin: 46px 0 40px;
+  background: var(--gradient-accent, linear-gradient(90deg, var(--gold), var(--accent)));
 }
 
 .litso_context_images {
   position: relative;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  min-height: 170px;
-}
-
-.litso_context_images::before {
-  content: "";
-  position: absolute;
-  inset: 12px 4px 12px 32px;
-  border: 1px solid var(--border-default);
+  justify-content: center;
+  gap: 28px;
 }
 
 .litso_context_image {
   position: relative;
-  width: 126px;
-  height: 168px;
-  padding: 5px;
-  overflow: hidden;
+  width: 140px;
+  height: 140px;
+  padding: 10px;
   background: var(--bg-surface);
+  border: 2px solid var(--border-strong);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 7px var(--bg-surface),
+    0 0 0 8px var(--gold),
+    0 0 0 11px var(--bg-surface),
+    0 0 0 13px var(--border-strong);
+}
+
+.litso_context_image::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
   border: 1px solid var(--border-default);
-  box-shadow: 0 12px 25px var(--shadow-default, rgba(0, 0, 0, .12));
-}
-
-.litso_context_image:first-child {
-  z-index: 2;
-  margin-right: -19px;
-  transform: translateY(11px);
-}
-
-.litso_context_image:last-child {
-  z-index: 1;
-  transform: translateY(-11px);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .litso_context_image img {
   display: block;
   width: 100%;
   height: 100%;
+  border-radius: 50%;
   object-fit: cover;
   filter: saturate(.82) contrast(1.03);
   transition: filter 250ms ease, transform 350ms ease;
@@ -125,6 +144,10 @@
   filter: saturate(1) contrast(1);
   transform: scale(1.035);
 }
+
+/* =========================================================
+   RÉCIT PRINCIPAL
+   ========================================================= */
 
 .litso_context_story {
   padding: 38px 44px 22px;
@@ -165,6 +188,8 @@
   margin-top: 21px;
 }
 
+/* Coupures narratives */
+
 .litso_context_revelation {
   position: relative;
   margin: 30px 0;
@@ -201,6 +226,10 @@
   font-size: clamp(15px, 2.2vw, 20px);
   letter-spacing: 2px;
 }
+
+/* =========================================================
+   BLOCS INTRIGUE ET ENJEUX
+   ========================================================= */
 
 .litso_context_panel {
   position: relative;
@@ -257,6 +286,10 @@
   color: var(--accent, var(--gold));
 }
 
+/* =========================================================
+   CONCLUSION
+   ========================================================= */
+
 .litso_context_end {
   display: flex;
   align-items: center;
@@ -277,22 +310,43 @@
   font-size: 18px;
 }
 
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
 @media (max-width: 700px) {
   .litso_context_header {
-    grid-template-columns: 1fr;
-    gap: 27px;
-    padding: 32px 25px;
+    min-height: 0;
+    padding: 39px 25px 45px;
   }
 
   .litso_context_header::before {
     top: 64px;
-    left: 13px;
-    font-size: 76px;
-    transform: none;
+    left: 50%;
+    font-size: 82px;
+    transform: translateX(-50%);
   }
 
-  .litso_context_images {
-    justify-content: center;
+  .litso_context_subtitle {
+    gap: 10px;
+    font-size: 8px;
+    letter-spacing: 1.3px;
+  }
+
+  .litso_context_subtitle::before,
+  .litso_context_subtitle::after {
+    width: 35px;
+    flex-basis: 35px;
+  }
+
+  .litso_context_headerDivider {
+    width: 150px;
+    margin: 37px 0 35px;
+  }
+
+  .litso_context_image {
+    width: 116px;
+    height: 116px;
   }
 
   .litso_context_story {
@@ -320,12 +374,17 @@
 
 @media (max-width: 430px) {
   .litso_context_images {
-    transform: scale(.88);
-    margin-inline: -20px;
+    gap: 24px;
   }
 
   .litso_context_title {
     font-size: 42px;
+  }
+
+  .litso_context_image {
+    width: 96px;
+    height: 96px;
+    padding: 7px;
   }
 }
 
