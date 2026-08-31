@@ -1,0 +1,86 @@
+/* COMPLÉMENT DU CODE "infoaccordion.css" */
+
+.litso-info_introImage {
+  display: grid;
+  place-items: center;
+  width: 82px;
+  height: 82px;
+  flex: 0 0 82px;
+  padding: 5px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  outline: 1px solid var(--border-default);
+  outline-offset: 4px;
+}
+
+.litso-info_introImage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.litso-info_text {
+  color: var(--text-secondary);
+  font: 10px/1.85 var(--font-sans);
+  text-align: justify;
+  white-space: pre-line;
+}
+
+.litso-info_text p {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.litso-info_subtitle {
+  position: relative;
+  margin: 0 0 15px;
+  padding-bottom: 10px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-default);
+  font: 600 21px/1 var(--font-display);
+}
+
+.litso-info_subtitle::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 48px;
+  height: 2px;
+  background: var(--gradient-accent);
+}
+
+.litso-info_subblock {
+  margin-top: 19px;
+}
+
+.litso-info_subblockTitle {
+  display: inline-flex;
+  margin-bottom: 10px;
+  padding: 7px 10px;
+  color: var(--gold-dark);
+  background: var(--bg-soft);
+  border: 1px solid var(--border-default);
+  font: 700 7px/1 var(--font-condensed);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.litso-info_subblock .litso-info_notice {
+  margin-top: 0;
+}
+
+@media (max-width: 600px) {
+  .litso-info_introImage {
+    width: 68px;
+    height: 68px;
+    flex-basis: 68px;
+  }
+
+  .litso-info_text {
+    text-align: left;
+  }
+}
