@@ -73,6 +73,7 @@
   padding: 5px;
   outline-offset: 5px;
   border-radius: 100%;
+  margin-bottom:25px;
 }
 
 .litso-info_eyebrow {
@@ -139,8 +140,12 @@
 
 .litso-info_introText {
   color: var(--text-secondary);
-  font: 11px/1.8 var(--font-sans);
+  font: 12px var(--font-sans);
   text-align: justify;
+}
+
+.litso-info_introText {
+  font-size:12px;
 }
 
 .litso-info_accordion {
