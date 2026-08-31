@@ -11,22 +11,22 @@
     "f10": "Phrase d'accroche",
     "f4": "Phrase d'accroche",
     "f12": "Phrase d'accroche",
-    "f13": "Phrase d'accroche"
-    "f15": "Phrase d'accroche"
-    "f3": "Royaume vermeille du Serpent"
-    "f5": "Volcan Bigarade du Dragon"
-    "f6": "Ruche dorée de la Louve"
-    "f7": "Chapiteau Smaragdin du Scolopendre"
-    "f8": "Cité étiolée de la Chimère"
-    "f9": "Atlantide améthyste de la Siamoise"
-    "f11": "Palais amarante de la Brebis"
-    "f35": "Phrase d'accroche"
-    "f20": "Phrase d'accroche"
-    "f31": "Phrase d'accroche"
-    "f19": "Phrase d'accroche"
-    "f41": "Phrase d'accroche"
-    "f29": "Phrase d'accroche"
-    "f2": "Phrase d'accroche"
+    "f13": "Phrase d'accroche",
+    "f15": "Phrase d'accroche",
+    "f3": "Royaume vermeille du Serpent",
+    "f5": "Volcan Bigarade du Dragon",
+    "f6": "Ruche dorée de la Louve",
+    "f7": "Chapiteau Smaragdin du Scolopendre",
+    "f8": "Cité étiolée de la Chimère",
+    "f9": "Atlantide améthyste de la Siamoise",
+    "f11": "Palais amarante de la Brebis",
+    "f35": "Phrase d'accroche",
+    "f20": "Phrase d'accroche",
+    "f31": "Phrase d'accroche",
+    "f19": "Phrase d'accroche",
+    "f41": "Phrase d'accroche",
+    "f29": "Phrase d'accroche",
+    "f2": "Phrase d'accroche",
   };
 
   var forumBadges = {
@@ -34,22 +34,22 @@
     "f10": "Espace membres",
     "f4": "Zone invitée",
     "f12": "Adoption",
-    "f13": "Inscription"
-    "f15": "Gestion personnage"
-    "f3": "Superbia"
-    "f5": "Ira"
-    "f6": "Gula"
-    "f7": "Avaritia"
-    "f8": "Luxuria"
-    "f9": "Invidia"
-    "f11": "Acedia"
-    "f35": "Dimensions"
-    "f20": "Passé et alternatif"
-    "f31": "Réseaux sociaux"
-    "f19": "Parler"
-    "f41": "S'amuser"
-    "f29": "Galerie d'arts"
-    "f2": "Conserver"
+    "f13": "Inscription",
+    "f15": "Gestion personnage",
+    "f3": "Superbia",
+    "f5": "Ira",
+    "f6": "Gula",
+    "f7": "Avaritia",
+    "f8": "Luxuria",
+    "f9": "Invidia",
+    "f11": "Acedia",
+    "f35": "Dimensions",
+    "f20": "Passé et alternatif",
+    "f31": "Réseaux sociaux",
+    "f19": "Parler",
+    "f41": "S'amuser",
+    "f29": "Galerie d'arts",
+    "f2": "Conserver",
   };
 
   function cleanText(element) {
