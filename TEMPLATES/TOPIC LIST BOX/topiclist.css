@@ -85,29 +85,59 @@
 /* ----- ÉTAT DU SUJET ----- */
 
 .litso-topiclist_topicicon {
-  display: block;
-  width: 24px;
-  height: 24px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  filter: grayscale(1);
-  opacity: .72;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  color: var(--gold);
+  background-image: none !important;
+
+  filter: none;
+  opacity: 1;
 }
 
-.litso-topiclist_announcement .litso-topiclist_status::after {
+.litso-topiclist_topicicon::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: currentColor;
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static/icons/message-square-text.svg")
+    center / contain no-repeat;
+  mask:
+    url("https://unpkg.com/lucide-static/icons/message-square-text.svg")
+    center / contain no-repeat;
+}
+
+.litso-topiclist_announcement
+.litso-topiclist_topicicon::before {
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static/icons/megaphone.svg")
+    center / contain no-repeat;
+  mask:
+    url("https://unpkg.com/lucide-static/icons/megaphone.svg")
+    center / contain no-repeat;
+}
+
+.litso-topiclist_announcement
+.litso-topiclist_status::after {
   content: "";
   position: absolute;
+  z-index: 1;
   bottom: -5px;
   left: -19px;
   width: 110px;
-  z-index: 1;
-  opacity: 0.1;
   height: 110px;
   color: var(--gold);
   background: currentColor;
-  -webkit-mask: url(https://unpkg.com/lucide-static/icons/megaphone.svg) center / contain no-repeat;
-  mask: url(https://unpkg.com/lucide-static/icons/megaphone.svg) center / contain no-repeat;
+  opacity: .1;
+  pointer-events: none;
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static/icons/megaphone.svg")
+    center / contain no-repeat;
+  mask:
+    url("https://unpkg.com/lucide-static/icons/megaphone.svg")
+    center / contain no-repeat;
 }
 
 /* ----- CONTENU PRINCIPAL ----- */
