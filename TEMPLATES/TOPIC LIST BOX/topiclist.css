@@ -188,7 +188,7 @@
   color: var(--gold-dark);
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
-  font: 700 9px/1 var(--font-sans);
+  font: 700 12px/1 var(--font-sans);
 }
 
 .litso-topiclist_author small {
@@ -276,16 +276,15 @@
 }
 
 .litso-topiclist_blockstats {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 7px;
+  display: flex;
+  gap: 10px;
+  width: 100%;
 }
 
 .litso-topiclist_blockstats > span {
   display: flex;
   min-width: 0;
   align-items: baseline;
-  justify-content: flex-end;
   gap: 4px;
 }
 
