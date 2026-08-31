@@ -237,7 +237,7 @@ h1.litso-msg_titlemap {
   min-height: 790px;
 }
 .litso-msg_content img {
-  max-width:600px;
+  max-width:600px!important;
   object-fit:cover;
 }
 .litso-msg_modoaction {
