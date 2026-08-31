@@ -545,6 +545,7 @@
 .litso-index-tools {
   width:100%;
   display: flex;
+  flex-wrap:wrap;
   margin: -55px 0 50px;
   padding-top: 16px;
   border-top: 1px solid var(--border-default);
