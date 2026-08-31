@@ -58,6 +58,21 @@
 }
 
 .litso-info_headerImages {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+}
+
+.litso-info_headerImages img {
+  width: 80px;
+  height:80px;
+  object-fit:cover;
+  border: 1px var(--gold) solid;
+  outline: 1px solid var(--text-faded);
+  padding: 5px;
+  outline-offset: 5px;
+  border-radius: 100%;
 }
 
 .litso-info_eyebrow {
