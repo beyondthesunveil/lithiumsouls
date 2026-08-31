@@ -530,11 +530,11 @@
 }
 
 
-/* TOP SITE 5 — Yin-yang */
+/* TOP SITE 5 — feu de camp */
 
 .litso_noticeTooltip--palette {
   --litso-tooltip-icon:
-    url("https://unpkg.com/lucide-static/icons/yin-yang.svg");
+    url("https://unpkg.com/lucide-static/icons/flame-kindling.svg");
 }
 
 
@@ -550,7 +550,7 @@
 
 .litso_noticeTooltip--portal {
   --litso-tooltip-icon:
-    url("https://unpkg.com/lucide-static/icons/ghost.svg");
+    url("https://unpkg.com/lucide-static/icons/sun.svg");
 }
 
 @media (max-width: 600px) {
