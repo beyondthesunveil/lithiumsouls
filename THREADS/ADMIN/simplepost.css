@@ -392,6 +392,7 @@
   flex-wrap: wrap;
   gap: 10px;
   padding: 20px 5px 10px;
+  overflow: visible;
 }
 
 .litso_noticeTooltip {
@@ -408,7 +409,9 @@
   color: var(--text-muted);
   background: var(--bg-elevated);
   border: 1px solid var(--border-default);
+  outline: 0;
   text-decoration: none;
+  cursor: pointer;
   transition:
     color 180ms ease,
     background 180ms ease,
@@ -423,8 +426,8 @@
   background: currentColor;
   pointer-events: none;
   transition:
-    transform 180ms ease,
-    opacity 180ms ease;
+    opacity 180ms ease,
+    transform 180ms ease;
 
   -webkit-mask:
     var(--litso-tooltip-icon)
@@ -437,11 +440,10 @@
 
 .litso_noticeTooltip:hover,
 .litso_noticeTooltip:focus-visible {
-  z-index: 20;
+  z-index: 50;
   color: var(--text-on-accent);
   background: var(--gradient-accent);
   border-color: var(--gold);
-  outline: 0;
   transform: translateY(-3px);
 }
 
@@ -453,12 +455,13 @@
 .litso_noticeTooltip::before {
   content: attr(data-tooltip);
   position: absolute;
-  z-index: 50;
-  bottom: calc(100% + 12px);
+  z-index: 100;
+  bottom: calc(100% + 7px);
   left: 50%;
+  display: block;
   width: max-content;
-  max-width: 190px;
-  padding: 8px 10px;
+  max-width: 200px;
+  padding: 9px 11px;
   color: var(--text-primary);
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
@@ -467,29 +470,33 @@
   letter-spacing: 1px;
   text-align: center;
   text-transform: uppercase;
+  white-space: normal;
   pointer-events: none;
+  visibility: hidden;
   opacity: 0;
   transform:
     translate(-50%, 5px)
     scale(.97);
   transition:
+    visibility 0s linear 160ms,
     opacity 160ms ease,
     transform 160ms ease;
 }
 
 .litso_noticeTooltip:hover::before,
-.litso_noticeTooltip:hover::after,
-.litso_noticeTooltip:focus-visible::before,
-.litso_noticeTooltip:focus-visible::after {
-  opacity: 1;
-}
-
-.litso_noticeTooltip:hover::before,
 .litso_noticeTooltip:focus-visible::before {
+  visibility: visible;
+  opacity: 1;
   transform:
     translate(-50%, 0)
     scale(1);
+  transition-delay: 0s;
 }
+
+
+/* =========================================================
+   ICÔNES INDIVIDUELLES
+   ========================================================= */
 
 /* TOP SITE 1 — Flamme */
 
@@ -546,9 +553,6 @@
     url("https://unpkg.com/lucide-static/icons/ghost.svg");
 }
 
-
-/* ----- RESPONSIVE ----- */
-
 @media (max-width: 600px) {
   .litso_noticeTooltip_list {
     gap: 8px;
@@ -562,6 +566,7 @@
 
   .litso_noticeTooltip::before {
     max-width: 145px;
+    padding: 8px 9px;
     font-size: 6px;
   }
 }
@@ -569,8 +574,7 @@
 @media (prefers-reduced-motion: reduce) {
   .litso_noticeTooltip,
   .litso_noticeTooltip > span,
-  .litso_noticeTooltip::before,
-  .litso_noticeTooltip::after {
+  .litso_noticeTooltip::before {
     transition-duration: .01ms !important;
   }
 }
