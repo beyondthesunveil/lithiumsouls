@@ -193,7 +193,7 @@
 
 .litso-rules_section {
   display: grid;
-  grid-template-columns: 105px minmax(0, 1fr);
+  grid-template-columns: 35px minmax(0, 1fr);
   scroll-margin-top: 100px;
 }
 
@@ -203,15 +203,6 @@
 
 .litso-rules_number {
   position: relative;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  overflow: hidden;
-  padding-top: 38px;
-  color: var(--gold-dark);
-  background: var(--bg-elevated);
-  border-right: 1px solid var(--border-default);
-  font: italic 53px/.8 var(--font-display);
 }
 
 .litso-rules_number::before {
@@ -281,10 +272,10 @@
   font: italic 15px/1 var(--font-display);
 }
 
-.litso-rules_text {
+.litso-rules_text p {
   padding-top: 18px;
   color: var(--text-secondary);
-  font: 11px/1.85 var(--font-sans);
+  font: 12px/1.85 var(--font-sans);
   text-align: justify;
 }
 
