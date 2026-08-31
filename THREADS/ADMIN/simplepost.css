@@ -279,3 +279,97 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================================
+   COMPLÉMENTS — RECENSEMENT MENSUEL
+   À placer après le CSS principal de litso_simp_
+   ========================================================= */
+
+.litso_simp_note--stacked {
+  display: grid;
+  grid-template-columns: 105px minmax(0, 1fr);
+  margin: 22px 0;
+}
+
+.litso_simp_note--stacked > span {
+  min-height: 100%;
+}
+
+.litso_simp_noteContent {
+  min-width: 0;
+  padding: 16px 18px;
+  color: var(--text-muted);
+  font: 9px/1.7 var(--font-sans);
+}
+
+.litso_simp_noteContent > :first-child {
+  margin-top: 0;
+}
+
+.litso_simp_noteContent > :last-child {
+  margin-bottom: 0;
+}
+
+.litso_simp_rule {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.litso_simp_rule:last-child {
+  border-bottom: 0;
+}
+
+.litso_simp_subblock {
+  margin-top: 14px;
+  padding: 13px 15px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+}
+
+.litso_simp_subblock > strong {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--gold-dark);
+  font: 700 7px/1 var(--font-condensed);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.litso_simp_subblock > p {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.litso_simp_subblock--code {
+  margin-top: 18px;
+  background: var(--bg-elevated);
+  border-color: var(--border-default);
+}
+
+.litso_simp_end {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 22px;
+  padding: 13px 16px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-default);
+  font: italic 11px/1.4 var(--font-display);
+  text-align: center;
+}
+
+.litso_simp_end > span {
+  color: var(--gold);
+  font-style: normal;
+}
+
+@media (max-width: 600px) {
+  .litso_simp_note--stacked {
+    grid-template-columns: 1fr;
+  }
+
+  .litso_simp_note--stacked > span {
+    min-height: 42px;
+  }
+}
