@@ -73,7 +73,7 @@
   display: grid;
   min-width: 0;
   min-height: 86px;
-  grid-template-columns: 48px minmax(0, 1fr) minmax(215px, 275px) 66px;
+  grid-template-columns: 20px minmax(0, 1fr) minmax(215px, 275px) 66px;
   align-items: stretch;
   overflow: hidden;
   color: var(--text-secondary);
@@ -94,13 +94,6 @@
 }
 
 /* ----- ÉTAT DU SUJET ----- */
-
-.litso-topiclist_status {
-  display: grid;
-  place-items: center;
-  background: var(--bg-elevated);
-  border-right: 1px solid var(--border-default);
-}
 
 .litso-topiclist_topicicon {
   display: block;
