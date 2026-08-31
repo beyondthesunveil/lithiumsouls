@@ -453,7 +453,7 @@
 }
 
 .litso_noticeTooltip::before {
-  content: attr(data-tooltip);
+  content: attr(data-litso-notice);
   position: absolute;
   z-index: 100;
   bottom: calc(100% + 7px);
