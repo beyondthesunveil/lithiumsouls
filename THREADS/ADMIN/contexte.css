@@ -17,81 +17,80 @@
 .litso_context_header {
   position: relative;
   display: flex;
-  min-height: 440px;
+  min-height: 145px;
   align-items: center;
-  flex-direction: column;
   justify-content: center;
-  padding: 45px 42px 48px;
+  flex-direction: column;
+  gap: 9px;
+  padding: 28px 25px;
   overflow: hidden;
-  background: var(--bg-surface);
-  border-bottom: 1px solid var(--border-default);
-  isolation: isolate;
+  text-align: center;
 }
 
 .litso_context_header::before {
   content: attr(data-ghost);
   position: absolute;
-  top: 53px;
+  top: 50%;
   left: 50%;
-  z-index: -1;
-  color: var(--border-subtle);
-  font: 700 clamp(82px, 15vw, 145px)/.8 var(--font-display);
-  letter-spacing: -4px;
+  width: 100%;
+  overflow: hidden;
+  color: transparent;
+  font: italic 90px/.75 var(--font-display);
+  letter-spacing: -5px;
+  text-align: center;
   text-transform: uppercase;
-  transform: translateX(-50%);
   white-space: nowrap;
+  opacity: .55;
   pointer-events: none;
+  transform: translate(-50%, -50%);
+  -webkit-text-stroke: 1px var(--border-subtle);
 }
 
-.litso_context_heading {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  width: 100%;
-  min-width: 0;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
+.litso_context_header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 110px;
+  height: 2px;
+  background: var(--gradient-accent);
+  transform: translateX(-50%);
 }
 
 .litso_context_title {
-  margin-top: 16px;
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   color: var(--text-primary);
-  font: 700 clamp(50px, 8vw, 79px)/.88 var(--font-display);
-  letter-spacing: -2px;
+  font: 600 39px/.95 var(--font-display);
+  letter-spacing: -1.5px;
   text-transform: uppercase;
 }
 
-.litso_context_subtitle {
+.litso_context_eyebrow {
+  position: relative;
+  z-index: 2;
   display: flex;
-  width: min(100%, 675px);
   align-items: center;
   justify-content: center;
-  gap: 20px;
   color: var(--gold-dark, var(--gold));
-  font: 700 9px/1.5 var(--font-sans);
-  letter-spacing: 2.1px;
+  font: 700 8px/1 var(--font-condensed);
+  letter-spacing: 2.5px;
   text-transform: uppercase;
 }
 
-.litso_context_subtitle::before,
-.litso_context_subtitle::after {
+.litso_context_eyebrow::before,
+.litso_context_eyebrow::after {
   content: "";
-  width: 70px;
+  width: 35px;
   height: 1px;
-  flex: 0 0 70px;
+  margin: 0 13px;
   background: var(--gradient-accent, linear-gradient(90deg, var(--gold), var(--accent)));
 }
 
-.litso_context_subtitle::after {
+.litso_context_eyebrow::after {
   background: var(--gradient-accent-reverse, linear-gradient(90deg, var(--accent), var(--gold)));
-}
-
-.litso_context_headerDivider {
-  width: 220px;
-  height: 3px;
-  margin: 46px 0 40px;
-  background: var(--gradient-accent, linear-gradient(90deg, var(--gold), var(--accent)));
 }
 
 .litso_context_images {
@@ -99,7 +98,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 28px;
+  gap: 42px;
+  padding: 40px 25px 48px;
+  border-bottom: 1px solid var(--border-default);
 }
 
 .litso_context_image {
@@ -294,32 +295,25 @@
 
 @media (max-width: 700px) {
   .litso_context_header {
-    min-height: 0;
-    padding: 39px 25px 45px;
+    min-height: 135px;
+    padding-inline: 18px;
   }
 
   .litso_context_header::before {
-    top: 64px;
-    left: 50%;
-    font-size: 82px;
-    transform: translateX(-50%);
+    font-size: 72px;
   }
 
-  .litso_context_subtitle {
-    gap: 10px;
-    font-size: 8px;
-    letter-spacing: 1.3px;
+  .litso_context_eyebrow {
+    max-width: 100%;
+    line-height: 1.5;
+    letter-spacing: 1.5px;
   }
 
-  .litso_context_subtitle::before,
-  .litso_context_subtitle::after {
-    width: 35px;
-    flex-basis: 35px;
-  }
-
-  .litso_context_headerDivider {
-    width: 150px;
-    margin: 37px 0 35px;
+  .litso_context_eyebrow::before,
+  .litso_context_eyebrow::after {
+    width: 22px;
+    flex: 0 0 22px;
+    margin-inline: 8px;
   }
 
   .litso_context_image {
@@ -353,10 +347,11 @@
 @media (max-width: 430px) {
   .litso_context_images {
     gap: 24px;
+    padding-block: 36px 42px;
   }
 
   .litso_context_title {
-    font-size: 42px;
+    font-size: 34px;
   }
 
   .litso_context_image {
