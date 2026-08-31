@@ -71,21 +71,10 @@
 .litso-topiclist_background {
   position: relative;
   display: grid;
-  min-width: 0;
-  min-height: 86px;
-  grid-template-columns: 20px minmax(0, 1fr) minmax(215px, 275px) 66px;
-  align-items: stretch;
-  overflow: hidden;
+  grid-template-columns: 20px minmax(0, 1fr) minmax(215px, 365px) 66px;
   color: var(--text-secondary);
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
-  transition: border-color 200ms ease, background 200ms ease, transform 200ms ease;
-}
-
-.litso-topiclist_background:hover {
-  background: var(--bg-elevated);
-  border-color: var(--border-strong);
-  transform: translateY(-1px);
 }
 
 .litso-topiclist_background > * {
@@ -237,11 +226,9 @@
   display: flex;
   min-width: 0;
   align-items: center;
-  justify-content: flex-end;
   gap: 7px;
   color: var(--text-muted);
-  font: 12px/1 var(--font-sans);
-  text-align: right;
+  font: 12px / 1 var(--font-sans);
 }
 
 .litso-topiclist_lastpostinfos > i {
@@ -279,6 +266,8 @@
   display: flex;
   gap: 10px;
   width: 100%;
+  margin-left: -25px;
+  justify-content: flex-end;
 }
 
 .litso-topiclist_blockstats > span {
