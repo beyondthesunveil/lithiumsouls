@@ -146,7 +146,7 @@
   white-space: nowrap;
 }
 
-.litso_simp_text {
+.litso_simp_text p {
   color: var(--text-secondary);
   font: 12px var(--font-sans)
   text-align: justify;
