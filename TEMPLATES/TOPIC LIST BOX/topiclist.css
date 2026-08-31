@@ -158,9 +158,9 @@
   min-height: 22px;
   align-items: center;
   padding: 4px 8px;
-  color: var(--text-on-accent);
-  background: var(--gradient-accent);
-  font: 700 7px/1 var(--font-condensed);
+  color: var(--text-unread);
+  background: var(--status-important);
+  font: 200 10px / 1 var(--font-condensed);
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -180,7 +180,7 @@
 .litso-topiclist_topictleFRM a {
   display: block;
   overflow: hidden;
-  color: var(--text-primary);
+  color: var(--text-primary)!important;
   text-decoration: none;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -205,9 +205,8 @@
 
 .litso-topiclist_author small {
   color: var(--text-muted);
-  font: 700 6px/1 var(--font-condensed);
+  font-size:12px;
   letter-spacing: .8px;
-  text-transform: uppercase;
 }
 
 .litso-topiclist_participate {
@@ -239,7 +238,7 @@
   align-items: center;
   gap: 7px;
   color: var(--text-muted);
-  font: 8px/1 var(--font-sans);
+  font: 12px / 1 var(--font-sans);
 }
 
 .litso-topiclist_lastpostinfos > i {
@@ -250,7 +249,6 @@
 
 .litso-topiclist_lastpostinfos strong {
   overflow: hidden;
-  color: var(--text-secondary);
   font-weight: 700;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -272,7 +270,6 @@
   flex-direction: column;
   gap: 10px;
   padding: 14px 17px;
-  border-left: 1px solid var(--border-default);
 }
 
 .litso-topiclist_blockstats {
@@ -296,8 +293,8 @@
 .litso-topiclist_blockstats small {
   overflow: hidden;
   color: var(--text-muted);
-  font: 700 6px/1 var(--font-condensed);
-  letter-spacing: .6px;
+  font: 700 12px / 1 var(--font-condensed);
+  letter-spacing: 0.7px;
   text-overflow: ellipsis;
   text-transform: uppercase;
   white-space: nowrap;
@@ -346,16 +343,12 @@
 /* ----- AVATAR ----- */
 
 .litso-topiclist_avatarZone {
-  display: grid;
-  place-items: center;
-  padding: 9px;
-  background: var(--bg-elevated);
-  border-left: 1px solid var(--border-default);
+  margin: 20px -20px;
 }
 
 .litso-topiclist_lastpostava {
-  width: 45px;
-  height: 45px;
+  width: 60px;
+  height: 60px;
   padding: 3px;
   background: var(--bg-surface);
   border: 1px solid var(--gold);
