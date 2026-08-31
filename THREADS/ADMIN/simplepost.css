@@ -510,59 +510,59 @@
     scale(1);
 }
 
-/* Panda's RPG */
+/* TOP SITE 1 — Flamme */
 
 .litso_noticeTooltip--paw {
   --litso-tooltip-icon:
-    url("https://unpkg.com/lucide-static/icons/paw-print.svg");
+    url("https://unpkg.com/lucide-static/icons/flame.svg");
 }
 
 
-/* Top best forums RP */
+/* TOP SITE 2 — Lune étoilée */
 
 .litso_noticeTooltip--trophy {
   --litso-tooltip-icon:
-    url("https://unpkg.com/lucide-static/icons/trophy.svg");
+    url("https://unpkg.com/lucide-static/icons/moon-star.svg");
 }
 
 
-/* Top 50 Mangas-RPG */
+/* TOP SITE 3 — Étincelles */
 
 .litso_noticeTooltip--scroll {
   --litso-tooltip-icon:
-    url("https://unpkg.com/lucide-static/icons/scroll-text.svg");
+    url("https://unpkg.com/lucide-static/icons/sparkles.svg");
 }
 
 
-/* Top 50 Rpg */
+/* TOP SITE 4 — Crâne */
 
 .litso_noticeTooltip--dice {
   --litso-tooltip-icon:
-    url("https://unpkg.com/lucide-static/icons/dices.svg");
+    url("https://unpkg.com/lucide-static/icons/skull.svg");
 }
 
 
-/* Classement PRDien */
+/* TOP SITE 5 — Yin-yang */
 
 .litso_noticeTooltip--palette {
   --litso-tooltip-icon:
-    url("https://unpkg.com/lucide-static/icons/palette.svg");
+    url("https://unpkg.com/lucide-static/icons/yin-yang.svg");
 }
 
 
-/* Top 50 All-Rpg */
+/* TOP SITE 6 — Fantôme */
 
 .litso_noticeTooltip--gamepad {
   --litso-tooltip-icon:
-    url("https://unpkg.com/lucide-static/icons/gamepad-2.svg");
+    url("https://unpkg.com/lucide-static/icons/ghost.svg");
 }
 
 
-/* Forum RPG PORTAL */
+/* TOP SITE 7 — Fantôme */
 
 .litso_noticeTooltip--portal {
   --litso-tooltip-icon:
-    url("https://unpkg.com/lucide-static/icons/orbit.svg");
+    url("https://unpkg.com/lucide-static/icons/ghost.svg");
 }
 
 
