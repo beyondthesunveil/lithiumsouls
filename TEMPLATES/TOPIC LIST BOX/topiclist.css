@@ -250,11 +250,48 @@
   white-space: nowrap;
 }
 
-.litso-topiclist_lastpostLink a,
+.litso-topiclist_lastpostLink {
+  display: inline-flex;
+  align-items: center;
+}
+
+.litso-topiclist_lastpostLink a {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  color: var(--gold);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease;
+}
+
+.litso-topiclist_lastpostLink a::before {
+  content: "";
+  width: 13px;
+  height: 13px;
+  background: currentColor;
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static/icons/square-arrow-out-up-right.svg")
+    center / contain no-repeat;
+  mask:
+    url("https://unpkg.com/lucide-static/icons/square-arrow-out-up-right.svg")
+    center / contain no-repeat;
+}
+
+.litso-topiclist_lastpostLink a:hover {
+  color: var(--text-primary);
+  background: var(--bg-soft);
+  border-color: var(--gold);
+}
+
+/* Masque uniquement l’image native de Forumactif */
+
 .litso-topiclist_lastpostLink img {
-  display: block;
-  width: 14px;
-  height: 14px;
+  display: none;
 }
 
 /* ----- ACTIVITÉ ----- */
