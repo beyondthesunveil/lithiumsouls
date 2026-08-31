@@ -5,13 +5,11 @@
 
 .litso_context_ {
   position: relative;
-  width: min(100%, 900px);
-  margin: 20px auto;
-  overflow: hidden;
+  width: 650px;
+  max-width: 100%;
+  margin: 35px auto;
   color: var(--text-secondary);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
-  font: 13px/1.85 var(--font-sans);
+  font-family: var(--font-sans);
 }
 
 .litso_context_header {
@@ -57,24 +55,13 @@
   transform: translateX(-50%);
 }
 
-.litso_context_title {
-  position: relative;
-  z-index: 2;
-  max-width: 100%;
-  overflow-wrap: anywhere;
-  color: var(--text-primary);
-  font: 600 39px/.95 var(--font-display);
-  letter-spacing: -1.5px;
-  text-transform: uppercase;
-}
-
 .litso_context_eyebrow {
   position: relative;
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--gold-dark, var(--gold));
+  color: var(--gold-dark);
   font: 700 8px/1 var(--font-condensed);
   letter-spacing: 2.5px;
   text-transform: uppercase;
@@ -86,11 +73,22 @@
   width: 35px;
   height: 1px;
   margin: 0 13px;
-  background: var(--gradient-accent, linear-gradient(90deg, var(--gold), var(--accent)));
+  background: var(--gradient-accent);
 }
 
 .litso_context_eyebrow::after {
-  background: var(--gradient-accent-reverse, linear-gradient(90deg, var(--accent), var(--gold)));
+  background: var(--gradient-accent-reverse);
+}
+
+.litso_context_title {
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  color: var(--text-primary);
+  font: 600 39px/.95 var(--font-display);
+  letter-spacing: -1.5px;
+  text-transform: uppercase;
 }
 
 .litso_context_images {
@@ -98,33 +96,45 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 42px;
-  padding: 40px 25px 48px;
-  border-bottom: 1px solid var(--border-default);
+  gap: 30px;
+  margin: 38px 0;
+}
+
+.litso_context_images::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  width: 215px;
+  height: 1px;
+  background: var(--gradient-accent);
+  transform: translate(-50%, -50%);
+}
+
+.litso_context_images::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  background: var(--bg-surface);
+  border: 1px solid var(--gold);
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .litso_context_image {
   position: relative;
-  width: 140px;
-  height: 140px;
-  padding: 10px;
+  z-index: 2;
+  width: 80px;
+  height: 80px;
+  padding: 5px;
   background: var(--bg-surface);
-  border: 2px solid var(--border-strong);
+  border: 1px solid var(--gold);
   border-radius: 50%;
-  box-shadow:
-    0 0 0 7px var(--bg-surface),
-    0 0 0 8px var(--gold),
-    0 0 0 11px var(--bg-surface),
-    0 0 0 13px var(--border-strong);
-}
-
-.litso_context_image::after {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border: 1px solid var(--border-default);
-  border-radius: 50%;
-  pointer-events: none;
+  outline: 1px solid var(--text-faded, var(--border-default));
+  outline-offset: 5px;
 }
 
 .litso_context_image img {
@@ -133,41 +143,61 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  filter: saturate(.82) contrast(1.03);
-  transition: filter 250ms ease, transform 350ms ease;
+  filter: saturate(.85);
+  transition: filter 200ms ease, transform 250ms ease;
 }
 
 .litso_context_image:hover img {
-  filter: saturate(1) contrast(1);
-  transform: scale(1.035);
+  filter: saturate(1);
+  transform: scale(1.04);
+}
+
+.litso_context_body {
+  position: relative;
+  margin-top: 14px;
+  padding: 27px 29px 29px;
+  overflow: hidden;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+}
+
+.litso_context_body::before {
+  content: "";
+  position: absolute;
+  top: 27px;
+  bottom: 29px;
+  left: 13px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--gold), var(--accent-dark), transparent);
+  opacity: .45;
 }
 
 .litso_context_story {
-  padding: 38px 44px 22px;
+  padding: 0;
 }
 
 .litso_context_lead {
   display: flex;
   align-items: baseline;
-  gap: 3px;
-  margin-bottom: 22px;
+  gap: 2px;
+  margin-bottom: 18px;
   color: var(--text-primary);
-  font: 600 25px/1.2 var(--font-display);
+  font: 600 20px/1 var(--font-display);
 }
 
 .litso_context_lead span {
-  color: var(--gold-dark, var(--gold));
-  font-size: 52px;
+  color: var(--gold-dark);
+  font-size: 36px;
   line-height: .7;
 }
 
 .litso_context_lead strong {
   font-weight: 600;
-  letter-spacing: .5px;
 }
 
 .litso_context_text {
   color: var(--text-secondary);
+  font: 10px/1.85 var(--font-sans);
   text-align: justify;
 }
 
@@ -178,19 +208,28 @@
 }
 
 .litso_context_text p + p {
-  margin-top: 21px;
+  margin-top: 13px;
+}
+
+.litso_context_text strong,
+.litso_context_text b {
+  color: var(--gold-dark);
+}
+
+.litso_context_text em,
+.litso_context_text i {
+  color: var(--accent-dark);
 }
 
 .litso_context_revelation {
   position: relative;
-  margin: 30px 0;
-  padding: 22px 25px;
+  margin: 22px 0;
+  padding: 16px 20px;
   overflow: hidden;
   color: var(--text-primary);
   background: var(--bg-elevated);
-  border: 1px solid var(--border-default);
-  border-left: 3px solid var(--gold);
-  font: 600 14px/1.8 var(--font-display);
+  border-left: 2px solid var(--gold);
+  font: 600 12px/1.7 var(--font-display);
   letter-spacing: .4px;
   text-align: center;
 }
@@ -198,136 +237,133 @@
 .litso_context_revelation::after {
   content: "✦";
   position: absolute;
-  right: 14px;
-  bottom: -22px;
+  right: 12px;
+  bottom: -16px;
   color: var(--border-subtle);
-  font-size: 72px;
+  font-size: 55px;
   line-height: 1;
-  pointer-events: none;
 }
 
 .litso_context_revelation--major {
-  padding-block: 25px;
-  color: var(--gold-dark, var(--gold));
-  background:
-    linear-gradient(90deg, transparent, var(--bg-soft), transparent),
-    var(--bg-elevated);
+  color: var(--gold-dark);
+  background: linear-gradient(90deg, transparent, var(--bg-soft), transparent), var(--bg-elevated);
   border-right: 0;
   border-left: 0;
-  font-size: clamp(15px, 2.2vw, 20px);
-  letter-spacing: 2px;
+  font-size: 14px;
+  letter-spacing: 1.5px;
 }
 
 .litso_context_panel {
-  position: relative;
-  margin: 16px 44px;
-  padding: 27px 29px 25px;
+  display: grid;
+  grid-template-columns: 115px minmax(0, 1fr);
+  margin-top: 23px;
   overflow: hidden;
   background: var(--bg-elevated);
   border: 1px solid var(--border-default);
-  border-top: 2px solid var(--gold);
-}
-
-.litso_context_panel::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 95px;
-  height: 95px;
-  background: radial-gradient(circle at 100% 0, var(--bg-soft), transparent 68%);
-  pointer-events: none;
 }
 
 .litso_context_panelTitle {
-  position: relative;
   display: flex;
+  min-height: 100%;
   align-items: center;
-  gap: 11px;
-  margin-bottom: 17px;
-  color: var(--text-primary);
+  justify-content: center;
+  flex-direction: column;
+  gap: 7px;
+  padding: 15px 12px;
+  color: var(--text-on-accent);
+  background: var(--accent-dark);
+  text-align: center;
 }
 
 .litso_context_panelTitle span {
-  color: var(--gold);
-  font-size: 17px;
+  color: var(--gold-light);
+  font-size: 12px;
 }
 
 .litso_context_panelTitle strong {
-  font: 700 22px/1 var(--font-display);
-  letter-spacing: .3px;
+  font: 700 8px/1.3 var(--font-condensed);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
 }
 
 .litso_context_panel p {
-  position: relative;
-  color: var(--text-secondary);
+  padding: 16px 18px;
+  color: var(--text-muted);
+  font: 9px/1.7 var(--font-sans);
   text-align: justify;
 }
 
-.litso_context_panel--warning {
-  background: var(--bg-soft);
-  border-top-color: var(--accent, var(--gold));
+.litso_context_panel--warning .litso_context_panelTitle {
+  color: var(--text-primary);
+  background: var(--gradient-accent);
 }
 
 .litso_context_panel--warning .litso_context_panelTitle span {
-  color: var(--accent, var(--gold));
+  color: var(--text-primary);
 }
 
 .litso_context_end {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 13px;
-  margin-top: 36px;
-  padding: 24px 34px;
+  gap: 10px;
+  margin-top: 25px;
+  padding: 18px 20px 0;
   color: var(--text-primary);
-  background: var(--bg-elevated);
   border-top: 1px solid var(--border-default);
-  font: 600 16px/1.5 var(--font-display);
-  letter-spacing: .6px;
+  font: 600 13px/1.5 var(--font-display);
   text-align: center;
+}
+
+.litso_context_end::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  width: 70px;
+  height: 2px;
+  background: var(--gradient-accent);
+  transform: translateX(-50%);
 }
 
 .litso_context_end span {
   color: var(--gold);
-  font-size: 18px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
   .litso_context_header {
-    min-height: 135px;
-    padding-inline: 18px;
+    min-height: 120px;
+    padding: 24px 18px;
   }
 
   .litso_context_header::before {
-    font-size: 72px;
+    font-size: 62px;
+    letter-spacing: -4px;
+  }
+
+  .litso_context_title {
+    font-size: 32px;
   }
 
   .litso_context_eyebrow {
-    max-width: 100%;
-    line-height: 1.5;
-    letter-spacing: 1.5px;
+    line-height: 1.45;
+    letter-spacing: 1.4px;
   }
 
   .litso_context_eyebrow::before,
   .litso_context_eyebrow::after {
-    width: 22px;
-    flex: 0 0 22px;
-    margin-inline: 8px;
+    width: 20px;
+    flex: 0 0 20px;
+    margin: 0 8px;
   }
 
-  .litso_context_image {
-    width: 116px;
-    height: 116px;
+  .litso_context_body {
+    padding: 23px 20px 25px;
   }
 
-  .litso_context_story {
-    padding: 31px 24px 18px;
-  }
-
-  .litso_context_panel {
-    margin-inline: 24px;
-    padding: 24px 21px;
+  .litso_context_body::before {
+    display: none;
   }
 
   .litso_context_text,
@@ -335,29 +371,13 @@
     text-align: left;
   }
 
-  .litso_context_revelation--major {
-    letter-spacing: 0;
+  .litso_context_panel {
+    grid-template-columns: 1fr;
   }
 
-  .litso_context_end {
-    padding-inline: 23px;
-  }
-}
-
-@media (max-width: 430px) {
-  .litso_context_images {
-    gap: 24px;
-    padding-block: 36px 42px;
-  }
-
-  .litso_context_title {
-    font-size: 34px;
-  }
-
-  .litso_context_image {
-    width: 96px;
-    height: 96px;
-    padding: 7px;
+  .litso_context_panelTitle {
+    min-height: 52px;
+    flex-direction: row;
   }
 }
 
