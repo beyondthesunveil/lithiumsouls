@@ -57,6 +57,9 @@
   transform: translateX(-50%);
 }
 
+.litso-info_headerImages {
+}
+
 .litso-info_eyebrow {
   position: relative;
   z-index: 2;
