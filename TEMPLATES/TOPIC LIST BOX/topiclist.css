@@ -210,18 +210,35 @@
 }
 
 .litso-topiclist_participate {
-  display: inline-grid;
+  display: none;
+  width: 27px;
+  height: 27px;
+  flex: 0 0 27px;
   place-items: center;
-  width: 20px;
-  height: 20px;
+  color: var(--gold);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+.litso-topiclist_participate:has(img) {
+  display: grid;
+}
+
+.litso-topiclist_participate:has(img)::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background: currentColor;
+  -webkit-mask:
+    url("https://unpkg.com/lucide-static/icons/messages-square.svg")
+    center / contain no-repeat;
+  mask:
+    url("https://unpkg.com/lucide-static/icons/messages-square.svg")
+    center / contain no-repeat;
 }
 
 .litso-topiclist_participate img {
-  display: block;
-  max-width: 16px;
-  max-height: 16px;
-  object-fit: contain;
-  opacity: .68;
+  display: none;
 }
 
 .litso-topiclist_topicdesc {
