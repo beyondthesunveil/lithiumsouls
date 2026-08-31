@@ -477,25 +477,6 @@
     transform 160ms ease;
 }
 
-.litso_noticeTooltip::after {
-  content: "";
-  position: absolute;
-  z-index: 51;
-  bottom: calc(100% + 7px);
-  left: 50%;
-  width: 9px;
-  height: 9px;
-  background: var(--bg-surface);
-  border-right: 1px solid var(--border-default);
-  border-bottom: 1px solid var(--border-default);
-  pointer-events: none;
-  opacity: 0;
-  transform:
-    translateX(-50%)
-    rotate(45deg);
-  transition: opacity 160ms ease;
-}
-
 .litso_noticeTooltip:hover::before,
 .litso_noticeTooltip:hover::after,
 .litso_noticeTooltip:focus-visible::before,
