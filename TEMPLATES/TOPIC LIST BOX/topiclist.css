@@ -1,3 +1,8 @@
+/* =========================================================
+   LISTE DES SUJETS — topic_list_box
+   Nomenclature : litso-topiclist_
+   ========================================================= */
+
 .litso-topiclist_titlerow,
 .litso-topiclist_titlerow *,
 .litso-topiclist_list,
@@ -11,6 +16,8 @@
   padding: 0 !important;
   list-style: none !important;
 }
+
+/* ----- EN-TÊTE DE SECTION ----- */
 
 .litso-topiclist_titlerow {
   position: relative;
@@ -59,6 +66,8 @@
   display: none;
 }
 
+/* ----- LISTE ET CARTES ----- */
+
 .litso-topiclist_list {
   display: grid;
   gap: 9px;
@@ -102,6 +111,8 @@
   z-index: 1;
 }
 
+/* ----- ÉTAT DU SUJET ----- */
+
 .litso-topiclist_status {
   display: grid;
   place-items: center;
@@ -132,6 +143,8 @@
   mask: url("https://unpkg.com/lucide-static/icons/megaphone.svg") center / contain no-repeat;
 }
 
+/* ----- CONTENU PRINCIPAL ----- */
+
 .litso-topiclist_main {
   display: flex;
   min-width: 0;
@@ -147,6 +160,27 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 7px 10px;
+}
+
+.litso-topiclist_type:empty {
+  display: none;
+}
+
+.litso-topiclist_type {
+  display: inline-flex;
+  min-height: 22px;
+  align-items: center;
+  padding: 4px 8px;
+  color: var(--text-on-accent);
+  background: var(--gradient-accent);
+  font: 700 7px/1 var(--font-condensed);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.litso-topiclist_type strong {
+  color: inherit;
+  font: inherit;
 }
 
 .litso-topiclist_topictleFRM {
@@ -242,6 +276,8 @@
   height: 14px;
 }
 
+/* ----- ACTIVITÉ ----- */
+
 .litso-topiclist_activity {
   display: flex;
   min-width: 0;
@@ -320,6 +356,8 @@
   display: none;
 }
 
+/* ----- AVATAR ----- */
+
 .litso-topiclist_avatarZone {
   display: grid;
   place-items: center;
@@ -346,6 +384,8 @@
   border-radius: 50%;
   object-fit: cover;
 }
+
+/* ----- SÉLECTIONS DE MODÉRATION ----- */
 
 .litso-topiclist_selection,
 .litso-topiclist_selectAll {
@@ -387,6 +427,8 @@
   box-shadow: inset 0 0 0 3px var(--bg-surface);
 }
 
+/* ----- AUCUN SUJET ----- */
+
 .litso-topiclist_backgroundnone {
   display: flex;
   min-height: 100px;
@@ -412,6 +454,8 @@
   letter-spacing: 1.3px;
   text-transform: uppercase;
 }
+
+/* ----- RESPONSIVE ----- */
 
 @media (max-width: 900px) {
   .litso-topiclist_background {
