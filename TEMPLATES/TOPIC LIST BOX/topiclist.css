@@ -181,15 +181,11 @@
 }
 
 .litso-topiclist_topictleFRM {
-  min-width: 0;
-  margin: 0;
-  font: 600 20px/1 var(--font-display);
-  letter-spacing: -.25px;
+  font: 600 20px/1 var(--font-condensed);
 }
 
 .litso-topiclist_topictleFRM a {
   display: block;
-  overflow: hidden;
   color: var(--text-primary) !important;
   text-decoration: none;
   text-overflow: ellipsis;
