@@ -373,3 +373,223 @@
     min-height: 42px;
   }
 }
+
+/* =========================================================
+   BOUTONS TOP SITES ET TOOLTIPS
+   Nomenclature : litso_noticeTooltip
+   ========================================================= */
+
+.litso_noticeTooltip_list,
+.litso_noticeTooltip_list * {
+  box-sizing: border-box;
+}
+
+.litso_noticeTooltip_list {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px 5px 10px;
+}
+
+.litso_noticeTooltip {
+  --litso-tooltip-icon:
+    url("https://unpkg.com/lucide-static/icons/sparkles.svg");
+
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  place-items: center;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  text-decoration: none;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.litso_noticeTooltip > span {
+  display: block;
+  width: 17px;
+  height: 17px;
+  background: currentColor;
+  pointer-events: none;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
+
+  -webkit-mask:
+    var(--litso-tooltip-icon)
+    center / contain no-repeat;
+
+  mask:
+    var(--litso-tooltip-icon)
+    center / contain no-repeat;
+}
+
+.litso_noticeTooltip:hover,
+.litso_noticeTooltip:focus-visible {
+  z-index: 20;
+  color: var(--text-on-accent);
+  background: var(--gradient-accent);
+  border-color: var(--gold);
+  outline: 0;
+  transform: translateY(-3px);
+}
+
+.litso_noticeTooltip:hover > span,
+.litso_noticeTooltip:focus-visible > span {
+  transform: scale(1.08);
+}
+
+.litso_noticeTooltip::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  z-index: 50;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  width: max-content;
+  max-width: 190px;
+  padding: 8px 10px;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  box-shadow: 0 8px 20px var(--shadow-default);
+  font: 700 7px/1.4 var(--font-condensed);
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0;
+  transform:
+    translate(-50%, 5px)
+    scale(.97);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.litso_noticeTooltip::after {
+  content: "";
+  position: absolute;
+  z-index: 51;
+  bottom: calc(100% + 7px);
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+  pointer-events: none;
+  opacity: 0;
+  transform:
+    translateX(-50%)
+    rotate(45deg);
+  transition: opacity 160ms ease;
+}
+
+.litso_noticeTooltip:hover::before,
+.litso_noticeTooltip:hover::after,
+.litso_noticeTooltip:focus-visible::before,
+.litso_noticeTooltip:focus-visible::after {
+  opacity: 1;
+}
+
+.litso_noticeTooltip:hover::before,
+.litso_noticeTooltip:focus-visible::before {
+  transform:
+    translate(-50%, 0)
+    scale(1);
+}
+
+/* Panda's RPG */
+
+.litso_noticeTooltip--paw {
+  --litso-tooltip-icon:
+    url("https://unpkg.com/lucide-static/icons/paw-print.svg");
+}
+
+
+/* Top best forums RP */
+
+.litso_noticeTooltip--trophy {
+  --litso-tooltip-icon:
+    url("https://unpkg.com/lucide-static/icons/trophy.svg");
+}
+
+
+/* Top 50 Mangas-RPG */
+
+.litso_noticeTooltip--scroll {
+  --litso-tooltip-icon:
+    url("https://unpkg.com/lucide-static/icons/scroll-text.svg");
+}
+
+
+/* Top 50 Rpg */
+
+.litso_noticeTooltip--dice {
+  --litso-tooltip-icon:
+    url("https://unpkg.com/lucide-static/icons/dices.svg");
+}
+
+
+/* Classement PRDien */
+
+.litso_noticeTooltip--palette {
+  --litso-tooltip-icon:
+    url("https://unpkg.com/lucide-static/icons/palette.svg");
+}
+
+
+/* Top 50 All-Rpg */
+
+.litso_noticeTooltip--gamepad {
+  --litso-tooltip-icon:
+    url("https://unpkg.com/lucide-static/icons/gamepad-2.svg");
+}
+
+
+/* Forum RPG PORTAL */
+
+.litso_noticeTooltip--portal {
+  --litso-tooltip-icon:
+    url("https://unpkg.com/lucide-static/icons/orbit.svg");
+}
+
+
+/* ----- RESPONSIVE ----- */
+
+@media (max-width: 600px) {
+  .litso_noticeTooltip_list {
+    gap: 8px;
+  }
+
+  .litso_noticeTooltip {
+    width: 43px;
+    height: 43px;
+    flex-basis: 43px;
+  }
+
+  .litso_noticeTooltip::before {
+    max-width: 145px;
+    font-size: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .litso_noticeTooltip,
+  .litso_noticeTooltip > span,
+  .litso_noticeTooltip::before,
+  .litso_noticeTooltip::after {
+    transition-duration: .01ms !important;
+  }
+}
