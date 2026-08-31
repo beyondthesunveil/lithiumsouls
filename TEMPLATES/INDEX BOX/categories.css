@@ -543,6 +543,7 @@
 }
 
 .litso-index-tools {
+  width:100%;
   display: flex;
   margin: -55px 0 50px;
   padding-top: 16px;
