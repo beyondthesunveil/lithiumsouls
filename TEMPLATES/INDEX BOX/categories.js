@@ -26,7 +26,7 @@
     "f19": "Phrase d'accroche",
     "f41": "Phrase d'accroche",
     "f29": "Phrase d'accroche",
-    "f2": "Phrase d'accroche",
+    "f2": "Phrase d'accroche"
   };
 
   var forumBadges = {
@@ -49,7 +49,7 @@
     "f19": "Parler",
     "f41": "S'amuser",
     "f29": "Galerie d'arts",
-    "f2": "Conserver",
+    "f2": "Conserver"
   };
 
   function cleanText(element) {
