@@ -161,18 +161,15 @@ body {
 }
 
 .litso_parto-link {
-  padding: 7px 10px;
+  padding: 7px 11px;
   color: var(--text-secondary) !important;
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
-  font: 700 7px/1 var(--font-condensed);
+  font: 700 10px / 1 var(--font-condensed);
   letter-spacing: 1px;
   text-decoration: none !important;
   text-transform: uppercase;
-  transition:
-    color 200ms ease,
-    border-color 200ms ease,
-    transform 200ms ease;
+  transition: color 200ms ease, border-color 200ms ease, transform 200ms ease;
 }
 
 .litso_parto-link:hover {
