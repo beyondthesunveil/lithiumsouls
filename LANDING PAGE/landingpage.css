@@ -928,7 +928,7 @@
   color: var(--text-secondary);
   font: 400 12px / 1.5 var(--font-sans);
   text-align: justify;
-  height: 135px;
+  height: 150px;
   overflow: auto;
 }
 
