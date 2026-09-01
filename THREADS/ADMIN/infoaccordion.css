@@ -344,9 +344,22 @@
 }
 
 .litso-info_content h3 {
-  margin: 0 0 18px;
+  position: relative;
+  margin: 23px 0 13px;
+  padding-bottom: 10px;
   color: var(--text-primary);
-  font: 600 27px/1 var(--font-display);
+  border-bottom: 1px solid var(--border-default);
+  font: 600 20px/1 var(--font-display);
+}
+
+.litso-info_content h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 45px;
+  height: 2px;
+  background: var(--gradient-accent);
 }
 
 .litso-info_content p {
