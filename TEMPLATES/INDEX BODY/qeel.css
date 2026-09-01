@@ -333,10 +333,11 @@
 
 .litso-qeel_groups {
   width: 100%;
-  min-height: 68px;
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  border-top: 1px solid var(--border-default, #343434);
+  min-height: 50px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  display: flex;
+  margin-top: 10px;
 }
 
 .litso-qeel_group {
