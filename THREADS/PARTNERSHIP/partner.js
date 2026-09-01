@@ -86,3 +86,56 @@
     initializeAllPartnershipSheets();
   }
 })();
+
+(function () {
+  "use strict";
+
+  function forceTransparentBackground() {
+    document.documentElement.style.setProperty(
+      "background",
+      "transparent",
+      "important"
+    );
+
+    document.documentElement.style.setProperty(
+      "background-color",
+      "transparent",
+      "important"
+    );
+
+    if (document.body) {
+      document.body.style.setProperty(
+        "background",
+        "transparent",
+        "important"
+      );
+
+      document.body.style.setProperty(
+        "background-color",
+        "transparent",
+        "important"
+      );
+
+      document.body.style.setProperty(
+        "margin",
+        "0",
+        "important"
+      );
+
+      document.body.style.setProperty(
+        "padding",
+        "0",
+        "important"
+      );
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      forceTransparentBackground
+    );
+  } else {
+    forceTransparentBackground();
+  }
+})();
