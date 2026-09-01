@@ -2,35 +2,79 @@
   "use strict";
 
   function initializePartnershipSheet(sheet) {
-    if (sheet.dataset.litsoPartoReady === "true") {
+    if (sheet.getAttribute("data-litso-parto-ready") === "true") {
       return;
     }
 
-    sheet.dataset.litsoPartoReady = "true";
+    sheet.setAttribute("data-litso-parto-ready", "true");
 
     var accordions = Array.prototype.slice.call(
       sheet.querySelectorAll(".litso_parto-accordion")
     );
 
+    function closeAccordion(accordion) {
+      var summary = accordion.querySelector(
+        ".litso_parto-summary"
+      );
+
+      accordion.classList.remove("is-open");
+
+      if (summary) {
+        summary.setAttribute("aria-expanded", "false");
+      }
+    }
+
+    function toggleAccordion(accordion) {
+      var summary = accordion.querySelector(
+        ".litso_parto-summary"
+      );
+
+      var shouldOpen = !accordion.classList.contains("is-open");
+
+      accordions.forEach(function (otherAccordion) {
+        closeAccordion(otherAccordion);
+      });
+
+      if (shouldOpen) {
+        accordion.classList.add("is-open");
+
+        if (summary) {
+          summary.setAttribute("aria-expanded", "true");
+        }
+      }
+    }
+
     accordions.forEach(function (accordion) {
-      accordion.addEventListener("toggle", function () {
-        if (!accordion.open) {
+      var summary = accordion.querySelector(
+        ".litso_parto-summary"
+      );
+
+      if (!summary) {
+        return;
+      }
+
+      summary.addEventListener("click", function () {
+        toggleAccordion(accordion);
+      });
+
+      summary.addEventListener("keydown", function (event) {
+        if (event.key !== "Enter" && event.key !== " ") {
           return;
         }
 
-        accordions.forEach(function (otherAccordion) {
-          if (otherAccordion !== accordion) {
-            otherAccordion.open = false;
-          }
-        });
+        event.preventDefault();
+        toggleAccordion(accordion);
       });
     });
   }
 
   function initializeAllPartnershipSheets() {
-    document
-      .querySelectorAll(".litso_parto-")
-      .forEach(initializePartnershipSheet);
+    var sheets = document.querySelectorAll(".litso_parto-");
+
+    Array.prototype.forEach.call(
+      sheets,
+      initializePartnershipSheet
+    );
   }
 
   if (document.readyState === "loading") {
