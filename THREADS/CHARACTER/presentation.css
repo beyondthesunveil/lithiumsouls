@@ -232,10 +232,9 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  flex-wrap: wrap;
   margin-top: 14px;
   overflow: auto;
-  height: 230px;
+  height: 240px;
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
 }
