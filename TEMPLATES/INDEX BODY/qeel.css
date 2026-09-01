@@ -145,6 +145,39 @@
   border: 1px solid var(--border-default, #343434);
 }
 
+.litso-qeel_newest #ava_lastmember {
+  width: 52px;
+  height: 52px;
+  display: block;
+  flex: 0 0 52px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+  border-radius: 50%;
+  background: var(--bg-elevated);
+}
+
+.litso-qeel_newest #ava_lastmember img {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  border: 0 !important;
+  border-radius: inherit;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.litso-qeel_newest #ava_lastmember:not(.is-loaded)::before {
+  content: "✦";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  font-size: 12px;
+  opacity: 0.55;
+}
+
 #ava_lastmember {
   position: absolute;
   inset: 0;
