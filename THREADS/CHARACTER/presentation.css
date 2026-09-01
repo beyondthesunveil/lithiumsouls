@@ -1,0 +1,426 @@
+.litso-presentation_,
+.litso-presentation_ * {
+  box-sizing: border-box;
+}
+
+.litso-presentation_ {
+  position: relative;
+  width: 650px;
+  margin: 35px auto;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+}
+
+.litso-presentation_header {
+  position: relative;
+  display: flex;
+  min-height: 155px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 30px 35px;
+  overflow: hidden;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+}
+
+.litso-presentation_header::before {
+  content: attr(data-ghost);
+  position: absolute;
+  top: 50%;
+  left: 31px;
+  width: 80%;
+  overflow: hidden;
+  color: transparent;
+  font: italic 83px/.75 var(--font-display);
+  letter-spacing: -5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: .55;
+  pointer-events: none;
+  transform: translateY(-50%);
+  -webkit-text-stroke: 1px var(--border-subtle);
+}
+
+.litso-presentation_header::after {
+  content: "";
+  position: absolute;
+  right: 35px;
+  bottom: 0;
+  left: 35px;
+  height: 2px;
+  background: var(--gradient-accent);
+}
+
+.litso-presentation_heading {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+}
+
+.litso-presentation_eyebrow {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--gold-dark);
+  font: 700 8px/1 var(--font-condensed);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.litso-presentation_name {
+  overflow-wrap: anywhere;
+  color: var(--text-primary);
+  font: 600 41px/.92 var(--font-display);
+  letter-spacing: -1.5px;
+  text-transform: uppercase;
+}
+
+.litso-presentation_emblem {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 105px;
+  height: 105px;
+  flex: 0 0 105px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+}
+
+.litso-presentation_emblem::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+}
+
+.litso-presentation_emblem::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  bottom: 18px;
+  width: 8px;
+  height: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+}
+
+.litso-presentation_emblem img {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+.litso-presentation_blockTitle {
+  position: relative;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.litso-presentation_blockTitle::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 55px;
+  height: 2px;
+  background: var(--gradient-accent);
+}
+
+.litso-presentation_blockTitle > span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--gold-dark);
+  font: 700 7px/1 var(--font-condensed);
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+}
+
+.litso-presentation_blockTitle > strong {
+  display: block;
+  color: var(--text-primary);
+  font: 600 23px/1 var(--font-display);
+}
+
+.litso-presentation_identity {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 226px;
+  margin-top: 14px;
+  overflow: hidden;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+}
+
+.litso-presentation_identityMain {
+  min-width: 0;
+  padding: 25px 27px;
+}
+
+.litso-presentation_catchphrase {
+  margin: 17px 0;
+  padding: 12px 16px;
+  height: 40px;
+  overflow: auto;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border-left: 2px solid var(--gold);
+  font: 600 12px/1 var(--font-display);
+  letter-spacing: 1.5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.litso-presentation_fields {
+  padding: 18px 19px;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  font: 12px/1.9 var(--font-sans);
+  height: 172px;
+  overflow: auto;
+}
+
+.litso-presentation_fields > div:not(:last-child)::after {
+  content: " ◆ ";
+  margin: 0 5px;
+  color: var(--gold);
+  font-size: 6px;
+}
+
+.litso-presentation_fields t1, t1 {
+  color: var(--gold-dark);
+  font: 700 8px/1 var(--font-condensed);
+  letter-spacing: .8px;
+  text-transform: uppercase;
+}
+
+.litso-presentation_fields strong {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.litso-presentation_portrait {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 13px;
+  background: var(--bg-elevated);
+  border-left: 1px solid var(--border-default);
+}
+
+.litso-presentation_portrait::before {
+  content: "";
+  position: absolute;
+  inset: 11px;
+  border: 1px solid var(--border-default);
+}
+
+.litso-presentation_portrait img {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 200px;
+  height: 320px;
+  object-fit: cover;
+}
+
+.litso-presentation_dual {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  overflow: auto;
+  height: 230px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+}
+
+.litso-presentation_block {
+  width: 324px;
+  padding: 25px 27px 27px;
+  overflow: auto;
+  height: 230px;
+}
+
+.litso-presentation_dual > .litso-presentation_block + .litso-presentation_block {
+  border-left: 1px solid var(--border-default);
+}
+
+.litso-presentation_text {
+  padding-top: 17px;
+  color: var(--text-secondary);
+  font: 12px/1.5 var(--font-sans);
+  text-align: justify;
+}
+
+.litso-presentation_text h3 {
+  margin: 20px 0 9px;
+  color: var(--text-primary);
+  font: 600 18px/1 var(--font-display);
+}
+
+.litso-presentation_history {
+  margin-top: 14px;
+  width:100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+}
+
+.litso-presentation_group {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 18px 0;
+}
+
+.litso-presentation_group > span {
+  height: 1px;
+  flex: 1;
+  background: var(--gradient-accent);
+}
+
+.litso-presentation_group > span:last-child {
+  background: var(--gradient-accent-reverse);
+}
+
+.litso-presentation_group > div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.litso-presentation_group small {
+  color: var(--text-muted);
+  font: 700 6px/1 var(--font-condensed);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.litso-presentation_group strong {
+  color: var(--gold-dark);
+  font: 600 17px/1 var(--font-display);
+}
+
+.litso-presentation_player {
+  padding: 25px 27px 27px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+.litso-presentation_playerText {
+  margin-top: 17px;
+  padding: 17px 19px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  font: 12px/1.9 var(--font-sans);
+}
+
+.litso-presentation_departure {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 13px;
+  padding: 13px 16px;
+  background: var(--bg-surface);
+  border-left: 2px solid var(--gold);
+}
+
+.litso-presentation_departure strong {
+  flex: 0 0 auto;
+  color: var(--gold-dark);
+  font: 700 7px/1 var(--font-condensed);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.litso-presentation_departure span {
+  color: var(--text-muted);
+  font: 9px/1.55 var(--font-sans);
+}
+
+.triggerwarning {
+  margin-bottom:10px;
+  background: transparent;
+  border: none;
+}
+
+@media (max-width: 700px) {
+  .litso-presentation_dual {
+    grid-template-columns: 1fr;
+  }
+
+  .litso-presentation_dual > .litso-presentation_block + .litso-presentation_block {
+    border-top: 1px solid var(--border-default);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .litso-presentation_header {
+    min-height: 135px;
+    padding: 25px 22px;
+  }
+
+  .litso-presentation_header::before {
+    left: 20px;
+    font-size: 55px;
+  }
+
+  .litso-presentation_name {
+    font-size: 30px;
+  }
+
+  .litso-presentation_emblem {
+    width: 75px;
+    height: 75px;
+    flex-basis: 75px;
+  }
+
+  .litso-presentation_emblem img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .litso-presentation_identity {
+    grid-template-columns: 1fr;
+  }
+
+  .litso-presentation_portrait {
+    border-top: 1px solid var(--border-default);
+    border-left: 0;
+  }
+
+  .litso-presentation_identityMain,
+  .litso-presentation_block,
+  .litso-presentation_player {
+    padding: 21px 19px 23px;
+  }
+
+  .litso-presentation_text {
+    text-align: left;
+  }
+
+  .litso-presentation_departure {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 430px) {
+  .litso-presentation_header {
+    align-items: flex-start;
+    flex-direction: column-reverse;
+  }
+
+  .litso-presentation_emblem {
+    align-self: flex-end;
+  }
+}
