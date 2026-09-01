@@ -162,21 +162,23 @@
     }
 
 
-    function cleanMemberLists() {
-      cleanTextNodes(
-        connectedMembers,
-        [
-          /membres?\s+connecté(?:e)?s?\s+au\s+cours\s+des\s+24\s+dernières?\s+heures?\s*:\s*/gi
-        ]
-      );
+function cleanMemberLists() {
+  cleanTextNodes(
+    qeel,
+    [
+      /membres?\s+connecté(?:e)?s?\s+au\s+cours\s+des\s+\d+\s+dernières?\s+heures?\s*:\s*/gi,
 
-      cleanTextNodes(
-        recentMembers,
-        [
-          /utilisateurs?\s+enregistré(?:e)?s?\s*:\s*/gi
-        ]
-      );
-    }
+      /cette\s+âme\s+foule\s+les\s+pavés\s+de\s+bonnes\s+intentions\s*[.!:]?\s*/gi
+    ]
+  );
+
+  cleanTextNodes(
+    recentMembers,
+    [
+      /utilisateurs?\s+enregistré(?:e)?s?\s*:\s*/gi
+    ]
+  );
+}
 
     displayNewestMember();
     displayStatistics();
