@@ -168,7 +168,7 @@ function cleanMemberLists() {
     [
       /membres?\s+connecté(?:e)?s?\s+au\s+cours\s+des\s+\d+\s+dernières?\s+heures?\s*:\s*/gi,
 
-      /cette\s+âme\s+foule\s+les\s+pavés\s+de\s+bonnes\s+intentions\s*[.!:]?\s*/gi
+      /(?:cette\s+âme\s+foule|ces\s+âmes\s+foulent)\s+les\s+pavés\s+de\s+bonnes\s+intentions\s*[.!:]?\s*/gi
     ]
   );
 
