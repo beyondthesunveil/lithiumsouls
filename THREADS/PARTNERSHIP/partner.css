@@ -140,14 +140,14 @@
 
 .litso_parto-links {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 7px;
-  margin-bottom: 15px;
+  margin: 22px 0 18px;
 }
 
 .litso_parto-link {
-  padding: 7px 19px;
+  padding: 7px 10px;
   color: var(--text-secondary) !important;
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
@@ -155,7 +155,10 @@
   letter-spacing: 1px;
   text-decoration: none !important;
   text-transform: uppercase;
-  transition: color 200ms ease, border-color 200ms ease, transform 200ms ease;
+  transition:
+    color 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
 }
 
 .litso_parto-link:hover {
@@ -200,7 +203,6 @@
   position: absolute;
   z-index: 0;
   inset: 7px;
-  opacity:0.5;
   padding: 1px;
   background: var(--gradient-accent);
   -webkit-mask:
@@ -293,7 +295,12 @@
   grid-template-columns: 55px minmax(0, 1fr) 42px;
   align-items: center;
   cursor: pointer;
-  list-style: none;
+  user-select: none;
+}
+
+.litso_parto-summary:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: -3px;
 }
 
 .litso_parto-number {
@@ -323,25 +330,37 @@
   border: 1px solid var(--border-default);
 }
 
-.litso_parto-toggle i {
+.litso_parto-toggleLine {
   position: absolute;
+  display: block;
   width: 10px;
   height: 1px;
   background: var(--gold);
   transition: transform 200ms ease;
 }
 
-.litso_parto-toggle i:last-child {
+.litso_parto-toggleLine:last-child {
   transform: rotate(90deg);
 }
 
+.litso_parto-accordion.is-open
+.litso_parto-toggleLine:last-child {
+  transform: rotate(0);
+}
+
 .litso_parto-content {
+  display: none;
   padding: 22px 25px 24px;
   color: var(--text-secondary);
   background: var(--bg-elevated);
   border-top: 1px solid var(--border-default);
   font: 10px/1.75 var(--font-sans);
   text-align: justify;
+}
+
+.litso_parto-accordion.is-open
+.litso_parto-content {
+  display: block;
 }
 
 .litso_parto-content b2,
@@ -390,6 +409,10 @@
 }
 
 @media (max-width: 600px) {
+  .litso_parto- {
+    padding: 15px;
+  }
+
   .litso_parto-header::before {
     font-size: 57px;
   }
@@ -426,7 +449,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .litso_parto-link,
-  .litso_parto-toggle i {
+  .litso_parto-toggleLine {
     transition-duration: .01ms !important;
   }
 }
