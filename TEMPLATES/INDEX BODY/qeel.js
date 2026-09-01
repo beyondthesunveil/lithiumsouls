@@ -105,6 +105,82 @@
         sourceText || "Nouvelle âme";
     }
 
+    function displayNewestAvatar() {
+  var avatarTarget = qeel.querySelector(
+    "#ava_lastmember"
+  );
+
+  if (!newestSource || !avatarTarget) {
+    return;
+  }
+
+  var profileLink = newestSource.querySelector(
+    'a[href*="/u"], a[href*="profile?mode=viewprofile"]'
+  );
+
+  if (!profileLink) {
+    avatarTarget.classList.add(
+      "litso-qeel_avatarUnavailable"
+    );
+
+    return;
+  }
+
+  fetch(profileLink.href, {
+    credentials: "same-origin"
+  })
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error(
+          "Profil inaccessible : " + response.status
+        );
+      }
+
+      return response.text();
+    })
+    .then(function (profileHTML) {
+      var parser = new DOMParser();
+
+      var profileDocument = parser.parseFromString(
+        profileHTML,
+        "text/html"
+      );
+
+      var avatar = profileDocument.querySelector(
+        "#litso-profile_avatar img"
+      );
+
+      if (!avatar) {
+        throw new Error(
+          "Avatar introuvable dans le profil"
+        );
+      }
+
+      var avatarClone = avatar.cloneNode(true);
+
+      avatarClone.removeAttribute("width");
+      avatarClone.removeAttribute("height");
+      avatarClone.alt = "";
+      avatarClone.loading = "eager";
+
+      avatarTarget.innerHTML = "";
+      avatarTarget.appendChild(avatarClone);
+      avatarTarget.classList.add(
+        "is-loaded"
+      );
+    })
+    .catch(function (error) {
+      avatarTarget.classList.add(
+        "litso-qeel_avatarUnavailable"
+      );
+
+      console.warn(
+        "[Lithium Souls — QEEL]",
+        error
+      );
+    });
+}
+
     function displayStatistics() {
       if (usersTarget) {
         usersTarget.textContent =
