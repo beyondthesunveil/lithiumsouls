@@ -1,11 +1,9 @@
 /* COMPLÉMENT DU CODE "infoaccordion.css" */
 
 .litso-info_introImage {
-  display: grid;
-  place-items: center;
+  margin: 10px auto 30px;
   width: 82px;
   height: 82px;
-  flex: 0 0 82px;
   padding: 5px;
   background: var(--bg-elevated);
   border: 1px solid var(--gold);
