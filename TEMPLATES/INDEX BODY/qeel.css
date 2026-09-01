@@ -377,7 +377,7 @@
 
 .litso-qeel_groupName {
   color: var(--text-primary, #ece9e4);
-  font: 700 9px var(--font-text, "Inter", sans-serif);
+  font: 700 9px var(--font-sans);
   letter-spacing: 0.7px;
   text-align: center;
   text-transform: uppercase;
