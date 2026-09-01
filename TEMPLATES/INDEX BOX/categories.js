@@ -2,17 +2,18 @@
   "use strict";
 
   var categoryIntros = [
+    "Rien ne se perd rien ne se crée tout se transforme",
     "Toute éternité commence par un seuil. Les premiers fragments du royaume vous attendent ici.",
     "Au-delà des portes s’étendent les territoires où les âmes se cherchent, se rencontrent et se consument."
   ];
 
   var forumKickers = {
-    "f1": "Phrase d'accroche",
-    "f10": "Phrase d'accroche",
-    "f4": "Phrase d'accroche",
-    "f12": "Phrase d'accroche",
-    "f13": "Phrase d'accroche",
-    "f15": "Phrase d'accroche",
+    "f1": "Sur le seuil du trépas",
+    "f10": "Aviser et appeler les Instances",
+    "f4": "Outremonde et autres joyeusetés",
+    "f12": "L’attente d’être reconnu·e",
+    "f13": "Vague à l’âme sous une plume",
+    "f15": "Se tisser soi-même",
     "f3": "Royaume vermeille du Serpent",
     "f5": "Volcan Bigarade du Dragon",
     "f6": "Ruche dorée de la Louve",
@@ -20,13 +21,13 @@
     "f8": "Cité étiolée de la Chimère",
     "f9": "Atlantide améthyste de la Siamoise",
     "f11": "Palais amarante de la Brebis",
-    "f35": "Phrase d'accroche",
-    "f20": "Phrase d'accroche",
-    "f31": "Phrase d'accroche",
-    "f19": "Phrase d'accroche",
-    "f41": "Phrase d'accroche",
-    "f29": "Phrase d'accroche",
-    "f2": "Phrase d'accroche"
+    "f35": "Ce que les univers partagent",
+    "f20": "Espace et temporalité se confondent",
+    "f31": "Loin des yeux, près de coeur",
+    "f19": "Le salon de thé",
+    "f41": "Le salon de billards",
+    "f29": "Le salon des Expositions",
+    "f2": "L’encre séchée est précieuse"
   };
 
   var forumBadges = {
