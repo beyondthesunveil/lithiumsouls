@@ -1027,7 +1027,7 @@
 }
 
 .litso-pa_root .litso-pa_event::after {
-  content: "CHAPITRE";
+  content: "IONISATION";
   position: absolute;
   right: 38px;
   top: -22px;
