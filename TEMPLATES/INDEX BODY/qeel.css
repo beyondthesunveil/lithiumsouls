@@ -1,7 +1,7 @@
 .litso-qeel_ {
   position: relative;
   width: 100%;
-  margin: 70px auto;
+  margin: 20px auto;
   overflow: hidden;
   box-sizing: border-box;
   color: var(--text-primary, #ece9e4);
@@ -333,7 +333,7 @@
 
 .litso-qeel_groups {
   width: 100%;
-  min-height: 50px;
+  min-height: 40px;
   flex-wrap: wrap;
   justify-content: space-between;
   display: flex;
@@ -342,8 +342,9 @@
 
 .litso-qeel_group {
   position: relative;
+  background-color: var(--bg-elevated);
   min-width: 0;
-  padding: 19px 18px 17px;
+  padding: 19px 37px 17px;
   display: flex;
   align-items: center;
   justify-content: center;
