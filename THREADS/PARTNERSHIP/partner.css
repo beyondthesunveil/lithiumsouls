@@ -296,10 +296,6 @@
   list-style: none;
 }
 
-.litso_parto-summary::-webkit-details-marker {
-  display: none;
-}
-
 .litso_parto-number {
   display: grid;
   height: 100%;
@@ -337,10 +333,6 @@
 
 .litso_parto-toggle i:last-child {
   transform: rotate(90deg);
-}
-
-.litso_parto-accordion[open] .litso_parto-toggle i:last-child {
-  transform: rotate(0);
 }
 
 .litso_parto-content {
