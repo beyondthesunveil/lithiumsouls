@@ -161,6 +161,96 @@
       );
     }
 
+     function rewriteOnlineSummary() {
+  var expression =
+    /il\s+y\s+a\s+en\s+tout\s+(\d+)\s+utilisateurs?\s+en\s+ligne\s*::\s*(\d+)\s+enregistré(?:e)?s?\s*,\s*(\d+)\s+invisibles?\s+et\s+(\d+)\s+invités?/i;
+
+  var elements = qeel.querySelectorAll(
+    "p, div, span"
+  );
+
+  var target = null;
+  var values = null;
+
+  Array.prototype.forEach.call(
+    elements,
+    function (element) {
+      var text = element.textContent
+        .replace(/\s+/g, " ")
+        .trim();
+
+      var match = text.match(expression);
+
+      if (!match) {
+        return;
+      }
+
+      /*
+       * On conserve l’élément le plus précis afin de ne pas
+       * remplacer accidentellement tout le contenu du QEEL.
+       */
+      var childContainsSentence =
+        Array.prototype.some.call(
+          element.children,
+          function (child) {
+            return expression.test(
+              child.textContent
+                .replace(/\s+/g, " ")
+                .trim()
+            );
+          }
+        );
+
+      if (!childContainsSentence) {
+        target = element;
+        values = match;
+      }
+    }
+  );
+
+  if (!target || !values) {
+    return;
+  }
+
+  var total = Number(values[1]);
+  var registered = Number(values[2]);
+  var invisible = Number(values[3]);
+  var guests = Number(values[4]);
+
+  var soulText =
+    total === 1
+      ? " âme foule les pavés de l’enfer"
+      : " âmes foulent les pavés de l’enfer";
+
+  var residentText =
+    registered === 1
+      ? " habitant"
+      : " habitants";
+
+  var ghostText =
+    invisible === 1
+      ? " fantôme"
+      : " fantômes";
+
+  var spectreText =
+    guests === 1
+      ? " spectre"
+      : " spectres";
+
+  target.innerHTML =
+    "<strong>" + total + "</strong>" +
+    soulText +
+    " — " +
+    "<strong>" + registered + "</strong>" +
+    residentText +
+    ", " +
+    "<strong>" + invisible + "</strong>" +
+    ghostText +
+    " et " +
+    "<strong>" + guests + "</strong>" +
+    spectreText;
+}
+
 
 function cleanMemberLists() {
   cleanTextNodes(
