@@ -89,8 +89,14 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500;1,6..96,600&family=Manrope:wght@400;500;600&display=swap");
 
+/* =========================================================
+   VARIABLES ET CONTENEUR PRINCIPAL
+   ========================================================= */
+
 .litso-pa_root {
+  /* Remplacez cette URL par votre image de contexte. */
   --litso-pa_plot-image: url("https://i.pinimg.com/1200x/84/8f/1b/848f1bd85a207cc0b8b83580cd6733e0.jpg");
+
   width: min(1200px, 100%);
   margin: 0 auto;
   position: relative;
@@ -127,44 +133,16 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
 }
 
+/* =========================================================
+   GRAND TITRE
+   ========================================================= */
+
 .litso-pa_root .litso-pa_masthead {
   min-height: 246px;
   display: grid;
   place-items: center;
   position: relative;
   overflow: hidden;
-  border-top: 1px solid var(--border-subtle);
-  background: radial-gradient(
-      circle at 9% 50%,
-      var(--accent-faded),
-      transparent 23%
-    ),
-    radial-gradient(
-      circle at 91% 50%,
-      var(--gold-faded),
-      transparent 23%
-    );
-}
-
-.litso-pa_root .litso-pa_masthead::before,
-.litso-pa_root .litso-pa_masthead::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 155px;
-  height: 155px;
-  border: 1px solid var(--gold-faded);
-  border-radius: 50%;
-  transform: translateY(-50%);
-}
-
-.litso-pa_root .litso-pa_masthead::before {
-  left: -115px;
-}
-
-.litso-pa_root .litso-pa_masthead::after {
-  right: -115px;
-  border-color: var(--accent-faded);
 }
 
 .litso-pa_root .litso-pa_titleblock {
@@ -236,6 +214,10 @@
   text-transform: uppercase;
 }
 
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
 .litso-pa_root .litso-pa_nav {
   min-height: 57px;
   display: grid;
@@ -303,7 +285,6 @@
   align-items: center;
   justify-content: center;
   gap: 7px;
-  border-left: 1px solid var(--border-subtle);
 }
 
 .litso-pa_root .litso-pa_navsocials a {
@@ -324,18 +305,17 @@
   color: var(--accent);
 }
 
+/* =========================================================
+   GRILLE PRINCIPALE — HAUTEUR EXACTE : 520PX
+   ========================================================= */
+
 .litso-pa_root .litso-pa_home {
   height: 520px;
   display: grid;
   grid-template-columns: 310px minmax(430px, 1fr) 285px;
   border: 1px solid var(--border-subtle);
   border-top: 0;
-  background: linear-gradient(
-      135deg,
-      var(--gold-faded),
-      transparent 30%
-    ),
-    var(--bg-surface);
+  background: var(--bg-surface);
 }
 
 .litso-pa_root .litso-pa_moduleheading {
@@ -346,6 +326,11 @@
   z-index: 1;
   color: var(--text-primary);
   font: italic 600 19px/1 var(--font-display);
+}
+
+.litso-pa_root .litso-pa_moduleheading > div {
+  border-bottom: 1px solid var(--bg-elevated);
+  padding: 10px;
 }
 
 .litso-pa_root .litso-pa_moduleheading > span {
@@ -371,6 +356,10 @@
   font-size: 18px;
 }
 
+/* =========================================================
+   COLONNE GAUCHE
+   ========================================================= */
+
 .litso-pa_root .litso-pa_adoption {
   display: flex;
   flex-direction: column;
@@ -390,46 +379,14 @@
   pointer-events: none;
 }
 
-.litso-pa_root .litso-pa_adoptionmeta {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: end;
-  margin: 18px 0 10px 36px;
-  position: relative;
-  z-index: 1;
-}
-
-.litso-pa_root .litso-pa_adoptionmeta > span {
-  align-self: center;
-  color: var(--text-muted);
-  font: 600 8px/1 var(--font-condensed);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.litso-pa_root .litso-pa_adoptionmeta strong {
-  grid-row: 1 / 3;
-  grid-column: 2;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--gold);
-  font: 600 42px/0.8 var(--font-display);
-}
-
-.litso-pa_root .litso-pa_adoptionmeta i {
-  color: var(--accent);
-  font: italic 500 10px/1 var(--font-display);
-}
-
 .litso-pa_root .litso-pa_soulgrid {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
   gap: 8px;
-  padding: 12px 0 17px;
+  padding: 17px 0 17px;
   position: relative;
   z-index: 3;
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
 }
 
 .litso-pa_root .litso-pa_soulgrid::before {
@@ -460,25 +417,11 @@
 .litso-pa_root .litso-pa_soul img {
   width: 100%;
   height: 100%;
+  ovject-fit:cover;
   display: block;
   border-radius: 50%;
   background: var(--bg-surface);
   filter: saturate(0.76) contrast(1.04);
-}
-
-.litso-pa_root .litso-pa_soulnumber {
-  position: absolute;
-  right: -3px;
-  bottom: -3px;
-  width: 17px;
-  height: 17px;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--border-subtle);
-  border-radius: 50%;
-  background: var(--bg-surface);
-  color: var(--text-muted);
-  font: 500 7px/1 var(--font-condensed);
 }
 
 .litso-pa_root .litso-pa_soultooltip {
@@ -508,14 +451,13 @@
   border: 5px solid transparent;
   border-top-color: var(--gold);
   transform: translateX(-50%);
+  z-index:999;
 }
 
 .litso-pa_root .litso-pa_soul:hover,
 .litso-pa_root .litso-pa_soul:focus-visible {
   z-index: 4;
   transform: translateY(-4px);
-  box-shadow: 0 0 0 1px var(--litso-pa_soul),
-    0 8px 22px color-mix(in srgb, var(--litso-pa_soul) 21%, transparent);
 }
 
 .litso-pa_root .litso-pa_soul:hover .litso-pa_soultooltip,
@@ -524,92 +466,299 @@
   transform: translate(-50%, 0);
 }
 
-.litso-pa_root .litso-pa_adoptioncall {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 11px 1px 13px;
-  color: inherit;
-  text-decoration: none;
-}
+/* =========================================================
+   PRÉ-LIENS DISPONIBLES
+   ========================================================= */
 
-.litso-pa_root .litso-pa_adoptioncall span {
-  color: var(--text-muted);
-  font: italic 500 10px/1 var(--font-display);
-}
-
-.litso-pa_root .litso-pa_adoptioncall b {
-  color: var(--gold);
-  font: 600 8px/1 var(--font-condensed);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.litso-pa_root .litso-pa_prelinks {
-  margin-top: 4px;
-}
-
-.litso-pa_root .litso-pa_prelinkstitle {
+.litso-pa_root .litso-pa_prelinkstitle,
+.litso-pa_root .litso-pa_randomtitle {
   display: flex;
   align-items: center;
   gap: 9px;
-  margin-bottom: 4px;
+  position: relative;
+  z-index: 2;
   color: var(--gold);
   font: 600 8px/1 var(--font-condensed);
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
-.litso-pa_root .litso-pa_prelinkstitle i {
+.litso-pa_root .litso-pa_prelinkstitle {
+  margin-bottom: 6px;
+}
+
+.litso-pa_root .litso-pa_prelinkstitle i,
+.litso-pa_root .litso-pa_randomtitle i {
   height: 1px;
   flex: 1;
   background: var(--border-subtle);
 }
 
-.litso-pa_root .litso-pa_prelinks > a {
-  min-height: 49px;
+.litso-pa_root .litso-pa_prelinks {
+  height: 185px;
   display: grid;
-  grid-template-columns: 24px 1fr 14px;
-  align-items: center;
-  gap: 7px;
-  border-bottom: 1px solid var(--border-subtle);
+  align-content: start;
+  gap: 4px;
+  position: relative;
+  z-index: 2;
+  padding-right: 4px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-faded) transparent;
+}
+
+.litso-pa_root .litso-pa_prelinks::-webkit-scrollbar {
+  width: 3px;
+}
+
+.litso-pa_root .litso-pa_prelinks::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.litso-pa_root .litso-pa_prelinks::-webkit-scrollbar-thumb {
+  border-radius: 99px;
+  background: var(--gold-faded);
+}
+
+.litso-pa_root .litso-pa_prelinks > a {
+  min-height: 41px;
+  display: grid;
+  grid-template-columns: 31px minmax(0, 1fr) 23px;
+  align-items: stretch;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  background: var(--bg-elevated);
   color: inherit;
   text-decoration: none;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.litso-pa_root .litso-pa_prelinks > a::before {
+  content: "";
+  width: 2px;
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--gradient-accent);
+  opacity: 0;
+  transform: scaleY(0.25);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 .litso-pa_root .litso-pa_prelinks > a > em {
+  display: grid;
+  place-items: center;
+  border-right: 1px solid var(--border-subtle);
   color: var(--text-faded);
-  font: 500 8px/1 var(--font-display);
+  font: italic 600 9px/1 var(--font-display);
+  transition: color 0.25s ease;
+}
+
+.litso-pa_root .litso-pa_prelinks > a > div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6px 9px;
 }
 
 .litso-pa_root .litso-pa_prelinks strong,
 .litso-pa_root .litso-pa_prelinks span {
   display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .litso-pa_root .litso-pa_prelinks strong {
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   color: var(--text-secondary);
-  font: italic 600 11px/1.1 var(--font-display);
+  font: italic 600 10px/1.05 var(--font-display);
+  transition: color 0.25s ease;
 }
 
 .litso-pa_root .litso-pa_prelinks span {
   color: var(--text-muted);
-  font: 600 7px/1 var(--font-condensed);
-  letter-spacing: 0.13em;
+  font: 600 6.5px/1 var(--font-condensed);
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
 .litso-pa_root .litso-pa_prelinks b {
+  display: grid;
+  place-items: center;
   color: var(--text-muted);
-  font-size: 10px;
-  transition: color 0.2s ease, transform 0.2s ease;
+  font: 400 10px/1 var(--font-sans);
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
 }
 
-.litso-pa_root .litso-pa_prelinks > a:hover b {
+.litso-pa_root .litso-pa_prelinks > a:hover,
+.litso-pa_root .litso-pa_prelinks > a:focus-visible {
+  border-color: var(--border-default);
+  background: color-mix(
+    in srgb,
+    var(--bg-elevated) 88%,
+    var(--accent) 12%
+  );
+  transform: translateX(2px);
+}
+
+.litso-pa_root .litso-pa_prelinks > a:hover::before,
+.litso-pa_root .litso-pa_prelinks > a:focus-visible::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.litso-pa_root .litso-pa_prelinks > a:hover em,
+.litso-pa_root .litso-pa_prelinks > a:focus-visible em {
+  color: var(--gold);
+}
+
+.litso-pa_root .litso-pa_prelinks > a:hover strong,
+.litso-pa_root .litso-pa_prelinks > a:focus-visible strong {
+  color: var(--text-primary);
+}
+
+.litso-pa_root .litso-pa_prelinks > a:hover b,
+.litso-pa_root .litso-pa_prelinks > a:focus-visible b {
   color: var(--accent);
-  transform: translate(3px, -3px);
+  transform: translate(2px, -2px);
+}
+
+
+/* =========================================================
+   CINQ LIENS ILLUSTRÉS ALÉATOIRES
+   ========================================================= */
+
+.litso-pa_root .litso-pa_randomtitle {
+  margin: 9px 0 6px;
+}
+
+.litso-pa_root .litso-pa_randomtitle > em {
+  color: var(--text-faded);
+  font: 500 6px/1 var(--font-condensed);
+  font-style: normal;
+  letter-spacing: 0.12em;
+}
+
+.litso-pa_root .litso-pa_randomlinks {
+  height: 66px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 5px;
+  position: relative;
+  z-index: 3;
+}
+
+.litso-pa_root .litso-pa_randomlink {
+  min-width: 0;
+  height: 66px;
+  display: block;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: 5px;
+  background: var(--bg-elevated);
+  text-decoration: none;
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.litso-pa_root .litso-pa_randomlink::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.84),
+    rgba(0, 0, 0, 0.05) 72%
+  );
+  pointer-events: none;
+}
+
+.litso-pa_root .litso-pa_randomlink::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.litso-pa_root .litso-pa_randomlink img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  object-fit: cover;
+  object-position: var(--litso-pa_position, center);
+  filter: saturate(0.72) contrast(1.05);
+  transition:
+    filter 0.35s ease,
+    transform 0.45s ease;
+}
+
+.litso-pa_root .litso-pa_randomlink span {
+  width: calc(100% - 8px);
+  position: absolute;
+  left: 4px;
+  bottom: 5px;
+  z-index: 3;
+  overflow: hidden;
+  color: #f4f0ed;
+  font: 600 6px/1 var(--font-condensed);
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.litso-pa_root .litso-pa_randomlink:hover,
+.litso-pa_root .litso-pa_randomlink:focus-visible {
+  z-index: 5;
+  border-color: var(--litso-pa_link-accent, var(--gold));
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.22),
+    0 0 0 1px var(--litso-pa_link-accent, var(--gold));
+  transform: translateY(-4px);
+}
+
+.litso-pa_root .litso-pa_randomlink:hover::after,
+.litso-pa_root .litso-pa_randomlink:focus-visible::after {
+  opacity: 1;
+}
+
+.litso-pa_root .litso-pa_randomlink:hover img,
+.litso-pa_root .litso-pa_randomlink:focus-visible img {
+  filter: saturate(1) contrast(1.04);
+  transform: scale(1.08);
+}
+
+
+/* =========================================================
+   ACCÈS RAPIDES / TOP-SITES
+   ========================================================= */
+
+.litso-pa_root .litso-pa_quickaccess {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-subtle);
 }
 
 .litso-pa_root .litso-pa_quickaccess {
@@ -635,7 +784,7 @@
 
 .litso-pa_root .litso-pa_quickicons {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   gap: 5px;
 }
 
@@ -684,6 +833,10 @@
   transform: translate(-50%, 0);
 }
 
+/* =========================================================
+   COLONNE CENTRALE
+   ========================================================= */
+
 .litso-pa_root .litso-pa_centercolumn {
   min-width: 0;
   display: grid;
@@ -699,7 +852,7 @@
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  border: 1px solid var(--gold);
+  border: 1px solid var(--gold-faded);
   background: var(--bg-surface);
   box-shadow: 0 18px 36px rgba(0, 0, 0, 0.18);
 }
@@ -773,8 +926,10 @@
 
 .litso-pa_root .litso-pa_plotsummary {
   color: var(--text-secondary);
-  font: 400 11px/1.57 var(--font-sans);
-  text-shadow: 0 2px 10px #000;
+  font: 400 12px / 1.5 var(--font-sans);
+  text-align: justify;
+  height: 135px;
+  overflow: auto;
 }
 
 .litso-pa_root .litso-pa_plotbutton {
@@ -799,7 +954,6 @@
   height: 36px;
   display: grid;
   place-items: center;
-  border-left: 1px solid var(--gold);
   color: var(--gold);
   font-size: 13px;
 }
@@ -866,7 +1020,6 @@
   background: linear-gradient(
     115deg,
     var(--accent-faded),
-    var(--gold-faded) 58%,
     var(--bg-surface)
   );
   color: inherit;
@@ -874,7 +1027,7 @@
 }
 
 .litso-pa_root .litso-pa_event::after {
-  content: "EVENT";
+  content: "CHAPITRE";
   position: absolute;
   right: 38px;
   top: -22px;
@@ -964,6 +1117,10 @@
   transform: translate(4px, -4px);
 }
 
+/* =========================================================
+   COLONNE DROITE
+   ========================================================= */
+
 .litso-pa_root .litso-pa_rightcolumn {
   min-width: 0;
   padding: 14px 17px 11px;
@@ -977,7 +1134,7 @@
 }
 
 .litso-pa_root .litso-pa_newscard {
-  margin: 11px 0 0 36px;
+  margin: 11px 0 0 0;
   position: relative;
   overflow: hidden;
 }
@@ -999,12 +1156,11 @@
 }
 
 .litso-pa_root .litso-pa_newstext {
-  display: -webkit-box;
-  overflow: hidden;
   color: var(--text-muted);
-  font: 400 9px/1.48 var(--font-sans);
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  font: 400 11px / 1.48 var(--font-sans);
+  overflow: auto;
+  height: 70px;
+  text-align: justify;
 }
 
 .litso-pa_root .litso-pa_newscard > a {
@@ -1238,6 +1394,10 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
+
+/* =========================================================
+   ADAPTATION AUX ÉCRANS PLUS PETITS
+   ========================================================= */
 
 @media (max-width: 1050px) {
   .litso-pa_root .litso-pa_home {
