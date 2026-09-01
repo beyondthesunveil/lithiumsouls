@@ -330,6 +330,26 @@
   border: 1px solid var(--border-default);
 }
 
+.litso_parto-toggle::before,
+.litso_parto-toggle::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 10px;
+  height: 1px;
+  background: var(--gold);
+  transition: transform 200ms ease;
+}
+
+.litso_parto-toggle::after {
+  transform: rotate(90deg);
+}
+
+.litso_parto-accordion.is-open
+.litso_parto-toggle::after {
+  transform: rotate(0);
+}
+
 .litso_parto-toggleLine {
   position: absolute;
   display: block;
