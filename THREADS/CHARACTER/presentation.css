@@ -135,7 +135,7 @@
   display: block;
   margin-bottom: 5px;
   color: var(--gold-dark);
-  font: 700 7px/1 var(--font-condensed);
+  font: 700 10px/1 var(--font-condensed);
   letter-spacing: 1.7px;
   text-transform: uppercase;
 }
@@ -193,7 +193,7 @@
 
 .litso-presentation_fields t1, t1 {
   color: var(--gold-dark);
-  font: 700 8px/1 var(--font-condensed);
+  font: 700 11px/1 var(--font-condensed);
   letter-spacing: .8px;
   text-transform: uppercase;
 }
