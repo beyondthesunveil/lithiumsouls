@@ -223,7 +223,7 @@
 
 .litso-info_summaryText small {
   color: var(--gold-dark);
-  font: 700 7px/1 var(--font-condensed);
+  font: 700 11px/1 var(--font-condensed);
   letter-spacing: 1.8px;
   text-transform: uppercase;
 }
@@ -239,7 +239,7 @@
 .litso-info_summaryText em {
   overflow: hidden;
   color: var(--text-muted);
-  font: 8px/1.4 var(--font-sans);
+  font: 11px/1.4 var(--font-sans);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
