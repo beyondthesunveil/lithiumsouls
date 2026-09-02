@@ -1,0 +1,640 @@
+/* =========================================================
+   REGISTRE DE VEILLE — SUJETS FAVORIS
+   Adaptation au nouveau :root de Lithium Souls
+   ========================================================= */
+
+#fa-pins-button,
+#fa-pins-panel,
+#fa-topic-fav-button {
+  box-sizing: border-box;
+}
+
+#fa-pins-button *,
+#fa-pins-panel *,
+#fa-topic-fav-button * {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   BOUTON D’OUVERTURE
+   ========================================================= */
+
+#fa-pins-button {
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radiusbis);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+#fa-pins-button:hover,
+#fa-pins-button:focus-visible,
+#fa-pins-button.is-active,
+#fa-pins-button[aria-expanded="true"] {
+  border-color: var(--accent);
+  background: var(--gradient-accent);
+  color: var(--text-invert);
+  outline: none;
+  box-shadow: 0 0 16px
+    color-mix(in srgb, var(--accent) 25%, transparent);
+  transform: scale(1.08) rotate(-6deg);
+}
+
+#fa-pins-button svg {
+  width: 21px;
+  height: 21px;
+  display: block;
+  stroke: currentColor;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   COMPTEUR
+   ========================================================= */
+
+#fa-pins-count {
+  min-width: 17px;
+  height: 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  padding: 0 5px;
+  border: 2px solid var(--bg-surface);
+  border-radius: 999px;
+  background: var(--status-important);
+  color: var(--text-invert);
+  font: 700 9px/1 var(--font-sans);
+  pointer-events: none;
+}
+
+#fa-pins-count:empty,
+#fa-pins-count[hidden] {
+  display: none;
+}
+
+
+/* =========================================================
+   PANNEAU LATÉRAL
+   ========================================================= */
+
+#fa-pins-panel {
+  --pinsPanelSize: 500px;
+
+  width: min(
+    var(--pinsPanelSize),
+    calc(100vw - 32px)
+  );
+  height: calc(100dvh - 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 996;
+  padding: 15px;
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius);
+  background: var(--bg-overlay);
+  color: var(--text-primary);
+  box-shadow:
+    -24px 0 60px
+    color-mix(in srgb, var(--text-primary) 18%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(calc(100% + 32px));
+
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease,
+    visibility 0s linear 0.35s;
+
+  will-change: transform;
+}
+
+#fa-pins-panel::before {
+  content: "";
+  width: 2px;
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 0;
+  border-radius: 0 999px 999px 0;
+  background: var(--gradient-accent-vertical);
+  pointer-events: none;
+}
+
+#fa-pins-panel.open,
+#fa-pins-panel.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease,
+    visibility 0s;
+}
+
+
+/* =========================================================
+   EN-TÊTE DU PANNEAU
+   ========================================================= */
+
+.fa-pins-head {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex: 0 0 auto;
+  margin-bottom: 3px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font: 700 12px/1 var(--font-sans);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.fa-pins-head span {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fa-pins-head svg {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  color: var(--gold);
+  stroke: currentColor;
+}
+
+
+/* =========================================================
+   BOUTON DE FERMETURE
+   ========================================================= */
+
+#fa-pins-close {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 28px;
+  padding: 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+#fa-pins-close:hover,
+#fa-pins-close:focus-visible {
+  border-color: var(--status-important);
+  background: var(--status-important);
+  color: var(--text-invert);
+  outline: none;
+  transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   AJOUT DU SUJET ACTUEL
+   ========================================================= */
+
+#fa-add-current-topic {
+  width: 100%;
+  min-height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radiusbis);
+  background: var(--bg-surface);
+  color: var(--accent);
+  cursor: pointer;
+  font: 600 10px/1 var(--font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#fa-add-current-topic:hover,
+#fa-add-current-topic:focus-visible {
+  border-color: var(--accent);
+  background: var(--gradient-accent);
+  color: var(--text-invert);
+  outline: none;
+  box-shadow: 0 0 14px
+    color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+
+/* =========================================================
+   CATÉGORIES
+   ========================================================= */
+
+.fa-pins-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+.fa-pins-cats button,
+.fa-pin-cat-select {
+  min-height: 25px;
+  padding: 5px 9px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radiusbis);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  font: 600 9px/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.fa-pins-cats button:hover,
+.fa-pins-cats button:focus-visible,
+.fa-pins-cats button.active {
+  border-color: var(--accent);
+  background: var(--gradient-accent);
+  color: var(--text-invert);
+  outline: none;
+}
+
+
+/* =========================================================
+   LISTE DES FAVORIS
+   ========================================================= */
+
+#fa-pinned-list {
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  background: var(--bg-surface);
+  list-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+#fa-pinned-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+#fa-pinned-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#fa-pinned-list::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--border-strong);
+}
+
+#fa-pinned-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  padding: 11px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radiusbis);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+#fa-pinned-list li:hover {
+  border-color: var(--accent);
+  background: var(--bg-soft);
+  transform: translateX(2px);
+}
+
+#fa-pinned-list a {
+  flex: 1;
+  min-width: 0;
+  color: var(--text-primary);
+  font: 500 11px/1.35 var(--font-sans);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#fa-pinned-list a:hover {
+  color: var(--accent);
+}
+
+
+/* =========================================================
+   ÉLÉMENT FAVORI
+   ========================================================= */
+
+.fa-pin-item {
+  cursor: grab;
+}
+
+.fa-pin-item:active {
+  cursor: grabbing;
+}
+
+.fa-pin-item.dragging {
+  opacity: 0.4;
+  transform: scale(0.98);
+}
+
+.fa-pin-content {
+  min-width: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fa-pin-title {
+  overflow: hidden;
+  color: var(--text-primary);
+  font-weight: 700 !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fa-pin-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font: 500 9px/1.2 var(--font-sans);
+}
+
+.fa-pin-forum {
+  color: var(--accent);
+}
+
+.fa-pin-last {
+  padding: 3px 7px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radiusbis);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+}
+
+
+/* =========================================================
+   AVATAR RECTO / VERSO
+   ========================================================= */
+
+.fa-pin-avatar-wrap {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  perspective: 700px;
+}
+
+.fa-pin-avatar-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.fa-pin-item:hover .fa-pin-avatar-inner {
+  transform: rotateY(180deg);
+}
+
+.fa-pin-avatar-front,
+.fa-pin-avatar-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.fa-pin-avatar-back {
+  transform: rotateY(180deg);
+}
+
+.fa-pin-avatar {
+  width: 38px;
+  height: 38px;
+  display: block;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  object-fit: cover;
+  object-position: center;
+  outline: 1px solid var(--border-default);
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   SUPPRESSION D’UN FAVORI
+   ========================================================= */
+
+.fa-remove-pin {
+  width: 21px;
+  height: 21px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 21px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: var(--status-important);
+  color: var(--text-invert);
+  cursor: pointer;
+  font: 700 10px/1 var(--font-sans);
+  transition:
+    border-color 0.2s ease,
+    filter 0.2s ease,
+    transform 0.2s ease;
+}
+
+.fa-remove-pin:hover,
+.fa-remove-pin:focus-visible {
+  border-color: var(--text-invert);
+  outline: none;
+  filter: brightness(1.12);
+  transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   INDICATEUR DE NOUVEAUTÉ
+   ========================================================= */
+
+.fa-pin-new {
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: var(--status-important);
+  color: var(--text-invert);
+  font: 700 8px/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.fa-pin-item.is-new {
+  border-color: var(--status-important) !important;
+}
+
+
+/* =========================================================
+   BOUTON FAVORI DANS UN SUJET
+   ========================================================= */
+
+#fa-topic-fav-button {
+  min-height: 30px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  position: relative !important;
+  margin: 6px 6px 0 0 !important;
+  padding: 7px 12px !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radiusbis) !important;
+  outline: none !important;
+  background: var(--bg-elevated) !important;
+  color: var(--text-secondary) !important;
+  cursor: pointer !important;
+  font: 600 11px/1 var(--font-sans) !important;
+  letter-spacing: 0.04em !important;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease !important;
+}
+
+#fa-topic-fav-button svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+  stroke: currentColor;
+  pointer-events: none;
+}
+
+#fa-topic-fav-button:hover,
+#fa-topic-fav-button:focus-visible,
+#fa-topic-fav-button.is-faved {
+  border-color: var(--accent) !important;
+  background: var(--gradient-accent) !important;
+  color: var(--text-invert) !important;
+  box-shadow: 0 0 16px
+    color-mix(in srgb, var(--accent) 20%, transparent);
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  #fa-pins-panel {
+    width: calc(100vw - 20px);
+    height: calc(100dvh - 20px);
+    top: 10px;
+    right: 10px;
+    padding: 12px;
+  }
+
+  .fa-pins-cats {
+    flex-wrap: nowrap;
+    padding-bottom: 3px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .fa-pins-cats::-webkit-scrollbar {
+    display: none;
+  }
+
+  .fa-pins-cats button {
+    flex: 0 0 auto;
+  }
+
+  #fa-pinned-list {
+    padding: 8px;
+  }
+}
+
+
+/* =========================================================
+   MOUVEMENTS RÉDUITS
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  #fa-pins-button,
+  #fa-pins-panel,
+  #fa-pins-close,
+  #fa-add-current-topic,
+  #fa-topic-fav-button,
+  #fa-pinned-list li,
+  .fa-pin-avatar-inner,
+  .fa-remove-pin {
+    transition-duration: 0.01ms !important;
+  }
+
+  .fa-pin-item:hover .fa-pin-avatar-inner {
+    transform: none;
+  }
+}
