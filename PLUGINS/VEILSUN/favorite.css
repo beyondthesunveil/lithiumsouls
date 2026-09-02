@@ -97,42 +97,58 @@
 
 #fa-pins-panel {
   --pinsPanelSize: 500px;
+  --pins-gap: 16px;
 
   width: min(
     var(--pinsPanelSize),
-    calc(100vw - 32px)
+    calc(100vw - (var(--pins-gap) * 2))
   );
-  height: calc(100dvh - 32px);
+  height: auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
   position: fixed;
-  top: 16px;
-  right: 16px;
-  z-index: 996;
+  top: 75px;
+  right: var(--pins-gap);
+  bottom: var(--pins-gap);
+  z-index: 998;
   padding: 15px;
   overflow: hidden;
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
   background: var(--bg-overlay);
   color: var(--text-primary);
   box-shadow:
     -24px 0 60px
-    color-mix(in srgb, var(--text-primary) 18%, transparent);
+    color-mix(
+      in srgb,
+      var(--text-primary) 18%,
+      transparent
+    );
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateX(calc(100% + 32px));
-
+  transform:
+    translateX(calc(100% + var(--pins-gap)));
   transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
     opacity 0.2s ease,
-    visibility 0s linear 0.35s;
-
+    visibility 0s linear 0.38s;
   will-change: transform;
+}
+
+#fa-pins-panel.open,
+#fa-pins-panel.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+  transition:
+    transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease,
+    visibility 0s;
 }
 
 #fa-pins-panel::before {
@@ -145,19 +161,6 @@
   border-radius: 0 999px 999px 0;
   background: var(--gradient-accent-vertical);
   pointer-events: none;
-}
-
-#fa-pins-panel.open,
-#fa-pins-panel.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateX(0);
-
-  transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.2s ease,
-    visibility 0s;
 }
 
 
