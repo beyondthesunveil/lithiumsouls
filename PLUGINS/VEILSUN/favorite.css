@@ -1,20 +1,16 @@
 /* =========================================================
-   REGISTRE DE VEILLE — SUJETS FAVORIS
-   Adaptation au nouveau :root de Lithium Souls
+   LITHIUM SOULS — REGISTRE DE VEILLE
+   Compatible avec le nouveau :root clair et sombre
    ========================================================= */
 
 #fa-pins-button,
 #fa-pins-panel,
-#fa-topic-fav-button {
-  box-sizing: border-box;
-}
-
+#fa-topic-fav-button,
 #fa-pins-button *,
 #fa-pins-panel *,
 #fa-topic-fav-button * {
   box-sizing: border-box;
 }
-
 
 /* =========================================================
    BOUTON D’OUVERTURE
@@ -54,18 +50,15 @@
   transform: scale(1.08) rotate(-6deg);
 }
 
-#fa-pins-button svg {
+#fa-pins-button svg,
+#fa-pins-button i {
   width: 21px;
   height: 21px;
   display: block;
+  color: currentColor;
   stroke: currentColor;
   pointer-events: none;
 }
-
-
-/* =========================================================
-   COMPTEUR
-   ========================================================= */
 
 #fa-pins-count {
   min-width: 17px;
@@ -90,9 +83,8 @@
   display: none;
 }
 
-
 /* =========================================================
-   PANNEAU LATÉRAL
+   PANNEAU — INDÉPENDANT DE LA SIDEBAR
    ========================================================= */
 
 #fa-pins-panel {
@@ -101,7 +93,11 @@
 
   width: min(
     var(--pinsPanelSize),
-    calc(100vw - (var(--pins-gap) * 2))
+    calc(
+      100vw -
+      var(--sidebar-offset, 0px) -
+      (var(--pins-gap) * 2)
+    )
   );
   height: auto;
   display: flex;
@@ -109,7 +105,10 @@
   gap: 12px;
   position: fixed;
   top: 75px;
-  right: var(--pins-gap);
+  right: calc(
+    var(--pins-gap) +
+    var(--sidebar-offset, 0px)
+  );
   bottom: var(--pins-gap);
   z-index: 998;
   padding: 15px;
@@ -118,37 +117,25 @@
   border-radius: 18px;
   background: var(--bg-overlay);
   color: var(--text-primary);
-  box-shadow:
-    -24px 0 60px
-    color-mix(
-      in srgb,
-      var(--text-primary) 18%,
-      transparent
-    );
+  box-shadow: -24px 0 60px
+    color-mix(in srgb, var(--text-primary) 18%, transparent);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform:
-    translateX(calc(100% + var(--pins-gap)));
+  transform: translateX(
+    calc(
+      100% +
+      var(--pins-gap) +
+      var(--sidebar-offset, 0px)
+    )
+  );
   transition:
     transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
     opacity 0.2s ease,
     visibility 0s linear 0.38s;
   will-change: transform;
-}
-
-#fa-pins-panel.open,
-#fa-pins-panel.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateX(0);
-  transition:
-    transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.2s ease,
-    visibility 0s;
 }
 
 #fa-pins-panel::before {
@@ -163,9 +150,20 @@
   pointer-events: none;
 }
 
+#fa-pins-panel.open,
+#fa-pins-panel.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+  transition:
+    transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease,
+    visibility 0s;
+}
 
 /* =========================================================
-   EN-TÊTE DU PANNEAU
+   EN-TÊTE
    ========================================================= */
 
 .fa-pins-head {
@@ -175,8 +173,8 @@
   justify-content: space-between;
   gap: 12px;
   flex: 0 0 auto;
-  margin-bottom: 3px;
-  padding-bottom: 12px;
+  margin: 0;
+  padding: 0 0 12px;
   border-bottom: 1px solid var(--border-subtle);
   color: var(--text-primary);
   font: 700 12px/1 var(--font-sans);
@@ -184,7 +182,7 @@
   text-transform: uppercase;
 }
 
-.fa-pins-head span {
+.fa-pins-head > span {
   min-width: 0;
   display: flex;
   align-items: center;
@@ -198,11 +196,6 @@
   color: var(--gold);
   stroke: currentColor;
 }
-
-
-/* =========================================================
-   BOUTON DE FERMETURE
-   ========================================================= */
 
 #fa-pins-close {
   width: 28px;
@@ -232,9 +225,8 @@
   transform: rotate(90deg);
 }
 
-
 /* =========================================================
-   AJOUT DU SUJET ACTUEL
+   AJOUT ET CATÉGORIES
    ========================================================= */
 
 #fa-add-current-topic {
@@ -272,11 +264,6 @@
     color-mix(in srgb, var(--accent) 22%, transparent);
 }
 
-
-/* =========================================================
-   CATÉGORIES
-   ========================================================= */
-
 .fa-pins-cats {
   display: flex;
   flex-wrap: wrap;
@@ -312,9 +299,8 @@
   outline: none;
 }
 
-
 /* =========================================================
-   LISTE DES FAVORIS
+   LISTE
    ========================================================= */
 
 #fa-pinned-list {
@@ -349,7 +335,7 @@
   background: var(--border-strong);
 }
 
-#fa-pinned-list li {
+#fa-pinned-list > li {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -365,29 +351,19 @@
     transform 0.2s ease;
 }
 
-#fa-pinned-list li:hover {
+#fa-pinned-list > li:hover {
   border-color: var(--accent);
   background: var(--bg-soft);
   transform: translateX(2px);
 }
 
-#fa-pinned-list a {
-  flex: 1;
-  min-width: 0;
-  color: var(--text-primary);
-  font: 500 11px/1.35 var(--font-sans);
-  text-decoration: none;
-  transition: color 0.2s ease;
+.fa-pin-empty {
+  min-height: 80px;
+  justify-content: center;
+  color: var(--text-muted) !important;
+  font: italic 500 11px/1.5 var(--font-sans);
+  text-align: center;
 }
-
-#fa-pinned-list a:hover {
-  color: var(--accent);
-}
-
-
-/* =========================================================
-   ÉLÉMENT FAVORI
-   ========================================================= */
 
 .fa-pin-item {
   cursor: grab;
@@ -402,52 +378,14 @@
   transform: scale(0.98);
 }
 
-.fa-pin-content {
-  min-width: 0;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.fa-pin-title {
-  overflow: hidden;
-  color: var(--text-primary);
-  font-weight: 700 !important;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.fa-pin-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-  color: var(--text-muted);
-  font: 500 9px/1.2 var(--font-sans);
-}
-
-.fa-pin-forum {
-  color: var(--accent);
-}
-
-.fa-pin-last {
-  padding: 3px 7px;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radiusbis);
-  background: var(--bg-surface);
-  color: var(--text-muted);
-}
-
-
 /* =========================================================
-   AVATAR RECTO / VERSO
+   AVATARS — AUTEUR DEVANT, DERNIER POSTEUR DERRIÈRE
    ========================================================= */
 
 .fa-pin-avatar-wrap {
-  width: 42px;
-  height: 42px;
-  flex: 0 0 42px;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
   perspective: 700px;
 }
 
@@ -476,53 +414,71 @@
 }
 
 .fa-pin-avatar {
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   display: block;
+  margin: 2px;
   border-radius: 50%;
   background: var(--bg-soft);
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
   outline: 1px solid var(--border-default);
   outline-offset: 2px;
 }
 
-
 /* =========================================================
-   SUPPRESSION D’UN FAVORI
+   CONTENU ET MÉTADONNÉES
    ========================================================= */
 
-.fa-remove-pin {
-  width: 21px;
-  height: 21px;
-  display: grid;
-  place-items: center;
-  flex: 0 0 21px;
-  padding: 0;
-  border: 1px solid transparent;
-  border-radius: 50%;
-  background: var(--status-important);
-  color: var(--text-invert);
-  cursor: pointer;
-  font: 700 10px/1 var(--font-sans);
-  transition:
-    border-color 0.2s ease,
-    filter 0.2s ease,
-    transform 0.2s ease;
+.fa-pin-content {
+  min-width: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 7px;
 }
 
-.fa-remove-pin:hover,
-.fa-remove-pin:focus-visible {
-  border-color: var(--text-invert);
+.fa-pin-title {
+  display: block;
+  overflow: hidden;
+  color: var(--text-primary);
+  font: 700 12px/1.25 var(--font-sans);
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.fa-pin-title:hover,
+.fa-pin-title:focus-visible {
+  color: var(--accent);
   outline: none;
-  filter: brightness(1.12);
-  transform: rotate(90deg);
 }
 
+.fa-pin-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  color: var(--text-muted);
+  font: 500 9px/1.25 var(--font-sans);
+}
 
-/* =========================================================
-   INDICATEUR DE NOUVEAUTÉ
-   ========================================================= */
+.fa-pin-author {
+  color: var(--text-secondary);
+}
+
+.fa-pin-forum {
+  color: var(--accent);
+}
+
+.fa-pin-last {
+  padding: 3px 7px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radiusbis);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+}
 
 .fa-pin-new {
   padding: 3px 7px;
@@ -538,9 +494,44 @@
   border-color: var(--status-important) !important;
 }
 
+.fa-pin-cat-select {
+  width: 100%;
+  min-width: 0;
+}
 
 /* =========================================================
-   BOUTON FAVORI DANS UN SUJET
+   SUPPRESSION
+   ========================================================= */
+
+.fa-remove-pin {
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 27px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: var(--status-important);
+  color: var(--text-invert);
+  cursor: pointer;
+  font: 700 11px/1 var(--font-sans);
+  transition:
+    border-color 0.2s ease,
+    filter 0.2s ease,
+    transform 0.2s ease;
+}
+
+.fa-remove-pin:hover,
+.fa-remove-pin:focus-visible {
+  border-color: var(--text-invert);
+  outline: none;
+  filter: brightness(1.12);
+  transform: rotate(90deg);
+}
+
+/* =========================================================
+   BOUTON DANS LES SUJETS
    ========================================================= */
 
 #fa-topic-fav-button {
@@ -586,18 +577,24 @@
   transform: translateY(-1px);
 }
 
-
 /* =========================================================
    RESPONSIVE
    ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 760px) {
   #fa-pins-panel {
     width: calc(100vw - 20px);
-    height: calc(100dvh - 20px);
-    top: 10px;
+    height: auto;
+    top: 70px;
     right: 10px;
+    bottom: 10px;
     padding: 12px;
+    transform: translateX(calc(100% + 20px));
+  }
+
+  #fa-pins-panel.open,
+  #fa-pins-panel.active {
+    transform: translateX(0);
   }
 
   .fa-pins-cats {
@@ -618,12 +615,11 @@
   #fa-pinned-list {
     padding: 8px;
   }
+
+  #fa-pinned-list > li {
+    align-items: flex-start;
+  }
 }
-
-
-/* =========================================================
-   MOUVEMENTS RÉDUITS
-   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   #fa-pins-button,
@@ -631,7 +627,7 @@
   #fa-pins-close,
   #fa-add-current-topic,
   #fa-topic-fav-button,
-  #fa-pinned-list li,
+  #fa-pinned-list > li,
   .fa-pin-avatar-inner,
   .fa-remove-pin {
     transition-duration: 0.01ms !important;
