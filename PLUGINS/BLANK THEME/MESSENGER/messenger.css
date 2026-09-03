@@ -1,13 +1,17 @@
-:root {
-  --FAM-windowSize: calc(100vw - 65px);
-  --FAM-fontSize: 12px;
-  --FAM-titleSize: 24px;
-}
-
 #FAM,
 #FAM .FAM-inputbox,
 #FAM-msg {
   font-family: var(--font-sans);
+}
+
+/* Variables propres à Forumactif Messenger.
+   Les valeurs de secours sont également répétées dans les règles
+   importantes afin que le module reste lisible si le :root externe
+   est chargé en retard ou mis en cache. */
+:root {
+  --FAM-windowSize: calc(100vw - 65px);
+  --FAM-fontSize: 12px;
+  --FAM-titleSize: 24px;
 }
 
 .FAM-clear,
@@ -28,12 +32,14 @@
   display: grid;
   grid-template-rows: max-content max-content 1fr;
   color: var(--text-primary);
-  font-size: var(--FAM-fontSize);
+  box-sizing: border-box;
+  padding: 15px;
+  font-size: var(--FAM-fontSize, 12px);
   background: var(--bg-surface);
   position: fixed;
   height: 100%;
-  width: 90%;
-  max-width: var(--FAM-windowSize);
+  width: var(--FAM-windowSize, calc(100vw - 65px));
+  max-width: none;
   left: 65px;
   z-index: 99;
   visibility: visible;
@@ -42,7 +48,7 @@
   transition-property: top, right, bottom, left, height, width, margin, opacity, visibility;
   transition-duration: 700ms;
   grid-template-columns: 100%;
-  box-shadow: 0 18px 50px var(--shadow-strong);
+  box-shadow: none;
 }
 
 /* Fenetre fermée */
@@ -113,7 +119,7 @@
 /* Titre de la fenetre */
 .FAM-maintitle {
   text-align: left;
-  font-size: var(--FAM-titleSize);
+  font-size: var(--FAM-titleSize, 24px);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -260,7 +266,7 @@
 
 #FAM .FAM-inputbox {
   color: var(--text-primary);
-  font-size: var(--FAM-fontSize);
+  font-size: var(--FAM-fontSize, 12px);
   background-color: var(--bg-surface);
   border: none;
   border-radius: var(--radius);
