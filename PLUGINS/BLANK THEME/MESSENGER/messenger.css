@@ -1,3 +1,9 @@
+:root {
+  --FAM-windowSize: calc(100vw - 65px);
+  --FAM-fontSize: 12px;
+  --FAM-titleSize: 24px;
+}
+
 #FAM,
 #FAM .FAM-inputbox,
 #FAM-msg {
