@@ -294,3 +294,36 @@
   width:100%;
   padding:10px;
 }
+
+.litso_charafields {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 15px;
+}
+
+.litso_charafield {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  font: 600 13px/1.4 var(--font-sans);
+}
+
+.litso_charalabel {
+  color: var(--text-muted);
+  font-family: var(--font-condensed);
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.litso_charalabel::after {
+  content: ":";
+  margin-left: 2px;
+  color: var(--text-faded);
+}
+
+.litso_characontent {
+  color: var(--gold-dark);
+  font-weight: 700;
+}
