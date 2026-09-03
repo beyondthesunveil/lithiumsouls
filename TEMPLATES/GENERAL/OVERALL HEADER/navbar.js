@@ -2,11 +2,15 @@
   "use strict";
 
   function initializeLitsoNavbar() {
-    var navbar = document.querySelector("[data-litso-nav]");
+    var navbar = document.querySelector(
+      "[data-litso-nav]"
+    );
 
     if (
       !navbar ||
-      navbar.getAttribute("data-litso-nav_ready") === "true"
+      navbar.getAttribute(
+        "data-litso-nav_ready"
+      ) === "true"
     ) {
       return;
     }
@@ -94,6 +98,8 @@
         )
       : null;
 
+    var taskPriorityInput = null;
+
     var taskList = personalPanel
       ? personalPanel.querySelector(
           "[data-litso-personal_task_list]"
@@ -136,23 +142,135 @@
         )
       : null;
 
+
+    /* =====================================================
+       CRÉATION DES OPTIONS DE PRIORITÉ
+       ===================================================== */
+
+    function createPriorityOption(
+      value,
+      label
+    ) {
+      var option = document.createElement(
+        "option"
+      );
+
+      option.value = value;
+      option.textContent = label;
+
+      return option;
+    }
+
+
+    /* =====================================================
+       AJOUT DU SÉLECTEUR AU FORMULAIRE
+       ===================================================== */
+
+    function prepareTaskComposer() {
+      if (!taskForm || !taskInput) {
+        return;
+      }
+
+      var composer = taskInput.closest(
+        ".litso-personal_taskComposer"
+      );
+
+      if (!composer) {
+        return;
+      }
+
+      taskPriorityInput = composer.querySelector(
+        "[data-litso-personal_task_priority]"
+      );
+
+      if (taskPriorityInput) {
+        return;
+      }
+
+      taskPriorityInput = document.createElement(
+        "select"
+      );
+
+      taskPriorityInput.className =
+        "litso-personal_taskPrioritySelect";
+
+      taskPriorityInput.setAttribute(
+        "data-litso-personal_task_priority",
+        ""
+      );
+
+      taskPriorityInput.setAttribute(
+        "aria-label",
+        "Priorité de la nouvelle tâche"
+      );
+
+      taskPriorityInput.appendChild(
+        createPriorityOption(
+          "normal",
+          "Courant"
+        )
+      );
+
+      taskPriorityInput.appendChild(
+        createPriorityOption(
+          "important",
+          "Important"
+        )
+      );
+
+      taskPriorityInput.appendChild(
+        createPriorityOption(
+          "urgent",
+          "Urgent"
+        )
+      );
+
+      var submitButton = composer.querySelector(
+        'button[type="submit"], button'
+      );
+
+      composer.insertBefore(
+        taskPriorityInput,
+        submitButton || null
+      );
+    }
+
+    prepareTaskComposer();
+
+
+    /* =====================================================
+       DÉCORATION DES LIENS DE NAVIGATION
+       ===================================================== */
+
     function decorateLinks() {
       if (!linksContainer) {
         return;
       }
 
+      var links =
+        linksContainer.querySelectorAll(
+          "a.mainmenu"
+        );
+
       Array.prototype.forEach.call(
-        linksContainer.querySelectorAll("a.mainmenu"),
+        links,
         function (link) {
-          if (link.querySelector(".link-text")) {
+          if (
+            link.querySelector(".link-text")
+          ) {
             return;
           }
 
           var text = link.textContent.trim();
 
+          if (!text) {
+            return;
+          }
+
           link.textContent = "";
 
-          var label = document.createElement("span");
+          var label =
+            document.createElement("span");
 
           label.className = "link-text";
           label.textContent = text;
@@ -168,9 +286,10 @@
       linksContainer &&
       "MutationObserver" in window
     ) {
-      var linkObserver = new MutationObserver(
-        decorateLinks
-      );
+      var linkObserver =
+        new MutationObserver(
+          decorateLinks
+        );
 
       linkObserver.observe(
         linksContainer,
@@ -180,6 +299,11 @@
         }
       );
     }
+
+
+    /* =====================================================
+       INFORMATIONS DU MEMBRE
+       ===================================================== */
 
     function extractAvatarSource(value) {
       if (
@@ -192,11 +316,17 @@
       var content = value.trim();
 
       if (content.charAt(0) === "<") {
-        var template = document.createElement("template");
+        var template =
+          document.createElement(
+            "template"
+          );
 
         template.innerHTML = content;
 
-        var image = template.content.querySelector("img");
+        var image =
+          template.content.querySelector(
+            "img"
+          );
 
         return image
           ? image.getAttribute("src") || ""
@@ -237,14 +367,20 @@
         : "Bienvenue sur le forum";
     }
 
-    if (personalWelcome && loggedIn) {
+    if (
+      personalWelcome &&
+      loggedIn
+    ) {
       personalWelcome.textContent =
-        "Les apartés de " + displayName + ".";
+        "Les apartés de " +
+        displayName +
+        ".";
     }
 
-    var avatarSource = extractAvatarSource(
-      userData.avatar
-    );
+    var avatarSource =
+      extractAvatarSource(
+        userData.avatar
+      );
 
     if (
       avatar &&
@@ -253,7 +389,8 @@
     ) {
       avatar.textContent = "";
 
-      var avatarImage = document.createElement("img");
+      var avatarImage =
+        document.createElement("img");
 
       avatarImage.src = avatarSource;
       avatarImage.alt = "";
@@ -261,6 +398,11 @@
 
       avatar.appendChild(avatarImage);
     }
+
+
+    /* =====================================================
+       DONNÉES PERSONNELLES
+       ===================================================== */
 
     var personalData = {
       notes: "",
@@ -272,38 +414,48 @@
     var panelCloseTimer = null;
 
 
+    /* =====================================================
+       CHARGEMENT DES DONNÉES
+       ===================================================== */
+
     function loadPersonalData() {
       if (!loggedIn) {
         return;
       }
 
       try {
-        var storedValue = window.localStorage.getItem(
-          personalStorageKey
-        );
+        var storedValue =
+          window.localStorage.getItem(
+            personalStorageKey
+          );
 
         if (!storedValue) {
           return;
         }
 
-        var parsedValue = JSON.parse(storedValue);
+        var parsedValue =
+          JSON.parse(storedValue);
 
         if (
           parsedValue &&
           typeof parsedValue === "object"
         ) {
           personalData.notes =
-            typeof parsedValue.notes === "string"
+            typeof parsedValue.notes ===
+            "string"
               ? parsedValue.notes
               : "";
 
           personalData.tasks =
-            Array.isArray(parsedValue.tasks)
+            Array.isArray(
+              parsedValue.tasks
+            )
               ? parsedValue.tasks
               : [];
 
           personalData.activeTab =
-            parsedValue.activeTab === "tasks"
+            parsedValue.activeTab ===
+            "tasks"
               ? "tasks"
               : "notes";
         }
@@ -316,6 +468,10 @@
       }
     }
 
+
+    /* =====================================================
+       SAUVEGARDE DES DONNÉES
+       ===================================================== */
 
     function savePersonalData() {
       if (!loggedIn) {
@@ -335,6 +491,11 @@
       }
     }
 
+
+    /* =====================================================
+       OUVERTURE ET FERMETURE DU PANNEAU
+       ===================================================== */
+
     function setPersonalPanel(open) {
       if (
         !loggedIn ||
@@ -345,12 +506,16 @@
       }
 
       if (panelCloseTimer) {
-        window.clearTimeout(panelCloseTimer);
+        window.clearTimeout(
+          panelCloseTimer
+        );
+
         panelCloseTimer = null;
       }
 
       if (open) {
         personalPanel.hidden = false;
+
         personalPanel.setAttribute(
           "aria-hidden",
           "false"
@@ -361,47 +526,64 @@
           "true"
         );
 
-        document.documentElement.classList.add(
-          "litso-personal-open"
-        );
+        document.documentElement
+          .classList.add(
+            "litso-personal-open"
+          );
 
-        window.requestAnimationFrame(function () {
-          personalPanel.classList.add("is-open");
-        });
-      } else {
-        personalPanel.classList.remove("is-open");
-
-        personalPanel.setAttribute(
-          "aria-hidden",
-          "true"
-        );
-
-        member.setAttribute(
-          "aria-expanded",
-          "false"
-        );
-
-        document.documentElement.classList.remove(
-          "litso-personal-open"
-        );
-
-        panelCloseTimer = window.setTimeout(
+        window.requestAnimationFrame(
           function () {
-            if (
-              member.getAttribute("aria-expanded") !==
-              "true"
-            ) {
-              personalPanel.hidden = true;
-            }
-          },
-          260
+            personalPanel.classList.add(
+              "is-open"
+            );
+          }
         );
+      } else {
+        personalPanel.classList.remove(
+          "is-open"
+        );
+
+        personalPanel.setAttribute(
+          "aria-hidden",
+          "true"
+        );
+
+        member.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+        document.documentElement
+          .classList.remove(
+            "litso-personal-open"
+          );
+
+        panelCloseTimer =
+          window.setTimeout(
+            function () {
+              if (
+                member.getAttribute(
+                  "aria-expanded"
+                ) !== "true"
+              ) {
+                personalPanel.hidden =
+                  true;
+              }
+            },
+            450
+          );
       }
     }
 
+
+    /* =====================================================
+       COMPORTEMENT DU BOUTON MEMBRE
+       ===================================================== */
+
     if (member) {
       if (loggedIn) {
-        member.href = "#litso-personal-panel";
+        member.href =
+          "#litso-personal-panel";
 
         member.setAttribute(
           "aria-label",
@@ -429,7 +611,9 @@
                 "aria-expanded"
               ) === "true";
 
-            setPersonalPanel(!currentlyOpen);
+            setPersonalPanel(
+              !currentlyOpen
+            );
           }
         );
       } else {
@@ -452,6 +636,7 @@
 
     if (personalPanel) {
       personalPanel.hidden = true;
+
       personalPanel.setAttribute(
         "aria-hidden",
         "true"
@@ -476,7 +661,15 @@
       }
     );
 
-    function activatePersonalTab(tabName, save) {
+
+    /* =====================================================
+       GESTION DES ONGLETS
+       ===================================================== */
+
+    function activatePersonalTab(
+      tabName,
+      save
+    ) {
       var selectedTab =
         tabName === "tasks"
           ? "tasks"
@@ -497,7 +690,9 @@
 
           tab.setAttribute(
             "aria-selected",
-            active ? "true" : "false"
+            active
+              ? "true"
+              : "false"
           );
         }
       );
@@ -519,7 +714,8 @@
         }
       );
 
-      personalData.activeTab = selectedTab;
+      personalData.activeTab =
+        selectedTab;
 
       if (save !== false) {
         savePersonalData();
@@ -542,6 +738,11 @@
       }
     );
 
+
+    /* =====================================================
+       COMPTEUR DE CARACTÈRES
+       ===================================================== */
+
     function updateCharacterCounter() {
       if (
         !notesField ||
@@ -550,21 +751,30 @@
         return;
       }
 
-      var length = notesField.value.length;
+      var length =
+        notesField.value.length;
 
       characterCounter.textContent =
         length +
-        (length > 1
-          ? " caractères"
-          : " caractère");
+        (
+          length > 1
+            ? " caractères"
+            : " caractère"
+        );
     }
+
+
+    /* =====================================================
+       SAUVEGARDE AUTOMATIQUE DES NOTES
+       ===================================================== */
 
     function scheduleNoteSave() {
       if (!notesField) {
         return;
       }
 
-      personalData.notes = notesField.value;
+      personalData.notes =
+        notesField.value;
 
       updateCharacterCounter();
 
@@ -574,20 +784,23 @@
       }
 
       if (noteSaveTimer) {
-        window.clearTimeout(noteSaveTimer);
+        window.clearTimeout(
+          noteSaveTimer
+        );
       }
 
-      noteSaveTimer = window.setTimeout(
-        function () {
-          savePersonalData();
+      noteSaveTimer =
+        window.setTimeout(
+          function () {
+            savePersonalData();
 
-          if (saveStatus) {
-            saveStatus.textContent =
-              "Sauvegardé";
-          }
-        },
-        400
-      );
+            if (saveStatus) {
+              saveStatus.textContent =
+                "Sauvegardé";
+            }
+          },
+          400
+        );
     }
 
     if (notesField) {
@@ -597,39 +810,339 @@
       );
     }
 
+
+    /* =====================================================
+       IDENTIFIANT UNIQUE DES TÂCHES
+       ===================================================== */
+
     function createTaskIdentifier() {
       return (
-        String(new Date().getTime()) +
+        String(
+          new Date().getTime()
+        ) +
         "-" +
         String(
-          Math.floor(Math.random() * 100000)
+          Math.floor(
+            Math.random() * 100000
+          )
         )
       );
     }
 
 
+    /* =====================================================
+       MISE À NIVEAU DES ANCIENNES TÂCHES
+       ===================================================== */
+
     function normalizeTasks() {
-      personalData.tasks = personalData.tasks
-        .filter(function (task) {
-          return (
-            task &&
-            typeof task.text === "string"
+      personalData.tasks =
+        personalData.tasks
+          .filter(
+            function (task) {
+              return (
+                task &&
+                typeof task.text ===
+                  "string"
+              );
+            }
+          )
+          .map(
+            function (task) {
+              return {
+                id:
+                  task.id ||
+                  createTaskIdentifier(),
+
+                text: task.text,
+
+                completed:
+                  task.completed === true,
+
+                priority:
+                  task.priority ===
+                    "urgent" ||
+                  task.priority ===
+                    "important"
+                    ? task.priority
+                    : "normal"
+              };
+            }
           );
-        })
-        .map(function (task) {
-          return {
-            id:
-              task.id ||
-              createTaskIdentifier(),
-
-            text: task.text,
-
-            completed:
-              task.completed === true
-          };
-        });
     }
 
+
+    /* =====================================================
+       CRÉATION D’UNE TÂCHE
+       ===================================================== */
+
+    function createTaskElement(task) {
+      var taskElement =
+        document.createElement("div");
+
+      taskElement.className =
+        "litso-personal_task " +
+        "is-priority-" +
+        task.priority;
+
+      if (task.completed) {
+        taskElement.classList.add(
+          "is-completed"
+        );
+      }
+
+      taskElement.setAttribute(
+        "data-task-id",
+        task.id
+      );
+
+
+      /* Case à cocher */
+
+      var taskCheckbox =
+        document.createElement("label");
+
+      taskCheckbox.className =
+        "litso-personal_checkbox";
+
+      var checkboxInput =
+        document.createElement("input");
+
+      checkboxInput.type = "checkbox";
+      checkboxInput.checked =
+        task.completed;
+
+      checkboxInput.setAttribute(
+        "aria-label",
+        task.completed
+          ? "Remettre la tâche en cours"
+          : "Marquer la tâche comme terminée"
+      );
+
+      var checkboxVisual =
+        document.createElement("span");
+
+
+      /* Texte de la tâche */
+
+      var taskText =
+        document.createElement("span");
+
+      taskText.className =
+        "litso-personal_taskText";
+
+      taskText.textContent =
+        task.text;
+
+
+      /* Priorité de la tâche */
+
+      var prioritySelect =
+        document.createElement("select");
+
+      prioritySelect.className =
+        "litso-personal_taskPriority";
+
+      prioritySelect.setAttribute(
+        "aria-label",
+        "Modifier la priorité de " +
+          task.text
+      );
+
+      prioritySelect.appendChild(
+        createPriorityOption(
+          "normal",
+          "Courant"
+        )
+      );
+
+      prioritySelect.appendChild(
+        createPriorityOption(
+          "important",
+          "Important"
+        )
+      );
+
+      prioritySelect.appendChild(
+        createPriorityOption(
+          "urgent",
+          "Urgent"
+        )
+      );
+
+      prioritySelect.value =
+        task.priority;
+
+
+      /* Bouton de suppression */
+
+      var deleteButton =
+        document.createElement("button");
+
+      deleteButton.className =
+        "litso-personal_taskDelete";
+
+      deleteButton.type = "button";
+      deleteButton.title =
+        "Supprimer la tâche";
+
+      deleteButton.setAttribute(
+        "aria-label",
+        "Supprimer la tâche"
+      );
+
+      var deleteIcon =
+        document.createElement("i");
+
+      deleteIcon.className =
+        "ion-close-round";
+
+
+      /* Assemblage */
+
+      taskCheckbox.appendChild(
+        checkboxInput
+      );
+
+      taskCheckbox.appendChild(
+        checkboxVisual
+      );
+
+      deleteButton.appendChild(
+        deleteIcon
+      );
+
+      taskElement.appendChild(
+        taskCheckbox
+      );
+
+      taskElement.appendChild(
+        taskText
+      );
+
+      taskElement.appendChild(
+        prioritySelect
+      );
+
+      taskElement.appendChild(
+        deleteButton
+      );
+
+
+      /* Changement d’état */
+
+      checkboxInput.addEventListener(
+        "change",
+        function () {
+          task.completed =
+            checkboxInput.checked;
+
+          savePersonalData();
+          renderTasks();
+        }
+      );
+
+
+      /* Changement de priorité */
+
+      prioritySelect.addEventListener(
+        "change",
+        function () {
+          task.priority =
+            prioritySelect.value;
+
+          savePersonalData();
+          renderTasks();
+        }
+      );
+
+
+      /* Suppression */
+
+      deleteButton.addEventListener(
+        "click",
+        function () {
+          personalData.tasks =
+            personalData.tasks.filter(
+              function (storedTask) {
+                return (
+                  storedTask.id !==
+                  task.id
+                );
+              }
+            );
+
+          savePersonalData();
+          renderTasks();
+        }
+      );
+
+      return taskElement;
+    }
+
+
+    /* =====================================================
+       CRÉATION D’UN GROUPE DE TÂCHES
+       ===================================================== */
+
+    function createTaskGroup(
+      title,
+      tasks,
+      state
+    ) {
+      var group =
+        document.createElement(
+          "section"
+        );
+
+      group.className =
+        "litso-personal_taskGroup " +
+        "is-" +
+        state;
+
+      var header =
+        document.createElement("div");
+
+      header.className =
+        "litso-personal_taskGroupHeader";
+
+      var label =
+        document.createElement("span");
+
+      label.textContent = title;
+
+      var counter =
+        document.createElement("strong");
+
+      counter.textContent =
+        String(tasks.length);
+
+      var list =
+        document.createElement("div");
+
+      list.className =
+        "litso-personal_taskGroupList";
+
+      header.appendChild(label);
+      header.appendChild(counter);
+
+      tasks.forEach(
+        function (task) {
+          list.appendChild(
+            createTaskElement(task)
+          );
+        }
+      );
+
+      group.appendChild(header);
+      group.appendChild(list);
+
+      return group;
+    }
+
+
+    /* =====================================================
+       AFFICHAGE DES TÂCHES
+       ===================================================== */
 
     function renderTasks() {
       if (!taskList) {
@@ -638,152 +1151,57 @@
 
       taskList.textContent = "";
 
-      var total = personalData.tasks.length;
+      var currentTasks =
+        personalData.tasks.filter(
+          function (task) {
+            return !task.completed;
+          }
+        );
 
-      var completed =
+      var completedTasks =
         personalData.tasks.filter(
           function (task) {
             return task.completed;
           }
-        ).length;
+        );
 
-      var remaining = total - completed;
+      var total =
+        personalData.tasks.length;
 
-      personalData.tasks.forEach(
-        function (task) {
-          var taskElement =
-            document.createElement("div");
+      var completed =
+        completedTasks.length;
 
-          taskElement.className =
-            "litso-personal_task";
-
-          if (task.completed) {
-            taskElement.classList.add(
-              "is-completed"
-            );
-          }
-
-          taskElement.setAttribute(
-            "data-task-id",
-            task.id
-          );
+      var remaining =
+        currentTasks.length;
 
 
-          var taskCheckbox =
-            document.createElement("label");
+      /* Groupe des tâches en cours */
 
-          taskCheckbox.className =
-            "litso-personal_checkbox";
-
-
-          var checkboxInput =
-            document.createElement("input");
-
-          checkboxInput.type = "checkbox";
-          checkboxInput.checked =
-            task.completed;
-
-          checkboxInput.setAttribute(
-            "aria-label",
-            task.completed
-              ? "Marquer la tâche comme non terminée"
-              : "Marquer la tâche comme terminée"
-          );
-
-          var checkboxVisual =
-            document.createElement("span");
+      if (total > 0) {
+        taskList.appendChild(
+          createTaskGroup(
+            "En cours",
+            currentTasks,
+            "current"
+          )
+        );
+      }
 
 
-          var taskText =
-            document.createElement("span");
+      /* Groupe des tâches terminées */
 
-          taskText.className =
-            "litso-personal_taskText";
-
-          taskText.textContent = task.text;
-
-
-          var deleteButton =
-            document.createElement("button");
-
-          deleteButton.className =
-            "litso-personal_taskDelete";
-
-          deleteButton.type = "button";
-
-          deleteButton.setAttribute(
-            "aria-label",
-            "Supprimer la tâche"
-          );
-
-          deleteButton.title =
-            "Supprimer la tâche";
-
-          var deleteIcon =
-            document.createElement("i");
-
-          deleteIcon.className =
-            "ion-close-round";
+      if (completedTasks.length) {
+        taskList.appendChild(
+          createTaskGroup(
+            "Terminé",
+            completedTasks,
+            "completed"
+          )
+        );
+      }
 
 
-          taskCheckbox.appendChild(
-            checkboxInput
-          );
-
-          taskCheckbox.appendChild(
-            checkboxVisual
-          );
-
-          deleteButton.appendChild(
-            deleteIcon
-          );
-
-          taskElement.appendChild(
-            taskCheckbox
-          );
-
-          taskElement.appendChild(
-            taskText
-          );
-
-          taskElement.appendChild(
-            deleteButton
-          );
-
-          checkboxInput.addEventListener(
-            "change",
-            function () {
-              task.completed =
-                checkboxInput.checked;
-
-              savePersonalData();
-              renderTasks();
-            }
-          );
-
-          deleteButton.addEventListener(
-            "click",
-            function () {
-              personalData.tasks =
-                personalData.tasks.filter(
-                  function (storedTask) {
-                    return (
-                      storedTask.id !==
-                      task.id
-                    );
-                  }
-                );
-
-              savePersonalData();
-              renderTasks();
-            }
-          );
-
-          taskList.appendChild(
-            taskElement
-          );
-        }
-      );
+      /* Compteurs */
 
       if (taskCount) {
         taskCount.textContent =
@@ -792,23 +1210,32 @@
 
       if (taskProgress) {
         taskProgress.textContent =
-          completed + " / " + total;
+          completed +
+          " / " +
+          total;
       }
 
       if (remainingLabel) {
         remainingLabel.textContent =
           remaining +
-          (remaining > 1
-            ? " tâches restantes"
-            : " tâche restante");
+          (
+            remaining > 1
+              ? " tâches restantes"
+              : " tâche restante"
+          );
       }
 
+
+      /* État vide et pied du module */
+
       if (emptyState) {
-        emptyState.hidden = total > 0;
+        emptyState.hidden =
+          total > 0;
       }
 
       if (taskFooter) {
-        taskFooter.hidden = total === 0;
+        taskFooter.hidden =
+          total === 0;
       }
 
       if (clearCompleted) {
@@ -817,7 +1244,15 @@
       }
     }
 
-    function addTask(text) {
+
+    /* =====================================================
+       AJOUT D’UNE NOUVELLE TÂCHE
+       ===================================================== */
+
+    function addTask(
+      text,
+      priority
+    ) {
       var cleanText = text
         .replace(/\s+/g, " ")
         .trim();
@@ -829,26 +1264,56 @@
       personalData.tasks.unshift({
         id: createTaskIdentifier(),
         text: cleanText,
-        completed: false
+        completed: false,
+
+        priority:
+          priority === "urgent" ||
+          priority === "important"
+            ? priority
+            : "normal"
       });
 
       savePersonalData();
       renderTasks();
     }
 
-    if (taskForm && taskInput) {
+
+    /* =====================================================
+       SOUMISSION DU FORMULAIRE
+       ===================================================== */
+
+    if (
+      taskForm &&
+      taskInput
+    ) {
       taskForm.addEventListener(
         "submit",
         function (event) {
           event.preventDefault();
 
-          addTask(taskInput.value);
+          addTask(
+            taskInput.value,
+            taskPriorityInput
+              ? taskPriorityInput.value
+              : "normal"
+          );
 
           taskInput.value = "";
+
+          if (taskPriorityInput) {
+            taskPriorityInput.value =
+              "normal";
+          }
+
           taskInput.focus();
         }
       );
     }
+
+
+    /* =====================================================
+       SUPPRESSION DES TÂCHES TERMINÉES
+       ===================================================== */
 
     if (clearCompleted) {
       clearCompleted.addEventListener(
@@ -867,9 +1332,20 @@
       );
     }
 
+
+    /* =====================================================
+       INITIALISATION DES DONNÉES
+       ===================================================== */
+
     if (loggedIn) {
       loadPersonalData();
       normalizeTasks();
+
+      /*
+       * Enregistre également les anciennes
+       * tâches après leur mise à niveau.
+       */
+      savePersonalData();
 
       if (notesField) {
         notesField.value =
@@ -886,7 +1362,14 @@
     }
   }
 
-  if (document.readyState === "loading") {
+
+  /* =======================================================
+     INITIALISATION GÉNÉRALE
+     ======================================================= */
+
+  if (
+    document.readyState === "loading"
+  ) {
     document.addEventListener(
       "DOMContentLoaded",
       initializeLitsoNavbar,
