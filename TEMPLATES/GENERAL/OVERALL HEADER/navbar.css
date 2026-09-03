@@ -73,6 +73,10 @@ body {
     transform 0.25s ease,
 }
 
+.litso-nav_home a {
+  var(--text-primary) !important;
+}
+
 .litso-nav_home::before {
   content: "";
   width: 17px;
