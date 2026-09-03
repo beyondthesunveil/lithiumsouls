@@ -22,28 +22,78 @@
       // Sélecteurs CSS
       // Permet d'aller chercher les éléments des pages par leur class
       select: {
-        // Titre d'un forum et d'un sujet
-        forum_info: ".page-title",
-        // Titre d'un sujet dans la liste des sujets ou d'un forum
-        forumtitle: "a.forumtitle, a.topictitle",
-        // Forum ou sujet dans la liste des sujets
-        topic: ".forum, .topicslist_row",
-        // Date du dernier message d'un sujet dans la liste des sujets
-        lastpost_date: ".lastpost > span",
-        // Avatar du dernier posteur d'un sujet dans la liste des sujets
-        lastpost_avatar: ".lastpostavatar img",
-        // Type d'un sujet (note, annonce, sondage...)
-        topic_type: ".topic-type > strong",
-        // Un post
-        post: ".post_row",
-        // Avatar du post
-        post_avatar: ".post_avatar img",
-        // Pseudo de l'auteur du post
-        post_name: ".post_pseudo",
-        // Date du post
-        post_date: ".post_date time",
-        // Contenu du post
-        post_message: ".content > div",
+  // Titre de la page actuellement consultée
+  forum_info:
+    ".litso-viewforum_title, " +
+    ".litso-msg_titlemap, " +
+    ".litso-cat_title > h2, " +
+    ".page-title",
+
+  // Titre d’un forum ou d’un sujet
+  forumtitle:
+    ".litso-forum_title a, " +
+    ".litso-topiclist_topictleFRM > a, " +
+    "a.forumtitle, " +
+    "a.topictitle",
+
+  // Carte d’un forum ou ligne d’un sujet
+  topic:
+    ".litso-forum, " +
+    ".litso-topiclist_background, " +
+    ".forum, " +
+    ".topicslist_row",
+
+  // Date du dernier message
+  lastpost_date:
+    ".litso-topiclist_lastpostinfos > span:first-child, " +
+    ".litso-lastpost_meta, " +
+    ".lastpost > span",
+
+  // Avatar du dernier posteur
+  lastpost_avatar:
+    ".litso-topiclist_lastpostava img, " +
+    ".litso-lastpost_avatar--real img, " +
+    ".litso-lastpost_avatar img, " +
+    ".lastpostavatar img",
+
+  // Type de sujet
+  topic_type:
+    ".litso-topiclist_type, " +
+    ".topic-type > strong",
+
+  // Publication
+  post:
+    ".litso-msg_postprofile > .post, " +
+    ".post_row",
+
+  // Avatar de l’auteur
+  post_avatar:
+    ".litso-msg_posteravatar img, " +
+    ".post_avatar img",
+
+  // Pseudo de l’auteur
+  post_name:
+    ".litso-msg_postname, " +
+    ".post_pseudo",
+
+  // Date de publication
+  post_date:
+    ".litso-msg_topicre span, " +
+    ".post_date time",
+
+  // Contenu de la publication
+  post_message:
+    ".litso-msg_content > div:first-child, " +
+    ".content > div",
+
+  // Pagination
+  pagination:
+    ".litso-msg_pages .pagination:not(strong), " +
+    ".pagination:not(strong)",
+
+  page_back: ".pag-img:first-child",
+  new_topic: '[href$="mode=newtopic"]',
+  post_reply: '[href$="mode=reply"]',
 
         // Réservé
         pagination: ".pagination:not(strong)",
