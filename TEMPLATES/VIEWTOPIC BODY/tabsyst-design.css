@@ -1,6 +1,7 @@
 .litso_tabsystem {
   box-sizing: border-box;
-  width: 100%;
+  width: 265px;
+  margin: auto;
   padding: 15px;
 }
 
@@ -324,6 +325,6 @@
 }
 
 .litso_characontent {
-  color: var(--gold-dark);
-  font-weight: 700;
+  color: var(--text-primary);
+  font: 12px var(--font-sans);
 }
