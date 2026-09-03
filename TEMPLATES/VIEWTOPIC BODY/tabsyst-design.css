@@ -22,18 +22,18 @@
   height: 30px;
   margin: 0;
   padding: 2px 11px;
-  border: 1px solid var(--th-cl-bord);
+  border: 1px solid var(--border-default);
   border-radius: 5px;
-  background: var(--th-cl-cardAlt);
-  color: var(--th-cl-sub);
+  background: var(--bg-elevated);
+  color: var(--text-muted);
   cursor: pointer;
-  font: 700 11px/1 var(--fte2);
+  font: 700 11px/1 var(--font-condensed);
   text-transform: lowercase;
   transition:
-    background var(--th-trans-med),
-    color var(--th-trans-med),
-    border-color var(--th-trans-med),
-    transform var(--th-trans-med);
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .utppVB_tabsystem
@@ -46,18 +46,18 @@
 .utppVB_tabsystem > .utppVB_tabList > .utppVB_tabButton:hover {
   transform: translateY(-1px);
   border-color: transparent;
-  background: var(--th-grad-chip);
-  color: var(--th-cl-font);
+  background: var(--gradient-accent);
+  color: var(--text-on-accent);
 }
 
 .utppVB_tabsystem > .utppVB_tabList > .utppVB_tabButton.utppVB_tabButtonActive {
   border-color: transparent;
-  background: var(--th-cl-neutral);
-  color: var(--th-cl-font);
+  background: var(--bg-soft);
+  color: var(--text-primary);
 }
 
 .utppVB_tabsystem > .utppVB_tabList > .utppVB_tabButton:focus-visible {
-  outline: 2px solid var(--th-cl-acc3);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -112,12 +112,12 @@
   left: 50%;
   bottom: calc(100% + 8px);
   padding: 5px 8px;
-  border: 1px solid var(--th-cl-bord);
-  border-radius: var(--th-radius-sm);
-  background: var(--th-cl-panel);
-  color: var(--th-cl-font);
-  box-shadow: 0 8px 22px var(--th-cl-shadow);
-  font: 600 9px/1.2 var(--fte2);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  box-shadow: 0 8px 22px rgba(31, 55, 52, 0.2);
+  font: 600 9px/1.2 var(--font-condensed);
   letter-spacing: 0.03em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -126,9 +126,9 @@
   pointer-events: none;
   transform: translateX(-50%) translateY(4px);
   transition:
-    opacity var(--th-trans-fast),
-    visibility var(--th-trans-fast),
-    transform var(--th-trans-fast);
+    opacity 0.15s ease,
+    visibility 0.15s ease,
+    transform 0.15s ease;
 }
 
 .utppVB_tabsystem > .utppVB_tabList > .utppVB_tabButtonIcon:hover::after,
@@ -144,8 +144,8 @@
   min-height: 150px;
   overflow: hidden;
   border-radius: 5px;
-  background: var(--th-cl-neutral);
-  color: var(--th-cl-acc3);
+  background: var(--bg-soft);
+  color: var(--accent);
 }
 
 .utppVB_tabsystem > .utppVB_tabPanels > .utppVB_tabPanel {
@@ -180,10 +180,6 @@
   align-self: center;
 }
 
-[data-color-scheme="dark"] .utppVB_tabsystem > .utppVB_tabPanels {
-  color: var(--th-cl-acc2);
-}
-
 .utppVB_contFields {
   display: flex;
   align-items: center;
@@ -206,28 +202,28 @@
   display: grid;
   place-items: center;
   padding: 0;
-  border: 1px solid var(--th-cl-bord);
+  border: 1px solid var(--border-default);
   border-radius: 10px;
-  background: var(--th-cl-cardAlt);
-  color: var(--th-cl-font);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
   font-size: 0;
   text-decoration: none;
   transition:
-    transform var(--th-trans-med),
-    background var(--th-trans-med),
-    color var(--th-trans-med),
-    border-color var(--th-trans-med);
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .utppVB_contField:hover {
   transform: translateY(-2px);
   border-color: transparent;
-  background: var(--th-grad-chip);
-  color: var(--th-cl-font);
+  background: var(--gradient-accent);
+  color: var(--text-on-accent);
 }
 
 .utppVB_contField:focus-visible {
-  outline: 2px solid var(--th-cl-acc3);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -271,12 +267,12 @@
   left: 50%;
   bottom: calc(100% + 9px);
   padding: 6px 9px;
-  border: 1px solid var(--th-cl-bord);
-  border-radius: var(--th-radius-sm);
-  background: var(--th-cl-panel);
-  color: var(--th-cl-font);
-  box-shadow: 0 8px 22px var(--th-cl-shadow);
-  font: 600 10px/1.2 var(--fte2);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  box-shadow: 0 8px 22px rgba(31, 55, 52, 0.2);
+  font: 600 10px/1.2 var(--font-condensed);
   letter-spacing: 0.03em;
   text-align: center;
   text-transform: uppercase;
@@ -286,9 +282,9 @@
   pointer-events: none;
   transform: translateX(-50%) translateY(4px);
   transition:
-    opacity var(--th-trans-fast),
-    visibility var(--th-trans-fast),
-    transform var(--th-trans-fast);
+    opacity 0.15s ease,
+    visibility 0.15s ease,
+    transform 0.15s ease;
 }
 
 .utppVB_contField:hover::after,
