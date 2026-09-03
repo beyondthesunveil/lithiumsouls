@@ -9,7 +9,10 @@
    importantes afin que le module reste lisible si le :root externe
    est chargé en retard ou mis en cache. */
 :root {
-  --FAM-windowSize: calc(100vw - 65px);
+  --FAM-navbarHeight: 64px;
+  --FAM-sidebarOffset: 82px;
+  --FAM-windowPadding: 15px;
+  --FAM-windowSize: auto;
   --FAM-fontSize: 12px;
   --FAM-titleSize: 24px;
 }
@@ -37,16 +40,28 @@
   font-size: var(--FAM-fontSize, 12px);
   background: var(--bg-surface);
   position: fixed;
-  height: 100%;
-  width: var(--FAM-windowSize, calc(100vw - 65px));
+  top: calc(
+    var(--FAM-navbarHeight, 64px) +
+    var(--FAM-windowPadding, 15px)
+  );
+  right: var(--FAM-windowPadding, 15px);
+  bottom: var(--FAM-windowPadding, 15px);
+  left: calc(
+    var(--FAM-sidebarOffset, 82px) +
+    var(--FAM-windowPadding, 15px)
+  );
+  width: var(--FAM-windowSize, auto);
+  height: auto;
   max-width: none;
-  left: 65px;
   z-index: 99;
   visibility: visible;
   opacity: 1;
-  bottom: 0px;
-  transition-property: top, right, bottom, left, height, width, margin, opacity, visibility;
-  transition-duration: 700ms;
+  transform: translateX(0);
+  transform-origin: left center;
+  transition:
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 260ms ease,
+    visibility 0s;
   grid-template-columns: 100%;
   box-shadow: none;
 }
@@ -55,17 +70,24 @@
 #FAM[data-hidden="true"] {
   visibility: hidden;
   opacity: 0;
-  left: calc(-100% + 65px);
+  transform: translateX(calc(-100% - 30px));
+  transition:
+    transform 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 220ms ease,
+    visibility 0s linear 560ms;
 }
 
 #FAM.FAM-embedded {
   position: relative;
+  top: auto;
   bottom: 0;
   right: 0;
+  left: auto;
   width: 100%;
   height: 500px;
   margin: 12px auto;
   z-index: 1;
+  transform: none;
 }
 
 /* Bouton pour ouvrir la fenetre */
@@ -1315,4 +1337,27 @@ blockquote.FAM-codebox > div {
   height: 270px;
   padding: 10px;
   z-index: 999;
+}
+
+/* =========================================================
+   FORMAT MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+  :root {
+    --FAM-sidebarOffset: 64px;
+    --FAM-windowPadding: 10px;
+  }
+
+  #FAM {
+    padding: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #FAM,
+  #FAM[data-hidden="true"] {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
 }
