@@ -491,12 +491,7 @@
 
   color: var(--text-secondary);
 
-  background:
-    linear-gradient(
-      var(--border-subtle) 1px,
-      transparent 1px
-    ),
-    var(--bg-elevated);
+  background:var(--bg-elevated);
 
   background-size: 100% 29px;
   background-position: 0 27px;
