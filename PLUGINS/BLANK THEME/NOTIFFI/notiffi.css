@@ -14,7 +14,6 @@
   margin: 0;
   padding: 0;
   border: 1px solid var(--border-subtle);
-  border-radius: 14px;
   background: var(--bg-surface);
   color: var(--text-secondary);
   cursor: pointer;
@@ -114,7 +113,6 @@
   gap: 10px;
   overflow: hidden;
   border: 1px solid var(--border-subtle);
-  border-radius: 18px;
   background:var(--bg-overlay);
   opacity: 0;
   visibility: hidden;
@@ -164,7 +162,6 @@
   gap: 10px;
   overflow: auto;
   border: 1px solid var(--border-subtle);
-  border-radius: 10px;
   background: var(--bg-surface);
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -200,7 +197,6 @@
 .notiffi_actions button {
   padding: 4px 9px;
   border: 1px solid var(--border-subtle);
-  border-radius: 5px;
   background: var(--bg-surface);
   color: var(--text-muted);
   cursor: pointer;
@@ -233,11 +229,9 @@ a.notiffi_see_all {
   display: inline-flex;
   align-items: center;
   border: 1px solid var(--border-subtle);
-  border-radius: var(--mainradius);
   background: var(--bg-surface);
   color: var(--text-muted);
   font: 600 10px/1 var(--font-sans);
-  letter-spacing: 0.06em;
   text-decoration: none;
   text-transform: uppercase;
   transition:
