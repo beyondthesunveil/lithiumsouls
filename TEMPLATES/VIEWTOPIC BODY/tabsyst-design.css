@@ -299,7 +299,13 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 15px;
+  height: 250px;
+  overflow: auto;
+  padding: 0 0 10px 8px;
+}
+
+.litso_charalabel .label {
+  color: var(--text-muted) !important;
 }
 
 .litso_charafield {
