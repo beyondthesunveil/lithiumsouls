@@ -2,9 +2,13 @@
   "use strict";
 
   var categoryIntros = [
-    "Rien ne se perd rien ne se crée tout se transforme",
+    "Rien ne se perd rien ne se crée tout se transforme.",
     "Toute éternité commence par un seuil. Les premiers fragments du royaume vous attendent ici.",
-    "Au-delà des portes s’étendent les territoires où les âmes se cherchent, se rencontrent et se consument."
+    "Au-delà des portes s’étendent les territoires où les âmes se cherchent, se rencontrent et se consument.",
+    "Et c'est sous le chapiteau que nos vices émergent.",
+    "Ce qui tourne, nous retourne et nous renvoie à nous-mêmes.",
+    "La belle nuit pour le pauvre monde ! Et vivent la mort et l'égalité !",
+    "L'Histoire est hystérique : elle ne se constitue que si on la regarde – et pour la regarder, il faut en être exclu."
   ];
 
   var forumKickers = {
