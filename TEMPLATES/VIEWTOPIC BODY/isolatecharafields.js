@@ -13,7 +13,7 @@ jQuery(function ($) {
             );
 
             if (
-                label === "Feat" ||
+                label === "Feat :" ||
                 label === "Date d'inscription" ||
 				label === "Messages"
             ) {
