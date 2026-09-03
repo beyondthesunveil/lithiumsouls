@@ -37,6 +37,10 @@
     transform 0.25s ease;
 }
 
+#fa-pins-button.fa-pins-duplicate {
+  display: none !important;
+}
+
 #fa-pins-button:hover,
 #fa-pins-button:focus-visible,
 #fa-pins-button.is-active,
