@@ -1,418 +1,5 @@
-/* .litso-msg_title {
-}
-h1.litso-msg_titlemap {
-  padding: 10px 20px;
-  font: italic 30px var(--font-display);
-  border-bottom: 1px solid var(--border-default);
-  background: var(--gradient-accent);
-  text-transform: uppercase;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  width: 100%;
-  margin: 0;
-}
-.litso-msg_blocktitle {
-  margin: 10px 0;
-  display: flex;
-  flex-wrap: wrap;
-  border: 1px solid var(--border-default);
-  background-color: var(--border-subtle);
-  justify-content: space-between;
-}
-.litso-msg_brdcrmbtrail {
-  font: 15px var(--font-condensed);
-  letter-spacing: 1px;
-  text-transform: lowercase;
-  padding: 12px 14px;
-  color: var(--text-secondary);
-}
-.litso-msg_brdcrmbtrail a {
-  color: var(--accent-dark);
-  font-style: italic;
-  transition: 0.2s;
-}
-.litso-msg_brdcrmbtrail a:hover {
-  opacity: 1;
-  background: var(--gradient-accent);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.litso-msg_runtime {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: space-between;
-  height: 40px;
-}
-  
-.litso-msg_postprofile .row1,
-.litso-msg_postprofile .row2 {
-  background: transparent !important;
-  box-shadow: none !important;
-}
-.post {
-  border: none;
-  background-position: 0;
-  background-repeat: unset;
-  border-radius: 0px;
-  border-style: none;
-  border-width: 0px;
-  box-shadow: none;
-  margin: 24px 0;
-}
-.litso-msg_subheader {
-
-}
-
-.litso-msg_blockmember {
-  display: flex;
-  flex-wrap: wrap;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  width: 100%;
-  justify-content: space-between;
-}
-
-.litso-msg_blockperso {
-  width: 280px;
-  background-color: var(--bg-elevated);
-  border-radius: 0 0 0 5px;
-  border-right: 1px solid var(--border-default);
-}
-.litso-msg_posttracker {
-  position: sticky;
-  top: 45px;
-  align-self: flex-start;
-  margin-bottom:15px;
-}
-.litso-msg_postname {
-  width: 235px;
-  border: 1px solid var(--border-default);
-  margin: 15px auto;
-  padding: 3px 0 5px;
-  text-align: center;
-}
-.litso-msg_postname strong {
-  color: var(--text-primary);
-  display: inline-block;
-  font: 600 15px var(--font-condensed);
-  text-transform: uppercase;
-}
-.short-pseudo {
-  border-bottom: 1px solid currentColor;
-  width: 220px;
-}
-.long-pseudo {
-  border-bottom: 1px solid currentColor;
-  padding: 4px 8px;
-  transition: all 0.2s ease;
-  width:220px;
-}
-.litso-msg_posteravatar {
-  margin: 15px auto;
-  border: 5px solid var(--bg-surface);
-  width: 220px;
-  height: 340px;
-  outline: 1px solid var(--border-default);
-  overflow: hidden;
-  outline-offset: 5px;
-}
-.litso-msg_posteravatar img {
-  max-width: 222px!important;
-  margin: 0;
-  object-fit:cover;
-}
-.litso-msg_rank {
-  font: 15px var(--font-condensed);
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  margin: 10px;
-  letter-spacing:1px;
-  padding: 0 0 10px 0;
-}
-.litso-msg_rank > span {
-  display: block;
-  font: 600 13px var(--font-condensed);
-  letter-spacing: 0.5px;
-  padding: 3px;
-  background: var(--bg-soft);
-  border-radius: 4px;
-}
-.group-label {
-  text-align: center;
-  margin: 5px 0;
-}
-.litso-msg_charafields {
-  margin: 15px;
-  height:150px;
-  overflow:auto;
-  padding: 10px;
-  background: var(--bg-soft);
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  border: 1px solid var(--border-subtle);
-}
-.litso-msg_charafield {
-  font: 11px var(--font-sans);
-  padding: 6px 8px;
-  border-radius: 12px;
-  border-bottom: 1px solid var(--border-subtle);
-  background: var(--bg-surface);
-  position: relative;
-  transition: 0.3s ease;
-}
-.litso-msg_charalabel {
-  font: 10px var(--font-condensed);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--gold-dark);
-  opacity: 0.8;
-}
-.litso-msg_characontent {
-  color: var(--text-secondary);
-  text-align: right;
-  max-width: 120px;
-}
-.litso-msg_characontent img {
-  object-fit:cover!important;
-  width: 183px!important;
-}
-
-.litso-msg_blockcontent {
-  width: 878px;
-  background-color: var(--bg-elevated);
-}
-
-.litso-msg_btnedit {
-  margin: 6px;
-}
-.profile-icons {
-  display: flex;
-  gap: 6px;
-  margin:0!important;
-  justify-content:center;
-}
-.profile-icons a {
-  width: 25px;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-surface);
-  border-radius: 6px;
-  border: 1px solid var(--border-default);
-  position: relative;
-  transition: 0.25s;
-}
-.profile-icons a::before {
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-.icon-quote::before { content: "❝"; }
-.icon-edit::before { content: "✎"; }
-.icon-delete::before { content: "✕"; }
-.icon-ip::before { content: "⛨"; }
-
-.profile-icons a:hover {
-  background: var(--accent-faded);
-  border-color: var(--accent);
-  transform: translateY(-2px);
-  color: var(--accent-dark);
-}
-.profile-icons a:hover::before {
-  color: var(--accent-dark);
-}
-.litso-msg_content {
-  padding: 40px;
-  text-align: justify;
-  font: 12px var(--font-sans);
-  color: var(--text-primary);
-  background-color: var(--bg-surface);
-  margin: 20px;
-  min-height: 790px;
-}
-.litso-msg_content img {
-  max-width:600px!important;
-  object-fit:cover;
-}
-.litso-msg_modoaction {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin: 20px 0;
-  padding: 0 0 0 14px;
-  border-radius: 4px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
-  backdrop-filter: blur(8px);
-}
-.quickmod {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0;
-  margin: 0;
-  background: transparent;
-  border: none;
-  backdrop-filter: none;
-}
-.quickmod label {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin: 0;
-}
-.quickmod select {
-  padding: 8px 12px;
-  background: var(--bg-soft);
-  border: 1px solid var(--border-default);
-  border-radius: 10px;
-  color: var(--text-primary);
-  font-size: 13px;
-}
-.quickmod .button2 {
-  padding: 8px 14px;
-  border: none;
-  border-radius: 10px;
-  background: var(--gradient-secondary);
-  color: var(--text-on-accent);
-  font-weight: 600;
-  cursor: pointer;
-  transition: .2s ease;
-}
-.quickmod .button2:hover {
-  transform: translateY(-1px);
-   opacity: .9;
-}
-.litso-msg_btnaction {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-  background: transparent;
-  border: none;
-  backdrop-filter: none;
-}
-.litso-msg_btnaction a {
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  background: var(--accent-faded);
-  transition:
-    background .2s ease,
-    transform .2s ease,
-    opacity .2s ease;
-  color: var(--accent-dark);
-  position: relative;
-  text-decoration: none;
-  position: relative;
-}
-.litso-msg_btnaction a:hover {
-  background: var(--gold-faded);
-  color: var(--gold-dark);
-  transform: translateY(-2px);
-}
-.litso-msg_btnaction a img {
-  display: none;
-}
-.litso-msg_btnaction a::before {
-  content: "";
-  width: 18px;
-  height: 18px;
-  background-color: currentColor;
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  -webkit-mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-}
-.litso-msg_btnaction a::after {
-  content: attr(title);
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%) translateY(4px);
-  background: var(--text-primary);
-  color: var(--text-on-accent);
-  padding: 6px 10px;
-  border-radius: 10px;
-  font-size: 12px;
-   white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: .15s ease;
-  box-shadow: 0 10px 30px var(--border-default);
-}
-.litso-msg_btnaction a:hover::after {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-.litso-msg_btnaction a[href*="mode=delete"] {
-  color: var(--text-important);
-}
-.litso-msg_btnaction a[href*="delete"]::after {
-  content: "Supprimer le sujet";
-}
-.litso-msg_btnaction a[href*="mode=delete"]::before {
-  mask-image: url("https://unpkg.com/lucide-static/icons/trash-2.svg");
-  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/trash-2.svg");
-}
-.litso-msg_btnaction a[href*="mode=move"]::before {
-  mask-image: url("https://unpkg.com/lucide-static/icons/move-right.svg");
-  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/move-right.svg");
-}
-.litso-msg_btnaction a[href*="move"]::after {
-  content: "Déplacer le sujet";
-}
-.litso-msg_btnaction a[href*="mode=lock"]::before {
-  mask-image: url("https://unpkg.com/lucide-static/icons/lock.svg");
-  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/lock.svg");
-}
-.litso-msg_btnaction a[href*="lock"]::after {
-  content: "Verrouiller le sujet";
-}
-.litso-msg_btnaction a[href*="mode=unlock"]::before {
-  mask-image: url("https://unpkg.com/lucide-static/icons/lock-open.svg");
-  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/lock-open.svg");
-}
-.litso-msg_btnaction a[href*="unlock"]::after {
-  content: "Déverrouiller le sujet";
-}
-.litso-msg_btnaction a[href*="mode=split"]::before {
-  mask-image: url("https://unpkg.com/lucide-static/icons/split.svg");
-  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/split.svg");
-}
-.litso-msg_btnaction a[href*="split"]::after {
-  content: "Diviser le sujet";
-}
-.litso-msg_btnaction a[href*="/merge"]::before {
-  mask-image: url("https://unpkg.com/lucide-static/icons/combine.svg");
-  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/combine.svg");
-}
-.litso-msg_btnaction a[href*="/merge"]::after {
-  content: "Fusionner les sujets";
-}
-.litso-msg_btnaction a[href*="mode=trash"]::before,
-.litso-msg_btnaction a[href*="mode=bin"]::before {
-  mask-image: url("https://unpkg.com/lucide-static/icons/archive.svg");
-  -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/archive.svg");
-}
-.litso-msg_btnaction a[href*="trash"]::after {
-  content: "Corbeille";
-} */
-
 /* =========================================================
-   LITHIUM SOULS — AFFICHAGE D’UN SUJET
+   LITSO — VIEWTOPIC BODY
    ========================================================= */
 
 .litso-msg_blocktitle,
@@ -430,62 +17,51 @@ h1.litso-msg_titlemap {
 
 h1.litso-msg_titlemap {
   width: 100%;
-
   margin: 0;
   padding: 10px 20px;
-
   color: var(--text-primary);
   background: var(--gradient-accent);
-
-  border-bottom:
-    1px solid var(--border-default);
-
+  border-bottom: 1px solid var(--border-default);
   font: italic 30px/1.1 var(--font-display);
   text-transform: uppercase;
-
   -webkit-background-clip: text;
   background-clip: text;
-
   -webkit-text-fill-color: transparent;
 }
 
+/* =========================================================
+   BARRE DU FIL D'ARIANE
+   ========================================================= */
+
 .litso-msg_blocktitle {
   width: 100%;
-
+  min-height: 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-
-  gap: 12px;
+  gap: 10px;
   margin: 10px 0;
-
+  padding: 7px 10px;
   background: var(--bg-elevated);
-
   border: 1px solid var(--border-default);
 }
 
 .litso-msg_brdcrmbtrail {
   min-width: 0;
-
   margin: 0;
-  padding: 12px 14px;
-
+  padding: 5px 4px;
   color: var(--text-secondary);
-
-  font: 15px/1.4 var(--font-condensed);
+  font: 15px/1.3 var(--font-condensed);
   letter-spacing: 1px;
   text-transform: lowercase;
 }
 
 .litso-msg_brdcrmbtrail a {
   color: var(--accent-dark);
-
   font-style: italic;
   text-decoration: none;
-
-  transition:
-    color 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .litso-msg_brdcrmbtrail a:hover,
@@ -493,46 +69,47 @@ h1.litso-msg_titlemap {
   color: var(--gold);
 }
 
+/* =========================================================
+   CONTENEUR DES BOUTONS DU SUJET
+   (nouveau sujet / répondre / surveiller / favoris)
+   ========================================================= */
+
 .litso-msg_subheader {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   flex-wrap: wrap;
-
-  gap: 7px;
+  gap: 6px;
   padding: 7px;
 }
 
+/* --- Gabarit commun à tous les boutons --- */
 .litso-msg_subheader > a.button1,
-.litso-msg_subheader > .button1,
+.litso-msg_subheader > a.login-for,
 .litso-msg_subheader > div.button1,
 #fa-topic-fav-button {
-  position: relative;
-
-  min-height: 38px;
-
+  width: auto;
+  min-width: 0;
+  min-height: 30px;
+  height: 30px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  gap: 8px;
+  gap: 6px;
   margin: 0;
-  padding: 0 13px;
-
+  padding: 0 9px;
   color: var(--text-muted);
   background: var(--bg-surface);
-
   border: 1px solid var(--border-default);
   border-radius: 0;
   outline: 0;
-
   font: 700 8px/1 var(--font-sans);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-decoration: none;
   text-transform: uppercase;
-
   cursor: pointer;
-
+  appearance: none;
+  -webkit-appearance: none;
   transition:
     color 0.2s ease,
     background-color 0.2s ease,
@@ -540,189 +117,128 @@ h1.litso-msg_titlemap {
     transform 0.2s ease;
 }
 
+/* --- Icônes communes (mask-image) --- */
+.litso-msg_subheader > a.button1::before,
+.litso-msg_subheader > a.login-for::before,
+.litso-msg_subheader > div.button1::before {
+  content: "";
+  flex: 0 0 12px;
+  width: 12px;
+  height: 12px;
+  display: block;
+  margin: 0;
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  transition: transform 0.2s ease;
+}
+
+.litso-msg_subheader > div.button1::before {
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/bell.svg");
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/bell.svg");
+}
+
 .litso-msg_subheader .button1 img,
 .litso-msg_subheader .login-for img {
   display: none;
 }
 
-.litso-msg_subheader > a.button1::before {
-  margin: 0;
-
-  color: currentColor;
-
-  font-size: 14px;
-  line-height: 1;
-
-  transition:
-    transform 0.2s ease;
-}
-
+/* --- Survol commun --- */
 .litso-msg_subheader > a.button1:hover,
-.litso-msg_subheader > a.button1:focus-visible {
+.litso-msg_subheader > a.button1:focus-visible,
+.litso-msg_subheader > a.login-for:hover,
+.litso-msg_subheader > a.login-for:focus-visible,
+.litso-msg_subheader > div.button1:hover,
+.litso-msg_subheader > div.button1:focus-within {
   color: var(--gold);
   border-color: var(--gold);
-
   transform: translateY(-1px);
 }
 
-.litso-msg_subheader
-> a.button1:nth-of-type(odd):hover::before,
-.litso-msg_subheader
-> a.button1:nth-of-type(odd):focus-visible::before {
-  transform:
-    rotate(-8deg)
-    scale(1.08);
+.litso-msg_subheader > a.button1:nth-of-type(odd):hover::before,
+.litso-msg_subheader > a.button1:nth-of-type(odd):focus-visible::before {
+  transform: rotate(-8deg) scale(1.08);
 }
 
-.litso-msg_subheader
-> a.button1:nth-of-type(even):hover::before,
-.litso-msg_subheader
-> a.button1:nth-of-type(even):focus-visible::before {
-  transform:
-    rotate(8deg)
-    scale(1.08);
+.litso-msg_subheader > a.button1:nth-of-type(even):hover::before,
+.litso-msg_subheader > a.button1:nth-of-type(even):focus-visible::before {
+  transform: rotate(8deg) scale(1.08);
 }
 
-.litso-msg_subheader > div.button1 {
-  padding: 0;
+.litso-msg_subheader > div.button1:hover::before,
+.litso-msg_subheader > div.button1:focus-within::before {
+  transform: rotate(-8deg) scale(1.08);
 }
 
-.litso-msg_subheader > div.button1::before {
-  content: "";
-
-  flex: 0 0 auto;
-
-  width: 15px;
-  height: 15px;
-
-  margin-left: 12px;
-
-  background-color: currentColor;
-
-  -webkit-mask:
-    url("https://unpkg.com/lucide-static@latest/icons/bell.svg")
-    center / contain no-repeat;
-
-  mask:
-    url("https://unpkg.com/lucide-static@latest/icons/bell.svg")
-    center / contain no-repeat;
-
-  transition:
-    transform 0.2s ease;
-}
-
+/* --- Bouton "surveiller le sujet" : lien interne --- */
 .litso-msg_subheader > div.button1 a {
-  min-height: 36px;
-
+  min-height: 0;
   display: inline-flex;
   align-items: center;
-
-  padding: 0 12px 0 0;
-
+  padding: 0;
   color: inherit;
-
+  background: transparent;
+  border: 0;
   font: inherit;
   letter-spacing: inherit;
   text-decoration: none;
   text-transform: inherit;
 }
 
-.litso-msg_subheader > div.button1:hover,
-.litso-msg_subheader > div.button1:focus-within {
+.litso-msg_subheader > div.button1.is-watching {
   color: var(--gold);
-  border-color: var(--gold);
-
-  transform: translateY(-1px);
-}
-
-.litso-msg_subheader
-> div.button1:hover::before,
-.litso-msg_subheader
-> div.button1:focus-within::before {
-  transform:
-    rotate(-8deg)
-    scale(1.08);
-}
-
-.litso-msg_subheader
-> div.button1.is-watching {
-  color: var(--gold);
-
-  background:
-    color-mix(
-      in srgb,
-      var(--gold) 10%,
-      var(--bg-surface)
-    );
-
+  background: color-mix(in srgb, var(--gold) 10%, var(--bg-surface));
   border-color: var(--gold);
 }
 
-.litso-msg_subheader
-> div.button1.is-watching::before {
-  -webkit-mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/bell-ring.svg");
-
-  mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/bell-ring.svg");
+.litso-msg_subheader > div.button1.is-watching::before {
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/bell-ring.svg");
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/bell-ring.svg");
 }
 
-#fa-topic-fav-button {
-  appearance: none;
-  -webkit-appearance: none;
-}
-
+/* --- Bouton favoris : on masque le SVG natif, on le remplace par une icône cœur --- */
 #fa-topic-fav-button svg {
-  flex: 0 0 auto;
+  display: none;
+}
 
-  width: 15px;
-  height: 15px;
-
-  fill: transparent;
-  stroke-width: 1.8;
-
-  transition:
-    fill 0.2s ease,
-    transform 0.2s ease;
+#fa-topic-fav-button::before {
+  content: "";
+  flex: 0 0 12px;
+  width: 12px;
+  height: 12px;
+  display: block;
+  background-color: currentColor;
+  -webkit-mask: url("https://unpkg.com/lucide-static@latest/icons/heart.svg") center / contain no-repeat;
+  mask: url("https://unpkg.com/lucide-static@latest/icons/heart.svg") center / contain no-repeat;
+  transition: transform 0.2s ease;
 }
 
 #fa-topic-fav-button:hover,
 #fa-topic-fav-button:focus-visible {
   color: var(--accent);
   border-color: var(--accent);
-
   transform: translateY(-1px);
 }
 
-#fa-topic-fav-button:hover svg,
-#fa-topic-fav-button:focus-visible svg {
-  transform:
-    rotate(8deg)
-    scale(1.08);
+#fa-topic-fav-button:hover::before,
+#fa-topic-fav-button:focus-visible::before {
+  transform: rotate(8deg) scale(1.08);
 }
 
 #fa-topic-fav-button.is-faved,
-#fa-topic-fav-button[
-  aria-pressed="true"
-] {
+#fa-topic-fav-button[aria-pressed="true"] {
   color: var(--accent);
-
-  background:
-    color-mix(
-      in srgb,
-      var(--accent) 10%,
-      var(--bg-surface)
-    );
-
+  background: color-mix(in srgb, var(--accent) 10%, var(--bg-surface));
   border-color: var(--accent);
 }
 
-#fa-topic-fav-button.is-faved svg,
-#fa-topic-fav-button[
-  aria-pressed="true"
-] svg {
-  fill: currentColor;
-}
+/* =========================================================
+   ZONE MEMBRE / MESSAGE
+   ========================================================= */
 
 .litso-msg_postprofile .row1,
 .litso-msg_postprofile .row2 {
@@ -732,10 +248,8 @@ h1.litso-msg_titlemap {
 
 .post {
   margin: 24px 0;
-
   background-position: 0;
   background-repeat: unset;
-
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -743,73 +257,62 @@ h1.litso-msg_titlemap {
 
 .litso-msg_blockmember {
   width: 100%;
-
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-
   background: var(--bg-surface);
-
   border: 1px solid var(--border-subtle);
 }
 
+/* =========================================================
+   BARRE "RUNTIME" (lien du sujet, j'aime, actions modo)
+   ========================================================= */
+
 .litso-msg_runtime {
   width: 100%;
-  min-height: 48px;
-
+  min-height: 42px;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  gap: 16px;
-  padding: 7px 10px 7px 14px;
-
+  flex-wrap: nowrap;
+  gap: 12px;
+  padding: 5px 8px 5px 12px;
   color: var(--text-muted);
   background: var(--bg-elevated);
-
-  border-bottom:
-    1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
 }
 
 .litso-msg_topicre {
   min-width: 0;
-
   display: flex;
   align-items: center;
-
-  gap: 9px;
-
+  gap: 8px;
   color: var(--text-muted);
-
-  font: 600 9px/1.3 var(--font-sans);
-  letter-spacing: 0.06em;
+  font: 600 9px/1.2 var(--font-sans);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .litso-msg_topicre > img {
   display: block;
-
   max-width: 16px;
   max-height: 16px;
 }
 
 .litso-msg_topicre > a {
-  flex: 0 0 auto;
-
-  min-width: 28px;
-  height: 28px;
-
+  flex: 0 0 26px;
+  width: 26px;
+  height: 26px;
   display: grid;
   place-items: center;
-
+  padding: 0;
   color: var(--gold);
   background: var(--bg-surface);
-
   border: 1px solid var(--border-default);
-
   font-size: 0;
   text-decoration: none;
-
+  overflow: hidden;
   transition:
     color 0.2s ease,
     border-color 0.2s ease,
@@ -818,32 +321,23 @@ h1.litso-msg_titlemap {
 
 .litso-msg_topicre > a::before {
   content: "";
-
-  width: 13px;
-  height: 13px;
-
+  width: 12px;
+  height: 12px;
+  display: block;
   background-color: currentColor;
-
-  -webkit-mask:
-    url("https://unpkg.com/lucide-static@latest/icons/link-2.svg")
-    center / contain no-repeat;
-
-  mask:
-    url("https://unpkg.com/lucide-static@latest/icons/link-2.svg")
-    center / contain no-repeat;
+  -webkit-mask: url("https://unpkg.com/lucide-static@latest/icons/link-2.svg") center / contain no-repeat;
+  mask: url("https://unpkg.com/lucide-static@latest/icons/link-2.svg") center / contain no-repeat;
 }
 
 .litso-msg_topicre > a:hover,
 .litso-msg_topicre > a:focus-visible {
   color: var(--accent);
   border-color: var(--accent);
-
   transform: translateY(-1px);
 }
 
 .litso-msg_topicre > span {
   min-width: 0;
-
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -851,39 +345,31 @@ h1.litso-msg_titlemap {
 
 .litso-msg_prflstuff {
   flex: 0 0 auto;
-
   display: flex;
   align-items: center;
-
-  gap: 7px;
+  gap: 5px;
 }
 
+/* --- Bouton "j'aime" --- */
 .litso-msg_likebtn {
-  --litso-like-color:
-    var(--text-muted);
-
-  min-height: 34px;
-
+  min-width: 0;
+  min-height: 28px;
+  height: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  gap: 7px;
-  padding: 0 9px;
-
-  color: var(--litso-like-color);
+  gap: 5px;
+  margin: 0;
+  padding: 0 8px;
+  color: var(--text-muted);
   background: var(--bg-surface);
-
   border: 1px solid var(--border-default);
   border-radius: 0;
   outline: 0;
-
-  cursor: pointer;
-
-  font: 700 9px/1 var(--font-sans);
-  letter-spacing: 0.05em;
+  font: 700 8px/1 var(--font-sans);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-
+  cursor: pointer;
   transition:
     color 0.2s ease,
     background-color 0.2s ease,
@@ -893,51 +379,41 @@ h1.litso-msg_titlemap {
 }
 
 .litso-msg_likebtn > i {
-  display: inline-grid;
-  place-items: center;
+  display: none;
+}
 
-  color: currentColor;
-
-  font-size: 14px;
-
-  transition:
-    transform 0.2s ease;
+.litso-msg_likebtn::before {
+  content: "";
+  flex: 0 0 12px;
+  width: 12px;
+  height: 12px;
+  display: block;
+  background-color: currentColor;
+  -webkit-mask: url("https://unpkg.com/lucide-static@latest/icons/heart.svg") center / contain no-repeat;
+  mask: url("https://unpkg.com/lucide-static@latest/icons/heart.svg") center / contain no-repeat;
+  transition: transform 0.2s ease;
 }
 
 .litso-msg_likebtn:hover,
 .litso-msg_likebtn:focus-visible {
-  --litso-like-color:
-    var(--status-important);
-
-  border-color:
-    var(--status-important);
-
+  color: var(--status-important);
+  border-color: var(--status-important);
   transform: translateY(-1px);
 }
 
-.litso-msg_likebtn:hover > i,
-.litso-msg_likebtn:focus-visible > i {
-  transform:
-    rotate(-8deg)
-    scale(1.08);
+.litso-msg_likebtn:hover::before,
+.litso-msg_likebtn:focus-visible::before {
+  transform: rotate(-8deg) scale(1.08);
 }
 
 .litso-msg_likebtn.is-liked,
+.litso-msg_likebtn.fa_liked,
 .litso-msg_likebtn.liked,
 .litso-msg_likebtn.vote-liked,
 .litso-msg_likebtn[aria-pressed="true"] {
-  --litso-like-color:
-    var(--status-important);
-
-  background:
-    color-mix(
-      in srgb,
-      var(--status-important) 10%,
-      var(--bg-surface)
-    );
-
-  border-color:
-    var(--status-important);
+  color: var(--status-important);
+  background: color-mix(in srgb, var(--status-important) 10%, var(--bg-surface));
+  border-color: var(--status-important);
 }
 
 .litso-msg_likebtn.is-loading {
@@ -948,18 +424,13 @@ h1.litso-msg_titlemap {
 .litso-msg_likeCount {
   min-width: 20px;
   height: 20px;
-
   display: inline-grid;
   place-items: center;
-
   padding: 0 5px;
-
   color: var(--text-primary);
   background: var(--bg-soft);
-
   border: 1px solid var(--border-subtle);
   border-radius: 999px;
-
   font-size: 8px;
   line-height: 1;
 }
@@ -972,35 +443,35 @@ h1.litso-msg_titlemap {
   margin: 0;
 }
 
+/* --- Icônes profil (citer / éditer / supprimer / IP) --- */
 .profile-icons {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  gap: 6px;
-  margin: 0 !important;
+  gap: 5px;
+  margin: 0;
 }
 
 .profile-icons a {
-  position: relative;
-
-  width: 34px;
-  height: 34px;
-
+  flex: 0 0 28px;
+  width: 28px;
+  min-width: 28px;
+  height: 28px;
+  min-height: 28px;
   display: grid;
   place-items: center;
-
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
   color: var(--text-muted);
   background: var(--bg-surface);
-
   border: 1px solid var(--border-default);
   border-radius: 0;
-
+  font-size: 0;
+  line-height: 0;
   text-decoration: none;
-
   transition:
     color 0.2s ease,
-    background-color 0.2s ease,
     border-color 0.2s ease,
     transform 0.2s ease;
 }
@@ -1011,13 +482,19 @@ h1.litso-msg_titlemap {
 }
 
 .profile-icons a::before {
+  display: block;
+  width: auto;
+  height: auto;
+  margin: 0;
   color: currentColor;
-
-  font-size: 13px;
+  background: transparent;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
   line-height: 1;
-
-  transition:
-    transform 0.2s ease;
+  mask: none;
+  -webkit-mask: none;
+  transition: transform 0.2s ease;
 }
 
 .icon-quote::before {
@@ -1040,116 +517,92 @@ h1.litso-msg_titlemap {
 .profile-icons .icon-quote:focus-visible {
   color: var(--gold);
   border-color: var(--gold);
-
   transform: translateY(-1px);
 }
 
 .profile-icons .icon-quote:hover::before,
 .profile-icons .icon-quote:focus-visible::before {
-  transform:
-    rotate(-8deg)
-    scale(1.08);
+  transform: rotate(-8deg) scale(1.08);
 }
 
 .profile-icons .icon-edit:hover,
 .profile-icons .icon-edit:focus-visible {
   color: var(--accent);
   border-color: var(--accent);
-
   transform: translateY(-1px);
 }
 
 .profile-icons .icon-edit:hover::before,
 .profile-icons .icon-edit:focus-visible::before {
-  transform:
-    rotate(8deg)
-    scale(1.08);
+  transform: rotate(8deg) scale(1.08);
 }
 
 .profile-icons .icon-delete:hover,
 .profile-icons .icon-delete:focus-visible {
   color: var(--status-important);
   border-color: var(--status-important);
-
   transform: translateY(-1px);
 }
 
 .profile-icons .icon-delete:hover::before,
 .profile-icons .icon-delete:focus-visible::before {
-  transform:
-    rotate(-8deg)
-    scale(1.08);
+  transform: rotate(-8deg) scale(1.08);
 }
 
 .profile-icons .icon-ip:hover,
 .profile-icons .icon-ip:focus-visible {
   color: var(--accent-soft);
   border-color: var(--accent-soft);
-
   transform: translateY(-1px);
 }
 
 .profile-icons .icon-ip:hover::before,
 .profile-icons .icon-ip:focus-visible::before {
-  transform:
-    rotate(8deg)
-    scale(1.08);
+  transform: rotate(8deg) scale(1.08);
 }
+
+/* =========================================================
+   COLONNE PROFIL (avatar, pseudo, rang, champs perso)
+   ========================================================= */
 
 .litso-msg_blockperso {
   width: 280px;
-
   background: var(--bg-elevated);
-
-  border-right:
-    1px solid var(--border-default);
+  border-right: 1px solid var(--border-default);
   border-radius: 0 0 0 5px;
 }
 
 .litso-msg_posttracker {
   position: sticky;
   top: 45px;
-
   align-self: flex-start;
-
   margin-bottom: 15px;
 }
 
 .litso-msg_postname {
   width: 235px;
-
   margin: 15px auto;
   padding: 3px 0 5px;
-
   border: 1px solid var(--border-default);
-
   text-align: center;
 }
 
 .litso-msg_postname strong {
   display: inline-block;
-
   color: var(--text-primary);
-
   font: 600 15px var(--font-condensed);
   text-transform: uppercase;
 }
 
 .short-pseudo {
   width: 220px;
-
-  border-bottom:
-    1px solid currentColor;
+  border-bottom: 1px solid currentColor;
 }
 
 .long-pseudo {
   width: 220px;
-
   padding: 4px 8px;
-
-  border-bottom:
-    1px solid currentColor;
-
+  border-bottom: 1px solid currentColor;
   transition:
     color 0.2s ease,
     border-color 0.2s ease;
@@ -1158,16 +611,11 @@ h1.litso-msg_titlemap {
 .litso-msg_posteravatar {
   width: 220px;
   height: 340px;
-
   margin: 15px auto;
-
   overflow: hidden;
-
   background: var(--bg-surface);
-
   border: 5px solid var(--bg-surface);
-  outline:
-    1px solid var(--border-default);
+  outline: 1px solid var(--border-default);
   outline-offset: 5px;
 }
 
@@ -1175,92 +623,67 @@ h1.litso-msg_titlemap {
   width: 100% !important;
   height: 100% !important;
   max-width: none !important;
-
   display: block;
-
   margin: 0;
-
   object-fit: cover;
   object-position: center;
 }
 
 .litso-msg_rank {
   margin: 10px auto 15px;
-  background: var(--text-muted);
-  padding: 0px 0 10px;
-  text-align: center;
+  padding: 0 0 10px;
   height: 20px;
   width: 235px;
   color: var(--text-on-accent);
+  background: var(--text-muted);
   font: 15px var(--font-condensed);
   font-weight: 500;
+  text-align: center;
   text-transform: uppercase;
 }
 
 .litso-msg_rank > span {
   display: block;
-
   padding: 3px;
-
   background: var(--bg-soft);
-
   border-radius: 4px;
-
   font: 600 13px var(--font-condensed);
   letter-spacing: 0.5px;
 }
 
 .group-label {
   margin: 5px 0;
-
   text-align: center;
 }
 
 .litso-msg_charafields {
   height: 150px;
-
   display: flex;
   flex-direction: column;
-
   gap: 8px;
   margin: 15px;
   padding: 10px;
-
   overflow: auto;
-
   background: var(--bg-soft);
-
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
-
   scrollbar-width: thin;
-  scrollbar-color:
-    var(--gold)
-    transparent;
+  scrollbar-color: var(--gold) transparent;
 }
 
 .litso-msg_charafield {
   position: relative;
-
   padding: 6px 8px;
-
   background: var(--bg-surface);
-
-  border-bottom:
-    1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
   border-radius: 12px;
-
   font: 11px var(--font-sans);
-
-  transition:
-    background-color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .litso-msg_charalabel {
   color: var(--gold-dark);
-
   opacity: 0.8;
-
   font: 10px var(--font-condensed);
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -1268,33 +691,30 @@ h1.litso-msg_titlemap {
 
 .litso-msg_characontent {
   max-width: 120px;
-
   color: var(--text-secondary);
-
   text-align: right;
 }
 
 .litso-msg_characontent img {
   width: 183px !important;
-
   object-fit: cover !important;
 }
 
+/* =========================================================
+   ZONE DE CONTENU DU MESSAGE
+   ========================================================= */
+
 .litso-msg_blockcontent {
   width: 878px;
-
   background: var(--bg-elevated);
 }
 
 .litso-msg_content {
   min-height: 790px;
-
   margin: 20px;
   padding: 40px;
-
   color: var(--text-primary);
   background: var(--bg-surface);
-
   font: 12px/1.6 var(--font-sans);
   text-align: justify;
 }
@@ -1302,25 +722,24 @@ h1.litso-msg_titlemap {
 .litso-msg_content img {
   max-width: 100% !important;
   height: auto;
-
   object-fit: cover;
 }
+
+/* =========================================================
+   BARRE DE MODÉRATION
+   ========================================================= */
 
 .litso-msg_modoaction {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-
   gap: 16px;
   margin: 20px 0;
   padding: 0 0 0 14px;
-
   background: var(--bg-elevated);
-
   border: 1px solid var(--border-subtle);
   border-radius: 4px;
-
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -1328,21 +747,16 @@ h1.litso-msg_titlemap {
 .quickmod {
   display: flex;
   align-items: center;
-
   gap: 10px;
   margin: 0;
   padding: 0;
-
   background: transparent;
-
   border: 0;
 }
 
 .quickmod label {
   margin: 0;
-
   color: var(--text-muted);
-
   font: 700 9px var(--font-sans);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1350,29 +764,21 @@ h1.litso-msg_titlemap {
 
 .quickmod select {
   padding: 8px 12px;
-
   color: var(--text-primary);
   background: var(--bg-soft);
-
   border: 1px solid var(--border-default);
   border-radius: 0;
-
   font-size: 12px;
 }
 
 .quickmod .button2 {
   padding: 8px 14px;
-
   color: var(--text-on-accent);
   background: var(--accent-deep);
-
   border: 1px solid var(--accent-deep);
   border-radius: 0;
-
   font-weight: 600;
-
   cursor: pointer;
-
   transition:
     color 0.2s ease,
     background-color 0.2s ease,
@@ -1385,40 +791,30 @@ h1.litso-msg_titlemap {
   color: var(--gold);
   background: var(--bg-surface);
   border-color: var(--gold);
-
   transform: translateY(-1px);
 }
 
 .litso-msg_btnaction {
   display: flex;
   align-items: center;
-
   gap: 8px;
   margin: 0;
   padding: 0;
-
   background: transparent;
-
   border: 0;
 }
 
 .litso-msg_btnaction a {
   position: relative;
-
   width: 42px;
   height: 42px;
-
   display: grid;
   place-items: center;
-
   color: var(--accent-dark);
   background: var(--bg-surface);
-
   border: 1px solid var(--border-default);
   border-radius: 0;
-
   text-decoration: none;
-
   transition:
     color 0.2s ease,
     border-color 0.2s ease,
@@ -1429,7 +825,6 @@ h1.litso-msg_titlemap {
 .litso-msg_btnaction a:focus-visible {
   color: var(--gold-dark);
   border-color: var(--gold);
-
   transform: translateY(-1px);
 }
 
@@ -1439,12 +834,9 @@ h1.litso-msg_titlemap {
 
 .litso-msg_btnaction a::before {
   content: "";
-
   width: 18px;
   height: 18px;
-
   background-color: currentColor;
-
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
@@ -1468,9 +860,7 @@ h1.litso-msg_titlemap {
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transform:
-    translateX(-50%)
-    translateY(4px);
+  transform: translateX(-50%) translateY(4px);
   transition:
     opacity 0.15s ease,
     transform 0.15s ease;
@@ -1479,118 +869,81 @@ h1.litso-msg_titlemap {
 .litso-msg_btnaction a:hover::after,
 .litso-msg_btnaction a:focus-visible::after {
   opacity: 1;
-
-  transform:
-    translateX(-50%)
-    translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
 
-.litso-msg_btnaction
-a[href*="mode=delete"] {
+.litso-msg_btnaction a[href*="mode=delete"] {
   color: var(--text-important);
 }
 
-.litso-msg_btnaction
-a[href*="mode=delete"]::before {
-  mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/trash-2.svg");
-
-  -webkit-mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/trash-2.svg");
+.litso-msg_btnaction a[href*="mode=delete"]::before {
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/trash-2.svg");
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/trash-2.svg");
 }
 
-.litso-msg_btnaction
-a[href*="delete"]::after {
+.litso-msg_btnaction a[href*="delete"]::after {
   content: "Supprimer le sujet";
 }
 
-.litso-msg_btnaction
-a[href*="mode=move"]::before {
-  mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/move-right.svg");
-
-  -webkit-mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/move-right.svg");
+.litso-msg_btnaction a[href*="mode=move"]::before {
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/move-right.svg");
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/move-right.svg");
 }
 
-.litso-msg_btnaction
-a[href*="move"]::after {
+.litso-msg_btnaction a[href*="move"]::after {
   content: "Déplacer le sujet";
 }
 
-.litso-msg_btnaction
-a[href*="mode=lock"]::before {
-  mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/lock.svg");
-
-  -webkit-mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/lock.svg");
+.litso-msg_btnaction a[href*="mode=lock"]::before {
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/lock.svg");
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/lock.svg");
 }
 
-.litso-msg_btnaction
-a[href*="lock"]::after {
+.litso-msg_btnaction a[href*="lock"]::after {
   content: "Verrouiller le sujet";
 }
 
-.litso-msg_btnaction
-a[href*="mode=unlock"]::before {
-  mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/lock-open.svg");
-
-  -webkit-mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/lock-open.svg");
+.litso-msg_btnaction a[href*="mode=unlock"]::before {
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/lock-open.svg");
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/lock-open.svg");
 }
 
-.litso-msg_btnaction
-a[href*="unlock"]::after {
+.litso-msg_btnaction a[href*="unlock"]::after {
   content: "Déverrouiller le sujet";
 }
 
-.litso-msg_btnaction
-a[href*="mode=split"]::before {
-  mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/split.svg");
-
-  -webkit-mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/split.svg");
+.litso-msg_btnaction a[href*="mode=split"]::before {
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/split.svg");
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/split.svg");
 }
 
-.litso-msg_btnaction
-a[href*="split"]::after {
+.litso-msg_btnaction a[href*="split"]::after {
   content: "Diviser le sujet";
 }
 
-.litso-msg_btnaction
-a[href*="/merge"]::before {
-  mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/combine.svg");
-
-  -webkit-mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/combine.svg");
+.litso-msg_btnaction a[href*="/merge"]::before {
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/combine.svg");
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/combine.svg");
 }
 
-.litso-msg_btnaction
-a[href*="/merge"]::after {
+.litso-msg_btnaction a[href*="/merge"]::after {
   content: "Fusionner les sujets";
 }
 
-.litso-msg_btnaction
-a[href*="mode=trash"]::before,
-.litso-msg_btnaction
-a[href*="mode=bin"]::before {
-  mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/archive.svg");
-
-  -webkit-mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/archive.svg");
+.litso-msg_btnaction a[href*="mode=trash"]::before,
+.litso-msg_btnaction a[href*="mode=bin"]::before {
+  mask-image: url("https://unpkg.com/lucide-static@latest/icons/archive.svg");
+  -webkit-mask-image: url("https://unpkg.com/lucide-static@latest/icons/archive.svg");
 }
 
-.litso-msg_btnaction
-a[href*="trash"]::after,
-.litso-msg_btnaction
-a[href*="mode=bin"]::after {
+.litso-msg_btnaction a[href*="trash"]::after,
+.litso-msg_btnaction a[href*="mode=bin"]::after {
   content: "Déplacer dans la corbeille";
 }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 
 @media (max-width: 900px) {
   .litso-msg_blocktitle {
@@ -1600,8 +953,7 @@ a[href*="mode=bin"]::after {
 
   .litso-msg_subheader {
     justify-content: flex-start;
-    border-top:
-      1px solid var(--border-default);
+    border-top: 1px solid var(--border-default);
   }
 
   .litso-msg_blockperso,
@@ -1611,8 +963,7 @@ a[href*="mode=bin"]::after {
 
   .litso-msg_blockperso {
     border-right: 0;
-    border-bottom:
-      1px solid var(--border-default);
+    border-bottom: 1px solid var(--border-default);
   }
 
   .litso-msg_posttracker {
@@ -1633,13 +984,13 @@ a[href*="mode=bin"]::after {
     width: 100%;
   }
 
+  .litso-msg_topicre > span {
+    white-space: normal;
+  }
+
   .litso-msg_prflstuff {
     width: 100%;
     justify-content: space-between;
-  }
-
-  .litso-msg_topicre > span {
-    white-space: normal;
   }
 
   .litso-msg_content {
@@ -1658,12 +1009,11 @@ a[href*="mode=bin"]::after {
 @media (max-width: 560px) {
   .litso-msg_subheader {
     display: grid;
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .litso-msg_subheader > a.button1,
-  .litso-msg_subheader > .button1,
+  .litso-msg_subheader > a.login-for,
   .litso-msg_subheader > div.button1,
   #fa-topic-fav-button {
     width: 100%;
@@ -1688,7 +1038,6 @@ a[href*="mode=bin"]::after {
 
   .litso-msg_content {
     padding: 18px;
-
     text-align: left;
   }
 
@@ -1700,885 +1049,14 @@ a[href*="mode=bin"]::after {
 
 @media (prefers-reduced-motion: reduce) {
   .litso-msg_subheader > a.button1,
-  .litso-msg_subheader > .button1,
+  .litso-msg_subheader > a.login-for,
+  .litso-msg_subheader > div.button1,
   #fa-topic-fav-button,
   .litso-msg_topicre > a,
   .litso-msg_likebtn,
   .profile-icons a,
   .quickmod .button2,
   .litso-msg_btnaction a {
-    transition-duration:
-      0.01ms !important;
-  }
-}
-
-/* =========================================================
-   LITHIUM SOULS — CORRECTION DES BOUTONS VIEWTOPIC
-   À PLACER À LA FIN DU CSS
-   ========================================================= */
-
-
-/* =========================================================
-   BARRE DU FIL D’ARIANE
-   ========================================================= */
-
-.litso-msg_blocktitle {
-  width: 100%;
-  min-height: 48px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-
-  gap: 10px;
-  margin: 10px 0;
-  padding: 7px 10px;
-
-  box-sizing: border-box;
-
-  background: var(--bg-elevated);
-
-  border: 1px solid var(--border-default);
-}
-
-.litso-msg_brdcrmbtrail {
-  min-width: 0;
-
-  margin: 0;
-  padding: 5px 4px;
-
-  color: var(--text-secondary);
-
-  font: 15px/1.3 var(--font-condensed);
-  letter-spacing: 1px;
-  text-transform: lowercase;
-}
-
-
-/* =========================================================
-   CONTENEUR DES BOUTONS DU SUJET
-   ========================================================= */
-
-.litso-msg_subheader {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-}
-
-
-/* =========================================================
-   BOUTONS NOUVEAU SUJET ET RÉPONDRE
-   ========================================================= */
-
-.litso-msg_subheader > a.button1,
-.litso-msg_subheader > a.login-for {
-  width: auto !important;
-  min-width: 0 !important;
-  min-height: 30px !important;
-  height: 30px !important;
-
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  gap: 6px !important;
-  margin: 0 !important;
-  padding: 0 9px !important;
-
-  box-sizing: border-box !important;
-
-  color: var(--text-muted) !important;
-  background: var(--bg-surface) !important;
-
-  border:
-    1px solid var(--border-default) !important;
-  border-radius: 0 !important;
-  outline: 0 !important;
-
-  font:
-    700 8px/1 var(--font-sans) !important;
-
-  letter-spacing: 0.06em !important;
-  text-decoration: none !important;
-  text-transform: uppercase !important;
-
-  cursor: pointer !important;
-
-  transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease !important;
-}
-
-.litso-msg_subheader > a.button1::before,
-.litso-msg_subheader > a.login-for::before {
-  flex: 0 0 12px !important;
-
-  width: 12px !important;
-  height: 12px !important;
-
-  margin: 0 !important;
-
-  background-color: currentColor !important;
-
-  font-size: 0 !important;
-  line-height: 0 !important;
-
-  transition:
-    transform 0.2s ease !important;
-}
-
-.litso-msg_subheader > a.button1:hover,
-.litso-msg_subheader > a.button1:focus-visible,
-.litso-msg_subheader > a.login-for:hover,
-.litso-msg_subheader > a.login-for:focus-visible {
-  color: var(--gold) !important;
-  background: var(--bg-surface) !important;
-  border-color: var(--gold) !important;
-
-  transform: translateY(-1px) !important;
-}
-
-.litso-msg_subheader
-> a.button1:nth-of-type(odd):hover::before,
-.litso-msg_subheader
-> a.button1:nth-of-type(odd):focus-visible::before {
-  transform:
-    rotate(-8deg)
-    scale(1.08) !important;
-}
-
-.litso-msg_subheader
-> a.button1:nth-of-type(even):hover::before,
-.litso-msg_subheader
-> a.button1:nth-of-type(even):focus-visible::before {
-  transform:
-    rotate(8deg)
-    scale(1.08) !important;
-}
-
-
-/* IMAGE DU BOUTON DE CONNEXION */
-
-.litso-msg_subheader
-> a.login-for
-> img {
-  display: none !important;
-}
-
-
-/* =========================================================
-   BOUTON SURVEILLER LE SUJET
-   ========================================================= */
-
-.litso-msg_subheader > div.button1 {
-  width: auto !important;
-  min-width: 0 !important;
-  min-height: 30px !important;
-  height: 30px !important;
-
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  gap: 6px !important;
-  margin: 0 !important;
-  padding: 0 9px !important;
-
-  box-sizing: border-box !important;
-
-  color: var(--text-muted) !important;
-  background: var(--bg-surface) !important;
-
-  border:
-    1px solid var(--border-default) !important;
-  border-radius: 0 !important;
-  outline: 0 !important;
-
-  font:
-    700 8px/1 var(--font-sans) !important;
-
-  letter-spacing: 0.06em !important;
-  text-transform: uppercase !important;
-
-  cursor: pointer !important;
-
-  transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease !important;
-}
-
-
-/* ICÔNE DE SURVEILLANCE */
-
-.litso-msg_subheader > div.button1::before {
-  content: "";
-
-  flex: 0 0 12px;
-
-  width: 12px;
-  height: 12px;
-
-  display: block;
-
-  background-color: currentColor;
-
-  -webkit-mask:
-    url("https://unpkg.com/lucide-static@latest/icons/bell.svg")
-    center / contain no-repeat;
-
-  mask:
-    url("https://unpkg.com/lucide-static@latest/icons/bell.svg")
-    center / contain no-repeat;
-
-  transition:
-    transform 0.2s ease;
-}
-
-
-/* LIEN GÉNÉRÉ PAR S_WATCH_TOPIC */
-
-.litso-msg_subheader
-> div.button1
-> a {
-  min-width: 0;
-  min-height: 0;
-
-  display: inline-flex;
-  align-items: center;
-
-  padding: 0;
-
-  color: inherit !important;
-  background: transparent !important;
-
-  border: 0 !important;
-
-  font: inherit !important;
-  letter-spacing: inherit !important;
-  text-decoration: none !important;
-  text-transform: inherit !important;
-}
-
-
-/* SURVOL */
-
-.litso-msg_subheader > div.button1:hover,
-.litso-msg_subheader > div.button1:focus-within {
-  color: var(--gold) !important;
-  background: var(--bg-surface) !important;
-  border-color: var(--gold) !important;
-
-  transform: translateY(-1px) !important;
-}
-
-.litso-msg_subheader
-> div.button1:hover::before,
-.litso-msg_subheader
-> div.button1:focus-within::before {
-  transform:
-    rotate(-8deg)
-    scale(1.08);
-}
-
-
-/* ÉTAT ACTIF */
-
-.litso-msg_subheader
-> div.button1.is-watching {
-  color: var(--gold) !important;
-
-  background:
-    color-mix(
-      in srgb,
-      var(--gold) 10%,
-      var(--bg-surface)
-    ) !important;
-
-  border-color: var(--gold) !important;
-}
-
-.litso-msg_subheader
-> div.button1.is-watching::before {
-  -webkit-mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/bell-ring.svg");
-
-  mask-image:
-    url("https://unpkg.com/lucide-static@latest/icons/bell-ring.svg");
-}
-
-
-/* =========================================================
-   BOUTON FAVORI
-   ========================================================= */
-
-#fa-topic-fav-button {
-  width: auto !important;
-  min-width: 0 !important;
-  min-height: 30px !important;
-  height: 30px !important;
-
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  gap: 6px !important;
-  margin: 0 !important;
-  padding: 0 9px !important;
-
-  box-sizing: border-box !important;
-
-  color: var(--text-muted) !important;
-  background: var(--bg-surface) !important;
-
-  border:
-    1px solid var(--border-default) !important;
-  border-radius: 0 !important;
-  outline: 0 !important;
-
-  font:
-    700 8px/1 var(--font-sans) !important;
-
-  letter-spacing: 0.06em !important;
-  text-transform: uppercase !important;
-
-  cursor: pointer !important;
-
-  appearance: none;
-  -webkit-appearance: none;
-
-  transition:
-    color 0.2s ease,
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease !important;
-}
-
-#fa-topic-fav-button svg {
-  flex: 0 0 12px;
-
-  width: 12px;
-  height: 12px;
-
-  fill: transparent;
-  stroke-width: 1.8;
-
-  transition:
-    fill 0.2s ease,
-    transform 0.2s ease;
-}
-
-#fa-topic-fav-button:hover,
-#fa-topic-fav-button:focus-visible {
-  color: var(--accent) !important;
-  background: var(--bg-surface) !important;
-  border-color: var(--accent) !important;
-
-  transform: translateY(-1px) !important;
-}
-
-#fa-topic-fav-button:hover svg,
-#fa-topic-fav-button:focus-visible svg {
-  transform:
-    rotate(8deg)
-    scale(1.08);
-}
-
-
-/* FAVORI ACTIF */
-
-#fa-topic-fav-button.is-faved,
-#fa-topic-fav-button[
-  aria-pressed="true"
-] {
-  color: var(--accent) !important;
-
-  background:
-    color-mix(
-      in srgb,
-      var(--accent) 10%,
-      var(--bg-surface)
-    ) !important;
-
-  border-color: var(--accent) !important;
-}
-
-#fa-topic-fav-button.is-faved svg,
-#fa-topic-fav-button[
-  aria-pressed="true"
-] svg {
-  fill: currentColor;
-}
-
-.litso-msg_runtime {
-  width: 100%;
-  min-height: 42px;
-  height: auto;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-
-  gap: 12px;
-  padding: 5px 8px 5px 12px;
-
-  box-sizing: border-box;
-
-  color: var(--text-muted);
-  background: var(--bg-elevated);
-
-  border-bottom:
-    1px solid var(--border-default);
-}
-
-.litso-msg_topicre {
-  min-width: 0;
-
-  display: flex;
-  align-items: center;
-
-  gap: 8px;
-
-  color: var(--text-muted);
-
-  font:
-    600 9px/1.2 var(--font-sans);
-
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.litso-msg_topicre > a {
-  flex: 0 0 26px;
-
-  width: 26px;
-  height: 26px;
-
-  display: grid;
-  place-items: center;
-
-  padding: 0;
-
-  color: var(--gold);
-  background: var(--bg-surface);
-
-  border:
-    1px solid var(--border-default);
-
-  font-size: 0;
-  text-decoration: none;
-
-  overflow: hidden;
-
-  transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.litso-msg_topicre > a::before {
-  content: "";
-
-  width: 12px;
-  height: 12px;
-
-  display: block;
-
-  background-color: currentColor;
-
-  -webkit-mask:
-    url("https://unpkg.com/lucide-static@latest/icons/link-2.svg")
-    center / contain no-repeat;
-
-  mask:
-    url("https://unpkg.com/lucide-static@latest/icons/link-2.svg")
-    center / contain no-repeat;
-}
-
-.litso-msg_topicre > a:hover,
-.litso-msg_topicre > a:focus-visible {
-  color: var(--accent);
-  border-color: var(--accent);
-
-  transform: translateY(-1px);
-}
-
-.litso-msg_topicre > span {
-  min-width: 0;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.litso-msg_prflstuff {
-  flex: 0 0 auto;
-
-  display: flex;
-  align-items: center;
-
-  gap: 5px;
-}
-
-.litso-msg_likebtn {
-  min-width: 0 !important;
-  min-height: 28px !important;
-  height: 28px !important;
-
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  gap: 5px !important;
-  margin: 0 !important;
-  padding: 0 8px !important;
-
-  box-sizing: border-box !important;
-
-  color: var(--text-muted) !important;
-  background: var(--bg-surface) !important;
-
-  border:
-    1px solid var(--border-default) !important;
-  border-radius: 0 !important;
-  outline: 0 !important;
-
-  font:
-    700 8px/1 var(--font-sans) !important;
-
-  letter-spacing: 0.04em !important;
-  text-transform: uppercase !important;
-
-  cursor: pointer !important;
-
-  transition:
-    color 0.2s ease,
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    opacity 0.2s ease,
-    transform 0.2s ease !important;
-}
-
-.litso-msg_likebtn > i {
-  display: none !important;
-}
-
-.litso-msg_likebtn::before {
-  content: "";
-
-  flex: 0 0 12px;
-
-  width: 12px;
-  height: 12px;
-
-  display: block;
-
-  background-color: currentColor;
-
-  -webkit-mask:
-    url("https://unpkg.com/lucide-static@latest/icons/heart.svg")
-    center / contain no-repeat;
-
-  mask:
-    url("https://unpkg.com/lucide-static@latest/icons/heart.svg")
-    center / contain no-repeat;
-
-  transition:
-    transform 0.2s ease;
-}
-
-.litso-msg_likebtn:hover,
-.litso-msg_likebtn:focus-visible {
-  color:
-    var(--status-important) !important;
-
-  background:
-    var(--bg-surface) !important;
-
-  border-color:
-    var(--status-important) !important;
-
-  transform: translateY(-1px) !important;
-}
-
-.litso-msg_likebtn:hover::before,
-.litso-msg_likebtn:focus-visible::before {
-  transform:
-    rotate(-8deg)
-    scale(1.08);
-}
-
-.litso-msg_likebtn.is-liked,
-.litso-msg_likebtn.fa_liked,
-.litso-msg_likebtn.liked,
-.litso-msg_likebtn[
-  aria-pressed="true"
-] {
-  color:
-    var(--status-important) !important;
-
-  background:
-    color-mix(
-      in srgb,
-      var(--status-important) 10%,
-      var(--bg-surface)
-    ) !important;
-
-  border-color:
-    var(--status-important) !important;
-}
-
-.litso-msg_likebtn.is-loading {
-  opacity: 0.55;
-  pointer-events: none;
-}
-
-.litso-msg_btnedit {
-  margin: 0;
-}
-
-.litso-msg_runtime .profile-icons {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  gap: 5px !important;
-  margin: 0 !important;
-}
-
-.litso-msg_runtime .profile-icons a {
-  flex: 0 0 28px !important;
-
-  width: 28px !important;
-  min-width: 28px !important;
-  height: 28px !important;
-  min-height: 28px !important;
-
-  display: grid !important;
-  place-items: center !important;
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  box-sizing: border-box !important;
-  overflow: hidden;
-
-  color: var(--text-muted) !important;
-  background: var(--bg-surface) !important;
-
-  border:
-    1px solid var(--border-default) !important;
-  border-radius: 0 !important;
-
-  font-size: 0 !important;
-  line-height: 0 !important;
-  text-decoration: none !important;
-
-  transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease !important;
-}
-
-.litso-msg_runtime
-.profile-icons
-a::before {
-  display: block !important;
-
-  width: auto !important;
-  height: auto !important;
-
-  margin: 0 !important;
-
-  color: currentColor !important;
-  background: transparent !important;
-
-  font-family: Arial, sans-serif !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-
-  mask: none !important;
-  -webkit-mask: none !important;
-
-  transition:
-    transform 0.2s ease !important;
-}
-
-.litso-msg_runtime
-.profile-icons
-.icon-quote::before {
-  content: "❝" !important;
-}
-
-.litso-msg_runtime
-.profile-icons
-.icon-edit::before {
-  content: "✎" !important;
-}
-
-.litso-msg_runtime
-.profile-icons
-.icon-delete::before {
-  content: "✕" !important;
-}
-
-.litso-msg_runtime
-.profile-icons
-.icon-ip::before {
-  content: "⛨" !important;
-}
-
-.litso-msg_runtime
-.profile-icons
-.icon-quote:hover,
-.litso-msg_runtime
-.profile-icons
-.icon-quote:focus-visible {
-  color: var(--gold) !important;
-  border-color: var(--gold) !important;
-
-  transform: translateY(-1px) !important;
-}
-
-.litso-msg_runtime
-.profile-icons
-.icon-quote:hover::before,
-.litso-msg_runtime
-.profile-icons
-.icon-quote:focus-visible::before {
-  transform:
-    rotate(-8deg)
-    scale(1.08) !important;
-}
-
-.litso-msg_runtime
-.profile-icons
-.icon-edit:hover,
-.litso-msg_runtime
-.profile-icons
-.icon-edit:focus-visible {
-  color: var(--accent) !important;
-  border-color: var(--accent) !important;
-
-  transform: translateY(-1px) !important;
-}
-
-.litso-msg_runtime
-.profile-icons
-.icon-edit:hover::before,
-.litso-msg_runtime
-.profile-icons
-.icon-edit:focus-visible::before {
-  transform:
-    rotate(8deg)
-    scale(1.08) !important;
-}
-
-.litso-msg_runtime
-.profile-icons
-.icon-delete:hover,
-.litso-msg_runtime
-.profile-icons
-.icon-delete:focus-visible {
-  color:
-    var(--status-important) !important;
-
-  border-color:
-    var(--status-important) !important;
-
-  transform: translateY(-1px) !important;
-}
-
-.litso-msg_runtime
-.profile-icons
-.icon-delete:hover::before,
-.litso-msg_runtime
-.profile-icons
-.icon-delete:focus-visible::before {
-  transform:
-    rotate(-8deg)
-    scale(1.08) !important;
-}
-
-.litso-msg_runtime
-.profile-icons
-.icon-ip:hover,
-.litso-msg_runtime
-.profile-icons
-.icon-ip:focus-visible {
-  color: var(--accent-soft) !important;
-  border-color:
-    var(--accent-soft) !important;
-
-  transform: translateY(-1px) !important;
-}
-
-.litso-msg_runtime
-.profile-icons
-.icon-ip:hover::before,
-.litso-msg_runtime
-.profile-icons
-.icon-ip:focus-visible::before {
-  transform:
-    rotate(8deg)
-    scale(1.08) !important;
-}
-
-.litso-msg_runtime
-.profile-icons
-a[href=""],
-.litso-msg_runtime
-.profile-icons
-a:not([href]) {
-  display: none !important;
-}
-
-@media (max-width: 750px) {
-  .litso-msg_blocktitle {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .litso-msg_subheader {
-    justify-content: flex-start;
-  }
-
-  .litso-msg_runtime {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .litso-msg_prflstuff {
-    width: 100%;
-
-    justify-content: space-between;
-  }
-}
-
-@media (max-width: 520px) {
-  .litso-msg_subheader {
-    display: grid;
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-  .litso-msg_subheader > a.button1,
-  .litso-msg_subheader > a.login-for,
-  .litso-msg_subheader > div.button1,
-  #fa-topic-fav-button {
-    width: 100% !important;
-  }
-
-  .litso-msg_topicre > span {
-    white-space: normal;
+    transition-duration: 0.01ms !important;
   }
 }
