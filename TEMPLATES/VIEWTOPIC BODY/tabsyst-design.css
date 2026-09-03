@@ -53,7 +53,9 @@
 .litso_tabsystem > .litso_tabList > .litso_tabButton.litso_tabButtonActive {
   border-color: transparent;
   background: var(--bg-soft);
+  font: 14px var(--font-condensed);
   color: var(--text-primary);
+  letter-spacing: 1px;
 }
 
 .litso_tabsystem > .litso_tabList > .litso_tabButton:focus-visible {
@@ -326,5 +328,5 @@
 
 .litso_characontent {
   color: var(--text-primary);
-  font: 12px var(--font-sans);
+  font: 12px var(--font-condensed);
 }
