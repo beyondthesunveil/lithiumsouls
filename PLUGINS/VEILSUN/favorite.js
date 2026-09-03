@@ -1,2265 +1,2119 @@
+/* =========================================================
+   LITHIUM SOULS — REGISTRE DE VEILLE
+   ========================================================= */
+
 (function () {
   "use strict";
 
-  /* =========================================================
-     SCRAPBOOK — SUJETS FAVORIS
-     ========================================================= */
+  function initializeFavoriteTopics() {
+    if (!window.jQuery) {
+      return;
+    }
 
-  var STORAGE_KEY = "fa_favorite_topics";
-  var CACHE_DURATION = 15 * 60 * 1000;
-  var DEFAULT_AVATAR =
-    "https://zupimages.net/up/26/20/z3y2.jpg";
+    var panelNode = document.getElementById("fa-pins-panel");
 
-  var PANEL_SELECTOR = "#fa-pins-panel";
-  var BUTTON_SELECTOR = "#fa-pins-button";
-  var LIST_SELECTOR = "#fa-pinned-list";
-  var COUNT_SELECTOR = "#fa-pins-count";
-  var CLOSE_SELECTOR = "#fa-pins-close";
-  var ADD_SELECTOR = "#fa-add-current-topic";
-  var CATEGORIES_SELECTOR = ".fa-pins-cats";
+    if (!panelNode) {
+      return;
+    }
 
-  var UNKNOWN_AUTHOR = "Auteur inconnu";
-  var UNKNOWN_FORUM = "Forum";
-  var UNKNOWN_LAST_AUTHOR = "Dernière réponse";
+    if (
+      panelNode.getAttribute("data-fa-pins-ready") === "true"
+    ) {
+      return;
+    }
 
-  var selectors = {
-    posts: [
+    panelNode.setAttribute(
+      "data-fa-pins-ready",
+      "true"
+    );
+
+    var $ = window.jQuery;
+    var STORAGE_KEY = "fa_favorite_topics";
+    var REFRESH_DELAY = 15 * 60 * 1000;
+    var DATA_VERSION = 2;
+
+    var DEFAULT_AVATAR =
+      "https://zupimages.net/up/26/20/z3y2.jpg";
+
+    var currentCategory = "all";
+    var draggedIndex = null;
+    var refreshPromise = null;
+
+    var categories = {
+      rp: "RP",
+      lore: "Lore",
+      fiche: "Fiches personnages",
+      intrigue: "Réseaux sociaux"
+    };
+
+    var POST_SELECTORS = [
       ".post",
       "article[id^='p']",
       ".postbody"
-    ],
+    ];
 
-    authors: [
-      ".lithium-vb_postname",
+    var AUTHOR_SELECTORS = [
       ".litso-msg_postname",
+      ".lithium-vb_postname",
       ".litso-viewtopic_name",
       "[class*='utppVB_pseudo']",
       ".postprofile-name",
       ".postprofile-name a",
       ".username"
-    ],
+    ];
 
-    avatars: [
+    var AVATAR_SELECTORS = [
+      ".litso-msg_posteravatar img",
       ".lithium-vb_posteravatar img",
       ".litso-msg_avatar img",
       ".litso-viewtopic_avatar img",
       "[class*='utppVB_avatar'] img",
       ".postprofile-avatar img",
       ".postprofile img"
-    ],
+    ];
 
-    topicTitles: [
+    var TITLE_SELECTORS = [
+      ".litso-msg_titlemap",
+      ".lithium-vb_titlemap",
+      ".litso-msg_title h1",
+      ".pathname-box h1",
       "h1.page-title",
       ".topic-title",
-      ".lithium-vb_topictitle",
-      ".litso-viewtopic_title",
-      "[class*='utppVB_title']",
-      "h1",
-      "h2"
-    ],
+      "h1"
+    ];
 
-    breadcrumbs: [
-      ".breadcrumbs",
-      ".nav",
+    var BREADCRUMB_SELECTORS = [
+      ".litso-msg_brdcrmbtrail",
+      ".lithium-vb_brdcrmbtrail",
+      ".litso-msg_breadcrumb",
       ".pathname-box",
-      ".topic-actions + .breadcrumbs",
-      "[class*='breadcrumb']",
-      "[class*='path']"
-    ]
-  };
+      ".breadcrumbs",
+      ".nav"
+    ];
 
 
-  /* =========================================================
-     OUTILS GÉNÉRAUX
-     ========================================================= */
+    /* =====================================================
+       STOCKAGE
+       ===================================================== */
 
-  function normalizeText(value) {
-    return String(value || "")
-      .replace(/\u00a0/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-  }
+    function getFavorites() {
+      try {
+        var saved = JSON.parse(
+          localStorage.getItem(STORAGE_KEY) || "[]"
+        );
 
-
-  function escapeHTML(value) {
-    return String(value || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
-
-  function collapseRepeatedText(value) {
-    var text = normalizeText(value);
-
-    if (!text) {
-      return "";
-    }
-
-    var words = text.split(" ");
-
-    if (words.length < 2) {
-      return text;
-    }
-
-    /*
-     * Corrige notamment :
-     * "bottins bottins bottins bottins"
-     */
-    var firstWord = words[0].toLowerCase();
-
-    var allIdentical = words.every(function (word) {
-      return word.toLowerCase() === firstWord;
-    });
-
-    if (allIdentical) {
-      return words[0];
-    }
-
-    /*
-     * Corrige également une phrase entière répétée
-     * exactement deux, trois ou quatre fois.
-     */
-    var repetitionCount;
-
-    for (
-      repetitionCount = 2;
-      repetitionCount <= 4;
-      repetitionCount += 1
-    ) {
-      if (words.length % repetitionCount !== 0) {
-        continue;
+        return Array.isArray(saved)
+          ? saved
+          : [];
+      } catch (error) {
+        return [];
       }
+    }
 
-      var segmentLength =
-        words.length / repetitionCount;
 
-      var firstSegment = words
-        .slice(0, segmentLength)
-        .join(" ");
+    function saveFavorites(items) {
+      try {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify(items)
+        );
+      } catch (error) {
+        console.warn(
+          "[Lithium Souls — Favoris] Enregistrement impossible.",
+          error
+        );
+      }
+    }
 
-      var repeated = true;
-      var index;
+
+    /* =====================================================
+       OUTILS
+       ===================================================== */
+
+    function cleanText(text) {
+      return String(text || "")
+        .replace(/\u00a0/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+
+    function escapeHTML(value) {
+      return String(
+        value == null ? "" : value
+      )
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+
+    function collapseRepeatedText(text) {
+      var cleaned = cleanText(text);
+      var words = cleaned.split(" ");
 
       for (
-        index = 1;
-        index < repetitionCount;
-        index += 1
+        var size = 1;
+        size <= words.length / 2;
+        size += 1
       ) {
-        var segment = words
-          .slice(
-            index * segmentLength,
-            (index + 1) * segmentLength
-          )
+        if (words.length % size !== 0) {
+          continue;
+        }
+
+        var first = words
+          .slice(0, size)
           .join(" ");
 
-        if (
-          segment.toLowerCase() !==
-          firstSegment.toLowerCase()
+        var identical = true;
+
+        for (
+          var index = size;
+          index < words.length;
+          index += size
         ) {
-          repeated = false;
-          break;
-        }
-      }
-
-      if (repeated) {
-        return firstSegment;
-      }
-    }
-
-    return text;
-  }
-
-
-  function queryFirst(root, selectorList) {
-    if (!root) {
-      return null;
-    }
-
-    var index;
-
-    for (
-      index = 0;
-      index < selectorList.length;
-      index += 1
-    ) {
-      var result = root.querySelector(
-        selectorList[index]
-      );
-
-      if (result) {
-        return result;
-      }
-    }
-
-    return null;
-  }
-
-
-  function queryAllUnique(root, selectorList) {
-    if (!root) {
-      return [];
-    }
-
-    var elements = [];
-
-    selectorList.forEach(function (selector) {
-      var matches = root.querySelectorAll(selector);
-
-      Array.prototype.forEach.call(
-        matches,
-        function (element) {
-          if (elements.indexOf(element) === -1) {
-            elements.push(element);
+          if (
+            words
+              .slice(index, index + size)
+              .join(" ") !== first
+          ) {
+            identical = false;
+            break;
           }
         }
-      );
-    });
 
-    return elements;
-  }
+        if (identical) {
+          return first;
+        }
+      }
 
-
-  function extractImageSource(image) {
-    if (!image) {
-      return "";
+      return cleaned;
     }
 
-    return (
-      image.getAttribute("src") ||
-      image.getAttribute("data-src") ||
-      image.getAttribute("data-original") ||
-      ""
-    ).trim();
-  }
+
+    function fixUrl(url, baseUrl) {
+      if (!url) {
+        return DEFAULT_AVATAR;
+      }
+
+      try {
+        return new URL(
+          url,
+          baseUrl || location.href
+        ).href;
+      } catch (error) {
+        return url;
+      }
+    }
 
 
-  function isDefaultValue(value, defaults) {
-    var normalized = normalizeText(value).toLowerCase();
+    function canonicalTopicUrl(url) {
+      try {
+        var parsed = new URL(
+          url,
+          location.href
+        );
 
-    return defaults.some(function (defaultValue) {
+        parsed.pathname =
+          parsed.pathname.replace(
+            /(\/t\d+)p\d+(?=-|$)/i,
+            "$1"
+          );
+
+        parsed.searchParams.delete("start");
+        parsed.searchParams.delete("view");
+        parsed.hash = "";
+
+        return parsed.href;
+      } catch (error) {
+        return url;
+      }
+    }
+
+
+    function isBadAvatar(src) {
+      var value = String(
+        src || ""
+      ).toLowerCase();
+
       return (
-        normalized ===
-        normalizeText(defaultValue).toLowerCase()
+        !value ||
+        value.includes("/smiles/") ||
+        value.includes("/emoji/") ||
+        value.includes("/icon_") ||
+        value.includes("/sprite") ||
+        value.includes("empty.gif") ||
+        value.includes("spacer.gif") ||
+        value.includes("pixel")
       );
-    });
-  }
-
-
-  function getTopicId(value) {
-    var text = String(value || "");
-
-    var match = text.match(
-      /(?:\/|^)(?:t|viewtopic\.php\?t=)(\d+)/i
-    );
-
-    if (!match) {
-      match = text.match(/[?&]t=(\d+)/i);
     }
 
-    return match ? match[1] : "";
-  }
 
+    function queryFirstText(
+      root,
+      selectors
+    ) {
+      for (
+        var index = 0;
+        index < selectors.length;
+        index += 1
+      ) {
+        var element = root.querySelector(
+          selectors[index]
+        );
 
-  function canonicalTopicUrl(value) {
-    var url;
+        var text = element
+          ? cleanText(element.textContent)
+          : "";
 
-    try {
-      url = new URL(
-        value || window.location.href,
-        window.location.origin
-      );
-    } catch (error) {
-      return String(value || "");
-    }
+        if (text) {
+          return text;
+        }
+      }
 
-    url.hash = "";
-
-    [
-      "start",
-      "view",
-      "watch",
-      "unwatch",
-      "mark",
-      "postdays",
-      "postorder"
-    ].forEach(function (parameter) {
-      url.searchParams.delete(parameter);
-    });
-
-    /*
-     * Forumactif ajoute parfois la pagination dans
-     * l’adresse sous la forme :
-     * /t123p25-titre-du-sujet
-     */
-    url.pathname = url.pathname.replace(
-      /(\/t\d+)p\d+(-|$)/i,
-      "$1$2"
-    );
-
-    return url.href;
-  }
-
-
-  function isTopicPage() {
-    return Boolean(
-      getTopicId(window.location.href)
-    );
-  }
-
-
-  function getStoredTopics() {
-    var stored;
-
-    try {
-      stored = JSON.parse(
-        localStorage.getItem(STORAGE_KEY) || "[]"
-      );
-    } catch (error) {
-      stored = [];
-    }
-
-    if (!Array.isArray(stored)) {
-      stored = [];
-    }
-
-    return stored
-      .map(normalizeStoredTopic)
-      .filter(function (topic) {
-        return topic.url && topic.title;
-      });
-  }
-
-
-  function saveStoredTopics(topics) {
-    try {
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(topics)
-      );
-    } catch (error) {
-      /*
-       * Le panneau reste utilisable pour la session,
-       * même si le navigateur refuse localStorage.
-       */
-    }
-  }
-
-
-  function normalizeStoredTopic(topic, index) {
-    var item =
-      topic && typeof topic === "object"
-        ? topic
-        : {};
-
-    var url = canonicalTopicUrl(
-      item.url || item.href || ""
-    );
-
-    var title = collapseRepeatedText(
-      item.title ||
-      item.name ||
-      "Sujet sans titre"
-    );
-
-    var author = normalizeText(
-      item.author ||
-      item.authorName ||
-      item.poster ||
-      UNKNOWN_AUTHOR
-    );
-
-    var lastAuthor = normalizeText(
-      item.lastAuthor ||
-      item.lastPoster ||
-      item.lastReplyAuthor ||
-      UNKNOWN_LAST_AUTHOR
-    );
-
-    var forum = normalizeText(
-      item.forum ||
-      item.forumName ||
-      item.category ||
-      UNKNOWN_FORUM
-    );
-
-    return {
-      id:
-        item.id ||
-        getTopicId(url) ||
-        String(Date.now()) + "-" + String(index || 0),
-
-      url: url,
-      title: title,
-      author: author,
-      authorAvatar:
-        item.authorAvatar ||
-        item.avatar ||
-        DEFAULT_AVATAR,
-
-      forum: forum,
-
-      lastAuthor: lastAuthor,
-      lastAvatar:
-        item.lastAvatar ||
-        item.lastPosterAvatar ||
-        item.authorAvatar ||
-        item.avatar ||
-        DEFAULT_AVATAR,
-
-      category:
-        normalizeText(item.categoryName) ||
-        normalizeText(item.pinCategory) ||
-        normalizeText(item.type) ||
-        "RP",
-
-      checkedAt:
-        Number(
-          item.checkedAt ||
-          item.updatedAt ||
-          0
-        ) || 0,
-
-      addedAt:
-        Number(item.addedAt || 0) ||
-        Date.now(),
-
-      isNew: Boolean(item.isNew)
-    };
-  }
-
-
-  /* =========================================================
-     EXTRACTION DES INFORMATIONS D’UN SUJET
-     ========================================================= */
-
-  function extractAuthor(post) {
-    var element = queryFirst(
-      post,
-      selectors.authors
-    );
-
-    if (!element) {
       return "";
     }
 
-    var link = element.matches("a")
-      ? element
-      : element.querySelector("a");
 
-    return normalizeText(
-      link
-        ? link.textContent
-        : element.textContent
-    );
-  }
-
-
-  function extractAvatar(post) {
-    var image = queryFirst(
-      post,
-      selectors.avatars
-    );
-
-    return extractImageSource(image);
-  }
-
-
-  function extractTitle(documentRoot) {
-    var titleElement = queryFirst(
-      documentRoot,
-      selectors.topicTitles
-    );
-
-    var title = titleElement
-      ? titleElement.textContent
-      : documentRoot.title;
-
-    title = normalizeText(title)
-      .replace(/\s*-\s*[^-]+$/, "")
-      .trim();
-
-    return collapseRepeatedText(title);
-  }
-
-
-  function isUtilityBreadcrumbLink(link) {
-    var text = normalizeText(
-      link.textContent
-    ).toLowerCase();
-
-    var href =
-      link.getAttribute("href") || "";
-
-    return (
-      !text ||
-      text === "accueil" ||
-      text === "index" ||
-      text === "forum" ||
-      text === "forums" ||
-      text === "portail" ||
-      /\/?(?:index|portal)\.php/i.test(href) ||
-      href === "/" ||
-      href === "#"
-    );
-  }
-
-
-  function extractForum(documentRoot) {
-    var breadcrumbContainers =
-      queryAllUnique(
-        documentRoot,
-        selectors.breadcrumbs
-      );
-
-    var candidates = [];
-
-    breadcrumbContainers.forEach(
-      function (container) {
-        var links = container.querySelectorAll(
-          "a[href]"
-        );
-
-        Array.prototype.forEach.call(
-          links,
-          function (link) {
-            var href =
-              link.getAttribute("href") || "";
-
-            var text = normalizeText(
-              link.textContent
-            );
-
-            if (
-              !text ||
-              isUtilityBreadcrumbLink(link) ||
-              getTopicId(href)
-            ) {
-              return;
-            }
-
-            /*
-             * Les liens de sous-forums Forumactif
-             * possèdent généralement /fXX-...
-             */
-            if (
-              /\/f\d+(?:-|$)/i.test(href) ||
-              /[?&]f=\d+/i.test(href)
-            ) {
-              candidates.push(text);
-            }
-          }
-        );
-      }
-    );
-
-    if (candidates.length) {
-      return candidates[candidates.length - 1];
-    }
-
-    /*
-     * Solution de secours pour les thèmes dont le
-     * fil d’Ariane utilise une structure différente.
-     */
-    var forumLinks =
-      documentRoot.querySelectorAll(
-        "a[href*='/f'], a[href*='?f='], a[href*='&f=']"
-      );
-
-    Array.prototype.forEach.call(
-      forumLinks,
-      function (link) {
-        var href =
-          link.getAttribute("href") || "";
-
-        if (
-          /\/f\d+(?:-|$)/i.test(href) ||
-          /[?&]f=\d+/i.test(href)
-        ) {
-          var text = normalizeText(
-            link.textContent
-          );
-
-          if (text) {
-            candidates.push(text);
-          }
-        }
-      }
-    );
-
-    return candidates.length
-      ? candidates[candidates.length - 1]
-      : "";
-  }
-
-
-  function extractTopicData(documentRoot) {
-    var posts = queryAllUnique(
-      documentRoot,
-      selectors.posts
-    );
-
-    /*
-     * Évite de considérer plusieurs descendants du
-     * même message comme plusieurs publications.
-     */
-    posts = posts.filter(function (post) {
-      return !posts.some(function (otherPost) {
-        return (
-          otherPost !== post &&
-          otherPost.contains(post)
-        );
-      });
-    });
-
-    var firstPost = posts.length
-      ? posts[0]
-      : documentRoot;
-
-    var lastPost = posts.length
-      ? posts[posts.length - 1]
-      : documentRoot;
-
-    var author = extractAuthor(firstPost);
-    var authorAvatar =
-      extractAvatar(firstPost);
-
-    var lastAuthor =
-      extractAuthor(lastPost);
-
-    var lastAvatar =
-      extractAvatar(lastPost);
-
-    return {
-      title: extractTitle(documentRoot),
-
-      author:
-        author || UNKNOWN_AUTHOR,
-
-      authorAvatar:
-        authorAvatar || DEFAULT_AVATAR,
-
-      forum:
-        extractForum(documentRoot) ||
-        UNKNOWN_FORUM,
-
-      lastAuthor:
-        lastAuthor ||
-        author ||
-        UNKNOWN_LAST_AUTHOR,
-
-      lastAvatar:
-        lastAvatar ||
-        authorAvatar ||
-        DEFAULT_AVATAR
-    };
-  }
-
-
-  /* =========================================================
-     RÉCUPÉRATION DE LA PREMIÈRE ET DERNIÈRE PAGE
-     ========================================================= */
-
-  function parseHTML(content) {
-    return new DOMParser().parseFromString(
-      content,
-      "text/html"
-    );
-  }
-
-
-  function fetchDocument(url) {
-    return fetch(url, {
-      credentials: "same-origin",
-      cache: "no-store"
-    })
-      .then(function (response) {
-        if (!response.ok) {
-          throw new Error(
-            "Erreur HTTP " + response.status
-          );
-        }
-
-        return response.text();
-      })
-      .then(parseHTML);
-  }
-
-
-  function paginationValue(url) {
-    var match = String(url || "").match(
-      /\/t\d+p(\d+)(?:-|$)/i
-    );
-
-    if (match) {
-      return Number(match[1]) || 0;
-    }
-
-    try {
-      var parsed = new URL(
-        url,
-        window.location.origin
-      );
-
-      return Number(
-        parsed.searchParams.get("start")
-      ) || 0;
-    } catch (error) {
-      return 0;
-    }
-  }
-
-
-  function findLastPageUrl(
-    documentRoot,
-    baseUrl
-  ) {
-    var topicId = getTopicId(baseUrl);
-
-    if (!topicId) {
-      return baseUrl;
-    }
-
-    var links = documentRoot.querySelectorAll(
-      "a[href]"
-    );
-
-    var lastUrl = baseUrl;
-    var highestPage = 0;
-
-    Array.prototype.forEach.call(
-      links,
-      function (link) {
-        var href =
-          link.getAttribute("href") || "";
-
-        var absoluteUrl;
-
-        try {
-          absoluteUrl = new URL(
-            href,
-            baseUrl
-          ).href;
-        } catch (error) {
-          return;
-        }
-
-        if (
-          getTopicId(absoluteUrl) !== topicId
-        ) {
-          return;
-        }
-
-        var page =
-          paginationValue(absoluteUrl);
-
-        if (page > highestPage) {
-          highestPage = page;
-          lastUrl = absoluteUrl;
-        }
-      }
-    );
-
-    return lastUrl;
-  }
-
-
-  function fetchTopicData(url) {
-    var canonicalUrl =
-      canonicalTopicUrl(url);
-
-    return fetchDocument(canonicalUrl)
-      .then(function (firstDocument) {
-        var firstPageData =
-          extractTopicData(firstDocument);
-
-        var lastPageUrl =
-          findLastPageUrl(
-            firstDocument,
-            canonicalUrl
-          );
-
-        if (
-          canonicalTopicUrl(lastPageUrl) ===
-            canonicalUrl &&
-          paginationValue(lastPageUrl) === 0
-        ) {
-          return firstPageData;
-        }
-
-        return fetchDocument(lastPageUrl)
-          .then(function (lastDocument) {
-            var lastPageData =
-              extractTopicData(lastDocument);
-
-            return {
-              title:
-                firstPageData.title,
-
-              author:
-                firstPageData.author,
-
-              authorAvatar:
-                firstPageData.authorAvatar,
-
-              forum:
-                firstPageData.forum,
-
-              lastAuthor:
-                lastPageData.lastAuthor,
-
-              lastAvatar:
-                lastPageData.lastAvatar
-            };
-          });
-      });
-  }
-
-
-  function topicNeedsRepair(topic) {
-    return (
-      !topic ||
-      !topic.author ||
-      !topic.forum ||
-      !topic.lastAuthor ||
-      !topic.authorAvatar ||
-      !topic.lastAvatar ||
-
-      isDefaultValue(
-        topic.author,
-        [
-          UNKNOWN_AUTHOR,
-          "Inconnu",
-          "Auteur"
-        ]
-      ) ||
-
-      isDefaultValue(
-        topic.forum,
-        [
-          UNKNOWN_FORUM,
-          "#Forum",
-          "Sous-forum"
-        ]
-      ) ||
-
-      isDefaultValue(
-        topic.lastAuthor,
-        [
-          UNKNOWN_LAST_AUTHOR,
-          "Dernière réponse par Dernière réponse",
-          "Inconnu"
-        ]
-      ) ||
-
-      collapseRepeatedText(topic.title) !==
-        normalizeText(topic.title)
-    );
-  }
-
-
-  function topicCacheExpired(topic) {
-    return (
-      !topic.checkedAt ||
-      Date.now() - topic.checkedAt >
-        CACHE_DURATION
-    );
-  }
-
-
-  function mergeTopicData(
-    topic,
-    extractedData
-  ) {
-    var previousLastAuthor =
-      normalizeText(topic.lastAuthor);
-
-    var nextLastAuthor =
-      normalizeText(
-        extractedData.lastAuthor
-      );
-
-    var hasNewResponse =
-      previousLastAuthor &&
-      nextLastAuthor &&
-      !isDefaultValue(
-        previousLastAuthor,
-        [
-          UNKNOWN_LAST_AUTHOR,
-          UNKNOWN_AUTHOR
-        ]
-      ) &&
-      previousLastAuthor !== nextLastAuthor;
-
-    topic.title = collapseRepeatedText(
-      extractedData.title ||
-      topic.title
-    );
-
-    topic.author = normalizeText(
-      extractedData.author ||
-      topic.author ||
-      UNKNOWN_AUTHOR
-    );
-
-    topic.authorAvatar =
-      extractedData.authorAvatar ||
-      topic.authorAvatar ||
-      DEFAULT_AVATAR;
-
-    topic.forum = normalizeText(
-      extractedData.forum ||
-      topic.forum ||
-      UNKNOWN_FORUM
-    );
-
-    topic.lastAuthor = normalizeText(
-      extractedData.lastAuthor ||
-      topic.lastAuthor ||
-      topic.author ||
-      UNKNOWN_LAST_AUTHOR
-    );
-
-    topic.lastAvatar =
-      extractedData.lastAvatar ||
-      topic.lastAvatar ||
-      topic.authorAvatar ||
-      DEFAULT_AVATAR;
-
-    topic.checkedAt = Date.now();
-    topic.isNew =
-      Boolean(topic.isNew) ||
-      hasNewResponse;
-
-    return topic;
-  }
-
-
-  /* =========================================================
-     CRÉATION DU PANNEAU
-     ========================================================= */
-
-  function createPanel() {
-    var existingPanel =
-      document.querySelector(PANEL_SELECTOR);
-
-    if (existingPanel) {
-      return existingPanel;
-    }
-
-    var panel = document.createElement("aside");
-
-    panel.id = "fa-pins-panel";
-    panel.setAttribute("aria-hidden", "true");
-    panel.setAttribute(
-      "aria-label",
-      "Sujets favoris"
-    );
-
-    panel.innerHTML =
-      '<div class="fa-pins-head">' +
-        '<span>' +
-          '<i data-lucide="bookmark"></i>' +
-          "Sujets favoris" +
-        "</span>" +
-        '<button id="fa-pins-close" type="button" aria-label="Fermer le panneau">×</button>' +
-      "</div>" +
-
-      '<button id="fa-add-current-topic" type="button">' +
-        '<i data-lucide="bookmark-plus"></i>' +
-        "<span>Ajouter le sujet actuel</span>" +
-      "</button>" +
-
-      '<div class="fa-pins-cats" aria-label="Filtrer les favoris"></div>' +
-
-      '<ul id="fa-pinned-list"></ul>';
-
-    document.body.appendChild(panel);
-
-    return panel;
-  }
-
-
-  function createButton() {
-    var existingButton =
-      document.querySelector(BUTTON_SELECTOR);
-
-    if (existingButton) {
-      return existingButton;
-    }
-
-    var button = document.createElement("button");
-
-    button.id = "fa-pins-button";
-    button.type = "button";
-    button.setAttribute(
-      "aria-label",
-      "Ouvrir les sujets favoris"
-    );
-    button.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-
-    button.innerHTML =
-      '<i data-lucide="bookmark"></i>' +
-      '<span id="fa-pins-count"></span>';
-
-    var navbarHome =
-      document.querySelector(
-        ".litso-nav_home"
-      );
-
-    var notiffiButton =
-      document.getElementById(
-        "notiffi_button"
-      );
-
-    if (notiffiButton) {
-      notiffiButton.insertAdjacentElement(
-        "afterend",
-        button
-      );
-    } else if (navbarHome) {
-      navbarHome.insertAdjacentElement(
-        "afterend",
-        button
-      );
-    } else {
-      document.body.appendChild(button);
-    }
-
-    return button;
-  }
-
-
-  function refreshIcons() {
-    if (
-      window.lucide &&
-      typeof window.lucide.createIcons ===
-        "function"
+    function queryFirstAvatar(
+      root,
+      baseUrl
     ) {
-      window.lucide.createIcons();
-    }
-  }
-
-
-  /* =========================================================
-     OUVERTURE ET FERMETURE
-     ========================================================= */
-
-  function closeNotiffiPanel() {
-    var notiffiPanel =
-      document.getElementById(
-        "notiffi_container"
-      ) ||
-      document.getElementById(
-        "notiffi_panel"
-      ) ||
-      document.querySelector(
-        ".notiffi-panel.open, .notiffi_container.open"
-      );
-
-    var notiffiButton =
-      document.getElementById(
-        "notiffi_button"
-      );
-
-    if (notiffiPanel) {
-      notiffiPanel.classList.remove("open");
-      notiffiPanel.classList.remove("active");
-      notiffiPanel.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-    }
-
-    if (notiffiButton) {
-      notiffiButton.classList.remove("open");
-      notiffiButton.classList.remove("active");
-      notiffiButton.setAttribute(
-        "aria-expanded",
-        "false"
-      );
-    }
-  }
-
-
-  function closeKrsnPanel() {
-    var krsnPanel =
-      document.getElementById("KRSN-panel");
-
-    var krsnButton =
-      document.getElementById("KRSN-button");
-
-    if (krsnPanel) {
-      krsnPanel.classList.remove("open");
-      krsnPanel.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-    }
-
-    if (krsnButton) {
-      krsnButton.classList.remove("open");
-      krsnButton.setAttribute(
-        "aria-expanded",
-        "false"
-      );
-    }
-  }
-
-
-  function openPanel(panel, button) {
-    closeNotiffiPanel();
-    closeKrsnPanel();
-
-    panel.classList.add("open");
-    panel.setAttribute(
-      "aria-hidden",
-      "false"
-    );
-
-    button.classList.add("open");
-    button.setAttribute(
-      "aria-expanded",
-      "true"
-    );
-  }
-
-
-  function closePanel(panel, button) {
-    panel.classList.remove("open");
-    panel.setAttribute(
-      "aria-hidden",
-      "true"
-    );
-
-    button.classList.remove("open");
-    button.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-  }
-
-
-  function togglePanel(panel, button) {
-    if (panel.classList.contains("open")) {
-      closePanel(panel, button);
-    } else {
-      openPanel(panel, button);
-    }
-  }
-
-
-  /* =========================================================
-     AFFICHAGE DES FAVORIS
-     ========================================================= */
-
-  function getCategories(topics) {
-    var categories = ["Tous"];
-
-    topics.forEach(function (topic) {
-      var category =
-        normalizeText(topic.category) || "RP";
-
-      if (categories.indexOf(category) === -1) {
-        categories.push(category);
-      }
-    });
-
-    return categories;
-  }
-
-
-  function renderCategories(
-    panel,
-    topics,
-    activeCategory
-  ) {
-    var container = panel.querySelector(
-      CATEGORIES_SELECTOR
-    );
-
-    if (!container) {
-      return;
-    }
-
-    var categories =
-      getCategories(topics);
-
-    container.innerHTML = "";
-
-    categories.forEach(function (category) {
-      var button =
-        document.createElement("button");
-
-      button.type = "button";
-      button.textContent = category;
-      button.setAttribute(
-        "data-fa-pin-category",
-        category
-      );
-
-      if (category === activeCategory) {
-        button.classList.add("active");
-      }
-
-      container.appendChild(button);
-    });
-  }
-
-
-  function createAvatarMarkup(topic) {
-    var authorAvatar =
-      topic.authorAvatar || DEFAULT_AVATAR;
-
-    var lastAvatar =
-      topic.lastAvatar ||
-      authorAvatar ||
-      DEFAULT_AVATAR;
-
-    return (
-      '<div class="fa-pin-avatar-wrap">' +
-        '<div class="fa-pin-avatar-inner">' +
-
-          '<div class="fa-pin-avatar-front">' +
-            '<img class="fa-pin-avatar" src="' +
-              escapeHTML(authorAvatar) +
-              '" alt="Avatar de ' +
-              escapeHTML(topic.author) +
-              '">' +
-          "</div>" +
-
-          '<div class="fa-pin-avatar-back">' +
-            '<img class="fa-pin-avatar" src="' +
-              escapeHTML(lastAvatar) +
-              '" alt="Avatar de ' +
-              escapeHTML(topic.lastAuthor) +
-              '">' +
-          "</div>" +
-
-        "</div>" +
-      "</div>"
-    );
-  }
-
-
-  function createTopicMarkup(topic) {
-    var newBadge = topic.isNew
-      ? '<span class="fa-pin-new">Nouveau</span>'
-      : "";
-
-    return (
-      createAvatarMarkup(topic) +
-
-      '<div class="fa-pin-content">' +
-
-        '<a class="fa-pin-title" href="' +
-          escapeHTML(topic.url) +
-          '">' +
-          escapeHTML(
-            collapseRepeatedText(topic.title)
-          ) +
-        "</a>" +
-
-        '<div class="fa-pin-meta">' +
-
-          '<span class="fa-pin-author">' +
-            "par " +
-            escapeHTML(
-              topic.author || UNKNOWN_AUTHOR
-            ) +
-          "</span>" +
-
-          '<span class="fa-pin-forum">' +
-            "#" +
-            escapeHTML(
-              topic.forum || UNKNOWN_FORUM
-            ) +
-          "</span>" +
-
-          '<span class="fa-pin-last">' +
-            "Dernière réponse par " +
-            escapeHTML(
-              topic.lastAuthor ||
-              UNKNOWN_LAST_AUTHOR
-            ) +
-          "</span>" +
-
-          newBadge +
-
-        "</div>" +
-
-        '<select class="fa-pin-cat-select" aria-label="Catégorie du favori">' +
-          '<option value="RP"' +
-            (topic.category === "RP"
-              ? " selected"
-              : "") +
-          ">RP</option>" +
-
-          '<option value="Administration"' +
-            (topic.category === "Administration"
-              ? " selected"
-              : "") +
-          ">Administration</option>" +
-
-          '<option value="Recherches"' +
-            (topic.category === "Recherches"
-              ? " selected"
-              : "") +
-          ">Recherches</option>" +
-
-          '<option value="Archives"' +
-            (topic.category === "Archives"
-              ? " selected"
-              : "") +
-          ">Archives</option>" +
-        "</select>" +
-
-      "</div>" +
-
-      '<button class="fa-remove-pin" type="button" aria-label="Retirer ce sujet">×</button>'
-    );
-  }
-
-
-  function renderTopics(
-    panel,
-    topics,
-    activeCategory
-  ) {
-    var list = panel.querySelector(
-      LIST_SELECTOR
-    );
-
-    var count = document.querySelector(
-      COUNT_SELECTOR
-    );
-
-    if (count) {
-      count.textContent = topics.length
-        ? String(topics.length)
-        : "";
-    }
-
-    renderCategories(
-      panel,
-      topics,
-      activeCategory
-    );
-
-    if (!list) {
-      return;
-    }
-
-    list.innerHTML = "";
-
-    var visibleTopics =
-      activeCategory === "Tous"
-        ? topics
-        : topics.filter(function (topic) {
-            return (
-              topic.category === activeCategory
-            );
-          });
-
-    if (!visibleTopics.length) {
-      var emptyItem =
-        document.createElement("li");
-
-      emptyItem.className = "fa-pins-empty";
-
-      emptyItem.textContent =
-        topics.length
-          ? "Aucun favori dans cette catégorie."
-          : "Aucun sujet favori pour le moment.";
-
-      list.appendChild(emptyItem);
-      return;
-    }
-
-    visibleTopics.forEach(function (topic) {
-      var item = document.createElement("li");
-
-      item.className = "fa-pin-item";
-      item.draggable = true;
-      item.setAttribute(
-        "data-fa-pin-id",
-        topic.id
-      );
-
-      if (topic.isNew) {
-        item.classList.add("is-new");
-      }
-
-      item.innerHTML =
-        createTopicMarkup(topic);
-
-      list.appendChild(item);
-    });
-  }
-
-
-  /* =========================================================
-     AJOUT DU SUJET ACTUEL
-     ========================================================= */
-
-  function createCurrentTopic() {
-    var extracted =
-      extractTopicData(document);
-
-    return {
-      id:
-        getTopicId(window.location.href) ||
-        String(Date.now()),
-
-      url:
-        canonicalTopicUrl(
-          window.location.href
-        ),
-
-      title:
-        extracted.title ||
-        collapseRepeatedText(
-          document.title
-        ) ||
-        "Sujet sans titre",
-
-      author:
-        extracted.author,
-
-      authorAvatar:
-        extracted.authorAvatar,
-
-      forum:
-        extracted.forum,
-
-      lastAuthor:
-        extracted.lastAuthor,
-
-      lastAvatar:
-        extracted.lastAvatar,
-
-      category: "RP",
-      checkedAt: 0,
-      addedAt: Date.now(),
-      isNew: false
-    };
-  }
-
-
-  function addCurrentTopic(
-    panel,
-    activeCategory
-  ) {
-    if (!isTopicPage()) {
-      return;
-    }
-
-    var topics = getStoredTopics();
-    var currentTopic =
-      createCurrentTopic();
-
-    var existingIndex =
-      topics.findIndex(function (topic) {
-        return (
-          topic.id === currentTopic.id ||
-          canonicalTopicUrl(topic.url) ===
-            currentTopic.url
-        );
-      });
-
-    if (existingIndex !== -1) {
-      topics[existingIndex] =
-        Object.assign(
-          {},
-          topics[existingIndex],
-          currentTopic,
-          {
-            addedAt:
-              topics[existingIndex].addedAt ||
-              Date.now()
-          }
-        );
-    } else {
-      topics.unshift(currentTopic);
-    }
-
-    saveStoredTopics(topics);
-
-    renderTopics(
-      panel,
-      topics,
-      activeCategory
-    );
-
-    refreshTopicMetadata(
-      panel,
-      activeCategory,
-      true
-    );
-  }
-
-
-  /* =========================================================
-     ACTUALISATION DES MÉTADONNÉES
-     ========================================================= */
-
-  function refreshTopicMetadata(
-    panel,
-    activeCategory,
-    force
-  ) {
-    var topics = getStoredTopics();
-
-    var indexesToRefresh = [];
-
-    topics.forEach(function (topic, index) {
-      if (
-        force ||
-        topicNeedsRepair(topic) ||
-        topicCacheExpired(topic)
+      for (
+        var index = 0;
+        index < AVATAR_SELECTORS.length;
+        index += 1
       ) {
-        indexesToRefresh.push(index);
-      }
-    });
-
-    if (!indexesToRefresh.length) {
-      renderTopics(
-        panel,
-        topics,
-        activeCategory
-      );
-
-      return Promise.resolve(topics);
-    }
-
-    var nextIndex = 0;
-    var workerCount = Math.min(
-      3,
-      indexesToRefresh.length
-    );
-
-    function worker() {
-      if (nextIndex >= indexesToRefresh.length) {
-        return Promise.resolve();
-      }
-
-      var topicIndex =
-        indexesToRefresh[nextIndex];
-
-      nextIndex += 1;
-
-      var topic = topics[topicIndex];
-
-      return fetchTopicData(topic.url)
-        .then(function (data) {
-          topics[topicIndex] =
-            mergeTopicData(
-              topic,
-              data
-            );
-
-          saveStoredTopics(topics);
-
-          renderTopics(
-            panel,
-            topics,
-            activeCategory
-          );
-        })
-        .catch(function () {
-          /*
-           * On conserve le favori même si Forumactif
-           * refuse temporairement la requête.
-           */
-          topic.checkedAt = Date.now();
-          topics[topicIndex] = topic;
-          saveStoredTopics(topics);
-        })
-        .then(worker);
-    }
-
-    var workers = [];
-
-    while (workers.length < workerCount) {
-      workers.push(worker());
-    }
-
-    return Promise.all(workers)
-      .then(function () {
-        saveStoredTopics(topics);
-
-        renderTopics(
-          panel,
-          topics,
-          activeCategory
+        var image = root.querySelector(
+          AVATAR_SELECTORS[index]
         );
 
-        return topics;
-      });
-  }
+        var src = image
+          ? image.getAttribute("src") ||
+            image.getAttribute("data-src")
+          : "";
 
-
-  /* =========================================================
-     SUPPRESSION ET CATÉGORIES
-     ========================================================= */
-
-  function removeTopic(topicId) {
-    var topics = getStoredTopics()
-      .filter(function (topic) {
-        return topic.id !== topicId;
-      });
-
-    saveStoredTopics(topics);
-
-    return topics;
-  }
-
-
-  function updateTopicCategory(
-    topicId,
-    category
-  ) {
-    var topics = getStoredTopics();
-
-    topics.forEach(function (topic) {
-      if (topic.id === topicId) {
-        topic.category =
-          normalizeText(category) || "RP";
-      }
-    });
-
-    saveStoredTopics(topics);
-
-    return topics;
-  }
-
-
-  function markTopicAsRead(topicId) {
-    var topics = getStoredTopics();
-
-    topics.forEach(function (topic) {
-      if (topic.id === topicId) {
-        topic.isNew = false;
-      }
-    });
-
-    saveStoredTopics(topics);
-  }
-
-
-  /* =========================================================
-     GLISSER-DÉPOSER
-     ========================================================= */
-
-  function initializeDragAndDrop(
-    panel,
-    getActiveCategory
-  ) {
-    var draggedItem = null;
-
-    panel.addEventListener(
-      "dragstart",
-      function (event) {
-        var item = event.target.closest(
-          ".fa-pin-item"
-        );
-
-        if (!item) {
-          return;
+        if (
+          src &&
+          !isBadAvatar(src)
+        ) {
+          return fixUrl(src, baseUrl);
         }
+      }
 
-        draggedItem = item;
-        item.classList.add("dragging");
+      var fallbackImages =
+        root.querySelectorAll("img");
 
-        if (event.dataTransfer) {
-          event.dataTransfer.effectAllowed =
-            "move";
+      for (
+        var imageIndex = 0;
+        imageIndex < fallbackImages.length;
+        imageIndex += 1
+      ) {
+        var fallbackSrc =
+          fallbackImages[
+            imageIndex
+          ].getAttribute("src") || "";
 
-          event.dataTransfer.setData(
-            "text/plain",
-            item.getAttribute(
-              "data-fa-pin-id"
+        if (!isBadAvatar(fallbackSrc)) {
+          return fixUrl(
+            fallbackSrc,
+            baseUrl
+          );
+        }
+      }
+
+      return DEFAULT_AVATAR;
+    }
+
+
+    /* =====================================================
+       EXTRACTION DES MESSAGES
+       ===================================================== */
+
+    function getPostElements(root) {
+      for (
+        var index = 0;
+        index < POST_SELECTORS.length;
+        index += 1
+      ) {
+        var candidates =
+          Array.prototype.slice.call(
+            root.querySelectorAll(
+              POST_SELECTORS[index]
             )
           );
-        }
-      }
-    );
 
-
-    panel.addEventListener(
-      "dragend",
-      function () {
-        if (draggedItem) {
-          draggedItem.classList.remove(
-            "dragging"
-          );
-        }
-
-        draggedItem = null;
-      }
-    );
-
-
-    panel.addEventListener(
-      "dragover",
-      function (event) {
-        if (!draggedItem) {
-          return;
-        }
-
-        var target = event.target.closest(
-          ".fa-pin-item"
-        );
-
-        if (
-          !target ||
-          target === draggedItem
-        ) {
-          return;
-        }
-
-        event.preventDefault();
-
-        var rectangle =
-          target.getBoundingClientRect();
-
-        var insertAfter =
-          event.clientY >
-          rectangle.top +
-            rectangle.height / 2;
-
-        target.parentElement.insertBefore(
-          draggedItem,
-          insertAfter
-            ? target.nextSibling
-            : target
-        );
-      }
-    );
-
-
-    panel.addEventListener(
-      "drop",
-      function (event) {
-        if (!draggedItem) {
-          return;
-        }
-
-        event.preventDefault();
-
-        var visibleIds =
-          Array.prototype.map.call(
-            panel.querySelectorAll(
-              ".fa-pin-item"
-            ),
-            function (item) {
-              return item.getAttribute(
-                "data-fa-pin-id"
-              );
-            }
-          );
-
-        var topics = getStoredTopics();
-
-        var activeCategory =
-          getActiveCategory();
-
-        var reordered = [];
-        var visibleIndex = 0;
-
-        topics.forEach(function (topic) {
-          var isVisible =
-            activeCategory === "Tous" ||
-            topic.category ===
-              activeCategory;
-
-          if (!isVisible) {
-            reordered.push(topic);
-            return;
-          }
-
-          var nextId =
-            visibleIds[visibleIndex];
-
-          visibleIndex += 1;
-
-          var matchingTopic =
-            topics.find(function (candidate) {
-              return candidate.id === nextId;
-            });
-
-          if (matchingTopic) {
-            reordered.push(matchingTopic);
-          }
-        });
-
-        saveStoredTopics(reordered);
-
-        renderTopics(
-          panel,
-          reordered,
-          activeCategory
-        );
-      }
-    );
-  }
-
-
-  /* =========================================================
-     ÉVÉNEMENTS DU PANNEAU
-     ========================================================= */
-
-  function initializePanelEvents(
-    panel,
-    button
-  ) {
-    var activeCategory = "Tous";
-
-    function getActiveCategory() {
-      return activeCategory;
-    }
-
-    button.addEventListener(
-      "click",
-      function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        togglePanel(panel, button);
-
-        if (
-          panel.classList.contains("open")
-        ) {
-          refreshTopicMetadata(
-            panel,
-            activeCategory,
-            false
-          );
-        }
-      }
-    );
-
-
-    var closeButton =
-      panel.querySelector(CLOSE_SELECTOR);
-
-    if (closeButton) {
-      closeButton.addEventListener(
-        "click",
-        function () {
-          closePanel(panel, button);
-          button.focus();
-        }
-      );
-    }
-
-
-    var addButton =
-      panel.querySelector(ADD_SELECTOR);
-
-    if (addButton) {
-      if (!isTopicPage()) {
-        addButton.hidden = true;
-      }
-
-      addButton.addEventListener(
-        "click",
-        function () {
-          addCurrentTopic(
-            panel,
-            activeCategory
-          );
-        }
-      );
-    }
-
-
-    panel.addEventListener(
-      "click",
-      function (event) {
-        var categoryButton =
-          event.target.closest(
-            "[data-fa-pin-category]"
-          );
-
-        if (categoryButton) {
-          activeCategory =
-            categoryButton.getAttribute(
-              "data-fa-pin-category"
-            ) || "Tous";
-
-          renderTopics(
-            panel,
-            getStoredTopics(),
-            activeCategory
-          );
-
-          return;
-        }
-
-        var removeButton =
-          event.target.closest(
-            ".fa-remove-pin"
-          );
-
-        if (removeButton) {
-          var removeItem =
-            removeButton.closest(
-              ".fa-pin-item"
-            );
-
-          if (!removeItem) {
-            return;
-          }
-
-          var removeId =
-            removeItem.getAttribute(
-              "data-fa-pin-id"
-            );
-
-          var updatedTopics =
-            removeTopic(removeId);
-
-          renderTopics(
-            panel,
-            updatedTopics,
-            activeCategory
-          );
-
-          return;
-        }
-
-        var topicLink =
-          event.target.closest(
-            ".fa-pin-title"
-          );
-
-        if (topicLink) {
-          var topicItem =
-            topicLink.closest(
-              ".fa-pin-item"
-            );
-
-          if (topicItem) {
-            markTopicAsRead(
-              topicItem.getAttribute(
-                "data-fa-pin-id"
+        var posts = candidates.filter(
+          function (candidate) {
+            return (
+              queryFirstText(
+                candidate,
+                AUTHOR_SELECTORS
+              ) ||
+              AVATAR_SELECTORS.some(
+                function (selector) {
+                  return candidate.querySelector(
+                    selector
+                  );
+                }
               )
             );
           }
+        );
+
+        if (posts.length) {
+          return posts;
         }
       }
-    );
+
+      return [];
+    }
 
 
-    panel.addEventListener(
-      "change",
-      function (event) {
-        if (
-          !event.target.matches(
-            ".fa-pin-cat-select"
+    function getForumName(root) {
+      for (
+        var index = 0;
+        index < BREADCRUMB_SELECTORS.length;
+        index += 1
+      ) {
+        var breadcrumb =
+          root.querySelector(
+            BREADCRUMB_SELECTORS[index]
+          );
+
+        if (!breadcrumb) {
+          continue;
+        }
+
+        var links =
+          Array.prototype.slice
+            .call(
+              breadcrumb.querySelectorAll(
+                "a[href]"
+              )
+            )
+            .filter(function (link) {
+              var text = cleanText(
+                link.textContent
+              );
+
+              var href =
+                link.getAttribute("href") ||
+                "";
+
+              if (
+                !text ||
+                /mod[ée]rer\s+ce\s+forum/i.test(
+                  text
+                ) ||
+                /(?:modcp|modcp\.php)/i.test(
+                  href
+                ) ||
+                /(?:\/|^)(?:t\d+|viewtopic\.php)/i.test(
+                  href
+                )
+              ) {
+                return false;
+              }
+
+              return (
+                /\/f\d+(?:-|$)/i.test(
+                  href
+                ) ||
+                /[?&]f=\d+/i.test(
+                  href
+                )
+              );
+            });
+
+        if (links.length) {
+          return cleanText(
+            links[
+              links.length - 1
+            ].textContent
+          );
+        }
+      }
+
+      return "Forum";
+    }
+
+
+    function extractTopicData(
+      root,
+      topicUrl
+    ) {
+      var posts = getPostElements(root);
+
+      var firstPost = posts.length
+        ? posts[0]
+        : root;
+
+      var lastPost = posts.length
+        ? posts[posts.length - 1]
+        : root;
+
+      var title =
+        collapseRepeatedText(
+          queryFirstText(
+            root,
+            TITLE_SELECTORS
+          ) ||
+          String(root.title || "")
+            .replace(/ ::.*$/, "")
+        );
+
+      var author =
+        queryFirstText(
+          firstPost,
+          AUTHOR_SELECTORS
+        ) || "Auteur inconnu";
+
+      var lastReplyAuthor =
+        queryFirstText(
+          lastPost,
+          AUTHOR_SELECTORS
+        ) || author;
+
+      var authorAvatar =
+        queryFirstAvatar(
+          firstPost,
+          topicUrl
+        );
+
+      var lastReplyAvatar =
+        queryFirstAvatar(
+          lastPost,
+          topicUrl
+        );
+
+      return {
+        title:
+          title || "Sujet sans titre",
+
+        url:
+          canonicalTopicUrl(
+            topicUrl ||
+            location.href
+          ),
+
+        author: author,
+        authorAvatar: authorAvatar,
+
+        lastReplyAvatar:
+          lastReplyAvatar,
+
+        avatar: authorAvatar,
+
+        forum:
+          getForumName(root),
+
+        lastReply:
+          "Dernière réponse par " +
+          lastReplyAuthor,
+
+        lastReplyAuthor:
+          lastReplyAuthor
+      };
+    }
+
+
+    /* =====================================================
+       NORMALISATION DES FAVORIS
+       ===================================================== */
+
+    function normalizeFavorite(item) {
+      var favorite = item || {};
+
+      var authorAvatar = fixUrl(
+        favorite.authorAvatar ||
+        favorite.avatar
+      );
+
+      var lastReplyAvatar = fixUrl(
+        favorite.lastReplyAvatar ||
+        favorite.avatar ||
+        authorAvatar
+      );
+
+      return {
+        title:
+          collapseRepeatedText(
+            favorite.title ||
+            "Sujet sans titre"
+          ),
+
+        url:
+          canonicalTopicUrl(
+            favorite.url || "#"
+          ),
+
+        author:
+          favorite.author ||
+          "Auteur inconnu",
+
+        authorAvatar:
+          authorAvatar,
+
+        lastReplyAvatar:
+          lastReplyAvatar,
+
+        avatar:
+          authorAvatar,
+
+        forum:
+          favorite.forum ||
+          "Forum",
+
+        lastReply:
+          favorite.lastReply ||
+          "Dernière réponse",
+
+        lastReplyAuthor:
+          favorite.lastReplyAuthor ||
+          "",
+
+        seenReplyAuthor:
+          favorite.seenReplyAuthor ||
+          favorite.lastReplyAuthor ||
+          "",
+
+        category:
+          favorite.category ||
+          "rp",
+
+        createdAt:
+          favorite.createdAt ||
+          Date.now(),
+
+        updatedAt:
+          favorite.updatedAt ||
+          favorite.createdAt ||
+          Date.now(),
+
+        checkedAt:
+          favorite.checkedAt ||
+          0,
+
+        dataVersion:
+          Number(
+            favorite.dataVersion || 0
           )
-        ) {
-          return;
-        }
+      };
+    }
 
-        var item = event.target.closest(
-          ".fa-pin-item"
+
+    function getCurrentTopic() {
+      var data =
+        extractTopicData(
+          document,
+          location.href
         );
 
-        if (!item) {
-          return;
+      return Object.assign(
+        {},
+        data,
+        {
+          category: "rp",
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
+          checkedAt: 0,
+          dataVersion: DATA_VERSION,
+          seenReplyAuthor:
+            data.lastReplyAuthor
         }
+      );
+    }
 
-        var topicId =
-          item.getAttribute(
-            "data-fa-pin-id"
+
+    function needsRepair(item) {
+      return (
+        Number(
+          item.dataVersion || 0
+        ) !== DATA_VERSION ||
+
+        !item.author ||
+        /^auteur inconnu$/i.test(
+          item.author
+        ) ||
+
+        !item.forum ||
+        /^forum$/i.test(
+          item.forum
+        ) ||
+
+        !item.lastReplyAuthor ||
+        /^dernière réponse$/i.test(
+          item.lastReplyAuthor
+        ) ||
+
+        /dernière réponse par dernière réponse/i.test(
+          item.lastReply
+        ) ||
+
+        !item.authorAvatar ||
+        item.authorAvatar ===
+          DEFAULT_AVATAR
+      );
+    }
+
+
+    /* =====================================================
+       RÉCUPÉRATION DES PAGES
+       ===================================================== */
+
+    function requestDocument(url) {
+      return fetch(url, {
+        credentials: "same-origin"
+      })
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error(
+              "HTTP " +
+              response.status
+            );
+          }
+
+          return response
+            .text()
+            .then(function (html) {
+              var parser =
+                new DOMParser();
+
+              return {
+                url:
+                  response.url ||
+                  url,
+
+                document:
+                  parser.parseFromString(
+                    html,
+                    "text/html"
+                  )
+              };
+            });
+        });
+    }
+
+
+    function findLastPageUrl(
+      topicDocument,
+      baseUrl
+    ) {
+      var bestUrl = baseUrl;
+      var bestOffset = 0;
+
+      var links =
+        topicDocument.querySelectorAll(
+          "a[href]"
+        );
+
+      var baseTopicMatch =
+        new URL(baseUrl)
+          .pathname
+          .match(/\/t(\d+)/i);
+
+      var baseTopicId =
+        baseTopicMatch
+          ? baseTopicMatch[1]
+          : "";
+
+      Array.prototype.forEach.call(
+        links,
+        function (link) {
+          var candidate;
+
+          try {
+            candidate = new URL(
+              link.getAttribute("href"),
+              baseUrl
+            );
+          } catch (error) {
+            return;
+          }
+
+          if (
+            candidate.origin !==
+            location.origin
+          ) {
+            return;
+          }
+
+          var candidateTopicMatch =
+            candidate.pathname.match(
+              /\/t(\d+)/i
+            );
+
+          if (
+            baseTopicId &&
+            (
+              !candidateTopicMatch ||
+              candidateTopicMatch[1] !==
+                baseTopicId
+            )
+          ) {
+            return;
+          }
+
+          var pathMatch =
+            candidate.pathname.match(
+              /\/t\d+p(\d+)(?:-|$)/i
+            );
+
+          var queryOffset = Number(
+            candidate.searchParams.get(
+              "start"
+            ) || 0
           );
 
-        var topics =
-          updateTopicCategory(
-            topicId,
-            event.target.value
+          var offset = pathMatch
+            ? Number(pathMatch[1])
+            : queryOffset;
+
+          if (offset > bestOffset) {
+            bestOffset = offset;
+            bestUrl = candidate.href;
+          }
+        }
+      );
+
+      return bestUrl;
+    }
+
+
+    function fetchTopicData(item) {
+      var topicUrl;
+
+      try {
+        topicUrl = new URL(
+          canonicalTopicUrl(
+            item.url
+          ),
+          location.href
+        );
+      } catch (error) {
+        return Promise.resolve(null);
+      }
+
+      if (
+        topicUrl.origin !==
+        location.origin
+      ) {
+        return Promise.resolve(null);
+      }
+
+      return requestDocument(
+        topicUrl.href
+      )
+        .then(function (firstPage) {
+          var firstData =
+            extractTopicData(
+              firstPage.document,
+              topicUrl.href
+            );
+
+          var lastPageUrl =
+            findLastPageUrl(
+              firstPage.document,
+              topicUrl.href
+            );
+
+          if (
+            lastPageUrl ===
+            topicUrl.href
+          ) {
+            return firstData;
+          }
+
+          return requestDocument(
+            lastPageUrl
+          ).then(function (lastPage) {
+            var lastData =
+              extractTopicData(
+                lastPage.document,
+                lastPage.url
+              );
+
+            firstData.lastReplyAuthor =
+              lastData.lastReplyAuthor;
+
+            firstData.lastReplyAvatar =
+              lastData.lastReplyAvatar;
+
+            firstData.lastReply =
+              "Dernière réponse par " +
+              lastData.lastReplyAuthor;
+
+            return firstData;
+          });
+        })
+        .catch(function (error) {
+          console.warn(
+            "[Lithium Souls — Favoris] Sujet non actualisé :",
+            topicUrl.href,
+            error
           );
 
-        renderTopics(
-          panel,
-          topics,
-          activeCategory
+          return null;
+        });
+    }
+
+
+    function refreshFavorites(
+      forceRepair
+    ) {
+      if (refreshPromise) {
+        return refreshPromise;
+      }
+
+      var favorites =
+        getFavorites().map(
+          normalizeFavorite
+        );
+
+      var now = Date.now();
+      var indexes = [];
+
+      favorites.forEach(
+        function (item, index) {
+          var stale =
+            now -
+            item.checkedAt >=
+            REFRESH_DELAY;
+
+          if (
+            (
+              forceRepair &&
+              needsRepair(item)
+            ) ||
+            stale
+          ) {
+            indexes.push(index);
+          }
+        }
+      );
+
+      if (!indexes.length) {
+        return Promise.resolve(
+          favorites
         );
       }
-    );
 
+      var cursor = 0;
 
-    document.addEventListener(
-      "click",
-      function (event) {
-        if (
-          !panel.classList.contains("open")
-        ) {
-          return;
+      function worker() {
+        function next() {
+          if (
+            cursor >=
+            indexes.length
+          ) {
+            return Promise.resolve();
+          }
+
+          var favoriteIndex =
+            indexes[cursor];
+
+          cursor += 1;
+
+          return fetchTopicData(
+            favorites[
+              favoriteIndex
+            ]
+          )
+            .then(
+              function (freshData) {
+                if (freshData) {
+                  var previousSeen =
+                    favorites[
+                      favoriteIndex
+                    ].seenReplyAuthor;
+
+                  favorites[
+                    favoriteIndex
+                  ] = Object.assign(
+                    {},
+                    favorites[
+                      favoriteIndex
+                    ],
+                    freshData,
+                    {
+                      seenReplyAuthor:
+                        previousSeen,
+
+                      checkedAt:
+                        Date.now(),
+
+                      updatedAt:
+                        Date.now(),
+
+                      dataVersion:
+                        DATA_VERSION
+                    }
+                  );
+                } else {
+                  favorites[
+                    favoriteIndex
+                  ].checkedAt =
+                    Date.now();
+                }
+              }
+            )
+            .then(next);
         }
 
-        if (
-          panel.contains(event.target) ||
-          button.contains(event.target)
-        ) {
-          return;
-        }
-
-        closePanel(panel, button);
+        return next();
       }
-    );
+
+      refreshPromise =
+        Promise.all([
+          worker(),
+          worker(),
+          worker()
+        ])
+          .then(function () {
+            saveFavorites(
+              favorites
+            );
+
+            renderFavorites();
+            syncTopicButton();
+
+            return favorites;
+          })
+          .finally(function () {
+            refreshPromise = null;
+          });
+
+      return refreshPromise;
+    }
 
 
-    document.addEventListener(
-      "keydown",
-      function (event) {
-        if (
-          event.key !== "Escape" ||
-          !panel.classList.contains("open")
-        ) {
-          return;
-        }
+    /* =====================================================
+       COMPTEUR ET BOUTON DU SUJET
+       ===================================================== */
 
-        closePanel(panel, button);
-        button.focus();
+    function updateCount() {
+      var count =
+        getFavorites().length;
+
+      $("#fa-pins-count")
+        .text(count || "")
+        .attr(
+          "aria-label",
+          count === 1
+            ? "1 sujet favori"
+            : count +
+              " sujets favoris"
+        );
+    }
+
+
+    function syncTopicButton() {
+      var button =
+        $("#fa-topic-fav-button");
+
+      if (!button.length) {
+        return;
       }
-    );
+
+      var currentUrl =
+        location.origin +
+        location.pathname;
+
+      var exists =
+        getFavorites().some(
+          function (item) {
+            try {
+              var savedUrl =
+                new URL(
+                  item.url,
+                  location.href
+                );
+
+              return (
+                savedUrl.origin +
+                savedUrl.pathname ===
+                currentUrl
+              );
+            } catch (error) {
+              return false;
+            }
+          }
+        );
+
+      var label = exists
+        ? "Retirer des favoris"
+        : "Ajouter aux favoris";
+
+      button
+        .toggleClass(
+          "is-faved",
+          exists
+        )
+        .attr({
+          "aria-pressed":
+            String(exists),
+
+          "aria-label":
+            label,
+
+          title:
+            label
+        })
+        .find("span")
+        .text(label);
+
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    }
+
+
+    /* =====================================================
+       BOUTON DE LA SIDEBAR
+       ===================================================== */
+
+    function preparePanelAccessibility() {
+      var isOpen =
+        $("#fa-pins-panel")
+          .hasClass("open");
+
+      $("#fa-pins-panel")
+        .attr(
+          "aria-hidden",
+          String(!isOpen)
+        );
+
+      $("#fa-pins-button")
+        .attr({
+          "aria-controls":
+            "fa-pins-panel",
+
+          "aria-expanded":
+            String(isOpen)
+        });
+    }
+
+
+    function preserveSidebarButton() {
+      var buttons =
+        document.querySelectorAll(
+          "#fa-pins-button"
+        );
+
+      Array.prototype.forEach.call(
+        buttons,
+        function (button, index) {
+          button.classList.toggle(
+            "fa-pins-duplicate",
+            index > 0
+          );
+
+          button.setAttribute(
+            "aria-hidden",
+            index > 0
+              ? "true"
+              : "false"
+          );
+
+          if (index > 0) {
+            button.setAttribute(
+              "tabindex",
+              "-1"
+            );
+          }
+        }
+      );
+
+      return buttons.length
+        ? buttons[0]
+        : null;
+    }
+
+
+    function observeDuplicateButtons() {
+      if (
+        !(
+          "MutationObserver" in
+          window
+        ) ||
+        document.documentElement
+          .getAttribute(
+            "data-fa-pins-button-observer"
+          ) === "true"
+      ) {
+        return;
+      }
+
+      document.documentElement
+        .setAttribute(
+          "data-fa-pins-button-observer",
+          "true"
+        );
+
+      var frame = null;
+
+      var observer =
+        new MutationObserver(
+          function (mutations) {
+            var buttonWasAdded =
+              mutations.some(
+                function (mutation) {
+                  return Array.prototype
+                    .some.call(
+                      mutation.addedNodes,
+                      function (node) {
+                        return (
+                          node.nodeType ===
+                            1 &&
+                          (
+                            node.id ===
+                              "fa-pins-button" ||
+                            (
+                              node.querySelector &&
+                              node.querySelector(
+                                "#fa-pins-button"
+                              )
+                            )
+                          )
+                        );
+                      }
+                    );
+                }
+              );
+
+            if (!buttonWasAdded) {
+              return;
+            }
+
+            if (frame !== null) {
+              cancelAnimationFrame(
+                frame
+              );
+            }
+
+            frame =
+              requestAnimationFrame(
+                function () {
+                  preserveSidebarButton();
+                  preparePanelAccessibility();
+                  frame = null;
+                }
+              );
+          }
+        );
+
+      observer.observe(
+        document.body,
+        {
+          childList: true,
+          subtree: true
+        }
+      );
+    }
+
+
+    /* =====================================================
+       ONGLETS ET CATÉGORIES
+       ===================================================== */
+
+    function renderCategoryTabs() {
+      var panel =
+        document.getElementById(
+          "fa-pins-panel"
+        );
+
+      if (!panel) {
+        return;
+      }
+
+      var container =
+        panel.querySelector(
+          ".fa-pins-cats"
+        );
+
+      if (!container) {
+        container =
+          document.createElement(
+            "div"
+          );
+
+        container.className =
+          "fa-pins-cats";
+
+        var list =
+          panel.querySelector(
+            "#fa-pinned-list"
+          );
+
+        if (list) {
+          list.parentNode
+            .insertBefore(
+              container,
+              list
+            );
+        } else {
+          panel.appendChild(
+            container
+          );
+        }
+      }
+
+      var tabs = [
+        {
+          value: "all",
+          label: "Tous"
+        }
+      ];
+
+      Object.keys(categories)
+        .forEach(function (value) {
+          tabs.push({
+            value: value,
+            label:
+              categories[value]
+          });
+        });
+
+      container.innerHTML =
+        tabs
+          .map(function (tab) {
+            return (
+              '<button type="button" data-cat="' +
+              escapeHTML(
+                tab.value
+              ) +
+              '"' +
+              (
+                tab.value ===
+                currentCategory
+                  ? ' class="active"'
+                  : ""
+              ) +
+              ' aria-pressed="' +
+              String(
+                tab.value ===
+                currentCategory
+              ) +
+              '">' +
+              escapeHTML(
+                tab.label
+              ) +
+              "</button>"
+            );
+          })
+          .join("");
+    }
+
+
+    /* =====================================================
+       OUVERTURE ET FERMETURE
+       ===================================================== */
+
+    function updatePanelState(
+      isOpen
+    ) {
+      $("#fa-pins-panel")
+        .toggleClass(
+          "open",
+          isOpen
+        )
+        .removeClass("active")
+        .attr(
+          "aria-hidden",
+          String(!isOpen)
+        );
+
+      $("#fa-pins-button")
+        .toggleClass(
+          "is-active",
+          isOpen
+        )
+        .removeClass(
+          "open active"
+        )
+        .attr(
+          "aria-expanded",
+          String(isOpen)
+        );
+    }
+
+
+    function closeCompetingPanels() {
+      $("#KRSN-panel")
+        .removeClass(
+          "open active"
+        )
+        .attr(
+          "aria-hidden",
+          "true"
+        );
+
+      $("#KRSN-button")
+        .removeClass(
+          "open active is-active"
+        )
+        .attr(
+          "aria-expanded",
+          "false"
+        );
+
+      $("#notiffi_panel")
+        .removeClass(
+          "open active"
+        )
+        .attr(
+          "aria-hidden",
+          "true"
+        );
+
+      $("#notiffi_button")
+        .removeClass(
+          "open active is-active"
+        )
+        .attr(
+          "aria-expanded",
+          "false"
+        );
+    }
+
+
+    function openPanel() {
+      closeCompetingPanels();
+      updatePanelState(true);
+
+      refreshFavorites(false);
+    }
+
+
+    function closePanel() {
+      updatePanelState(false);
+    }
+
+
+    function togglePanel() {
+      if (
+        $("#fa-pins-panel")
+          .hasClass("open")
+      ) {
+        closePanel();
+      } else {
+        openPanel();
+      }
+    }
+
+
+    /* =====================================================
+       AJOUT ET SUPPRESSION D’UN FAVORI
+       ===================================================== */
+
+    function toggleCurrentTopicFavorite() {
+      var topic =
+        getCurrentTopic();
+
+      var favorites =
+        getFavorites().map(
+          normalizeFavorite
+        );
+
+      var wasAdded = false;
+
+      var existingIndex =
+        favorites.findIndex(
+          function (item) {
+            try {
+              return (
+                new URL(
+                  item.url,
+                  location.href
+                ).pathname ===
+                new URL(
+                  topic.url,
+                  location.href
+                ).pathname
+              );
+            } catch (error) {
+              return (
+                item.url ===
+                topic.url
+              );
+            }
+          }
+        );
+
+      if (existingIndex !== -1) {
+        favorites.splice(
+          existingIndex,
+          1
+        );
+      } else {
+        favorites.unshift(
+          topic
+        );
+
+        wasAdded = true;
+      }
+
+      saveFavorites(favorites);
+      renderFavorites();
+      syncTopicButton();
+
+      if (wasAdded) {
+        openPanel();
+        refreshFavorites(true);
+      }
+    }
+
+
+    function markAsSeen(index) {
+      var favorites =
+        getFavorites().map(
+          normalizeFavorite
+        );
+
+      if (!favorites[index]) {
+        return;
+      }
+
+      favorites[
+        index
+      ].seenReplyAuthor =
+        favorites[
+          index
+        ].lastReplyAuthor;
+
+      saveFavorites(favorites);
+      renderFavorites();
+    }
+
+
+    /* =====================================================
+       AFFICHAGE DES FAVORIS
+       ===================================================== */
+
+    function renderFavorites() {
+      var list =
+        $("#fa-pinned-list");
+
+      if (!list.length) {
+        updateCount();
+        return;
+      }
+
+      var favorites =
+        getFavorites().map(
+          normalizeFavorite
+        );
+
+      saveFavorites(favorites);
+      renderCategoryTabs();
+
+      var filtered =
+        currentCategory === "all"
+          ? favorites
+          : favorites.filter(
+              function (item) {
+                return (
+                  item.category ===
+                  currentCategory
+                );
+              }
+            );
+
+      list.empty();
+
+      if (!filtered.length) {
+        list.append(
+          '<li class="fa-pin-empty">' +
+            "<span>" +
+              "Aucun favori dans cette catégorie." +
+            "</span>" +
+          "</li>"
+        );
+
+        updateCount();
+        return;
+      }
+
+      filtered.forEach(
+        function (item) {
+          var realIndex =
+            favorites.findIndex(
+              function (favorite) {
+                return (
+                  favorite.url ===
+                  item.url
+                );
+              }
+            );
+
+          var isNew = Boolean(
+            item.lastReplyAuthor &&
+            item.seenReplyAuthor &&
+            item.lastReplyAuthor !==
+              item.seenReplyAuthor
+          );
+
+          var options =
+            Object.keys(categories)
+              .map(function (value) {
+                return (
+                  '<option value="' +
+                  escapeHTML(value) +
+                  '"' +
+                  (
+                    item.category ===
+                    value
+                      ? " selected"
+                      : ""
+                  ) +
+                  ">" +
+                  escapeHTML(
+                    categories[value]
+                  ) +
+                  "</option>"
+                );
+              })
+              .join("");
+
+          list.append(
+            '<li class="fa-pin-item' +
+              (
+                isNew
+                  ? " is-new"
+                  : ""
+              ) +
+              '"' +
+              ' draggable="true"' +
+              ' data-index="' +
+              realIndex +
+              '">' +
+
+              '<div class="fa-pin-avatar-wrap">' +
+                '<div class="fa-pin-avatar-inner">' +
+
+                  '<div class="fa-pin-avatar-front">' +
+                    '<img class="fa-pin-avatar"' +
+                      ' src="' +
+                      escapeHTML(
+                        item.authorAvatar
+                      ) +
+                      '"' +
+                      ' alt=""' +
+                      ' title="Auteur : ' +
+                      escapeHTML(
+                        item.author
+                      ) +
+                      '">' +
+                  "</div>" +
+
+                  '<div class="fa-pin-avatar-back">' +
+                    '<img class="fa-pin-avatar"' +
+                      ' src="' +
+                      escapeHTML(
+                        item.lastReplyAvatar
+                      ) +
+                      '"' +
+                      ' alt=""' +
+                      ' title="Dernière réponse : ' +
+                      escapeHTML(
+                        item.lastReplyAuthor
+                      ) +
+                      '">' +
+                  "</div>" +
+
+                "</div>" +
+              "</div>" +
+
+              '<div class="fa-pin-content">' +
+
+                '<a class="fa-pin-title"' +
+                  ' href="' +
+                  escapeHTML(
+                    item.url
+                  ) +
+                  '"' +
+                  ' data-index="' +
+                  realIndex +
+                  '">' +
+                  escapeHTML(
+                    item.title
+                  ) +
+                "</a>" +
+
+                '<div class="fa-pin-meta">' +
+
+                  '<span class="fa-pin-author">' +
+                    "par " +
+                    escapeHTML(
+                      item.author
+                    ) +
+                  "</span>" +
+
+                  '<span class="fa-pin-forum">' +
+                    "#" +
+                    escapeHTML(
+                      item.forum
+                    ) +
+                  "</span>" +
+
+                  '<span class="fa-pin-last">' +
+                    "Dernière réponse par " +
+                    escapeHTML(
+                      item.lastReplyAuthor ||
+                      item.author
+                    ) +
+                  "</span>" +
+
+                  (
+                    isNew
+                      ? '<span class="fa-pin-new">Nouveau</span>'
+                      : ""
+                  ) +
+
+                "</div>" +
+
+                '<select class="fa-pin-cat-select"' +
+                  ' data-index="' +
+                  realIndex +
+                  '">' +
+                  options +
+                "</select>" +
+
+              "</div>" +
+
+              '<button class="fa-remove-pin"' +
+                ' type="button"' +
+                ' data-index="' +
+                realIndex +
+                '"' +
+                ' aria-label="Retirer ce sujet des favoris">' +
+                "×" +
+              "</button>" +
+
+            "</li>"
+          );
+        }
+      );
+
+      updateCount();
+
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    }
+
+
+    /* =====================================================
+       ÉVÉNEMENTS
+       ===================================================== */
+
+    preserveSidebarButton();
+    observeDuplicateButtons();
+
+    $(document)
+      .off(
+        "click.faPinsOpen",
+        "#fa-pins-button"
+      )
+      .on(
+        "click.faPinsOpen",
+        "#fa-pins-button",
+        function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          togglePanel();
+        }
+      );
+
+
+    $(panelNode)
+      .off(
+        "click.faPinsClose",
+        "#fa-pins-close"
+      )
+      .on(
+        "click.faPinsClose",
+        "#fa-pins-close",
+        function (event) {
+          event.preventDefault();
+          closePanel();
+        }
+      );
+
+
+    $(panelNode)
+      .off(
+        "click.faPinsFavorite",
+        "#fa-add-current-topic"
+      )
+      .on(
+        "click.faPinsFavorite",
+        "#fa-add-current-topic",
+        function (event) {
+          event.preventDefault();
+
+          toggleCurrentTopicFavorite();
+        }
+      );
+
+
+    $(document)
+      .off(
+        "click.faPinsTopicFavorite",
+        "#fa-topic-fav-button"
+      )
+      .on(
+        "click.faPinsTopicFavorite",
+        "#fa-topic-fav-button",
+        function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          toggleCurrentTopicFavorite();
+        }
+      );
 
 
     /*
-     * Si Notiffi est ouvert, le panneau de favoris
-     * se referme automatiquement.
+     * Un clic à l’intérieur du panneau ne doit
+     * jamais provoquer sa fermeture.
      */
-    var notiffiButton =
-      document.getElementById(
-        "notiffi_button"
+    $(panelNode)
+      .off("click.faPinsContain")
+      .on(
+        "click.faPinsContain",
+        function (event) {
+          event.stopPropagation();
+        }
       );
 
-    if (notiffiButton) {
-      notiffiButton.addEventListener(
-        "click",
-        function () {
+
+    /*
+     * Seul un véritable clic à l’extérieur ferme
+     * le panneau.
+     */
+    $(document)
+      .off("click.faPinsOutside")
+      .on(
+        "click.faPinsOutside",
+        function (event) {
           if (
-            panel.classList.contains("open")
+            !$("#fa-pins-panel")
+              .hasClass("open")
           ) {
-            closePanel(panel, button);
+            return;
+          }
+
+          if (
+            $(event.target)
+              .closest(
+                "#fa-pins-panel, " +
+                "#fa-pins-button, " +
+                "#fa-topic-fav-button"
+              )
+              .length
+          ) {
+            return;
+          }
+
+          closePanel();
+        }
+      );
+
+
+    $(document)
+      .off("keydown.faPins")
+      .on(
+        "keydown.faPins",
+        function (event) {
+          if (
+            event.key === "Escape" &&
+            $("#fa-pins-panel")
+              .hasClass("open")
+          ) {
+            closePanel();
+
+            $("#fa-pins-button")
+              .trigger("focus");
           }
         }
       );
-    }
 
 
-    var krsnButton =
-      document.getElementById(
-        "KRSN-button"
+    $(document)
+      .off(
+        "click.faPinsNotiffi",
+        "#notiffi_button"
+      )
+      .on(
+        "click.faPinsNotiffi",
+        "#notiffi_button",
+        closePanel
       );
 
-    if (krsnButton) {
-      krsnButton.addEventListener(
-        "click",
+
+    $(document)
+      .off(
+        "click.faPinsKRSN",
+        "#KRSN-button"
+      )
+      .on(
+        "click.faPinsKRSN",
+        "#KRSN-button",
+        closePanel
+      );
+
+
+    $(panelNode)
+      .off(
+        "click.faPinsCategories",
+        ".fa-pins-cats button"
+      )
+      .on(
+        "click.faPinsCategories",
+        ".fa-pins-cats button",
         function () {
-          if (
-            panel.classList.contains("open")
-          ) {
-            closePanel(panel, button);
+          $(".fa-pins-cats button")
+            .removeClass("active")
+            .attr(
+              "aria-pressed",
+              "false"
+            );
+
+          $(this)
+            .addClass("active")
+            .attr(
+              "aria-pressed",
+              "true"
+            );
+
+          currentCategory =
+            $(this).data("cat") ||
+            "all";
+
+          renderFavorites();
+        }
+      );
+
+
+    $(panelNode)
+      .off(
+        "change.faPinsCategory",
+        ".fa-pin-cat-select"
+      )
+      .on(
+        "change.faPinsCategory",
+        ".fa-pin-cat-select",
+        function () {
+          var favorites =
+            getFavorites().map(
+              normalizeFavorite
+            );
+
+          var index = Number(
+            $(this).data("index")
+          );
+
+          if (!favorites[index]) {
+            return;
           }
+
+          favorites[
+            index
+          ].category =
+            $(this).val();
+
+          saveFavorites(favorites);
+          renderFavorites();
         }
       );
-    }
 
 
-    initializeDragAndDrop(
-      panel,
-      getActiveCategory
-    );
-
-    renderTopics(
-      panel,
-      getStoredTopics(),
-      activeCategory
-    );
-
-    refreshTopicMetadata(
-      panel,
-      activeCategory,
-      false
-    );
-  }
-
-
-  /* =========================================================
-     PLACEMENT DU BOUTON DANS LA NAVBAR
-     ========================================================= */
-
-  function placeFavoriteButton(button) {
-    var homeButton =
-      document.querySelector(
-        ".litso-nav_home"
-      );
-
-    var notiffiButton =
-      document.getElementById(
-        "notiffi_button"
-      );
-
-    if (notiffiButton) {
-      if (
-        notiffiButton.nextElementSibling !==
-          button
-      ) {
-        notiffiButton.insertAdjacentElement(
-          "afterend",
-          button
-        );
-      }
-
-      return true;
-    }
-
-    if (homeButton) {
-      if (
-        homeButton.nextElementSibling !==
-          button
-      ) {
-        homeButton.insertAdjacentElement(
-          "afterend",
-          button
-        );
-      }
-
-      return true;
-    }
-
-    return false;
-  }
-
-
-  function observeNavbar(button) {
-    if (
-      !("MutationObserver" in window) ||
-      document.documentElement.getAttribute(
-        "data-fa-pins-navbar-observer"
-      ) === "true"
-    ) {
-      return;
-    }
-
-    document.documentElement.setAttribute(
-      "data-fa-pins-navbar-observer",
-      "true"
-    );
-
-    var scheduledFrame = null;
-
-    var observer = new MutationObserver(
-      function (mutations) {
-        var shouldCheck = false;
-
-        mutations.forEach(function (mutation) {
-          Array.prototype.forEach.call(
-            mutation.addedNodes,
-            function (node) {
-              if (
-                shouldCheck ||
-                node.nodeType !== 1
-              ) {
-                return;
-              }
-
-              if (
-                node.id === "notiffi_button" ||
-                node.matches &&
-                  node.matches(
-                    "[data-litso-nav]"
-                  ) ||
-                node.querySelector &&
-                  node.querySelector(
-                    "#notiffi_button, [data-litso-nav]"
-                  )
-              ) {
-                shouldCheck = true;
-              }
-            }
-          );
-        });
-
-        if (!shouldCheck) {
-          return;
-        }
-
-        if (scheduledFrame !== null) {
-          cancelAnimationFrame(
-            scheduledFrame
+    $(panelNode)
+      .off(
+        "click.faPinsSeen",
+        ".fa-pin-title"
+      )
+      .on(
+        "click.faPinsSeen",
+        ".fa-pin-title",
+        function () {
+          markAsSeen(
+            Number(
+              $(this).data("index")
+            )
           );
         }
-
-        scheduledFrame =
-          requestAnimationFrame(
-            function () {
-              placeFavoriteButton(button);
-              scheduledFrame = null;
-            }
-          );
-      }
-    );
-
-    observer.observe(
-      document.body,
-      {
-        childList: true,
-        subtree: true
-      }
-    );
-  }
-
-
-  /* =========================================================
-     INITIALISATION
-     ========================================================= */
-
-  function initializeFavoriteTopics() {
-    var existingPanel =
-      document.querySelector(
-        PANEL_SELECTOR
       );
 
-    if (
-      existingPanel &&
-      existingPanel.getAttribute(
-        "data-fa-pins-ready"
-      ) === "true"
-    ) {
-      return;
+
+    $(panelNode)
+      .off(
+        "click.faPinsRemove",
+        ".fa-remove-pin"
+      )
+      .on(
+        "click.faPinsRemove",
+        ".fa-remove-pin",
+        function (event) {
+          event.preventDefault();
+
+          var favorites =
+            getFavorites().map(
+              normalizeFavorite
+            );
+
+          var index = Number(
+            $(this).data("index")
+          );
+
+          if (!favorites[index]) {
+            return;
+          }
+
+          favorites.splice(index, 1);
+
+          saveFavorites(favorites);
+          renderFavorites();
+          syncTopicButton();
+        }
+      );
+
+
+    /* =====================================================
+       GLISSER-DÉPOSER
+       ===================================================== */
+
+    $(panelNode)
+      .off(
+        "dragstart.faPins",
+        ".fa-pin-item"
+      )
+      .on(
+        "dragstart.faPins",
+        ".fa-pin-item",
+        function () {
+          draggedIndex = Number(
+            $(this).data("index")
+          );
+
+          $(this).addClass(
+            "dragging"
+          );
+        }
+      );
+
+
+    $(panelNode)
+      .off(
+        "dragend.faPins",
+        ".fa-pin-item"
+      )
+      .on(
+        "dragend.faPins",
+        ".fa-pin-item",
+        function () {
+          draggedIndex = null;
+
+          $(".fa-pin-item")
+            .removeClass(
+              "dragging"
+            );
+        }
+      );
+
+
+    $(panelNode)
+      .off(
+        "dragover.faPins",
+        ".fa-pin-item"
+      )
+      .on(
+        "dragover.faPins",
+        ".fa-pin-item",
+        function (event) {
+          event.preventDefault();
+        }
+      );
+
+
+    $(panelNode)
+      .off(
+        "drop.faPins",
+        ".fa-pin-item"
+      )
+      .on(
+        "drop.faPins",
+        ".fa-pin-item",
+        function (event) {
+          event.preventDefault();
+
+          var droppedIndex =
+            Number(
+              $(this).data("index")
+            );
+
+          if (
+            draggedIndex === null ||
+            draggedIndex ===
+              droppedIndex
+          ) {
+            return;
+          }
+
+          var favorites =
+            getFavorites().map(
+              normalizeFavorite
+            );
+
+          if (
+            !favorites[
+              draggedIndex
+            ] ||
+            !favorites[
+              droppedIndex
+            ]
+          ) {
+            return;
+          }
+
+          var moved =
+            favorites.splice(
+              draggedIndex,
+              1
+            )[0];
+
+          favorites.splice(
+            droppedIndex,
+            0,
+            moved
+          );
+
+          draggedIndex = null;
+
+          saveFavorites(favorites);
+          renderFavorites();
+        }
+      );
+
+
+    /* =====================================================
+       PREMIER AFFICHAGE
+       ===================================================== */
+
+    preparePanelAccessibility();
+    renderCategoryTabs();
+    renderFavorites();
+    syncTopicButton();
+    refreshFavorites(true);
+
+    if (window.lucide) {
+      window.lucide.createIcons();
     }
-
-    var panel = createPanel();
-    var button = createButton();
-
-    if (!panel || !button) {
-      return;
-    }
-
-    panel.setAttribute(
-      "data-fa-pins-ready",
-      "true"
-    );
-
-    placeFavoriteButton(button);
-    observeNavbar(button);
-
-    initializePanelEvents(
-      panel,
-      button
-    );
-
-    refreshIcons();
   }
 
 
@@ -2274,7 +2128,10 @@
   }
 
 
-  if (document.readyState === "loading") {
+  if (
+    document.readyState ===
+    "loading"
+  ) {
     document.addEventListener(
       "DOMContentLoaded",
       startFavoriteTopics,
@@ -2283,5 +2140,4 @@
   } else {
     startFavoriteTopics();
   }
-
 })();
