@@ -666,7 +666,6 @@
 }
 
 .sidebar_top #switcheroo {
-  flex: 0 1 auto;
   width: var(--sidebar-button);
   min-height: 0;
   max-height: min(330px, calc(100dvh - 285px));
