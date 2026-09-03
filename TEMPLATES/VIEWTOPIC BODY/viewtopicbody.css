@@ -1185,13 +1185,15 @@ h1.litso-msg_titlemap {
 }
 
 .litso-msg_rank {
-  margin: 10px;
-  padding: 0 0 10px;
-
-  color: var(--text-secondary);
-
+  margin: 10px auto 15px;
+  background: var(--text-muted);
+  padding: 0px 0 10px;
+  text-align: center;
+  height: 20px;
+  width: 235px;
+  color: var(--text-on-accent);
   font: 15px var(--font-condensed);
-  letter-spacing: 1px;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
