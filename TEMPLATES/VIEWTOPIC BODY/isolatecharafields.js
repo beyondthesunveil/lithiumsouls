@@ -1,27 +1,18 @@
 jQuery(function ($) {
-
-    $('.lithium-vb_postprofile .post').each(function () {
-
+    $('.litso-msg_charafields').each(function () {
         var $post = $(this);
-
-        $post.find('.lithium-vb_charafield').each(function () {
-
+        $post.find('.litso-msg_charafield').each(function () {
             var $field = $(this);
-
             var label = $.trim(
-                $field.find('.lithium-vb_charalabel .label span:first').text()
+                $field.find('.litso-msg_charalabel span:first').text()
             );
-
             if (
-                label === "Feat :" ||
+                label === "Feat" ||
                 label === "Date d'inscription" ||
-				label === "Messages"
+                label === "Messages"
             ) {
                 $post.find('.other').append($field);
             }
-
         });
-
     });
-
 });
