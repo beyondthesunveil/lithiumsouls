@@ -51,9 +51,9 @@
   height: 34px;
   display: grid;
   place-items: center;
-  border: 1px solid var(--border-default);
+  outline: 1px solid var(--border-default);
+  outline-offset: 3px;
   border-radius: 0;
-  outline: none;
   background: var(--bg-elevated);
   cursor: pointer;
   transform: translateZ(0);
