@@ -4,7 +4,7 @@ jQuery(function ($) {
         $post.find('.litso-msg_charafield').each(function () {
             var $field = $(this);
             var label = $.trim(
-                $field.find('.litso-msg_charalabel span:first').text()
+                $field.find('.litso-msg_charalabel').text()
             );
             if (
                 label === "Feat" ||
