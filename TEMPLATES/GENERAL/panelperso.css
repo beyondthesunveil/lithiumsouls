@@ -34,7 +34,6 @@
   background: var(--bg-overlay);
 
   border: 1px solid var(--border-subtle);
-  border-radius: 18px;
   box-shadow: none;
 
   backdrop-filter: blur(18px);
@@ -448,10 +447,9 @@
 
 .litso-personal_sectionHeader h3 {
   margin: 6px 0 0;
-
   color: var(--text-primary);
-
   font-family: var(--font-display);
+  border:none;
   font-size: 24px;
   font-weight: 400;
   line-height: 1;
@@ -559,7 +557,6 @@
   background: var(--bg-elevated);
 
   border: 1px solid var(--border-subtle);
-  border-radius: 10px;
 }
 
 .litso-personal_taskLabel {
@@ -793,7 +790,7 @@
   border: 1px solid var(--border-default);
   border-left:
     3px solid var(--litso-task-status);
-  border-radius: 6px;
+  border-radius: 3px;
 
   transition:
     opacity 0.2s ease,
