@@ -486,7 +486,6 @@ a.notiffi_see_all:hover {
   padding: 0 !important;
   overflow: visible !important;
   border: 1px solid var(--border-subtle) !important;
-  border-radius: 14px !important;
   outline: none !important;
   background: var(--bg-surface) !important;
   color: var(--text-secondary) !important;
