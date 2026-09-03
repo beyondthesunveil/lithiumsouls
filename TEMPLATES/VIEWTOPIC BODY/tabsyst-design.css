@@ -1,10 +1,10 @@
-.utppVB_tabsystem {
+.litso_tabsystem {
   box-sizing: border-box;
   width: 100%;
   padding: 15px;
 }
 
-.utppVB_tabsystem > .utppVB_tabList {
+.litso_tabsystem > .litso_tabList {
   position: relative;
   display: flex;
   align-items: center;
@@ -15,7 +15,7 @@
   overflow: visible;
 }
 
-.utppVB_tabsystem > .utppVB_tabList > .utppVB_tabButton {
+.litso_tabsystem > .litso_tabList > .litso_tabButton {
   appearance: none;
   box-sizing: border-box;
   min-width: 0;
@@ -36,32 +36,32 @@
     transform 0.25s ease;
 }
 
-.utppVB_tabsystem
-  > .utppVB_tabList
-  > .utppVB_tabButton:not(.utppVB_tabButtonIcon) {
+.litso_tabsystem
+  > .litso_tabList
+  > .litso_tabButton:not(.litso_tabButtonIcon) {
   flex: 1 1 0;
   width: auto;
 }
 
-.utppVB_tabsystem > .utppVB_tabList > .utppVB_tabButton:hover {
+.litso_tabsystem > .litso_tabList > .litso_tabButton:hover {
   transform: translateY(-1px);
   border-color: transparent;
   background: var(--gradient-accent);
   color: var(--text-on-accent);
 }
 
-.utppVB_tabsystem > .utppVB_tabList > .utppVB_tabButton.utppVB_tabButtonActive {
+.litso_tabsystem > .litso_tabList > .litso_tabButton.litso_tabButtonActive {
   border-color: transparent;
   background: var(--bg-soft);
   color: var(--text-primary);
 }
 
-.utppVB_tabsystem > .utppVB_tabList > .utppVB_tabButton:focus-visible {
+.litso_tabsystem > .litso_tabList > .litso_tabButton:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-.utppVB_tabsystem > .utppVB_tabList > .utppVB_tabButtonIcon {
+.litso_tabsystem > .litso_tabList > .litso_tabButtonIcon {
   position: relative;
   display: grid;
   place-items: center;
@@ -75,21 +75,21 @@
   line-height: 0;
 }
 
-.utppVB_tabsystem > .utppVB_tabList > .utppVB_tabButtonIcon::before {
+.litso_tabsystem > .litso_tabList > .litso_tabButtonIcon::before {
   content: "";
   display: block;
   width: 15px;
   height: 15px;
   background-color: currentColor;
   mask-image: var(
-    --utppVB-tab-icon,
+    --litso-tab-icon,
     url("https://unpkg.com/lucide-static/icons/user-round.svg")
   );
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
   -webkit-mask-image: var(
-    --utppVB-tab-icon,
+    --litso-tab-icon,
     url("https://unpkg.com/lucide-static/icons/user-round.svg")
   );
   -webkit-mask-repeat: no-repeat;
@@ -98,15 +98,15 @@
   pointer-events: none;
 }
 
-.utppVB_tabsystem > .utppVB_tabList > .utppVB_tabButtonIcon > :is(i, svg, img) {
+.litso_tabsystem > .litso_tabList > .litso_tabButtonIcon > :is(i, svg, img) {
   width: 15px;
   height: 15px;
   object-fit: contain;
   pointer-events: none;
 }
 
-.utppVB_tabsystem > .utppVB_tabList > .utppVB_tabButtonIcon::after {
-  content: attr(data-utppvb-tooltip);
+.litso_tabsystem > .litso_tabList > .litso_tabButtonIcon::after {
+  content: attr(data-litso-tooltip);
   position: absolute;
   z-index: 999;
   left: 50%;
@@ -131,16 +131,16 @@
     transform 0.15s ease;
 }
 
-.utppVB_tabsystem > .utppVB_tabList > .utppVB_tabButtonIcon:hover::after,
-.utppVB_tabsystem
-  > .utppVB_tabList
-  > .utppVB_tabButtonIcon:focus-visible::after {
+.litso_tabsystem > .litso_tabList > .litso_tabButtonIcon:hover::after,
+.litso_tabsystem
+  > .litso_tabList
+  > .litso_tabButtonIcon:focus-visible::after {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
 }
 
-.utppVB_tabsystem > .utppVB_tabPanels {
+.litso_tabsystem > .litso_tabPanels {
   min-height: 150px;
   overflow: hidden;
   border-radius: 5px;
@@ -148,39 +148,39 @@
   color: var(--accent);
 }
 
-.utppVB_tabsystem > .utppVB_tabPanels > .utppVB_tabPanel {
+.litso_tabsystem > .litso_tabPanels > .litso_tabPanel {
   min-width: 0;
 }
 
-.utppVB_tabsystem > .utppVB_tabPanels > .utppVB_tabPanel[hidden] {
+.litso_tabsystem > .litso_tabPanels > .litso_tabPanel[hidden] {
   display: none !important;
 }
 
-.utppVB_other,
-.utppVB_profileFields {
+.litso_other,
+.litso_profileFields {
   box-sizing: border-box;
 }
 
-.utppVB_tabsystem.utppVB_tabsBottom > .utppVB_tabPanels {
+.litso_tabsystem.litso_tabsBottom > .litso_tabPanels {
   margin-bottom: 10px;
 }
 
-.utppVB_tabsystem.utppVB_tabsBottom > .utppVB_tabList {
+.litso_tabsystem.litso_tabsBottom > .litso_tabList {
   margin: 10px 0 -20px;
 }
 
-.utppVB_tabsystem.utppVB_tabsVertical > .utppVB_tabList {
+.litso_tabsystem.litso_tabsVertical > .litso_tabList {
   flex-direction: column;
   align-items: stretch;
 }
 
-.utppVB_tabsystem.utppVB_tabsVertical
-  > .utppVB_tabList
-  > .utppVB_tabButtonIcon {
+.litso_tabsystem.litso_tabsVertical
+  > .litso_tabList
+  > .litso_tabButtonIcon {
   align-self: center;
 }
 
-.utppVB_contFields {
+.litso_contFields {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -189,12 +189,12 @@
   padding: 0 0 15px 0;
 }
 
-.utppVB_contFields:empty {
+.litso_contFields:empty {
   display: none;
 }
 
-.utppVB_contFields > a,
-.utppVB_contField {
+.litso_contFields > a,
+.litso_contField {
   position: relative;
   width: 36px;
   height: 36px;
@@ -215,23 +215,23 @@
     border-color 0.25s ease;
 }
 
-.utppVB_contField:hover {
+.litso_contField:hover {
   transform: translateY(-2px);
   border-color: transparent;
   background: var(--gradient-accent);
   color: var(--text-on-accent);
 }
 
-.utppVB_contField:focus-visible {
+.litso_contField:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-.utppVB_contField img {
+.litso_contField img {
   display: none !important;
 }
 
-.utppVB_contField::before {
+.litso_contField::before {
   content: "";
   width: 16px;
   height: 16px;
@@ -245,23 +245,23 @@
   -webkit-mask-size: contain;
 }
 
-.utppVB_contField[data-utppvb-contact="rps"]::before {
+.litso_contField[data-litso-contact="rps"]::before {
   mask-image: url("https://unpkg.com/lucide-static/icons/scroll-text.svg");
   -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/scroll-text.svg");
 }
 
-.utppVB_contField[data-utppvb-contact="links"]::before {
+.litso_contField[data-litso-contact="links"]::before {
   mask-image: url("https://unpkg.com/lucide-static/icons/users-round.svg");
   -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/users-round.svg");
 }
 
-.utppVB_contField[data-utppvb-contact="presentation"]::before {
+.litso_contField[data-litso-contact="presentation"]::before {
   mask-image: url("https://unpkg.com/lucide-static/icons/id-card.svg");
   -webkit-mask-image: url("https://unpkg.com/lucide-static/icons/id-card.svg");
 }
 
-.utppVB_contField::after {
-  content: attr(data-utppvb-tooltip);
+.litso_contField::after {
+  content: attr(data-litso-tooltip);
   position: absolute;
   z-index: 999;
   left: 50%;
@@ -287,8 +287,8 @@
     transform 0.15s ease;
 }
 
-.utppVB_contField:hover::after,
-.utppVB_contField:focus-visible::after {
+.litso_contField:hover::after,
+.litso_contField:focus-visible::after {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
