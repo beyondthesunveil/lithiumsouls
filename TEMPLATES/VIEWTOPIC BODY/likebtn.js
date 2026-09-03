@@ -1,11 +1,6 @@
 (function () {
   "use strict";
 
-
-  /* =====================================================
-     OUTILS
-     ===================================================== */
-
   function normalizeLitsoText(value) {
     return String(value || "")
       .replace(/\s+/g, " ")
@@ -28,11 +23,6 @@
       window.lucide.createIcons();
     }
   }
-
-
-  /* =====================================================
-     ÉTAT DU BOUTON J’AIME
-     ===================================================== */
 
   function detectInitialLikeState(button) {
     var className = String(
@@ -247,11 +237,6 @@
     );
   }
 
-
-  /* =====================================================
-     ÉTAT DE SURVEILLANCE DU SUJET
-     ===================================================== */
-
   function updateWatchTopicState(
     watchBlock
   ) {
@@ -299,18 +284,8 @@
         ? "Ne plus surveiller ce sujet"
         : "Surveiller ce sujet"
     );
-
-    /*
-     * On conserve le texte produit par
-     * Forumactif afin que le lien reste
-     * compréhensible et fonctionnel.
-     */
+    
   }
-
-
-  /* =====================================================
-     ÉTAT DU BOUTON FAVORI
-     ===================================================== */
 
   function updateFavoriteState() {
     var favoriteButton =
@@ -332,11 +307,6 @@
       String(isFavorite)
     );
   }
-
-
-  /* =====================================================
-     INITIALISATION
-     ===================================================== */
 
   function initializeLitsoTopicTools() {
     var likeButtons =
@@ -361,14 +331,6 @@
 
     updateFavoriteState();
     refreshLitsoIcons();
-
-
-    /*
-     * Le script des favoris peut changer
-     * la classe du bouton après notre
-     * initialisation. Cet observateur
-     * synchronise alors aria-pressed.
-     */
 
     var favoriteButton =
       document.getElementById(
