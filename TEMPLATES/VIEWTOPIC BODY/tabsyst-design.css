@@ -317,12 +317,6 @@
   white-space: nowrap;
 }
 
-.litso_charalabel::after {
-  content: ":";
-  margin-left: 2px;
-  color: var(--text-faded);
-}
-
 .litso_characontent {
   color: var(--gold-dark);
   font-weight: 700;
