@@ -308,11 +308,7 @@
 /* Radio invisible */
 
 .litso_parto-radio {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
-  pointer-events: none;
+  display: none !important;
 }
 
 /* Barre cliquable */
