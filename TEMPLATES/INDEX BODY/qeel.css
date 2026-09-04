@@ -207,7 +207,7 @@
   padding: 10px 14px;
   color: var(--text-primary, #ece9e4);
   background: rgba(13, 13, 13, 0.92);
-  border-left: 4px solid var(--gold, #b4a16d);
+  width: 210px;
   font: 700 10px var(--font-text, "Inter", sans-serif);
   line-height: 1.4;
   letter-spacing: 0.8px;
