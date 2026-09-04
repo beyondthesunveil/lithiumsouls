@@ -190,6 +190,25 @@
   text-align: justify;
 }
 
+.litso_context_text h3 {
+  position: relative;
+  margin: 23px 0 13px;
+  padding-bottom: 10px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-default);
+  font: 600 20px/1 var(--font-display);
+}
+
+.litso_context_text h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 45px;
+  height: 2px;
+  background: var(--gradient-accent);
+}
+
 .litso_context_text p,
 .litso_context_panel p {
   margin: 0;
