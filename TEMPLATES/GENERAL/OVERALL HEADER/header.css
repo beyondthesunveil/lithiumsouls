@@ -1,0 +1,15 @@
+.litso_header {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.litso_header a {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  background-image: var(--banner);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: background-image 0.2s ease;
+}
