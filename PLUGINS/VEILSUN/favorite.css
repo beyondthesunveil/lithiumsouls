@@ -32,7 +32,6 @@
     border-color 0.25s ease,
     background-color 0.25s ease,
     color 0.25s ease,
-    box-shadow 0.25s ease,
     transform 0.25s ease;
 }
 
@@ -48,8 +47,6 @@
   background: var(--gradient-accent);
   color: var(--text-invert);
   outline: none;
-  box-shadow: 0 0 16px
-    color-mix(in srgb, var(--accent) 25%, transparent);
   transform: scale(1.08) rotate(-6deg);
 }
 
@@ -119,8 +116,6 @@
   border: 1px solid var(--border-subtle);
   background: var(--bg-overlay);
   color: var(--text-primary);
-  box-shadow: -24px 0 60px
-    color-mix(in srgb, var(--text-primary) 18%, transparent);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   opacity: 0;
@@ -252,7 +247,6 @@
     border-color 0.2s ease,
     background-color 0.2s ease,
     color 0.2s ease,
-    box-shadow 0.2s ease;
 }
 
 #fa-add-current-topic:hover,
@@ -261,8 +255,6 @@
   background: var(--gradient-accent);
   color: var(--text-invert);
   outline: none;
-  box-shadow: 0 0 14px
-    color-mix(in srgb, var(--accent) 22%, transparent);
 }
 
 .fa-pins-cats {
@@ -550,7 +542,6 @@
     border-color 0.25s ease,
     background-color 0.25s ease,
     color 0.25s ease,
-    box-shadow 0.25s ease,
     transform 0.25s ease !important;
 }
 
@@ -568,8 +559,6 @@
   border-color: var(--accent) !important;
   background: var(--gradient-accent) !important;
   color: var(--text-invert) !important;
-  box-shadow: 0 0 16px
-    color-mix(in srgb, var(--accent) 20%, transparent);
   transform: translateY(-1px);
 }
 
