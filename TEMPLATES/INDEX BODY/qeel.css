@@ -342,6 +342,10 @@
   line-height: 1.8;
 }
 
+.litso-qeel_recent {
+  margin:-10px!immportant;
+}
+
 .litso-qeel_connected a,
 .litso-qeel_recent a {
   font-weight: 700;
@@ -366,8 +370,10 @@
   position: relative;
   background-color: var(--bg-elevated);
   min-width: 0;
-  padding: 19px 30px 17px;
+  height: 10px;
+  padding: 19px 37px 17px;
   display: flex;
+  margin-bottom: 20px;
   align-items: center;
   justify-content: center;
   gap: 10px;
