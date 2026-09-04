@@ -161,17 +161,6 @@
   border: 1px solid var(--border-default);
 }
 
-.litso_context_body::before {
-  content: "";
-  position: absolute;
-  top: 27px;
-  bottom: 29px;
-  left: 13px;
-  width: 1px;
-  background: linear-gradient(to bottom, transparent, var(--gold), var(--accent-dark), transparent);
-  opacity: .45;
-}
-
 .litso_context_story {
   padding: 0;
 }
@@ -197,7 +186,7 @@
 
 .litso_context_text {
   color: var(--text-secondary);
-  font: 10px/1.85 var(--font-sans);
+  font: 12px/1.85 var(--font-sans);
   text-align: justify;
 }
 
@@ -209,16 +198,6 @@
 
 .litso_context_text p + p {
   margin-top: 13px;
-}
-
-.litso_context_text strong,
-.litso_context_text b {
-  color: var(--gold-dark);
-}
-
-.litso_context_text em,
-.litso_context_text i {
-  color: var(--accent-dark);
 }
 
 .litso_context_revelation {
@@ -276,12 +255,11 @@
 }
 
 .litso_context_panelTitle span {
-  color: var(--gold-light);
-  font-size: 12px;
+  display:none;
 }
 
 .litso_context_panelTitle strong {
-  font: 700 8px/1.3 var(--font-condensed);
+  font: 700 12px/1.3 var(--font-condensed);
   letter-spacing: 1.2px;
   text-transform: uppercase;
 }
@@ -289,7 +267,7 @@
 .litso_context_panel p {
   padding: 16px 18px;
   color: var(--text-muted);
-  font: 9px/1.7 var(--font-sans);
+  font: 12px/1.7 var(--font-sans);
   text-align: justify;
 }
 
