@@ -1,11 +1,11 @@
-html {
+/* html {
   min-height: 100%;
   margin: 0;
-  background: var(--bg-body);
+  background-ima: var(--bg-body);
   scroll-behavior: smooth;
-}
+} */
 
-body {
+html, body {
   background-image: var(--bg-body);
   background-position: center;
   background-repeat: no-repeat;
@@ -17,6 +17,7 @@ body {
   font-family: var(--font-sans);
   font-size:12px!important;
   isolation: isolate;
+  scroll-behavior: smooth;
 }
 
 #wrap {
