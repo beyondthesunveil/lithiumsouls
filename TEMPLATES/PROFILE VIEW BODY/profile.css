@@ -985,6 +985,135 @@
 
 }
 
+/* =========================================================
+   MESSAGE PRIVÉ
+   ========================================================= */
+
+.litso-profile_privateMessage {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+
+  margin-top: 22px;
+  padding-top: 17px;
+
+  border-top: 1px solid var(--border-default);
+}
+
+
+/* ----- ICÔNE ----- */
+
+.litso-profile_privateMessageIcon {
+  width: 28px;
+  height: 28px;
+
+  display: grid;
+  place-items: center;
+
+  color: var(--gold);
+
+  border: 1px solid var(--border-default);
+  transform: rotate(45deg);
+}
+
+.litso-profile_privateMessageIcon i {
+  font-size: 13px;
+  transform: rotate(-45deg);
+}
+
+
+/* ----- TEXTE ----- */
+
+.litso-profile_privateMessageText {
+  min-width: 0;
+}
+
+.litso-profile_privateMessageText > span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-sans);
+  font-size: 6px;
+  font-weight: 700;
+  line-height: 1;
+
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.litso-profile_privateMessageText > strong {
+  display: block;
+
+  color: var(--text-primary);
+
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+
+/* ----- ACTION FORUMACTIF ----- */
+
+.litso-profile_privateMessageAction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/*
+ * Forumactif génère généralement un lien/image
+ * à l'intérieur de {PRIVATE_MSG}.
+ */
+
+.litso-profile_privateMessageAction a {
+  width: 28px;
+  height: 28px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0 !important;
+
+  color: var(--gold);
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border-default);
+
+  text-decoration: none;
+
+  transition:
+    color .2s ease,
+    border-color .2s ease,
+    background .2s ease;
+}
+
+.litso-profile_privateMessageAction a:hover {
+  color: var(--text-invert);
+  background: var(--gold-dark);
+  border-color: var(--gold-dark);
+}
+
+
+/* Si Forumactif utilise une image pour le bouton */
+
+.litso-profile_privateMessageAction img {
+  display: block;
+
+  width: 14px !important;
+  height: 14px !important;
+
+  max-width: 14px !important;
+  max-height: 14px !important;
+
+  object-fit: contain;
+}
+
 /* .litso-profile_ {
   position: relative;
   width: min(1160px, calc(100% - 40px));
