@@ -25,7 +25,6 @@
   margin: 0 auto;
   padding: 0;
   border: 1px solid var(--border-default);
-  border-radius: var(--radiusbis);
   background: var(--bg-surface);
   color: var(--text-secondary);
   cursor: pointer;
@@ -118,7 +117,6 @@
   padding: 15px;
   overflow: hidden;
   border: 1px solid var(--border-subtle);
-  border-radius: 18px;
   background: var(--bg-overlay);
   color: var(--text-primary);
   box-shadow: -24px 0 60px
@@ -244,7 +242,6 @@
   margin: 0;
   padding: 8px 12px;
   border: 1px solid var(--border-default);
-  border-radius: var(--radiusbis);
   background: var(--bg-surface);
   color: var(--accent);
   cursor: pointer;
@@ -281,7 +278,6 @@
   min-height: 25px;
   padding: 5px 9px;
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radiusbis);
   background: var(--bg-surface);
   color: var(--text-muted);
   cursor: pointer;
@@ -319,7 +315,6 @@
   overflow-x: hidden;
   overflow-y: auto;
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius);
   background: var(--bg-surface);
   list-style: none;
   scrollbar-width: thin;
@@ -346,7 +341,6 @@
   position: relative;
   padding: 11px;
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radiusbis);
   background: var(--bg-elevated);
   color: var(--text-primary);
   transition:
@@ -479,7 +473,6 @@
 .fa-pin-last {
   padding: 3px 7px;
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radiusbis);
   background: var(--bg-surface);
   color: var(--text-muted);
 }
@@ -547,7 +540,6 @@
   margin: 6px 6px 0 0 !important;
   padding: 7px 12px !important;
   border: 1px solid var(--border-subtle) !important;
-  border-radius: var(--radiusbis) !important;
   outline: none !important;
   background: var(--bg-elevated) !important;
   color: var(--text-secondary) !important;
