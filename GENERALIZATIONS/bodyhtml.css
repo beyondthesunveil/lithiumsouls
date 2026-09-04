@@ -16,6 +16,14 @@ body {
   isolation: isolate;
 }
 
+.conteneur_minwidth_IE,
+.conteneur_layout_IE,
+.conteneur_container_IE,
+#wrap,
+#page-body {
+  background: transparent;
+}
+
 /* html {
   min-height: 100%;
   margin: 0;
