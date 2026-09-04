@@ -1,9 +1,31 @@
+html {
+  min-height: 100%;
+  margin: 0;
+  background-image: var(--bg-body);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  background-color: var(--bg-page);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  isolation: isolate;
+}
+
 /* html {
   min-height: 100%;
   margin: 0;
-  background-ima: var(--bg-body);
+  background-image: var(--bg-body);
   scroll-behavior: smooth;
-} */
+} 
 
 html, body {
   background-image: var(--bg-body);
@@ -18,7 +40,7 @@ html, body {
   font-size:12px!important;
   isolation: isolate;
   scroll-behavior: smooth;
-}
+} */
 
 #wrap {
   max-width: 1200px;
