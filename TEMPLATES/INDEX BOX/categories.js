@@ -31,7 +31,28 @@
     "f19": "Le salon de thé",
     "f41": "Le salon de billards",
     "f29": "Le salon des Expositions",
-    "f2": "L’encre séchée est précieuse"
+    "f2": "L’encre séchée est précieuse",
+    "f33": "Fragments d’histoires",
+    "f16": "Apprivoiser son environnement",
+    "f42": "S’absenter ou se manifester",
+    "f34": "Demandes précises ou diverses",
+    "f28": "Gare aux crieurs·euses de Rue",
+    "f18": "Les voix d’outre-tombe",
+    "f25": "S’intéresser et s’interroger",
+    "f22": "Personnages Hellaverse",
+    "f23": "Esquisses du Forum",
+    "f44": "Oups, trop tard!",
+    "f14": "Ils rôdent désormais en Enfer",
+    "f37": "Créer des liens",
+    "f40": "Appel aux membres",
+    "f26": "Là où dorment les Anges",
+    "f27": "Là où fourmillent les âmes",
+    "f21": "Ce qui nous forge",
+    "f30": "Dans une toute autre réalité",
+    "f39": "De vous à moi ; de moi à vous",
+    "f46": "Contrôle et vérification",
+    "f36": "Âmes en terre",
+    "f32": "Les écrits restent"
   };
 
   var forumBadges = {
@@ -54,7 +75,28 @@
     "f19": "Parler",
     "f41": "S'amuser",
     "f29": "Galerie d'arts",
-    "f2": "Conserver"
+    "f2": "Conserver",
+    "f33": "Fragments d'histoires",
+    "f16": "Savoirs nécessaires",
+    "f42": "Registraire",
+    "f34": "Comptes et publications",
+    "f28": "Attention !",
+    "f18": "Pactiser",
+    "f25": "Externe",
+    "f22": "Mis de l'avant",
+    "f23": "Personnages des membres",
+    "f44": "Adopté·e·s",
+    "f14": "Validation",
+    "f37": "Intime",
+    "f40": "Jouer ensemble",
+    "f26": "Céleste",
+    "f27": "Terrestre",
+    "f21": "Passé",
+    "f30": "Alternatif",
+    "f39": "Lien virtuel",
+    "f46": "Processus",
+    "f36": "Orchestrer",
+    "f32": "Sujets des membres"
   };
 
   function cleanText(element) {
