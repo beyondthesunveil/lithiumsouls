@@ -243,10 +243,11 @@
 }
 
 .litso_context_revelation--major {
-  color: var(--gold-dark);
-  background: linear-gradient(90deg, transparent, var(--bg-soft), transparent), var(--bg-elevated);
+  color: var(--text-muted);
+  background: var(--bg-elevated);
   border-right: 0;
   border-left: 0;
+  font: 12px var(--font-condensed);
   font-size: 14px;
   letter-spacing: 1.5px;
 }
