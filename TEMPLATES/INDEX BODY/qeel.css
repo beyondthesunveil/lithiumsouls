@@ -338,11 +338,11 @@
 .litso-qeel_recent {
   margin-top: 18px;
   color: var(--text-secondary, #aaa5a2);
-  font: 12px var(--font-condensed);
+  font: 12px var(--font-sans);
 }
 
 .litso-qeel_recent {
-  margin:0px!immportant;
+  margin:0px!important;
 }
 
 .litso-qeel_connected a,
