@@ -43,7 +43,6 @@
       rp: "RP",
       lore: "Lore",
       fiche: "Fiches personnages",
-      intrigue: "Réseaux sociaux"
     };
 
     var POST_SELECTORS = [
