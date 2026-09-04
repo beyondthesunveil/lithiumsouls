@@ -1,4 +1,22 @@
-html {
+body {
+    background-image: var(--bg-body);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--text-primary);
+    margin: 0 !important;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* html {
   min-height: 100%;
   margin: 0;
   background-image: var(--bg-body);
@@ -22,7 +40,7 @@ body {
 #wrap,
 #page-body {
   background: transparent;
-}
+} */
 
 /* html {
   min-height: 100%;
