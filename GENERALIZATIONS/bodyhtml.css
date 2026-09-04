@@ -1,4 +1,7 @@
 html {
+  min-height: 100%;
+  margin: 0;
+  background: var(--bg-body);
   scroll-behavior: smooth;
 }
 
