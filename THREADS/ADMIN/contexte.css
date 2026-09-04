@@ -212,6 +212,7 @@
 .litso_context_text p,
 .litso_context_panel p {
   margin: 0;
+  font-size:12px;
   white-space: pre-line;
 }
 
