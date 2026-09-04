@@ -1,4 +1,919 @@
+/* =========================================================
+   PROFIL
+   Nomenclature : litso-profile_
+   ========================================================= */
+
+.litso-profile_,
+.litso-profile_ * {
+  box-sizing: border-box;
+}
+
 .litso-profile_ {
+  position: relative;
+  width: min(1160px, calc(100% - 40px));
+  margin: 45px auto;
+  color: var(--text-primary);
+}
+
+
+/* =========================================================
+   EN-TÊTE
+   ========================================================= */
+
+.litso-profile_header {
+  position: relative;
+  min-height: 165px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 28px 0;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.litso-profile_headerGhost {
+  position: absolute;
+  z-index: 0;
+  top: -25px;
+  left: 0;
+  color: transparent;
+  font-family: var(--font-display);
+  font-size: clamp(95px, 14vw, 175px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: .85;
+  letter-spacing: -.07em;
+  white-space: nowrap;
+  -webkit-text-stroke: 1px var(--border-subtle);
+  pointer-events: none;
+  user-select: none;
+}
+
+.litso-profile_headerContent {
+  position: relative;
+  z-index: 1;
+  width: min(700px, 100%);
+  text-align: right;
+}
+
+.litso-profile_headerIndex {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-bottom: 6px;
+  color: var(--gold);
+  font-family: var(--font-sans);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.litso-profile_headerIndex::before {
+  content: "";
+  width: 45px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.litso-profile_headerTitle {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5vw, 62px);
+  font-weight: 400;
+  line-height: .95;
+  letter-spacing: -.04em;
+}
+
+.litso-profile_headerSubtitle {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-style: italic;
+}
+
+
+/* =========================================================
+   STRUCTURE
+   ========================================================= */
+
+.litso-profile_layout {
+  display: grid;
+  grid-template-columns: 245px minmax(0, 1fr);
+  align-items: stretch;
+  margin-top: 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+}
+
+
+/* =========================================================
+   COLONNE IDENTITÉ
+   ========================================================= */
+
+.litso-profile_identity {
+  min-width: 0;
+  padding: 25px 22px;
+  background: var(--bg-elevated);
+  border-right: 1px solid var(--border-default);
+}
+
+.litso-profile_eyebrow {
+  display: block;
+  color: var(--gold);
+  font-family: var(--font-sans);
+  font-size: 7px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.litso-profile_presence {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 22px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.litso-profile_status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.litso-profile_status > i {
+  width: 5px;
+  height: 5px;
+  flex: 0 0 5px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--border-subtle);
+}
+
+
+/* ----- AVATAR ----- */
+
+.litso-profile_avatar {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 185px;
+  margin: 0 auto;
+  padding: 6px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+}
+
+.litso-profile_avatar::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: -4px;
+  right: 16px;
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+.litso-profile_avatar img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+  filter: grayscale(.12);
+}
+
+
+/* ----- IDENTITÉ ----- */
+
+.litso-profile_identityText {
+  margin-top: 22px;
+  text-align: center;
+}
+
+.litso-profile_identityIndex {
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.litso-profile_username {
+  margin: 6px 0 0;
+  overflow-wrap: anywhere;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 25px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.litso-profile_rank {
+  margin-top: 8px;
+  color: var(--gold-dark);
+  font-family: var(--font-sans);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   GROUPES
+   ========================================================= */
+
+.litso-profile_groups {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-default);
+}
+
+.litso-profile_groupList {
+  display: grid;
+  gap: 6px;
+  margin-top: 11px;
+}
+
+.litso-profile_groupList a {
+  position: relative;
+  display: flex !important;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 9px !important;
+  overflow-wrap: anywhere;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  font-family: var(--font-sans);
+  font-size: 7px !important;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: .05em;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  transition:
+    border-color .2s ease,
+    background .2s ease,
+    transform .2s ease;
+}
+
+.litso-profile_groupList a::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  flex: 0 0 5px;
+  background: currentColor;
+  transform: rotate(45deg);
+  opacity: .75;
+}
+
+.litso-profile_groupList a:hover {
+  background: var(--bg-soft);
+  border-color: currentColor;
+  transform: translateX(2px);
+}
+
+
+/* ----- SUIVRE ----- */
+
+.litso-profile_follow {
+  width: 100%;
+  min-height: 33px;
+  margin-top: 16px;
+  padding: 0 10px;
+  color: var(--text-invert);
+  background: var(--accent-deep);
+  border: 1px solid var(--accent-deep);
+  border-radius: 0;
+  font-family: var(--font-sans);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.litso-profile_follow:hover {
+  background: var(--gold-dark);
+  border-color: var(--gold-dark);
+}
+
+
+/* =========================================================
+   PARTIE DROITE
+   ========================================================= */
+
+.litso-profile_details {
+  min-width: 0;
+  padding: 0 32px;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.litso-profile_section {
+  position: relative;
+  padding: 30px 0 34px;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.litso-profile_section:last-child {
+  border-bottom: 0;
+}
+
+.litso-profile_sectionHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.litso-profile_sectionHeader > div {
+  min-width: 0;
+}
+
+.litso-profile_sectionNumber {
+  display: inline-block;
+  margin-right: 7px;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-style: italic;
+  line-height: 1;
+}
+
+.litso-profile_sectionHeader .litso-profile_eyebrow {
+  display: inline-block;
+}
+
+.litso-profile_sectionHeader h3 {
+  position: relative;
+  display: table;
+  margin: 7px 0 0;
+  padding-bottom: 8px;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.litso-profile_sectionHeader h3::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: var(--gradient-accent);
+}
+
+.litso-profile_sectionHeader h3 em {
+  color: var(--accent-soft);
+  font-weight: 400;
+}
+
+.litso-profile_sectionMark {
+  flex: 0 0 auto;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CHAMPS
+   ========================================================= */
+
+.litso-profile_fields {
+  display: grid;
+}
+
+.litso-profile_field {
+  position: relative;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(125px, .6fr) minmax(0, 2fr);
+  gap: 22px;
+  padding: 13px 5px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.litso-profile_field:last-child {
+  border-bottom: 0;
+}
+
+.litso-profile_fieldLabel {
+  min-width: 0;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.litso-profile_fieldContent {
+  min-width: 0;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 9px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.litso-profile_fieldContent img {
+  max-width: 100%;
+  height: auto;
+}
+
+.litso-profile_fieldContent a {
+  color: var(--accent);
+}
+
+.litso-profile_fieldContent a:hover {
+  color: var(--gold);
+}
+
+.litso-profile_postStats {
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: 7px;
+}
+
+
+/* ----- LIENS SOUS LES STATS DE MESSAGES ----- */
+
+.litso-profile_fieldLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+  margin-top: 8px;
+}
+
+.litso-profile_fieldLinks a {
+  padding: 0;
+  color: var(--text-muted);
+  background: none;
+  border: 0;
+  font-size: 6px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.litso-profile_fieldLinks a:hover {
+  color: var(--gold);
+}
+
+
+/* =========================================================
+   ÉDITION AJAX
+   ========================================================= */
+
+.litso-profile_field.ajax-profil_parent {
+  position: relative;
+}
+
+.litso-profile_field .ajax-profil_hover {
+  background: var(--bg-soft);
+}
+
+.litso-profile_field .ajax-profil_edit,
+.litso-profile_field .ajax-profil_valid {
+  position: absolute;
+  top: 10px;
+  right: 4px;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.litso-profile_field .ajax-profil_edit img,
+.litso-profile_field .ajax-profil_valid img {
+  max-width: 12px;
+  max-height: 12px;
+}
+
+.litso-profile_field .field_editable input,
+.litso-profile_field .field_editable select,
+.litso-profile_field .field_editable textarea {
+  max-width: 100%;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  font-family: var(--font-sans);
+  font-size: 9px;
+}
+
+.litso-profile_field .invisible {
+  display: none;
+}
+
+.litso-profile_field .form-error {
+  margin-top: 6px;
+  color: var(--accent);
+  font-size: 7px;
+}
+
+
+/* =========================================================
+   CONTACT / COMMENTAIRE ADMIN
+   ========================================================= */
+
+.litso-profile_contactForm {
+  width: 100%;
+}
+
+.litso-profile_adminComment {
+  margin-top: 22px;
+  padding: 18px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+.litso-profile_adminCommentHeader strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.litso-profile_adminComment textarea {
+  width: 100%;
+  min-height: 110px;
+  margin-top: 14px;
+  padding: 12px;
+  resize: vertical;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 0;
+  outline: 0;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+.litso-profile_adminComment textarea:focus {
+  border-color: var(--gold);
+}
+
+.litso-profile_adminCommentActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.litso-profile_button {
+  min-height: 31px;
+  padding: 0 12px;
+  color: var(--text-invert);
+  background: var(--accent-deep);
+  border: 1px solid var(--accent-deep);
+  border-radius: 0;
+  font-family: var(--font-sans);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   ACTIVITÉ
+   ========================================================= */
+
+.litso-profile_activityGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--border-subtle);
+}
+
+.litso-profile_activityItem {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 25px minmax(0, 1fr);
+  gap: 11px;
+  padding: 14px 8px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.litso-profile_activityItem:nth-child(odd) {
+  border-right: 1px solid var(--border-subtle);
+}
+
+.litso-profile_activityIndex {
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-style: italic;
+}
+
+.litso-profile_activityItem strong {
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.litso-profile_activityItem p {
+  margin: 5px 0 0;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-style: italic;
+}
+
+
+/* ----- NAVIGATION ACTIVITÉ ----- */
+
+.litso-profile_activityNav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px 18px;
+  margin-top: 15px;
+}
+
+.litso-profile_activityNav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.litso-profile_activityNav a i {
+  color: var(--gold);
+  font-size: 12px;
+}
+
+.litso-profile_activityNav a:hover {
+  color: var(--gold);
+}
+
+
+/* =========================================================
+   DISTINCTIONS / GESTION
+   ========================================================= */
+
+.litso-profile_awards {
+  padding-bottom: 18px;
+}
+
+.litso-profile_subheading strong,
+.litso-profile_management strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.litso-profile_awardsList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.litso-profile_awardsList img {
+  max-width: 38px;
+  max-height: 38px;
+  object-fit: contain;
+}
+
+.litso-profile_management {
+  display: grid;
+  grid-template-columns: minmax(125px, .6fr) minmax(0, 2fr);
+  gap: 22px;
+  padding: 15px 5px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.litso-profile_management > div:last-child {
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+.litso-profile_adminLinks {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.litso-profile_adminLinks a {
+  padding: 5px 8px;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  font-size: 6px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   RPG
+   ========================================================= */
+
+.litso-profile_rpgLayout {
+  display: grid;
+  grid-template-columns: 165px minmax(0, 1fr);
+  align-items: start;
+  gap: 25px;
+}
+
+.litso-profile_rpgImage {
+  min-height: 210px;
+  display: grid;
+  place-items: center;
+  padding: 6px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+.litso-profile_rpgImage img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.litso-profile_rpgFields {
+  min-width: 0;
+}
+
+.litso-profile_rpgFields .litso-profile_field {
+  grid-template-columns: minmax(105px, .55fr) minmax(0, 1.5fr);
+}
+
+.litso-profile_rpgAdmin {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+.litso-profile_rpgAdmin a {
+  padding: 7px 10px;
+  color: var(--text-invert);
+  background: var(--accent-deep);
+  border: 1px solid var(--accent-deep);
+  font-family: var(--font-sans);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 950px) {
+
+  .litso-profile_layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+
+  .litso-profile_identity {
+    padding: 22px 17px;
+  }
+
+  .litso-profile_details {
+    padding: 0 24px;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .litso-profile_ {
+    width: calc(100% - 20px);
+    margin: 25px auto;
+  }
+
+  .litso-profile_header {
+    min-height: 135px;
+    justify-content: flex-start;
+  }
+
+  .litso-profile_headerContent {
+    text-align: left;
+  }
+
+  .litso-profile_headerIndex {
+    justify-content: flex-start;
+  }
+
+  .litso-profile_headerIndex::before {
+    display: none;
+  }
+
+  .litso-profile_layout {
+    grid-template-columns: 1fr;
+  }
+
+  .litso-profile_identity {
+    border-right: 0;
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .litso-profile_avatar {
+    max-width: 190px;
+  }
+
+  .litso-profile_details {
+    padding: 0 20px;
+  }
+
+  .litso-profile_sectionHeader {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .litso-profile_sectionMark {
+    text-align: left;
+  }
+
+  .litso-profile_field,
+  .litso-profile_management {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .litso-profile_activityGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .litso-profile_activityItem:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .litso-profile_rpgLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .litso-profile_rpgImage {
+    max-width: 190px;
+  }
+
+}
+
+/* .litso-profile_ {
   position: relative;
   width: min(1160px, calc(100% - 40px));
   margin: 50px auto;
@@ -932,3 +1847,4 @@
   }
 
 }
+*/
