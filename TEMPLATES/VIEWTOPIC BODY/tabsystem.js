@@ -11,9 +11,9 @@
 
     readyAttribute: "data-litso-tabs-ready",
 
-    rearFields: ["feat", "date d'inscription", "messages"],
+    rearFields: ["feat.", "date d'inscription", "messages", "pseudo", "trigger warning", "content warning", "pronoms", "crédits"],
 
-    profileFields: ["pseudo", "pronoms", "présence", "trigger warning", "tw joués", "infos rp"],
+    profileFields: ["zone libre", "portrait", "spécimen", "occupation", "coeur", "désir"],
 
     retryCount: 20,
     retryDelay: 150
