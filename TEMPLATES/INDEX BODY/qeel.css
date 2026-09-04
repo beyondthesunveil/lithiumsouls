@@ -231,14 +231,16 @@
 }
 
 .litso-qeel_disclaimer {
-  margin-top: auto;
-  padding: 21px 34px;
-  display: grid;
-  grid-template-columns: 58px minmax(0, 1fr);
-  align-items: center;
-  gap: 20px;
-  background: var(--bg-page, #101010);
-  border-top: 1px solid var(--border-default, #343434);
+    margin-top: auto;
+    overflow: auto;
+    height: 100px;
+    padding: 15px 10px;
+    display: grid;
+    grid-template-columns: 50px minmax(0, 1fr);
+    align-items: center;
+    gap: 20px;
+    background: var(--bg-page, #101010);
+    border-top: 1px solid var(--border-default, #343434);
 }
 
 .litso-qeel_disclaimerAge {
@@ -254,10 +256,11 @@
 }
 
 .litso-qeel_disclaimerContent p {
-  margin: 7px 0 0;
-  color: var(--text-muted, #827d79);
-  font: 400 8px var(--font-text, "Inter", sans-serif);
-  line-height: 1.6;
+    margin: 7px 0 0;
+    color: var(--text-muted, #827d79);
+    font: 400 10px var(--font-sans);
+    text-align: justify;
+    line-height: 1.6;
 }
 
 .litso-qeel_summary {
