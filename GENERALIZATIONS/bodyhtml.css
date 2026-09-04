@@ -1,7 +1,7 @@
 html {
   min-height: 100%;
   margin: 0;
-  background: var(--bg-page);
+  background: var(--bg-body);
   scroll-behavior: smooth;
 }
 
@@ -10,9 +10,9 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   margin: 0;
-  background: var(--bg-page);
+  background: var(--bg-body);
   font-family: var(--font-sans);
-  font-size:12px;
+  font-size:12px!important;
   isolation: isolate;
 }
 
