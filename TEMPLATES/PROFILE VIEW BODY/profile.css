@@ -384,11 +384,16 @@
 
 .litso-profile_details {
   min-width: 0;
-  max-height: 650px;
+  min-height: 0;
+  height: 100%;
+
   padding: 25px 34px 30px;
+
   overflow-x: hidden;
   overflow-y: auto;
+
   background: var(--bg-surface);
+
   scrollbar-width: thin;
   scrollbar-color: var(--gold-dark) transparent;
 }
