@@ -1,3 +1,5 @@
+body {background:#111;}
+
 :root {
   --font-display: "Bodoni Moda", Georgia, serif; /* Titres éditoriaux, grands titres et éléments élégants */
   --font-condensed: "Barlow Condensed", Arial, sans-serif; /* Navigation, catégories, labels et titres compacts */
@@ -43,13 +45,10 @@
   --gradient-surface: linear-gradient(145deg, var(--bg-elevated), var(--bg-surface));
 }
 
-html,
-body {
-  margin: 0 !important;
-  padding: 0 !important;
-  background: transparent !important;
-  background-color: transparent !important;
-}
+/* =========================================================
+   FICHE DE PARTENARIAT
+   Nomenclature : litso_parto-
+   ========================================================= */
 
 .litso_parto-,
 .litso_parto- * {
@@ -68,6 +67,8 @@ body {
   border: 1px solid var(--border-default);
   font-family: var(--font-sans);
 }
+
+/* ----- EN-TÊTE ----- */
 
 .litso_parto-header {
   position: relative;
@@ -146,20 +147,22 @@ body {
   text-transform: uppercase;
 }
 
+/* ----- LIENS ----- */
+
 .litso_parto-links {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 7px;
-  margin: 22px 0 18px;
+  margin-bottom: 15px;
 }
 
 .litso_parto-link {
-  padding: 7px 11px;
+  padding: 7px 19px;
   color: var(--text-secondary) !important;
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
-  font: 700 10px / 1 var(--font-condensed);
+  font: 700 7px/1 var(--font-condensed);
   letter-spacing: 1px;
   text-decoration: none !important;
   text-transform: uppercase;
@@ -171,6 +174,8 @@ body {
   border-color: var(--gold);
   transform: translateY(-1px);
 }
+
+/* ----- IMAGES ----- */
 
 .litso_parto-images {
   display: flex;
@@ -193,6 +198,8 @@ body {
   object-fit: cover;
 }
 
+/* ----- CONTEXTE ----- */
+
 .litso_parto-context {
   position: relative;
   padding: 32px 34px;
@@ -208,6 +215,7 @@ body {
   position: absolute;
   z-index: 0;
   inset: 7px;
+  opacity:0.5;
   padding: 1px;
   background: var(--gradient-accent);
   -webkit-mask:
@@ -261,6 +269,8 @@ body {
   text-transform: uppercase;
 }
 
+/* ----- STATISTIQUES ----- */
+
 .litso_parto-stats {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -282,6 +292,8 @@ body {
   border-left: 1px solid var(--border-default);
 }
 
+/* ----- ACCORDÉONS ----- */
+
 .litso_parto-accordions {
   display: grid;
   gap: 8px;
@@ -289,10 +301,23 @@ body {
 }
 
 .litso_parto-accordion {
+  position: relative;
   overflow: hidden;
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
 }
+
+/* Radio invisible */
+
+.litso_parto-radio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Barre cliquable */
 
 .litso_parto-summary {
   display: grid;
@@ -300,12 +325,6 @@ body {
   grid-template-columns: 55px minmax(0, 1fr) 42px;
   align-items: center;
   cursor: pointer;
-  user-select: none;
-}
-
-.litso_parto-summary:focus-visible {
-  outline: 1px solid var(--gold);
-  outline-offset: -3px;
 }
 
 .litso_parto-number {
@@ -326,6 +345,8 @@ body {
   text-transform: uppercase;
 }
 
+/* Bouton + / - */
+
 .litso_parto-toggle {
   position: relative;
   display: grid;
@@ -335,43 +356,19 @@ body {
   border: 1px solid var(--border-default);
 }
 
-.litso_parto-toggle::before,
-.litso_parto-toggle::after {
-  content: "";
+.litso_parto-toggle i {
   position: absolute;
-  display: block;
   width: 10px;
   height: 1px;
   background: var(--gold);
   transition: transform 200ms ease;
 }
 
-.litso_parto-toggle::after {
+.litso_parto-toggle i:last-child {
   transform: rotate(90deg);
 }
 
-.litso_parto-accordion.is-open
-.litso_parto-toggle::after {
-  transform: rotate(0);
-}
-
-.litso_parto-toggleLine {
-  position: absolute;
-  display: block;
-  width: 10px;
-  height: 1px;
-  background: var(--gold);
-  transition: transform 200ms ease;
-}
-
-.litso_parto-toggleLine:last-child {
-  transform: rotate(90deg);
-}
-
-.litso_parto-accordion.is-open
-.litso_parto-toggleLine:last-child {
-  transform: rotate(0);
-}
+/* Contenu fermé par défaut */
 
 .litso_parto-content {
   display: none;
@@ -383,9 +380,22 @@ body {
   text-align: justify;
 }
 
-.litso_parto-accordion.is-open
-.litso_parto-content {
+/* Contenu ouvert */
+
+.litso_parto-radio:checked ~ .litso_parto-content {
   display: block;
+}
+
+/* + devient - */
+
+.litso_parto-radio:checked + .litso_parto-summary .litso_parto-toggle i:last-child {
+  transform: rotate(0);
+}
+
+/* Petit état visuel facultatif sur l'onglet ouvert */
+
+.litso_parto-radio:checked + .litso_parto-summary {
+  background: var(--bg-soft);
 }
 
 .litso_parto-content b2,
@@ -408,6 +418,8 @@ body {
   background: var(--border-default);
   border: 0;
 }
+
+/* ----- PIED DE FICHE ----- */
 
 .litso_parto-footer {
   display: flex;
@@ -434,10 +446,6 @@ body {
 }
 
 @media (max-width: 600px) {
-  .litso_parto- {
-    padding: 15px;
-  }
-
   .litso_parto-header::before {
     font-size: 57px;
   }
@@ -474,7 +482,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .litso_parto-link,
-  .litso_parto-toggleLine {
+  .litso_parto-toggle i {
     transition-duration: .01ms !important;
   }
 }
