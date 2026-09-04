@@ -10,11 +10,7 @@ html {
 }
 
 body {
-  position: relative;
-  min-height: 100vh;
-  min-height: 100dvh;
   margin: 0;
-  background-color: var(--bg-page);
   font-family: var(--font-sans);
   font-size: 12px;
   isolation: isolate;
