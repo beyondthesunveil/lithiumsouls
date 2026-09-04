@@ -347,6 +347,7 @@ function cleanMemberLists() {
 }
 
     displayNewestMember();
+    displayNewestAvatar();
     displayStatistics();
     cleanMemberLists();
   }
