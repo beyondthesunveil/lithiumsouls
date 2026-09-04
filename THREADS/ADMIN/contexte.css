@@ -294,7 +294,7 @@
 
 .litso_context_panel--warning .litso_context_panelTitle {
   color: var(--text-primary);
-  background: var(--gradient-accent);
+  background: var(--status-important);
 }
 
 .litso_context_panel--warning .litso_context_panelTitle span {
