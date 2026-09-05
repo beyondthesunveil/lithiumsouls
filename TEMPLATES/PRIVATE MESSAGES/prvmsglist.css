@@ -295,28 +295,19 @@
 }
 
 .litso-prvmsg_row {
+  height: 100px;
   position: relative;
-  width: 100%;
-  min-height: 132px;
+  border: 1px solid var(--border-default);
+  margin: 10px;
   display: grid;
   grid-template-columns: 125px minmax(0, 1fr) 100px;
   align-items: stretch;
-  background: linear-gradient(
-    90deg,
-    var(--bg-surface),
-    var(--bg-elevated)
-  );
-  border-bottom: 1px solid var(--border-default);
+  background: linear-gradient(90deg, var(--bg-surface), var(--bg-elevated));
   overflow: hidden;
-  transition: background-color 0.25s ease;
 }
 
 .litso-prvmsg_row:last-child {
   border-bottom: 0;
-}
-
-.litso-prvmsg_row:hover {
-  background: var(--bg-soft);
 }
 
 .litso-prvmsg_folder {
@@ -356,7 +347,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 28px 34px;
+  padding: 0 20px;
 }
 
 .litso-prvmsg_subject,
@@ -369,7 +360,7 @@
   color: var(--text-primary);
   background: transparent;
   font-family: var(--font-display);
-  font-size: 30px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.1;
   text-overflow: ellipsis;
