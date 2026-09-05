@@ -1,3 +1,28 @@
+:root {
+  --bgcolor: #0f0f0f; /* noir, couleur principale, notamment du fond */
+  --color02: #1a1a1a; /* deuxième couleur */
+  --color03: #222222; /* troisième couleur */
+
+  --colornews: #baab7b;
+  --coloradd: #9986a6;
+  --bordercolor: #777777; /* gris, couleur des bordures */
+  --colorfont: #f1f1f1; /* couleur des polices d'écriture */
+
+  --gradient: linear-gradient(to right, var(--colornews), var(--coloradd));
+
+  --font-h1: "Gravitas One", serif;
+  --font-h2: "Abril Fatface", serif;
+  --font-h3: "DM Serif Display", serif;
+  --font-h4: "Bebas Neue", sans-serif;
+  --font-text: "Google Sans", sans-serif;
+
+  --mainradius: 5px; /* si appliqué, tous les blocs concernés auront un arrondis de 5px */
+  --radiusbis: 10px; /* si appliqué, tous les blocs concernés auront un arrondis de 10px */
+
+  --avafilter: grayscale(0) sepia(10%) saturate(90%) contrast(105%);
+  --avahover: filter 0.4s ease, transform 0.3s ease;
+}
+
 /* ===================================== DÉBUT ENSEMBLE DES FICHES ===================================== */
   
 .ls-codex_bg {
