@@ -18,8 +18,7 @@
 
   const QUICK_REPLY_COPY = {
     eyebrow: "Discussion",
-    title: "Écrire une réponse",
-    subtitle: "Partagez votre message avec la communauté.",
+    title: "Réponse rapide",
     placeholder: "Écrivez votre réponse…",
     preview: "Aperçu",
     send: "Envoyer"
