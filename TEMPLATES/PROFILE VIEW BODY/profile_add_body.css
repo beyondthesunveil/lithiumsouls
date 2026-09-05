@@ -1,0 +1,395 @@
+.litso-ucp_,
+.litso-ucp_ * {
+  box-sizing: border-box;
+}
+
+.litso-ucp_ {
+  width: min(1100px, calc(100% - 40px));
+  margin: 45px auto;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.litso-ucp_nav {
+  margin-bottom: 28px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border-default);
+  scrollbar-width: thin;
+}
+
+.litso-ucp_ #tabs {
+  margin: 0;
+  padding: 0;
+}
+
+.litso-ucp_ #tabs ul {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.litso-ucp_ #tabs li {
+  margin: 0;
+  padding: 0;
+}
+
+.litso-ucp_ #tabs a {
+  position: relative;
+  display: block;
+  padding: 11px 0 13px;
+  color: var(--text-muted);
+  background: none;
+  border: 0;
+  font: 600 12px/1.2 var(--font-sans);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color .2s ease;
+}
+
+.litso-ucp_ #tabs a:hover {
+  color: var(--text-primary);
+}
+
+.litso-ucp_ #tabs .activetab a,
+.litso-ucp_ #tabs .active a {
+  color: var(--gold);
+}
+
+.litso-ucp_ #tabs .activetab a::after,
+.litso-ucp_ #tabs .active a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: var(--gradient-accent);
+}
+
+.litso-ucp_ > .panel,
+.litso-ucp_ #cp-main > .panel,
+.litso-ucp_ #cp-main .panel,
+.litso-ucp_ .inner {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.litso-ucp_ > .panel {
+  margin: 0;
+  padding: 0;
+}
+
+.litso-ucp_ .inner {
+  padding: 0;
+}
+
+.litso-ucp_ .corners-top,
+.litso-ucp_ .corners-bottom {
+  display: none;
+}
+
+.litso-ucp_ #cp-main {
+  width: 100%;
+  margin: 0;
+}
+
+.litso-ucp_ #ucp {
+  width: 100%;
+}
+
+.litso-ucp_ #ucp > .panel {
+  margin: 0 0 32px;
+  padding: 24px 28px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+}
+
+.litso-ucp_ .page-title {
+  position: relative;
+  margin: 34px 0 18px;
+  padding-bottom: 10px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-default);
+  font: 600 20px/1 var(--font-display);
+}
+
+.litso-ucp_ .page-title::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 45px;
+  height: 2px;
+  background: var(--gradient-accent);
+}
+
+.litso-ucp_ #ucp > .page-title:first-child {
+  margin-top: 0;
+}
+
+.litso-ucp_ p {
+  margin: 0 0 20px;
+  color: var(--text-secondary);
+  font: 13px/1.7 var(--font-sans);
+}
+
+.litso-ucp_ .italic {
+  display: block;
+  margin-top: 7px;
+  color: var(--text-muted);
+  font: italic 12px/1.6 var(--font-sans);
+}
+
+.litso-ucp_ fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.litso-ucp_ fieldset > dl {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin: 0;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.litso-ucp_ fieldset > dl:first-child {
+  padding-top: 5px;
+}
+
+.litso-ucp_ fieldset > dl:last-child {
+  border-bottom: 0;
+}
+
+.litso-ucp_ fieldset > dl > dt,
+.litso-ucp_ fieldset > dl > dd {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  float: none;
+}
+
+.litso-ucp_ fieldset > dl > dt {
+  color: var(--text-primary);
+  font: 600 12px/1.45 var(--font-sans);
+}
+
+.litso-ucp_ fieldset > dl > dt label {
+  color: inherit;
+  font: inherit;
+}
+
+.litso-ucp_ fieldset > dl > dd {
+  min-width: 0;
+  color: var(--text-secondary);
+  font: 13px/1.6 var(--font-sans);
+}
+
+.litso-ucp_ input[type="text"],
+.litso-ucp_ input[type="email"],
+.litso-ucp_ input[type="password"],
+.litso-ucp_ input[type="url"],
+.litso-ucp_ input[type="number"],
+.litso-ucp_ input[type="file"],
+.litso-ucp_ select,
+.litso-ucp_ textarea {
+  width: 100%;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radiusbis);
+  outline: none;
+  font: 14px/1.5 var(--font-sans);
+  transition:
+    border-color .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+
+.litso-ucp_ textarea {
+  min-height: 145px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.litso-ucp_ input[type="text"]:focus,
+.litso-ucp_ input[type="email"]:focus,
+.litso-ucp_ input[type="password"]:focus,
+.litso-ucp_ input[type="url"]:focus,
+.litso-ucp_ input[type="number"]:focus,
+.litso-ucp_ input[type="file"]:focus,
+.litso-ucp_ select:focus,
+.litso-ucp_ textarea:focus {
+  background: var(--bg-surface);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px var(--border-subtle);
+}
+
+.litso-ucp_ input[type="radio"],
+.litso-ucp_ input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0 6px 0 0;
+  vertical-align: -3px;
+  accent-color: var(--gold);
+}
+
+.litso-ucp_ dd > label {
+  display: inline-flex;
+  align-items: center;
+  margin: 3px 18px 3px 0;
+  color: var(--text-secondary);
+  font: 13px/1.5 var(--font-sans);
+  cursor: pointer;
+}
+
+.litso-ucp_ dd > strong {
+  color: var(--text-primary);
+  font: 600 14px/1.5 var(--font-sans);
+}
+
+.litso-ucp_ a {
+  color: var(--accent);
+}
+
+.litso-ucp_ a:hover {
+  color: var(--gold);
+}
+
+.litso-ucp_ .button1,
+.litso-ucp_ .button2,
+.litso-ucp_ input[type="submit"],
+.litso-ucp_ input[type="reset"],
+.litso-ucp_ input[type="button"] {
+  min-height: 38px;
+  padding: 0 15px;
+  border-radius: var(--radiusbis);
+  font: 700 12px/1 var(--font-sans);
+  letter-spacing: .04em;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.litso-ucp_ .button1,
+.litso-ucp_ input[type="submit"] {
+  color: var(--text-invert);
+  background: var(--accent-deep);
+  border: 1px solid var(--accent-deep);
+}
+
+.litso-ucp_ .button1:hover,
+.litso-ucp_ input[type="submit"]:hover {
+  background: var(--gold-dark);
+  border-color: var(--gold-dark);
+}
+
+.litso-ucp_ .button2,
+.litso-ucp_ input[type="reset"] {
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+.litso-ucp_ .button2:hover,
+.litso-ucp_ input[type="reset"]:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.litso-ucp_ .submit-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-default);
+  text-align: right;
+}
+
+.litso-ucp_ img {
+  max-width: 100%;
+}
+
+.litso-ucp_ fieldset dl dd > img {
+  display: block;
+  margin: 10px 0;
+  padding: 5px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+.litso-ucp_ #list_awards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.litso-ucp_ #list_awards img {
+  max-width: 50px;
+  max-height: 50px;
+  object-fit: contain;
+}
+
+.litso-ucp_ .errorbox,
+.litso-ucp_ .error {
+  margin-bottom: 22px;
+  padding: 14px 16px;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--accent);
+  font: 12px/1.6 var(--font-sans);
+}
+
+@media (max-width: 700px) {
+
+  .litso-ucp_ {
+    width: calc(100% - 20px);
+    margin: 25px auto;
+  }
+
+  .litso-ucp_nav {
+    overflow-x: auto;
+  }
+
+  .litso-ucp_ #tabs ul {
+    width: max-content;
+    flex-wrap: nowrap;
+  }
+
+  .litso-ucp_ #ucp > .panel {
+    padding: 20px 16px;
+  }
+
+  .litso-ucp_ .page-title {
+    font-size: 19px;
+  }
+
+  .litso-ucp_ input[type="text"],
+  .litso-ucp_ input[type="email"],
+  .litso-ucp_ input[type="password"],
+  .litso-ucp_ input[type="url"],
+  .litso-ucp_ input[type="number"],
+  .litso-ucp_ input[type="file"],
+  .litso-ucp_ select,
+  .litso-ucp_ textarea {
+    font-size: 14px;
+  }
+
+}
