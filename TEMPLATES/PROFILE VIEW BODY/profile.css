@@ -313,7 +313,7 @@
 
 .litso-profile_fieldLabel span {
   min-width: 0;
-  color: var(--text-primary);
+  color: var(--text-primary)!important;
   font: 600 11px/1.4 var(--font-display);
   overflow-wrap: anywhere;
 }
