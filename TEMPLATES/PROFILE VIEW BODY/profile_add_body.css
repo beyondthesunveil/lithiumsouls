@@ -4,65 +4,65 @@
 }
 
 .litso-ucp_ {
-  width: min(1100px, calc(100% - 40px));
+  width: min(1120px, calc(100% - 40px));
   margin: 45px auto;
   color: var(--text-primary);
-  font-family: var(--font-sans);
-  font-size: 13px;
-  line-height: 1.6;
+  font: 13px/1.65 var(--font-sans);
 }
 
 .litso-ucp_nav {
-  margin-bottom: 28px;
+  width: 100%;
+  margin-bottom: 34px;
   overflow-x: auto;
   border-bottom: 1px solid var(--border-default);
   scrollbar-width: thin;
 }
 
-.litso-ucp_ #tabs {
-  margin: 0;
-  padding: 0;
+.litso-ucp_nav #tabs {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-.litso-ucp_ #tabs ul {
+.litso-ucp_nav #tabs ul {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0 22px;
-  margin: 0;
-  padding: 0;
+  gap: 0 24px;
+  margin: 0 !important;
+  padding: 0 !important;
   list-style: none;
 }
 
-.litso-ucp_ #tabs li {
-  margin: 0;
-  padding: 0;
+.litso-ucp_nav #tabs li {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-.litso-ucp_ #tabs a {
+.litso-ucp_nav #tabs a {
   position: relative;
   display: block;
-  padding: 11px 0 13px;
-  color: var(--text-muted);
-  background: none;
-  border: 0;
-  font: 600 12px/1.2 var(--font-sans);
-  text-decoration: none;
+  padding: 11px 0 14px;
+  color: var(--text-muted) !important;
+  background: none !important;
+  border: 0 !important;
+  font: 600 12px/1.2 var(--font-sans) !important;
+  letter-spacing: .02em;
+  text-decoration: none !important;
   white-space: nowrap;
   transition: color .2s ease;
 }
 
-.litso-ucp_ #tabs a:hover {
-  color: var(--text-primary);
+.litso-ucp_nav #tabs a:hover {
+  color: var(--text-primary) !important;
 }
 
-.litso-ucp_ #tabs .activetab a,
-.litso-ucp_ #tabs .active a {
-  color: var(--gold);
+.litso-ucp_nav #tabs .activetab a,
+.litso-ucp_nav #tabs .active a {
+  color: var(--gold) !important;
 }
 
-.litso-ucp_ #tabs .activetab a::after,
-.litso-ucp_ #tabs .active a::after {
+.litso-ucp_nav #tabs .activetab a::after,
+.litso-ucp_nav #tabs .active a::after {
   content: "";
   position: absolute;
   right: 0;
@@ -72,52 +72,52 @@
   background: var(--gradient-accent);
 }
 
-.litso-ucp_ > .panel,
-.litso-ucp_ #cp-main > .panel,
-.litso-ucp_ #cp-main .panel,
+.litso-ucp_shell,
+.litso-ucp_ .panel,
 .litso-ucp_ .inner {
-  background: transparent;
-  border: 0;
-  box-shadow: none;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
-.litso-ucp_ > .panel {
-  margin: 0;
-  padding: 0;
+.litso-ucp_shell {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
 }
 
 .litso-ucp_ .inner {
-  padding: 0;
+  padding: 0 !important;
 }
 
 .litso-ucp_ .corners-top,
 .litso-ucp_ .corners-bottom {
-  display: none;
+  display: none !important;
 }
 
 .litso-ucp_ #cp-main {
   width: 100%;
-  margin: 0;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-.litso-ucp_ #ucp {
+.litso-ucp_form {
   width: 100%;
 }
 
-.litso-ucp_ #ucp > .panel {
-  margin: 0 0 32px;
-  padding: 24px 28px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
+.litso-ucp_section {
+  margin: 0 0 42px;
 }
 
 .litso-ucp_ .page-title {
   position: relative;
-  margin: 34px 0 18px;
-  padding-bottom: 10px;
-  color: var(--text-primary);
+  margin: 0 0 20px !important;
+  padding: 0 0 12px !important;
+  color: var(--text-primary) !important;
   border-bottom: 1px solid var(--border-default);
-  font: 600 20px/1 var(--font-display);
+  font: 600 20px/1 var(--font-display) !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
+  text-transform: none !important;
 }
 
 .litso-ucp_ .page-title::after {
@@ -130,21 +130,22 @@
   background: var(--gradient-accent);
 }
 
-.litso-ucp_ #ucp > .page-title:first-child {
-  margin-top: 0;
+.litso-ucp_panel {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
 }
 
+.litso-ucp_panel > .inner {
+  padding: 0 !important;
+}
+
+.litso-ucp_notice,
 .litso-ucp_ p {
-  margin: 0 0 20px;
+  margin: 0 0 22px;
   color: var(--text-secondary);
   font: 13px/1.7 var(--font-sans);
-}
-
-.litso-ucp_ .italic {
-  display: block;
-  margin-top: 7px;
-  color: var(--text-muted);
-  font: italic 12px/1.6 var(--font-sans);
 }
 
 .litso-ucp_ fieldset {
@@ -155,44 +156,58 @@
 }
 
 .litso-ucp_ fieldset > dl {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 8px;
-  margin: 0;
-  padding: 17px 0;
+  display: grid !important;
+  grid-template-columns: 220px minmax(0, 1fr);
+  align-items: start;
+  gap: 32px;
+
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 20px 0 !important;
+
   border-bottom: 1px solid var(--border-subtle);
 }
 
 .litso-ucp_ fieldset > dl:first-child {
-  padding-top: 5px;
+  padding-top: 6px !important;
 }
 
 .litso-ucp_ fieldset > dl:last-child {
   border-bottom: 0;
 }
 
-.litso-ucp_ fieldset > dl > dt,
-.litso-ucp_ fieldset > dl > dd {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  float: none;
-}
-
 .litso-ucp_ fieldset > dl > dt {
+  width: auto !important;
+  margin: 0 !important;
+  padding: 11px 0 0 !important;
+  float: none !important;
+
   color: var(--text-primary);
-  font: 600 12px/1.45 var(--font-sans);
+
+  font: 600 13px/1.45 var(--font-sans);
 }
 
 .litso-ucp_ fieldset > dl > dt label {
-  color: inherit;
-  font: inherit;
+  color: inherit !important;
+  font: inherit !important;
 }
 
 .litso-ucp_ fieldset > dl > dd {
+  width: auto !important;
   min-width: 0;
+
+  margin: 0 !important;
+  padding: 0 !important;
+  float: none !important;
+
   color: var(--text-secondary);
-  font: 13px/1.6 var(--font-sans);
+
+  font: 13px/1.65 var(--font-sans);
+}
+
+.litso-ucp_control {
+  width: 100%;
+  max-width: 720px;
 }
 
 .litso-ucp_ input[type="text"],
@@ -203,26 +218,32 @@
 .litso-ucp_ input[type="file"],
 .litso-ucp_ select,
 .litso-ucp_ textarea {
-  width: 100%;
-  max-width: 100%;
+  width: 100% !important;
+  max-width: 720px !important;
   min-height: 44px;
-  padding: 10px 12px;
-  color: var(--text-primary);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radiusbis);
+
+  padding: 10px 13px !important;
+
+  color: var(--text-primary) !important;
+  background: var(--bg-elevated) !important;
+
+  border: 1px solid var(--border-default) !important;
+  border-radius: var(--radiusbis) !important;
+
   outline: none;
-  font: 14px/1.5 var(--font-sans);
+
+  font: 14px/1.55 var(--font-sans) !important;
+
   transition:
-    border-color .2s ease,
     background .2s ease,
+    border-color .2s ease,
     box-shadow .2s ease;
 }
 
 .litso-ucp_ textarea {
-  min-height: 145px;
+  min-height: 150px;
   resize: vertical;
-  line-height: 1.7;
+  line-height: 1.7 !important;
 }
 
 .litso-ucp_ input[type="text"]:focus,
@@ -233,40 +254,103 @@
 .litso-ucp_ input[type="file"]:focus,
 .litso-ucp_ select:focus,
 .litso-ucp_ textarea:focus {
-  background: var(--bg-surface);
-  border-color: var(--gold);
-  box-shadow: 0 0 0 2px var(--border-subtle);
+  background: var(--bg-surface) !important;
+  border-color: var(--gold) !important;
+}
+
+.litso-ucp_control table,
+.litso-ucp_control tbody,
+.litso-ucp_control tr,
+.litso-ucp_control td {
+  max-width: 100%;
+}
+
+.litso-ucp_control table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.litso-ucp_ .italic,
+.litso-ucp_explain {
+  display: block;
+  max-width: 720px;
+
+  margin-top: 8px;
+
+  color: var(--text-muted);
+
+  font: italic 12px/1.65 var(--font-sans);
+}
+
+.litso-ucp_ dd > strong {
+  display: inline-block;
+
+  padding: 10px 0;
+
+  color: var(--text-primary);
+
+  font: 600 14px/1.5 var(--font-sans);
 }
 
 .litso-ucp_ input[type="radio"],
 .litso-ucp_ input[type="checkbox"] {
   width: 16px;
   height: 16px;
-  margin: 0 6px 0 0;
-  vertical-align: -3px;
+
+  flex: 0 0 16px;
+
+  margin: 0 7px 0 0;
+
   accent-color: var(--gold);
 }
 
-.litso-ucp_ dd > label {
+.litso-ucp_ dd > label,
+.litso-ucp_choice {
   display: inline-flex;
   align-items: center;
-  margin: 3px 18px 3px 0;
-  color: var(--text-secondary);
-  font: 13px/1.5 var(--font-sans);
-  cursor: pointer;
-}
 
-.litso-ucp_ dd > strong {
-  color: var(--text-primary);
-  font: 600 14px/1.5 var(--font-sans);
+  gap: 3px;
+
+  margin: 5px 20px 5px 0;
+
+  color: var(--text-secondary);
+
+  font: 13px/1.5 var(--font-sans);
+
+  cursor: pointer;
 }
 
 .litso-ucp_ a {
   color: var(--accent);
+  text-decoration: none;
 }
 
 .litso-ucp_ a:hover {
   color: var(--gold);
+}
+
+.litso-ucp_textButton {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 38px;
+
+  padding: 0 13px;
+
+  color: var(--text-secondary) !important;
+  background: var(--bg-elevated);
+
+  border: 1px solid var(--border-default);
+  border-radius: var(--radiusbis);
+
+  font: 600 12px/1 var(--font-sans);
+
+  transition: .2s ease;
+}
+
+.litso-ucp_textButton:hover {
+  color: var(--gold) !important;
+  border-color: var(--gold);
 }
 
 .litso-ucp_ .button1,
@@ -274,63 +358,96 @@
 .litso-ucp_ input[type="submit"],
 .litso-ucp_ input[type="reset"],
 .litso-ucp_ input[type="button"] {
-  min-height: 38px;
-  padding: 0 15px;
-  border-radius: var(--radiusbis);
-  font: 700 12px/1 var(--font-sans);
+  min-height: 40px;
+
+  padding: 0 16px !important;
+
+  border-radius: var(--radiusbis) !important;
+
+  font: 700 12px/1 var(--font-sans) !important;
   letter-spacing: .04em;
+
   cursor: pointer;
-  transition: .2s ease;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    color .2s ease;
 }
 
 .litso-ucp_ .button1,
 .litso-ucp_ input[type="submit"] {
-  color: var(--text-invert);
-  background: var(--accent-deep);
-  border: 1px solid var(--accent-deep);
+  color: var(--text-invert) !important;
+  background: var(--accent-deep) !important;
+  border: 1px solid var(--accent-deep) !important;
 }
 
 .litso-ucp_ .button1:hover,
 .litso-ucp_ input[type="submit"]:hover {
-  background: var(--gold-dark);
-  border-color: var(--gold-dark);
+  background: var(--gold-dark) !important;
+  border-color: var(--gold-dark) !important;
 }
 
 .litso-ucp_ .button2,
 .litso-ucp_ input[type="reset"] {
-  color: var(--text-secondary);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-default);
+  color: var(--text-secondary) !important;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-default) !important;
 }
 
 .litso-ucp_ .button2:hover,
 .litso-ucp_ input[type="reset"]:hover {
-  color: var(--gold);
-  border-color: var(--gold);
+  color: var(--gold) !important;
+  border-color: var(--gold) !important;
 }
 
-.litso-ucp_ .submit-buttons {
+.litso-ucp_submit {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border-default);
-  text-align: right;
+
+  gap: 9px;
+
+  margin-top: 35px;
+  padding-top: 22px !important;
+
+  border-top: 1px solid var(--border-default) !important;
 }
 
-.litso-ucp_ img {
-  max-width: 100%;
-}
-
-.litso-ucp_ fieldset dl dd > img {
+.litso-ucp_avatarCurrent {
   display: block;
-  margin: 10px 0;
+}
+
+.litso-ucp_avatarPreview {
+  margin: 12px 0;
+}
+
+.litso-ucp_avatarPreview img {
+  display: block;
+
+  max-width: 220px;
+  height: auto;
+
   padding: 5px;
+
   background: var(--bg-elevated);
+
   border: 1px solid var(--border-default);
+}
+
+.litso-ucp_ input[type="file"] {
+  padding: 8px !important;
+}
+
+.litso-ucp_awardsRow {
+  display: block !important;
+  text-align: center;
+}
+
+.litso-ucp_awardsRow > dt {
+  width: 100% !important;
+  padding: 10px 0 !important;
 }
 
 .litso-ucp_ #list_awards {
@@ -338,47 +455,52 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+
   gap: 10px;
 }
 
 .litso-ucp_ #list_awards img {
   max-width: 50px;
   max-height: 50px;
+
   object-fit: contain;
 }
 
 .litso-ucp_ .errorbox,
 .litso-ucp_ .error {
-  margin-bottom: 22px;
+  margin: 0 0 25px;
+
   padding: 14px 16px;
+
   color: var(--text-primary);
   background: var(--bg-elevated);
+
   border: 1px solid var(--accent);
-  font: 12px/1.6 var(--font-sans);
+
+  font: 12px/1.65 var(--font-sans);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
 
   .litso-ucp_ {
-    width: calc(100% - 20px);
-    margin: 25px auto;
+    width: calc(100% - 24px);
+    margin: 30px auto;
   }
 
-  .litso-ucp_nav {
-    overflow-x: auto;
-  }
-
-  .litso-ucp_ #tabs ul {
+  .litso-ucp_nav #tabs ul {
     width: max-content;
     flex-wrap: nowrap;
   }
 
-  .litso-ucp_ #ucp > .panel {
-    padding: 20px 16px;
+  .litso-ucp_ fieldset > dl {
+    grid-template-columns: 1fr;
+    gap: 8px;
+
+    padding: 18px 0 !important;
   }
 
-  .litso-ucp_ .page-title {
-    font-size: 19px;
+  .litso-ucp_ fieldset > dl > dt {
+    padding-top: 0 !important;
   }
 
   .litso-ucp_ input[type="text"],
@@ -388,8 +510,31 @@
   .litso-ucp_ input[type="number"],
   .litso-ucp_ input[type="file"],
   .litso-ucp_ select,
-  .litso-ucp_ textarea {
-    font-size: 14px;
+  .litso-ucp_ textarea,
+  .litso-ucp_control {
+    max-width: none !important;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .litso-ucp_ {
+    width: calc(100% - 16px);
+  }
+
+  .litso-ucp_ .page-title {
+    font-size: 19px !important;
+  }
+
+  .litso-ucp_submit {
+    justify-content: stretch;
+  }
+
+  .litso-ucp_submit input[type="submit"],
+  .litso-ucp_submit input[type="reset"] {
+    flex: 1 1 140px;
   }
 
 }
