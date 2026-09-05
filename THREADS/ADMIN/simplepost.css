@@ -239,10 +239,10 @@
   text-transform: uppercase;
 }
 
-.litso_simp_note > p {
+.litso_simp_note p {
   padding: 14px 17px;
   color: var(--text-muted);
-  font: 11px var(--font-sans);
+  font: 12px var(--font-sans);
   font-style: italic !important;
 }
 
@@ -330,7 +330,7 @@
   display: block;
   margin-bottom: 7px;
   color: var(--gold-dark);
-  font: 700 7px/1 var(--font-condensed);
+  font: 700 12px/1 var(--font-condensed);
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -466,7 +466,7 @@
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
   box-shadow: 0 8px 20px var(--shadow-default);
-  font: 700 7px/1.4 var(--font-condensed);
+  font: 700 12px/1.4 var(--font-condensed);
   letter-spacing: 1px;
   text-align: center;
   text-transform: uppercase;
