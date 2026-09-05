@@ -344,7 +344,7 @@
 .litso-profile_postStats {
   margin-top: 5px;
   color: var(--text-muted);
-  font: 6px/1.5 var(--font-sans);
+  font: 12px/1.5 var(--font-sans);
 }
 
 .litso-profile_fieldLinks {
@@ -360,7 +360,7 @@
   color: var(--text-muted);
   background: none !important;
   border: 0 !important;
-  font: 700 6px/1.4 var(--font-sans);
+  font: 700 12px/1.4 var(--font-sans);
   letter-spacing: .05em;
   text-transform: uppercase;
 }
