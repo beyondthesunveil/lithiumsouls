@@ -74,7 +74,7 @@ body {
 }
 
 .litso-nav_home a {
-  var(--text-primary) !important;
+  color:var(--text-primary) !important;
 }
 
 .litso-nav_home::before {
