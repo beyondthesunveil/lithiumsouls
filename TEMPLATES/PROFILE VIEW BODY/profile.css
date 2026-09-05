@@ -38,7 +38,6 @@
 .litso-profile_headerContent {
   position: relative;
   z-index: 1;
-  width: min(760px, 100%);
   text-align: right;
 }
 
