@@ -181,7 +181,7 @@ body {
   display: block;
   margin-bottom: 5px;
   color: var(--text-muted);
-  font: 600 8px/1 var(--font-condensed);
+  font: 600 10px/1 var(--font-sans);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
