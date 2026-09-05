@@ -1135,3 +1135,19 @@
 }
 
 /* ===================================== FIN ENSEMBLE DES FICHES ===================================== */
+
+.litso-msg_content img {
+    max-width: 100% !important;
+    object-fit: cover;
+}
+
+.lst_fpimginfos img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--bordercolor);
+    outline: 1px var(--coloradd) solid;
+    outline-offset: 5px;
+    transition: 0.3s;
+}
