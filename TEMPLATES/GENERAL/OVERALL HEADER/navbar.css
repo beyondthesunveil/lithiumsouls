@@ -66,15 +66,11 @@ body {
   flex: 0 0 auto;
   border: 1px solid var(--border-subtle);
   background: var(--bg-surface);
-  color: var(--text-secondary);
+  color: var(--text-secondary)!important;
   text-decoration: none;
   transition:
     border-color 0.25s ease,
     transform 0.25s ease,
-}
-
-.litso-nav_home a {
-  color:var(--text-primary) !important;
 }
 
 .litso-nav_home::before {
