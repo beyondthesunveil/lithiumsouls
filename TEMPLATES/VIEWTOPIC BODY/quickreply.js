@@ -916,9 +916,6 @@
     title.className =
       "litso_quickreply-title";
 
-    subtitle.className =
-      "litso_quickreply-subtitle";
-
     icon.setAttribute(
       "aria-hidden",
       "true"
