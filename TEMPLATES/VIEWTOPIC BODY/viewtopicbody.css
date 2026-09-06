@@ -1,7 +1,3 @@
-/* =========================================================
-   LITSO — VIEWTOPIC BODY
-   ========================================================= */
-
 .litso-msg_blocktitle,
 .litso-msg_blocktitle *,
 .litso-msg_runtime,
@@ -28,10 +24,6 @@ h1.litso-msg_titlemap {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-/* =========================================================
-   BARRE DU FIL D'ARIANE
-   ========================================================= */
 
 .litso-msg_blocktitle {
   width: 100%;
@@ -69,11 +61,6 @@ h1.litso-msg_titlemap {
   color: var(--gold);
 }
 
-/* =========================================================
-   CONTENEUR DES BOUTONS DU SUJET
-   (nouveau sujet / répondre / surveiller / favoris)
-   ========================================================= */
-
 .litso-msg_subheader {
   display: flex;
   align-items: center;
@@ -83,7 +70,6 @@ h1.litso-msg_titlemap {
   padding: 7px;
 }
 
-/* --- Gabarit commun à tous les boutons --- */
 .litso-msg_subheader > a.button1,
 .litso-msg_subheader > a.login-for,
 .litso-msg_subheader > div.button1,
@@ -117,7 +103,6 @@ h1.litso-msg_titlemap {
     transform 0.2s ease;
 }
 
-/* --- Icônes communes (mask-image) --- */
 .litso-msg_subheader > a.button1::before,
 .litso-msg_subheader > a.login-for::before,
 .litso-msg_subheader > div.button1::before {
@@ -147,7 +132,6 @@ h1.litso-msg_titlemap {
   display: none;
 }
 
-/* --- Survol commun --- */
 .litso-msg_subheader > a.button1:hover,
 .litso-msg_subheader > a.button1:focus-visible,
 .litso-msg_subheader > a.login-for:hover,
@@ -174,7 +158,6 @@ h1.litso-msg_titlemap {
   transform: rotate(-8deg) scale(1.08);
 }
 
-/* --- Bouton "surveiller le sujet" : lien interne --- */
 .litso-msg_subheader > div.button1 a {
   min-height: 0;
   display: inline-flex;
@@ -200,7 +183,6 @@ h1.litso-msg_titlemap {
   mask-image: url("https://unpkg.com/lucide-static@latest/icons/bell-ring.svg");
 }
 
-/* --- Bouton favoris : on masque le SVG natif, on le remplace par une icône cœur --- */
 #fa-topic-fav-button svg {
   display: none;
 }
@@ -236,10 +218,6 @@ h1.litso-msg_titlemap {
   border-color: var(--accent);
 }
 
-/* =========================================================
-   ZONE MEMBRE / MESSAGE
-   ========================================================= */
-
 .litso-msg_postprofile .row1,
 .litso-msg_postprofile .row2 {
   background: transparent !important;
@@ -263,10 +241,6 @@ h1.litso-msg_titlemap {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
 }
-
-/* =========================================================
-   BARRE "RUNTIME" (lien du sujet, j'aime, actions modo)
-   ========================================================= */
 
 .litso-msg_runtime {
   width: 100%;
@@ -350,7 +324,6 @@ h1.litso-msg_titlemap {
   gap: 5px;
 }
 
-/* --- Bouton "j'aime" --- */
 .litso-msg_likebtn {
   min-width: 0;
   min-height: 28px;
@@ -443,7 +416,6 @@ h1.litso-msg_titlemap {
   margin: 0;
 }
 
-/* --- Icônes profil (citer / éditer / supprimer / IP) --- */
 .profile-icons {
   display: flex;
   align-items: center;
@@ -561,10 +533,6 @@ h1.litso-msg_titlemap {
   transform: rotate(8deg) scale(1.08);
 }
 
-/* =========================================================
-   COLONNE PROFIL (avatar, pseudo, rang, champs perso)
-   ========================================================= */
-
 .litso-msg_blockperso {
   width: 280px;
   background: var(--bg-elevated);
@@ -589,7 +557,6 @@ h1.litso-msg_titlemap {
 
 .litso-msg_postname strong {
   display: inline-block;
-  color: var(--text-primary);
   font: 600 15px var(--font-condensed);
   text-transform: uppercase;
 }
@@ -700,10 +667,6 @@ h1.litso-msg_titlemap {
   object-fit: cover !important;
 }
 
-/* =========================================================
-   ZONE DE CONTENU DU MESSAGE
-   ========================================================= */
-
 .litso-msg_blockcontent {
   width: 878px;
   background: var(--bg-elevated);
@@ -724,10 +687,6 @@ h1.litso-msg_titlemap {
   height: auto;
   object-fit: cover;
 }
-
-/* =========================================================
-   BARRE DE MODÉRATION
-   ========================================================= */
 
 .litso-msg_modoaction {
   display: flex;
@@ -940,10 +899,6 @@ h1.litso-msg_titlemap {
 .litso-msg_btnaction a[href*="mode=bin"]::after {
   content: "Déplacer dans la corbeille";
 }
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
 
 @media (max-width: 900px) {
   .litso-msg_blocktitle {
