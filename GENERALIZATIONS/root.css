@@ -53,42 +53,42 @@
   --bg-body:url('https://zupimages.net/up/26/35/ytp1.png');
   --banner: url('https://zupimages.net/up/26/36/aim8.png');
 
-  --bg-page: #0f0f0f; /* Fond général du forum */
-  --bg-surface: #1a1818; /* Fond principal des catégories, messages et grands blocs */
-  --bg-elevated: #242020; /* Éléments posés sur une surface : cartes, onglets, champs */
-  --bg-soft: #302929; /* Fond plus clair pour les survols et éléments mis en avant */
-  --bg-overlay: rgba(15, 13, 13, 0.82); /* Voile sombre pour les images, pop-ups et superpositions */
+  --bg-page: #0f0f0f!important; /* Fond général du forum */
+  --bg-surface: #1a1818!important; /* Fond principal des catégories, messages et grands blocs */
+  --bg-elevated: #242020!important; /* Éléments posés sur une surface : cartes, onglets, champs */
+  --bg-soft: #302929!important; /* Fond plus clair pour les survols et éléments mis en avant */
+  --bg-overlay: rgba(15, 13, 13, 0.82)!important; /* Voile sombre pour les images, pop-ups et superpositions */
 
-  --border-subtle: rgba(255, 239, 235, 0.08); /* Séparation très discrète entre les blocs */
-  --border-default: rgba(255, 239, 235, 0.14); /* Bordure classique, légèrement plus visible */
-  --border-strong: #756967; /* Bordure franche ou élément volontairement marqué */
+  --border-subtle: rgba(255, 239, 235, 0.08)!important; /* Séparation très discrète entre les blocs */
+  --border-default: rgba(255, 239, 235, 0.14)!important; /* Bordure classique, légèrement plus visible */
+  --border-strong: #756967!important; /* Bordure franche ou élément volontairement marqué */
 
-  --gold-light: #d5c99f; /* Doré lumineux : petits détails, icônes, survols */
-  --gold: #baab7b; /* Doré principal du thème */
-  --gold-dark: #8f8158; /* Doré assombri : fonds colorés, ombres et états actifs */
-  --gold-faded: rgba(186, 171, 123, 0.14); /* Voile doré discret pour les fonds et survols */
+  --gold-light: #d5c99f!important; /* Doré lumineux : petits détails, icônes, survols */
+  --gold: #baab7b!important; /* Doré principal du thème */
+  --gold-dark: #8f8158!important; /* Doré assombri : fonds colorés, ombres et états actifs */
+  --gold-faded: rgba(186, 171, 123, 0.14)!important; /* Voile doré discret pour les fonds et survols */
 
-  --accent-light: #c18486; /* Rouge ancien lumineux */
-  --accent: #a5575b; /* Rouge ancien principal */
-  --accent-dark: #783b3f; /* Rouge ancien sombre */
-  --accent-faded: rgba(165, 87, 91, 0.16); /* Voile rouge discret dérivé de la couleur secondaire */
+  --accent-light: #c18486!important; /* Rouge ancien lumineux */
+  --accent: #a5575b!important; /* Rouge ancien principal */
+  --accent-dark: #783b3f!important; /* Rouge ancien sombre */
+  --accent-faded: rgba(165, 87, 91, 0.16)!important; /* Voile rouge discret dérivé de la couleur secondaire */
 
-  --status-important: #b96469; /* Informations importantes et alertes */
-  --tone-soft: #a89792; /* Beige rosé utilisé pour les détails doux */
-  --status-unread: #54423f; /* État des sujets ou messages non lus */
+  --status-important: #b96469!important; /* Informations importantes et alertes */
+  --tone-soft: #a89792!important; /* Beige rosé utilisé pour les détails doux */
+  --status-unread: #54423f!important; /* État des sujets ou messages non lus */
 
-  --text-primary: #f1eeee; /* Texte principal et titres clairs */
-  --text-secondary: #c7c1c0; /* Texte courant légèrement adouci */
-  --text-muted: #a89792; /* Informations secondaires, dates et descriptions */
-  --text-faded: #777170; /* Texte discret ou désactivé */
-  --text-on-accent: #f8f2ef; /* Texte clair placé sur un fond rouge */
-  --text-important: #d17b80; /* Version éclaircie du rouge, plus lisible sur fond sombre */
-  --text-unread: #c5aba5; /* Version lisible du brun rouge pour les textes “non lus” */
+  --text-primary: #f1eeee!important; /* Texte principal et titres clairs */
+  --text-secondary: #c7c1c0!important; /* Texte courant légèrement adouci */
+  --text-muted: #a89792!important; /* Informations secondaires, dates et descriptions */
+  --text-faded: #777170!important; /* Texte discret ou désactivé */
+  --text-on-accent: #f8f2ef!important; /* Texte clair placé sur un fond rouge */
+  --text-important: #d17b80!important; /* Version éclaircie du rouge, plus lisible sur fond sombre */
+  --text-unread: #c5aba5!important; /* Version lisible du brun rouge pour les textes “non lus” */
 
-  --gradient-accent: linear-gradient(90deg, var(--gold), var(--accent));
-  --gradient-accent-reverse: linear-gradient(90deg, var(--accent), var(--gold));
-  --gradient-accent-vertical: linear-gradient(180deg, var(--gold), var(--accent));
-  --gradient-gold: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
-  --gradient-secondary: linear-gradient(135deg, var(--accent-light), var(--accent-dark));
-  --gradient-surface: linear-gradient(145deg, var(--bg-elevated), var(--bg-surface));
+  --gradient-accent: linear-gradient(90deg, var(--gold), var(--accent))!important;
+  --gradient-accent-reverse: linear-gradient(90deg, var(--accent), var(--gold))!important;
+  --gradient-accent-vertical: linear-gradient(180deg, var(--gold), var(--accent))!important;
+  --gradient-gold: linear-gradient(135deg, var(--gold-light), var(--gold-dark))!important;
+  --gradient-secondary: linear-gradient(135deg, var(--accent-light), var(--accent-dark))!important;
+  --gradient-surface: linear-gradient(145deg, var(--bg-elevated), var(--bg-surface))!important;
 }
