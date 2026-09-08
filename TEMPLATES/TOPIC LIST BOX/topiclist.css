@@ -12,8 +12,6 @@
   list-style: none !important;
 }
 
-/* ----- EN-TÊTE DE SECTION ----- */
-
 .litso-topiclist_titlerow {
   position: relative;
   display: grid;
@@ -61,8 +59,6 @@
   display: none;
 }
 
-/* ----- LISTE ET CARTES ----- */
-
 .litso-topiclist_list {
   display: grid;
   gap: 9px;
@@ -81,8 +77,6 @@
   position: relative;
   z-index: 1;
 }
-
-/* ----- ÉTAT DU SUJET ----- */
 
 .litso-topiclist_topicicon {
   display: grid;
@@ -118,29 +112,6 @@
     url("https://unpkg.com/lucide-static/icons/megaphone.svg")
     center / contain no-repeat;
 }
-
-/* .litso-topiclist_announcement
-.litso-topiclist_status::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  bottom: -5px;
-  left: -19px;
-  width: 110px;
-  height: 110px;
-  color: var(--gold);
-  background: currentColor;
-  opacity: .1;
-  pointer-events: none;
-  -webkit-mask:
-    url("https://unpkg.com/lucide-static/icons/megaphone.svg")
-    center / contain no-repeat;
-  mask:
-    url("https://unpkg.com/lucide-static/icons/megaphone.svg")
-    center / contain no-repeat;
-} */
-
-/* ----- CONTENU PRINCIPAL ----- */
 
 .litso-topiclist_main {
   display: flex;
@@ -314,13 +285,9 @@
   border-color: var(--gold);
 }
 
-/* Masque uniquement l’image native de Forumactif */
-
 .litso-topiclist_lastpostLink img {
   display: none;
 }
-
-/* ----- ACTIVITÉ ----- */
 
 .litso-topiclist_activity {
   display: flex;
@@ -401,8 +368,6 @@
   display: none;
 }
 
-/* ----- AVATAR ----- */
-
 .litso-topiclist_avatarZone {
   margin: 13px -20px;
 }
@@ -425,8 +390,6 @@
   border-radius: 50%;
   object-fit: cover;
 }
-
-/* ----- SÉLECTIONS DE MODÉRATION ----- */
 
 .litso-topiclist_selection,
 .litso-topiclist_selectAll {
@@ -468,8 +431,6 @@
   box-shadow: inset 0 0 0 3px var(--bg-surface);
 }
 
-/* ----- AUCUN SUJET ----- */
-
 .litso-topiclist_backgroundnone {
   display: flex;
   min-height: 100px;
@@ -496,8 +457,6 @@
   letter-spacing: 1.3px;
   text-transform: uppercase;
 }
-
-/* ----- RESPONSIVE ----- */
 
 @media (max-width: 900px) {
   .litso-topiclist_background {
