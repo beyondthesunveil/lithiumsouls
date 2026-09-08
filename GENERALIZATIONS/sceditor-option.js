@@ -109,9 +109,6 @@
   panel,
   title
 ) {
-  /*
-   * Suppression du texte natif direct.
-   */
 
   Array.from(
     header.childNodes
@@ -125,11 +122,6 @@
       }
     }
   );
-
-
-  /* ==================================================
-     ICÔNE
-     ================================================== */
 
   const icon =
     document.createElement(
@@ -153,12 +145,7 @@
       '<line x1="12" y1="17" x2="20" y2="17"></line>' +
       '<circle cx="10" cy="17" r="2"></circle>' +
     "</svg>";
-
-
-  /* ==================================================
-     LIBELLÉ
-     ================================================== */
-
+    
   const label =
     document.createElement(
       "span"
@@ -181,11 +168,6 @@
     icon.nextSibling
   );
 
-
-  /* ==================================================
-     CLASSES
-     ================================================== */
-
   header.classList.add(
     "litsoPB_optionsHeader"
   );
@@ -194,12 +176,6 @@
     "litsoPB_optionsPanel"
   );
 
-
-  /*
-   * On retire le gestionnaire natif afin
-   * d’éviter une double ouverture au clic.
-   */
-
   header.classList.remove(
     "forum-hideable"
   );
@@ -207,11 +183,6 @@
   header.removeAttribute(
     "onclick"
   );
-
-
-  /* ==================================================
-     ACCESSIBILITÉ
-     ================================================== */
 
   if (!panel.id) {
     panel.id =
@@ -233,11 +204,6 @@
     panel.id
   );
 
-
-  /* ==================================================
-     ÉTAT DU PANNEAU
-     ================================================== */
-
   function setPanelState(
     isExpanded
   ) {
@@ -250,17 +216,7 @@
     );
   }
 
-
-  /*
-   * Le panneau est ouvert au chargement.
-   */
-
   setPanelState(true);
-
-
-  /* ==================================================
-     OUVERTURE ET FERMETURE
-     ================================================== */
 
   function togglePanel() {
     const isExpanded =
@@ -278,12 +234,6 @@
     togglePanel
   );
 
-
-  /*
-   * Utilisation au clavier :
-   * Entrée ou barre d’espace.
-   */
-
   header.addEventListener(
     "keydown",
     function (event) {
@@ -299,11 +249,6 @@
       togglePanel();
     }
   );
-
-
-  /* ==================================================
-     CONTENU DES OPTIONS
-     ================================================== */
 
   decorateOptionsPanel(
     panel
