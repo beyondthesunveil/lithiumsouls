@@ -142,11 +142,6 @@
         )
       : null;
 
-
-    /* =====================================================
-       CRÉATION DES OPTIONS DE PRIORITÉ
-       ===================================================== */
-
     function createPriorityOption(
       value,
       label
@@ -160,11 +155,6 @@
 
       return option;
     }
-
-
-    /* =====================================================
-       AJOUT DU SÉLECTEUR AU FORMULAIRE
-       ===================================================== */
 
     function prepareTaskComposer() {
       if (!taskForm || !taskInput) {
@@ -237,11 +227,6 @@
 
     prepareTaskComposer();
 
-
-    /* =====================================================
-       DÉCORATION DES LIENS DE NAVIGATION
-       ===================================================== */
-
     function decorateLinks() {
       if (!linksContainer) {
         return;
@@ -299,11 +284,6 @@
         }
       );
     }
-
-
-    /* =====================================================
-       INFORMATIONS DU MEMBRE
-       ===================================================== */
 
     function extractAvatarSource(value) {
       if (
@@ -398,12 +378,7 @@
 
       avatar.appendChild(avatarImage);
     }
-
-
-    /* =====================================================
-       DONNÉES PERSONNELLES
-       ===================================================== */
-
+    
     var personalData = {
       notes: "",
       tasks: [],
@@ -412,11 +387,6 @@
 
     var noteSaveTimer = null;
     var panelCloseTimer = null;
-
-
-    /* =====================================================
-       CHARGEMENT DES DONNÉES
-       ===================================================== */
 
     function loadPersonalData() {
       if (!loggedIn) {
@@ -468,11 +438,6 @@
       }
     }
 
-
-    /* =====================================================
-       SAUVEGARDE DES DONNÉES
-       ===================================================== */
-
     function savePersonalData() {
       if (!loggedIn) {
         return;
@@ -490,11 +455,6 @@
         }
       }
     }
-
-
-    /* =====================================================
-       OUVERTURE ET FERMETURE DU PANNEAU
-       ===================================================== */
 
     function setPersonalPanel(open) {
       if (
@@ -574,11 +534,6 @@
           );
       }
     }
-
-
-    /* =====================================================
-       COMPORTEMENT DU BOUTON MEMBRE
-       ===================================================== */
 
     if (member) {
       if (loggedIn) {
@@ -661,11 +616,6 @@
       }
     );
 
-
-    /* =====================================================
-       GESTION DES ONGLETS
-       ===================================================== */
-
     function activatePersonalTab(
       tabName,
       save
@@ -738,11 +688,6 @@
       }
     );
 
-
-    /* =====================================================
-       COMPTEUR DE CARACTÈRES
-       ===================================================== */
-
     function updateCharacterCounter() {
       if (
         !notesField ||
@@ -762,11 +707,6 @@
             : " caractère"
         );
     }
-
-
-    /* =====================================================
-       SAUVEGARDE AUTOMATIQUE DES NOTES
-       ===================================================== */
 
     function scheduleNoteSave() {
       if (!notesField) {
@@ -810,11 +750,6 @@
       );
     }
 
-
-    /* =====================================================
-       IDENTIFIANT UNIQUE DES TÂCHES
-       ===================================================== */
-
     function createTaskIdentifier() {
       return (
         String(
@@ -828,11 +763,6 @@
         )
       );
     }
-
-
-    /* =====================================================
-       MISE À NIVEAU DES ANCIENNES TÂCHES
-       ===================================================== */
 
     function normalizeTasks() {
       personalData.tasks =
@@ -870,11 +800,6 @@
           );
     }
 
-
-    /* =====================================================
-       CRÉATION D’UNE TÂCHE
-       ===================================================== */
-
     function createTaskElement(task) {
       var taskElement =
         document.createElement("div");
@@ -894,9 +819,6 @@
         "data-task-id",
         task.id
       );
-
-
-      /* Case à cocher */
 
       var taskCheckbox =
         document.createElement("label");
@@ -921,9 +843,6 @@
       var checkboxVisual =
         document.createElement("span");
 
-
-      /* Texte de la tâche */
-
       var taskText =
         document.createElement("span");
 
@@ -932,9 +851,6 @@
 
       taskText.textContent =
         task.text;
-
-
-      /* Priorité de la tâche */
 
       var prioritySelect =
         document.createElement("select");
@@ -972,9 +888,6 @@
       prioritySelect.value =
         task.priority;
 
-
-      /* Bouton de suppression */
-
       var deleteButton =
         document.createElement("button");
 
@@ -995,9 +908,6 @@
 
       deleteIcon.className =
         "ion-close-round";
-
-
-      /* Assemblage */
 
       taskCheckbox.appendChild(
         checkboxInput
@@ -1027,9 +937,6 @@
         deleteButton
       );
 
-
-      /* Changement d’état */
-
       checkboxInput.addEventListener(
         "change",
         function () {
@@ -1041,9 +948,6 @@
         }
       );
 
-
-      /* Changement de priorité */
-
       prioritySelect.addEventListener(
         "change",
         function () {
@@ -1054,9 +958,6 @@
           renderTasks();
         }
       );
-
-
-      /* Suppression */
 
       deleteButton.addEventListener(
         "click",
@@ -1078,11 +979,6 @@
 
       return taskElement;
     }
-
-
-    /* =====================================================
-       CRÉATION D’UN GROUPE DE TÂCHES
-       ===================================================== */
 
     function createTaskGroup(
       title,
@@ -1139,11 +1035,6 @@
       return group;
     }
 
-
-    /* =====================================================
-       AFFICHAGE DES TÂCHES
-       ===================================================== */
-
     function renderTasks() {
       if (!taskList) {
         return;
@@ -1174,9 +1065,6 @@
       var remaining =
         currentTasks.length;
 
-
-      /* Groupe des tâches en cours */
-
       if (total > 0) {
         taskList.appendChild(
           createTaskGroup(
@@ -1187,9 +1075,6 @@
         );
       }
 
-
-      /* Groupe des tâches terminées */
-
       if (completedTasks.length) {
         taskList.appendChild(
           createTaskGroup(
@@ -1199,9 +1084,6 @@
           )
         );
       }
-
-
-      /* Compteurs */
 
       if (taskCount) {
         taskCount.textContent =
@@ -1225,9 +1107,6 @@
           );
       }
 
-
-      /* État vide et pied du module */
-
       if (emptyState) {
         emptyState.hidden =
           total > 0;
@@ -1243,11 +1122,6 @@
           completed === 0;
       }
     }
-
-
-    /* =====================================================
-       AJOUT D’UNE NOUVELLE TÂCHE
-       ===================================================== */
 
     function addTask(
       text,
@@ -1277,11 +1151,6 @@
       renderTasks();
     }
 
-
-    /* =====================================================
-       SOUMISSION DU FORMULAIRE
-       ===================================================== */
-
     if (
       taskForm &&
       taskInput
@@ -1310,11 +1179,6 @@
       );
     }
 
-
-    /* =====================================================
-       SUPPRESSION DES TÂCHES TERMINÉES
-       ===================================================== */
-
     if (clearCompleted) {
       clearCompleted.addEventListener(
         "click",
@@ -1332,19 +1196,9 @@
       );
     }
 
-
-    /* =====================================================
-       INITIALISATION DES DONNÉES
-       ===================================================== */
-
     if (loggedIn) {
       loadPersonalData();
       normalizeTasks();
-
-      /*
-       * Enregistre également les anciennes
-       * tâches après leur mise à niveau.
-       */
       savePersonalData();
 
       if (notesField) {
@@ -1361,11 +1215,6 @@
       );
     }
   }
-
-
-  /* =======================================================
-     INITIALISATION GÉNÉRALE
-     ======================================================= */
 
   if (
     document.readyState === "loading"
