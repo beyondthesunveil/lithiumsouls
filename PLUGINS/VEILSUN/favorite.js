@@ -1,7 +1,3 @@
-/* =========================================================
-   LITHIUM SOULS — REGISTRE DE VEILLE
-   ========================================================= */
-
 (function () {
   "use strict";
 
@@ -89,12 +85,7 @@
       ".breadcrumbs",
       ".nav"
     ];
-
-
-    /* =====================================================
-       STOCKAGE
-       ===================================================== */
-
+     
     function getFavorites() {
       try {
         var saved = JSON.parse(
@@ -109,7 +100,6 @@
       }
     }
 
-
     function saveFavorites(items) {
       try {
         localStorage.setItem(
@@ -123,11 +113,6 @@
         );
       }
     }
-
-
-    /* =====================================================
-       OUTILS
-       ===================================================== */
 
     function cleanText(text) {
       return String(text || "")
@@ -326,11 +311,6 @@
       return DEFAULT_AVATAR;
     }
 
-
-    /* =====================================================
-       EXTRACTION DES MESSAGES
-       ===================================================== */
-
     function getPostElements(root) {
       for (
         var index = 0;
@@ -518,11 +498,6 @@
       };
     }
 
-
-    /* =====================================================
-       NORMALISATION DES FAVORIS
-       ===================================================== */
-
     function normalizeFavorite(item) {
       var favorite = item || {};
 
@@ -658,11 +633,6 @@
       );
     }
 
-
-    /* =====================================================
-       RÉCUPÉRATION DES PAGES
-       ===================================================== */
-
     function requestDocument(url) {
       return fetch(url, {
         credentials: "same-origin"
@@ -695,7 +665,6 @@
             });
         });
     }
-
 
     function findLastPageUrl(
       topicDocument,
@@ -987,12 +956,7 @@
 
       return refreshPromise;
     }
-
-
-    /* =====================================================
-       COMPTEUR ET BOUTON DU SUJET
-       ===================================================== */
-
+     
     function updateCount() {
       var count =
         getFavorites().length;
@@ -1068,11 +1032,6 @@
         window.lucide.createIcons();
       }
     }
-
-
-    /* =====================================================
-       BOUTON DE LA SIDEBAR
-       ===================================================== */
 
     function preparePanelAccessibility() {
       var isOpen =
@@ -1213,11 +1172,6 @@
       );
     }
 
-
-    /* =====================================================
-       ONGLETS ET CATÉGORIES
-       ===================================================== */
-
     function renderCategoryTabs() {
       var panel =
         document.getElementById(
@@ -1305,11 +1259,6 @@
           })
           .join("");
     }
-
-
-    /* =====================================================
-       OUVERTURE ET FERMETURE
-       ===================================================== */
 
     function updatePanelState(
       isOpen
@@ -1403,11 +1352,6 @@
       }
     }
 
-
-    /* =====================================================
-       AJOUT ET SUPPRESSION D’UN FAVORI
-       ===================================================== */
-
     function toggleCurrentTopicFavorite() {
       var topic =
         getCurrentTopic();
@@ -1486,11 +1430,6 @@
       saveFavorites(favorites);
       renderFavorites();
     }
-
-
-    /* =====================================================
-       AFFICHAGE DES FAVORIS
-       ===================================================== */
 
     function renderFavorites() {
       var list =
@@ -1704,11 +1643,6 @@
       }
     }
 
-
-    /* =====================================================
-       ÉVÉNEMENTS
-       ===================================================== */
-
     preserveSidebarButton();
     observeDuplicateButtons();
 
@@ -1775,12 +1709,7 @@
           toggleCurrentTopicFavorite();
         }
       );
-
-
-    /*
-     * Un clic à l’intérieur du panneau ne doit
-     * jamais provoquer sa fermeture.
-     */
+     
     $(panelNode)
       .off("click.faPinsContain")
       .on(
@@ -1790,11 +1719,6 @@
         }
       );
 
-
-    /*
-     * Seul un véritable clic à l’extérieur ferme
-     * le panneau.
-     */
     $(document)
       .off("click.faPinsOutside")
       .on(
@@ -1982,11 +1906,6 @@
         }
       );
 
-
-    /* =====================================================
-       GLISSER-DÉPOSER
-       ===================================================== */
-
     $(panelNode)
       .off(
         "dragstart.faPins",
@@ -2098,12 +2017,7 @@
           renderFavorites();
         }
       );
-
-
-    /* =====================================================
-       PREMIER AFFICHAGE
-       ===================================================== */
-
+     
     preparePanelAccessibility();
     renderCategoryTabs();
     renderFavorites();
