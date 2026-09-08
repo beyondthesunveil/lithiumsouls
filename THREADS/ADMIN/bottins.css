@@ -432,11 +432,6 @@ a.litso-directory_name:hover {
   font: inherit;
 }
 
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
 @media (max-width: 700px) {
   .litso-directory_entry:has(> n3) {
     grid-template-columns:
