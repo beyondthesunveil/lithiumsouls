@@ -152,14 +152,6 @@
   text-align: justify;
 }
 
-/* .litso_simp_text > :first-child {
-  margin-top: 0;
-}
-
-.litso_simp_text > :last-child {
-  margin-bottom: 0;
-} */
-
 .litso_simp_text h3 {
   position: relative;
   margin: 23px 0 13px;
@@ -280,11 +272,6 @@
   }
 }
 
-/* =========================================================
-   COMPLÉMENTS — RECENSEMENT MENSUEL
-   À placer après le CSS principal de litso_simp_
-   ========================================================= */
-
 .litso_simp_note--stacked {
   display: grid;
   grid-template-columns: 105px minmax(0, 1fr);
@@ -373,11 +360,6 @@
     min-height: 42px;
   }
 }
-
-/* =========================================================
-   BOUTONS TOP SITES ET TOOLTIPS
-   Nomenclature : litso_noticeTooltip
-   ========================================================= */
 
 .litso_noticeTooltip_list,
 .litso_noticeTooltip_list * {
@@ -493,60 +475,35 @@
   transition-delay: 0s;
 }
 
-
-/* =========================================================
-   ICÔNES INDIVIDUELLES
-   ========================================================= */
-
-/* TOP SITE 1 — Flamme */
-
 .litso_noticeTooltip--paw {
   --litso-tooltip-icon:
     url("https://unpkg.com/lucide-static/icons/flame.svg");
 }
-
-
-/* TOP SITE 2 — Lune étoilée */
 
 .litso_noticeTooltip--trophy {
   --litso-tooltip-icon:
     url("https://unpkg.com/lucide-static/icons/moon-star.svg");
 }
 
-
-/* TOP SITE 3 — Étincelles */
-
 .litso_noticeTooltip--scroll {
   --litso-tooltip-icon:
     url("https://unpkg.com/lucide-static/icons/sparkles.svg");
 }
-
-
-/* TOP SITE 4 — Crâne */
 
 .litso_noticeTooltip--dice {
   --litso-tooltip-icon:
     url("https://unpkg.com/lucide-static/icons/skull.svg");
 }
 
-
-/* TOP SITE 5 — feu de camp */
-
 .litso_noticeTooltip--palette {
   --litso-tooltip-icon:
     url("https://unpkg.com/lucide-static/icons/flame-kindling.svg");
 }
 
-
-/* TOP SITE 6 — Fantôme */
-
 .litso_noticeTooltip--gamepad {
   --litso-tooltip-icon:
     url("https://unpkg.com/lucide-static/icons/ghost.svg");
 }
-
-
-/* TOP SITE 7 — Fantôme */
 
 .litso_noticeTooltip--portal {
   --litso-tooltip-icon:
