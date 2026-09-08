@@ -253,9 +253,6 @@
   clip-path: inset(50%);
   white-space: nowrap;
 }
-/* =========================================================
-   NEUTRALISATION DU MENTIONTAG NATIF
-   ========================================================= */
 
 .main-tooltip.litso-mentiontag_ {
   width: 370px !important;
@@ -293,9 +290,6 @@
   margin: 0 !important;
   overflow: visible !important;
 }
-
-
-/* Cadre extérieur généré par le moteur de tooltips */
 
 .tooltipster-base:has(.litso-mentiontag_),
 .tooltipster-default:has(.litso-mentiontag_) {
