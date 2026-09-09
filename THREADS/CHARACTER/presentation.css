@@ -179,16 +179,9 @@
   color: var(--text-secondary);
   background: var(--bg-elevated);
   border: 1px solid var(--border-default);
-  font: 12px/1.9 var(--font-sans);
+  font: 12px/1.4 var(--font-sans);
   height: 172px;
   overflow: auto;
-}
-
-.litso-presentation_fields > div:not(:last-child)::after {
-  content: " ◆ ";
-  margin: 0 5px;
-  color: var(--gold);
-  font-size: 6px;
 }
 
 .litso-presentation_fields t1, t1 {
