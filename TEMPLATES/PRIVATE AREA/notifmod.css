@@ -262,44 +262,169 @@ body.ls-page-notification-options table tbody td:first-child {
   font-weight: 500;
 }
 
-@media (max-width: 900px) {
-
-  body.ls-page-notifications .ls-page-title,
-  body.ls-page-notification-options .ls-page-title {
-    min-height: 100px;
-
-    font-size: 36px !important;
-  }
-
-  body.ls-page-notifications .ls-page-title::before,
-  body.ls-page-notification-options .ls-page-title::before {
-    left: 90px;
-
-    font-size: 78px;
-  }
-
-  body.ls-page-notifications table tbody td,
-  body.ls-page-notification-options table tbody td,
-  body.ls-page-notifications table th,
-  body.ls-page-notification-options table th {
-    padding: 13px 12px;
-  }
-
+body.ls-page-notifications table thead th,
+body.ls-page-notification-options table thead th,
+body.ls-page-notifications table thead td,
+body.ls-page-notification-options table thead td {
+  position: relative;
+  padding: 26px 22px 18px;
+  background:
+    linear-gradient(135deg, rgba(173,152,87,.05), rgba(143,101,117,.04)),
+    linear-gradient(90deg, rgba(255,255,255,.015), rgba(255,255,255,0)),
+    var(--bg-elevated);
+  border-bottom: 1px solid var(--border-default) !important;
+  color: var(--text-primary) !important;
+  font: 600 18px/1.2 var(--font-display) !important;
+  letter-spacing: -.2px;
+  text-transform: none;
+  vertical-align: bottom;
 }
 
+body.ls-page-notifications table thead th::before,
+body.ls-page-notification-options table thead th::before,
+body.ls-page-notifications table thead td::before,
+body.ls-page-notification-options table thead td::before {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--gold);
+  font: 700 10px/1 var(--font-sans);
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  opacity: .9;
+}
 
-@media (max-width: 700px) {
+body.ls-page-notifications table thead th:first-child::before,
+body.ls-page-notifications table thead td:first-child::before {
+  content: "registre";
+}
 
-  body.ls-page-notifications table,
-  body.ls-page-notification-options table {
-    display: block;
+body.ls-page-notifications table thead th:nth-child(2)::before,
+body.ls-page-notifications table thead td:nth-child(2)::before {
+  content: "chronologie";
+}
 
-    overflow-x: auto;
-  }
+body.ls-page-notifications table thead th:last-child::before,
+body.ls-page-notifications table thead td:last-child::before {
+  content: "sélection";
+}
 
-  body.ls-page-notifications .ls-page-title::before,
-  body.ls-page-notification-options .ls-page-title::before {
-    left: 55px;
-  }
+body.ls-page-notification-options table thead th:first-child::before,
+body.ls-page-notification-options table thead td:first-child::before {
+  content: "préférences";
+}
 
+body.ls-page-notification-options table thead th:nth-child(2)::before,
+body.ls-page-notification-options table thead td:nth-child(2)::before {
+  content: "canal";
+}
+
+body.ls-page-notification-options table thead th:nth-child(3)::before,
+body.ls-page-notification-options table thead td:nth-child(3)::before {
+  content: "canal";
+}
+
+body.ls-page-notifications table thead th:first-child,
+body.ls-page-notification-options table thead th:first-child,
+body.ls-page-notifications table thead td:first-child,
+body.ls-page-notification-options table thead td:first-child {
+  text-align: left;
+}
+
+body.ls-page-notifications table thead th:nth-child(2),
+body.ls-page-notifications table thead th:last-child,
+body.ls-page-notification-options table thead th:nth-child(2),
+body.ls-page-notification-options table thead th:nth-child(3),
+body.ls-page-notifications table thead td:nth-child(2),
+body.ls-page-notifications table thead td:last-child,
+body.ls-page-notification-options table thead td:nth-child(2),
+body.ls-page-notification-options table thead td:nth-child(3) {
+  text-align: center;
+}
+
+body.ls-page-notifications table thead th:first-child::after,
+body.ls-page-notification-options table thead th:first-child::after,
+body.ls-page-notifications table thead td:first-child::after,
+body.ls-page-notification-options table thead td:first-child::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  bottom: -1px;
+  width: 58px;
+  height: 2px;
+  background: var(--gradient-accent);
+}
+
+body.ls-page-notifications table tbody td:first-child {
+  color: var(--text-secondary);
+  font: 400 15px/1.55 var(--font-sans);
+}
+
+body.ls-page-notifications table tbody td:first-child a {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+body.ls-page-notifications table tbody td:first-child strong,
+body.ls-page-notifications table tbody td:first-child b {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+body.ls-page-notifications table tbody td:first-child em,
+body.ls-page-notifications table tbody td:first-child i {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+body.ls-page-notifications table tbody td:nth-child(2) {
+  color: var(--text-muted);
+  font: 400 12px/1.4 var(--font-sans);
+  letter-spacing: .02em;
+}
+
+body.ls-page-notifications table tbody td:last-child,
+body.ls-page-notification-options table tbody td:nth-child(2),
+body.ls-page-notification-options table tbody td:nth-child(3) {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.01), rgba(255,255,255,0)),
+    rgba(255,255,255,.01);
+}
+
+body.ls-page-notifications table tbody td,
+body.ls-page-notification-options table tbody td {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+body.ls-page-notifications table tbody tr:hover td,
+body.ls-page-notification-options table tbody tr:hover td {
+  background:
+    linear-gradient(90deg, rgba(173,152,87,.04), rgba(108,143,139,.025)),
+    var(--bg-soft);
+}
+
+body.ls-page-notifications table tbody td:first-child::before,
+body.ls-page-notification-options table tbody td:first-child::before {
+  width: 3px;
+}
+
+body.ls-page-notifications .ls-page-title,
+body.ls-page-notification-options .ls-page-title {
+  min-height: 118px;
+  padding: 0 0 24px 16px !important;
+}
+
+body.ls-page-notifications .ls-page-title::before,
+body.ls-page-notification-options .ls-page-title::before {
+  left: 95px;
+  bottom: 0;
+  opacity: .42;
+  font-size: 96px;
+  letter-spacing: -4px;
+}
+
+body.ls-page-notifications .ls-page-title::after,
+body.ls-page-notification-options .ls-page-title::after {
+  left: 16px;
+  width: 86px;
 }
