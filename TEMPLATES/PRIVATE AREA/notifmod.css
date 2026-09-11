@@ -1,0 +1,190 @@
+body.ls-page-notifications :is(h1, .page-title, .maintitle, .page-header h1),
+body.ls-page-notification-options :is(h1, .page-title, .maintitle, .page-header h1) {
+  margin: 0 0 18px;
+  color: var(--text-primary);
+  font: 600 34px/1 var(--font-display);
+  letter-spacing: -1px;
+}
+
+body.ls-page-notifications :is(h1, .page-title, .maintitle, .page-header h1)::after,
+body.ls-page-notification-options :is(h1, .page-title, .maintitle, .page-header h1)::after {
+  content: "";
+  display: block;
+  width: 68px;
+  height: 2px;
+  margin-top: 12px;
+  background: linear-gradient(90deg, var(--gold), var(--accent));
+}
+
+body.ls-page-notifications table,
+body.ls-page-notification-options table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  overflow: hidden;
+}
+
+body.ls-page-notifications table th,
+body.ls-page-notifications table thead td,
+body.ls-page-notification-options table th,
+body.ls-page-notification-options table thead td {
+  padding: 18px 16px;
+  color: var(--text-invert);
+  background: linear-gradient(135deg, var(--accent-deep), #2e3944);
+  border-bottom: 1px solid var(--border-default);
+  font: 600 15px/1.4 var(--font-sans);
+  text-transform: none;
+}
+
+body.ls-page-notifications table td,
+body.ls-page-notification-options table td {
+  padding: 14px 16px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-subtle);
+  font: 400 14px/1.5 var(--font-sans);
+  vertical-align: middle;
+}
+
+body.ls-page-notifications table tbody tr:nth-child(odd) td,
+body.ls-page-notification-options table tbody tr:nth-child(odd) td {
+  background: var(--bg-surface);
+}
+
+body.ls-page-notifications table tbody tr:nth-child(even) td,
+body.ls-page-notification-options table tbody tr:nth-child(even) td {
+  background: var(--bg-elevated);
+}
+
+body.ls-page-notifications table a,
+body.ls-page-notification-options table a {
+  color: var(--accent-deep);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+body.ls-page-notifications table a:hover,
+body.ls-page-notification-options table a:hover {
+  color: var(--gold);
+}
+
+body.ls-page-notifications table td:nth-child(2),
+body.ls-page-notifications table th:nth-child(2) {
+  white-space: nowrap;
+  color: var(--text-secondary);
+}
+
+body.ls-page-notifications table td:last-child,
+body.ls-page-notifications table th:last-child,
+body.ls-page-notification-options table td:last-child,
+body.ls-page-notification-options table th:last-child {
+  text-align: center;
+}
+
+body.ls-page-notification-options table td:nth-last-child(2),
+body.ls-page-notification-options table th:nth-last-child(2) {
+  text-align: center;
+}
+
+body.ls-page-notifications input[type="checkbox"],
+body.ls-page-notification-options input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  background: var(--bg-page);
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  vertical-align: middle;
+  transition: all 0.2s ease;
+}
+
+body.ls-page-notifications input[type="checkbox"]:hover,
+body.ls-page-notification-options input[type="checkbox"]:hover {
+  border-color: var(--gold);
+}
+
+body.ls-page-notifications input[type="checkbox"]:checked,
+body.ls-page-notification-options input[type="checkbox"]:checked {
+  background: var(--accent);
+  border-color: var(--accent-deep);
+}
+
+body.ls-page-notifications input[type="checkbox"]:checked::after,
+body.ls-page-notification-options input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 4px;
+  width: 4px;
+  height: 8px;
+  border: solid var(--text-invert);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+body.ls-page-notifications .right-box,
+body.ls-page-notification-options .right-box,
+body.ls-page-notifications .panel + p,
+body.ls-page-notification-options .panel + p,
+body.ls-page-notifications .genmed,
+body.ls-page-notification-options .genmed {
+  color: var(--text-muted);
+  font: 400 13px/1.5 var(--font-sans);
+}
+
+body.ls-page-notifications .right-box a,
+body.ls-page-notification-options .right-box a,
+body.ls-page-notifications .genmed a,
+body.ls-page-notification-options .genmed a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+body.ls-page-notifications .right-box a:hover,
+body.ls-page-notification-options .right-box a:hover,
+body.ls-page-notifications .genmed a:hover,
+body.ls-page-notification-options .genmed a:hover {
+  color: var(--accent);
+}
+
+body.ls-page-notifications .panel,
+body.ls-page-notification-options .panel {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+body.ls-page-notifications #main,
+body.ls-page-notification-options #main,
+body.ls-page-notifications #main-content,
+body.ls-page-notification-options #main-content {
+  color: var(--text-primary);
+}
+
+@media (max-width: 900px) {
+  body.ls-page-notifications table th,
+  body.ls-page-notifications table td,
+  body.ls-page-notification-options table th,
+  body.ls-page-notification-options table td {
+    padding: 12px 10px;
+    font-size: 13px;
+  }
+
+  body.ls-page-notifications :is(h1, .page-title, .maintitle, .page-header h1),
+  body.ls-page-notification-options :is(h1, .page-title, .maintitle, .page-header h1) {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 700px) {
+  body.ls-page-notifications table,
+  body.ls-page-notification-options table {
+    display: block;
+    overflow-x: auto;
+  }
+}
