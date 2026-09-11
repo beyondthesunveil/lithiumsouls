@@ -1,109 +1,430 @@
 (function () {
   "use strict";
 
-  function normalizeText(text) {
+  function cleanText(text) {
     return (text || "")
       .replace(/\s+/g, " ")
       .trim()
       .toLowerCase();
   }
 
-  function getTableHeadTexts(table) {
-    var texts = [];
-    var heads = table.querySelectorAll("th, thead td");
-    Array.prototype.forEach.call(heads, function (cell) {
-      texts.push(normalizeText(cell.textContent));
-    });
-    return texts;
+  function isInsideTable(element) {
+    var parent = element;
+
+    while (parent) {
+      if (
+        parent.tagName &&
+        parent.tagName.toLowerCase() === "table"
+      ) {
+        return true;
+      }
+
+      parent = parent.parentNode;
+    }
+
+    return false;
   }
 
-  function getMainTitle() {
-    return document.querySelector(
-      "h1, .page-title, .maintitle, .page-header h1"
+  function getHeaderCells(table) {
+    var cells = table.querySelectorAll(
+      "thead th, thead td"
     );
+
+    if (cells.length) {
+      return cells;
+    }
+
+    var firstRow = table.querySelector("tr");
+
+    if (!firstRow) {
+      return [];
+    }
+
+    return firstRow.querySelectorAll("th, td");
   }
 
-  function decoratePageTitle(body, type) {
-    var title = getMainTitle();
-    if (!title) return;
+  function getNotificationTableType(table) {
+    var cells = getHeaderCells(table);
 
-    var titleText = title.textContent.replace(/\s+/g, " ").trim();
-    if (!titleText) return;
+    if (!cells.length) {
+      return null;
+    }
 
-    title.classList.add("ls-page-title");
-    title.setAttribute("data-ls-title", titleText);
+    var texts = [];
 
-    if (type === "notifications") {
-      title.classList.add("ls-page-title--notifications");
+    Array.prototype.forEach.call(
+      cells,
+      function (cell) {
+        texts.push(cleanText(cell.textContent));
+      }
+    );
+
+    var headerText = texts.join(" | ");
+
+    if (
+      headerText.indexOf("types de notifications") !== -1 &&
+      headerText.indexOf("par email") !== -1
+    ) {
+      return "options";
+    }
+
+    if (
+      headerText.indexOf("notifications") !== -1 &&
+      headerText.indexOf("date") !== -1
+    ) {
+      return "list";
+    }
+
+
+    return null;
+  }
+
+  function findPageTitle(type) {
+    var candidates = document.querySelectorAll(
+      "h1, h2, .page-title, .maintitle, .page-header h1, .page-header h2"
+    );
+
+    var fallback = null;
+
+    for (var i = 0; i < candidates.length; i++) {
+      var element = candidates[i];
+
+      if (isInsideTable(element)) {
+        continue;
+      }
+
+      var text = cleanText(element.textContent);
+
+      if (!text) {
+        continue;
+      }
+
+      if (
+        type === "options" &&
+        (
+          text === "options" ||
+          text.indexOf("options") === 0
+        )
+      ) {
+        return element;
+      }
+
+      if (
+        type === "list" &&
+        text.indexOf("notification") !== -1 &&
+        text.indexOf("types de notifications") === -1
+      ) {
+        return element;
+      }
+
+
+      if (!fallback) {
+        fallback = element;
+      }
+    }
+
+
+    return fallback;
+  }
+
+  function decoratePageTitle(type) {
+    var title = findPageTitle(type);
+
+    if (!title) {
+      return;
+    }
+
+    title.setAttribute(
+      "data-ls-notifications-title",
+      "true"
+    );
+
+    if (type === "list") {
+      title.setAttribute(
+        "data-ls-ghost",
+        "notifications"
+      );
+    }
+
+
+    if (type === "options") {
+      title.setAttribute(
+        "data-ls-ghost",
+        "options"
+      );
+    }
+  }
+
+  function decorateTableHeader(table, type) {
+    var cells = getHeaderCells(table);
+
+    if (!cells.length) {
+      return;
+    }
+
+
+    var headerRow = cells[0].parentNode;
+
+    if (headerRow) {
+      headerRow.setAttribute(
+        "data-ls-header-row",
+        "true"
+      );
+    }
+
+    if (type === "list") {
+
+      if (cells[0]) {
+        cells[0].setAttribute(
+          "data-ls-column",
+          "main"
+        );
+
+        cells[0].setAttribute(
+          "data-ls-kicker",
+          "registre"
+        );
+      }
+
+
+      if (cells[1]) {
+        cells[1].setAttribute(
+          "data-ls-column",
+          "date"
+        );
+
+        cells[1].setAttribute(
+          "data-ls-kicker",
+          "chronologie"
+        );
+      }
+
+
+      if (cells[2]) {
+        cells[2].setAttribute(
+          "data-ls-column",
+          "selection"
+        );
+
+        cells[2].setAttribute(
+          "data-ls-kicker",
+          "sélection"
+        );
+      }
+
     }
 
     if (type === "options") {
-      title.classList.add("ls-page-title--options");
+
+      if (cells[0]) {
+        cells[0].setAttribute(
+          "data-ls-column",
+          "main"
+        );
+
+        cells[0].setAttribute(
+          "data-ls-kicker",
+          "préférences"
+        );
+      }
+
+
+      if (cells[1]) {
+        cells[1].setAttribute(
+          "data-ls-column",
+          "email"
+        );
+
+        cells[1].setAttribute(
+          "data-ls-kicker",
+          "canal"
+        );
+      }
+
+
+      if (cells[2]) {
+        cells[2].setAttribute(
+          "data-ls-column",
+          "push"
+        );
+
+        cells[2].setAttribute(
+          "data-ls-kicker",
+          "canal"
+        );
+      }
+
     }
   }
 
-  function detectNotificationPages() {
-    var body = document.body;
-    if (!body) return;
+  function decorateNotificationRows(table) {
+    var rows = table.querySelectorAll("tr");
 
-    var url = window.location.href.toLowerCase();
+    Array.prototype.forEach.call(
+      rows,
+      function (row) {
+
+        if (
+          row.getAttribute("data-ls-header-row") === "true"
+        ) {
+          return;
+        }
+
+
+        var cells = row.querySelectorAll("td");
+
+        if (!cells.length) {
+          return;
+        }
+
+
+        row.setAttribute(
+          "data-ls-entry",
+          "true"
+        );
+
+        if (cells[0]) {
+          cells[0].setAttribute(
+            "data-ls-cell",
+            "message"
+          );
+
+
+          var links = cells[0].querySelectorAll("a");
+
+          if (links.length) {
+            links[0].setAttribute(
+              "data-ls-role",
+              "actor"
+            );
+          }
+
+          if (links.length > 1) {
+            links[links.length - 1].setAttribute(
+              "data-ls-role",
+              "topic"
+            );
+          }
+        }
+
+        if (cells[1]) {
+          cells[1].setAttribute(
+            "data-ls-cell",
+            "date"
+          );
+        }
+
+        if (cells.length > 2) {
+          cells[cells.length - 1].setAttribute(
+            "data-ls-cell",
+            "selection"
+          );
+        }
+
+      }
+    );
+  }
+
+  function decorateOptionsRows(table) {
+    var rows = table.querySelectorAll("tr");
+
+    Array.prototype.forEach.call(
+      rows,
+      function (row) {
+
+        if (
+          row.getAttribute("data-ls-header-row") === "true"
+        ) {
+          return;
+        }
+
+        var cells = row.querySelectorAll("td");
+
+        if (!cells.length) {
+          return;
+        }
+
+        row.setAttribute(
+          "data-ls-entry",
+          "true"
+        );
+
+        if (cells[0]) {
+          cells[0].setAttribute(
+            "data-ls-cell",
+            "option"
+          );
+        }
+
+        if (cells[1]) {
+          cells[1].setAttribute(
+            "data-ls-cell",
+            "email"
+          );
+        }
+
+        if (cells[2]) {
+          cells[2].setAttribute(
+            "data-ls-cell",
+            "push"
+          );
+        }
+
+      }
+    );
+  }
+
+  function initializeNotificationsPage() {
     var tables = document.querySelectorAll("table");
-    var pageText = normalizeText(document.body.textContent);
 
-    var isNotifList = false;
-    var isNotifOptions = false;
+    Array.prototype.forEach.call(
+      tables,
+      function (table) {
+        var type = getNotificationTableType(table);
 
-    Array.prototype.forEach.call(tables, function (table) {
-      var heads = getTableHeadTexts(table);
-      var joined = heads.join(" | ");
+        if (!type) {
+          return;
+        }
 
-      if (
-        joined.indexOf("date") !== -1 &&
-        (joined.indexOf("notifications") !== -1 || joined.indexOf("x") !== -1)
-      ) {
-        isNotifList = true;
+        document.body.setAttribute(
+          "data-ls-notifications-page",
+          type
+        );
+
+        table.setAttribute(
+          "data-ls-notifications-table",
+          type
+        );
+
+        decoratePageTitle(type);
+
+        decorateTableHeader(
+          table,
+          type
+        );
+
+        if (type === "list") {
+          decorateNotificationRows(table);
+        }
+
+        if (type === "options") {
+          decorateOptionsRows(table);
+        }
       }
-
-      if (
-        joined.indexOf("types de notifications") !== -1 &&
-        joined.indexOf("par email") !== -1
-      ) {
-        isNotifOptions = true;
-      }
-    });
-
-    if (
-      url.indexOf("notifications") !== -1 &&
-      pageText.indexOf("types de notifications") === -1
-    ) {
-      isNotifList = true;
-    }
-
-    if (
-      url.indexOf("notification") !== -1 &&
-      pageText.indexOf("types de notifications") !== -1
-    ) {
-      isNotifOptions = true;
-    }
-
-    if (pageText.indexOf("types de notifications") !== -1) {
-      isNotifOptions = true;
-    }
-
-    if (isNotifList) {
-      body.classList.add("ls-page-notifications");
-      decoratePageTitle(body, "notifications");
-    }
-
-    if (isNotifOptions) {
-      body.classList.add("ls-page-notification-options");
-      decoratePageTitle(body, "options");
-    }
+    );
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", detectNotificationPages);
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      initializeNotificationsPage
+    );
+
   } else {
-    detectNotificationPages();
+
+    initializeNotificationsPage();
+
   }
+
 })();
