@@ -17,6 +17,31 @@
     return texts;
   }
 
+  function getMainTitle() {
+    return document.querySelector(
+      "h1, .page-title, .maintitle, .page-header h1"
+    );
+  }
+
+  function decoratePageTitle(body, type) {
+    var title = getMainTitle();
+    if (!title) return;
+
+    var titleText = title.textContent.replace(/\s+/g, " ").trim();
+    if (!titleText) return;
+
+    title.classList.add("ls-page-title");
+    title.setAttribute("data-ls-title", titleText);
+
+    if (type === "notifications") {
+      title.classList.add("ls-page-title--notifications");
+    }
+
+    if (type === "options") {
+      title.classList.add("ls-page-title--options");
+    }
+  }
+
   function detectNotificationPages() {
     var body = document.body;
     if (!body) return;
@@ -67,10 +92,12 @@
 
     if (isNotifList) {
       body.classList.add("ls-page-notifications");
+      decoratePageTitle(body, "notifications");
     }
 
     if (isNotifOptions) {
       body.classList.add("ls-page-notification-options");
+      decoratePageTitle(body, "options");
     }
   }
 
