@@ -938,8 +938,8 @@
   margin: 30px 0;
 }
 .lst_fpimginfos img {
-  width: 70px;
-  height: 70px;
+  width: 70px!important;
+  height: 70px!important;
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid var(--bordercolor);
