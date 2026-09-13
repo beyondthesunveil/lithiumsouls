@@ -306,10 +306,6 @@
   overflow: hidden;
 }
 
-.litso-prvmsg_row:last-child {
-  border-bottom: 0;
-}
-
 .litso-prvmsg_folder {
   position: relative;
   display: grid;
