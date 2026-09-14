@@ -109,9 +109,9 @@
 
 .litso-presentation_emblem img {
   width: 78px;
-  height: 78px;
+  height: 78px!important;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: cover!important;
   filter: grayscale(1);
 }
 
@@ -213,12 +213,9 @@
 }
 
 .litso-presentation_portrait img {
-  position: relative;
-  z-index: 2;
-  display: block;
-  width: 200px;
-  height: 320px;
-  object-fit: cover;
+  width: 200px!important;
+  height: 323px !important;
+  object-fit: cover !important;
 }
 
 .litso-presentation_dual {
