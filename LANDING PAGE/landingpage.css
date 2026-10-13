@@ -1103,7 +1103,7 @@
 .litso-pa_root .litso-pa_newstitle {
   margin: 12px 0 7px;
   color: var(--text-primary);
-  font: italic 600 19px/0.98 var(--font-display);
+  font: italic 600 17px/0.98 var(--font-display);
 }
 
 .litso-pa_root .litso-pa_newstext {
