@@ -94,13 +94,6 @@
       position: "center"
     },
         {
-      name: "James",
-      url: "https://lithium-souls.forumactif.com/t179-damnees-7#729",
-      image: "https://i.pinimg.com/control1/736x/79/ab/0e/79ab0ebd65f332e675a6108a22e6cf68.jpg",
-      accent: "#b2a36f",
-      position: "center"
-    },
-        {
       name: "Calamity",
       url: "https://lithium-souls.forumactif.com/t179-damnees-7#730",
       image: "https://i.pinimg.com/1200x/36/68/56/3668562064738eefdb45d205515deb09.jpg",
@@ -139,13 +132,6 @@
       name: "Aborym",
       url: "https://lithium-souls.forumactif.com/t197-grandes-lignees-des-ars-7-7#786",
       image: "https://i.pinimg.com/1200x/d3/75/da/d375dadf55f82fd43af83d335a3ea0e0.jpg",
-      accent: "#b2a36f",
-      position: "center"
-    },
-        {
-      name: "Lycoris",
-      url: "https://lithium-souls.forumactif.com/t197-grandes-lignees-des-ars-7-7#787",
-      image: "https://pbs.twimg.com/media/GunKW9zX0AAFMpm?format=jpg&name=900x900",
       accent: "#b2a36f",
       position: "center"
     },
@@ -279,13 +265,6 @@
       name: "Medusa",
       url: "https://lithium-souls.forumactif.com/t87-les-gorgones-pourpres-5-5#276",
       image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1cfca11f-6cb7-400f-97a2-7865103ea5d9/dfpkvei-6bd1e4e4-3bd9-4d82-99fb-189cc4fea512.jpg/v1/fill/w_900,h_765,q_75,strp/neytiri__by_inkonix_dfpkvei-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzY1IiwicGF0aCI6Ii9mLzFjZmNhMTFmLTZjYjctNDAwZi05N2EyLTc4NjUxMDNlYTVkOS9kZnBrdmVpLTZiZDFlNGU0LTNiZDktNGQ4Mi05OWZiLTE4OWNjNGZlYTUxMi5qcGciLCJ3aWR0aCI6Ijw9OTAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.Z2DZ1rT7I34fhiuVTx4L4KLgSDdFRDZJXQsILYyQBww",
-      accent: "#b2a36f",
-      position: "center"
-    },
-        {
-      name: "Asterius",
-      url: "https://lithium-souls.forumactif.com/t87-les-gorgones-pourpres-5-5#479",
-      image: "https://pbs.twimg.com/media/EtKjaFiU4AEsjfc?format=jpg&name=900x900",
       accent: "#b2a36f",
       position: "center"
     },
