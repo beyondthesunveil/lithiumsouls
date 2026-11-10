@@ -542,9 +542,9 @@ h1.litso-msg_titlemap {
 
 .litso-msg_posttracker {
   position: sticky;
-  top: 45px;
+  top: 75px;
   align-self: flex-start;
-  margin-bottom: 15px;
+  margin-bottom: -20px;
 }
 
 .litso-msg_postname {
