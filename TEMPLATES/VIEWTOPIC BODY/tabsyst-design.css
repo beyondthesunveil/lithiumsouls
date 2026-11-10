@@ -12,7 +12,7 @@
   flex-wrap: nowrap;
   gap: 6px;
   width: 100%;
-  margin: -20px 0 10px;
+  margin: -15px 0px 10px;
   overflow: visible;
 }
 
@@ -27,7 +27,8 @@
   background: var(--bg-elevated);
   color: var(--text-muted);
   cursor: pointer;
-  font: 700 11px/1 var(--font-condensed);
+  letter-spacing: 1px;
+  font: 700 14px/1 var(--font-condensed);
   text-transform: lowercase;
   transition:
     background 0.25s ease,
