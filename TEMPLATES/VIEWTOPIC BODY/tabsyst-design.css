@@ -303,7 +303,6 @@
   flex-direction: column;
   gap: 6px;
   height: 250px;
-  overflow: auto;
   padding: 0 0 10px 8px;
 }
 
