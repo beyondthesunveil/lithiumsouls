@@ -280,7 +280,7 @@ h1.litso-msg_titlemap {
   height: 26px;
   display: grid;
   place-items: center;
-  padding: 0;
+  padding: 6px;
   color: var(--gold);
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
@@ -557,7 +557,7 @@ h1.litso-msg_titlemap {
 
 .litso-msg_postname strong {
   display: inline-block;
-  font: 600 15px var(--font-condensed);
+  font: 600 20px var(--font-condensed);
   text-transform: uppercase;
 }
 
