@@ -142,8 +142,8 @@
 }
 
 .litso_tabsystem > .litso_tabPanels {
-  min-height: 150px;
-  overflow: hidden;
+  height: 150px;
+  overflow: auto;
   background: var(--bg-soft);
   color: var(--accent);
 }
