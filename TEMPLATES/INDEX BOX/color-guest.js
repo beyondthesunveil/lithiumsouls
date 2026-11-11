@@ -3,45 +3,31 @@
     document.querySelectorAll('.litso-lastpost_meta').forEach(function (meta) {
       if (
         meta.closest('.litso-forum_empty') ||
-        meta.querySelector('.litso-lastpost_author')
+        meta.querySelector('.litso-lastpost_author, a[href*="/u"], a[href*="mode=viewprofile"]')
       ) {
         return;
       }
-      
-      const breaks = Array.from(meta.querySelectorAll('br')).reverse();
 
-      for (const lineBreak of breaks) {
-        const nameNodes = [];
+      const lineBreak = meta.querySelector(':scope > br');
+      const nameNode = lineBreak && lineBreak.nextSibling;
 
-        for (
-          let node = lineBreak.nextSibling;
-          node && node.nodeName !== 'BR';
-          node = node.nextSibling
-        ) {
-          if (
-            node.nodeType === Node.TEXT_NODE ||
-            (node.nodeType === Node.ELEMENT_NODE && node.matches('strong, span, b'))
-          ) {
-            nameNodes.push(node);
-          }
+      if (!nameNode || nameNode.nodeType !== Node.TEXT_NODE) return;
+
+      const name = nameNode.textContent.trim();
+      if (!name) return;
+
+      // Le nom doit être seul sur sa ligne.
+      for (let node = nameNode.nextSibling; node; node = node.nextSibling) {
+        if (node.nodeType !== Node.TEXT_NODE || node.textContent.trim()) {
+          return;
         }
-
-        const name = nameNodes.map(function (node) {
-          return node.textContent;
-        }).join('').trim();
-
-        if (!name) continue;
-
-        const badge = document.createElement('span');
-        badge.className = 'litso-lastpost_author';
-        badge.textContent = name;
-
-        nameNodes[0].before(badge);
-        nameNodes.forEach(function (node) {
-          node.remove();
-        });
-        break;
       }
+
+      const badge = document.createElement('span');
+      badge.className = 'litso-lastpost_author';
+      badge.style.setProperty('--litso-author-color', 'var(--bg-elevated)');
+      badge.textContent = name;
+      nameNode.replaceWith(badge);
     });
   }
 
