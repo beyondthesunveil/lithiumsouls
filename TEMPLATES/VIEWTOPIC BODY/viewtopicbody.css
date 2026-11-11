@@ -552,7 +552,9 @@ h1.litso-msg_titlemap {
   margin: 15px auto;
   padding: 3px 0 5px;
   border: 1px solid var(--border-default);
-  text-align: center;
+  text-align: center;  
+  font: 600 20px var(--font-condensed);
+  text-transform: uppercase;
 }
 
 .litso-msg_postname strong {
