@@ -1,9 +1,8 @@
 (() => {
   "use strict";
   const CONTACTS = [
-    { type: "rps", tooltip: "Fiche suivi RPs" },
-    { type: "links", tooltip: "Fiche de liens" },
-    { type: "presentation", tooltip: "Présentation" }
+    { type: "links", tooltip: "Suivi des liens" },
+    { type: "presentation", tooltip: "Fiche de présentation" }
   ];
   function initializeLitsoContacts() {
     document.querySelectorAll(".litso_contFields").forEach(container => {
