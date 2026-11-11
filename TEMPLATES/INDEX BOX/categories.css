@@ -458,7 +458,7 @@
   padding: 4px 10px;
   overflow: hidden;
   color: #fff !important;
-  background: var(--litso-author-color, var(--accent));
+  background: var(--litso-author-color, var(--border-strong));
   font: 700 8px / 1.2 var(--font-sans);
   letter-spacing: .08em;
   text-align: center;
