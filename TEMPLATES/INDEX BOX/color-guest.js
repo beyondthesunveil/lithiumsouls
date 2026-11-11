@@ -25,7 +25,7 @@
 
       const badge = document.createElement('span');
       badge.className = 'litso-lastpost_author';
-      badge.style.setProperty('--litso-author-color', 'var(--bg-elevated)');
+      badge.style.setProperty('--litso-author-color', 'var(--border-strong)');
       badge.textContent = name;
       nameNode.replaceWith(badge);
     });
